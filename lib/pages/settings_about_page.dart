@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
 
 import '../widgets/async.dart';
+import '../widgets/text.dart';
 
 class SettingsAboutPage extends StatefulWidget {
   SettingsAboutPage({Key key}) : super(key: key);
@@ -24,11 +25,11 @@ class _SettingsAboutPageState extends State<SettingsAboutPage> {
             children: <Widget>[
               ListTile(
                 title: Text('Package name'),
-                subtitle: Text(data.packageName),
+                subtitle: NullableText(data.packageName),
               ),
               ListTile(
                 title: Text('Package version'),
-                subtitle: Text(data.version),
+                subtitle: NullableText(data.version),
               ),
             ],
           );

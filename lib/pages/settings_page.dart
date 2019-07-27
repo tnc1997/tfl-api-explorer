@@ -4,7 +4,7 @@ import 'package:package_info/package_info.dart';
 import '../widgets/async.dart';
 import '../widgets/drawer.dart';
 import 'settings_about_page.dart';
-import 'settings_authentication_page.dart';
+import 'settings_account_page.dart';
 
 class SettingsPage extends StatefulWidget {
   static const route = '/settings';
@@ -28,15 +28,15 @@ class _SettingsPageState extends State<SettingsPage> {
           return ListView(
             children: <Widget>[
               ListTile(
-                leading: Icon(Icons.security),
-                title: Text('Authentication'),
+                leading: Icon(Icons.account_circle),
+                title: Text('Account'),
                 subtitle: Text('App id, app key'),
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return SettingsAuthenticationPage();
+                        return SettingsAccountPage();
                       },
                     ),
                   );

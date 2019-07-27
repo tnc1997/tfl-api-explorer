@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/drawer_item.dart';
 import '../pages/home_page.dart';
+import '../pages/lines_page.dart';
 import '../pages/settings_page.dart';
 
 class AppDrawer extends Drawer {
@@ -10,6 +11,11 @@ class AppDrawer extends Drawer {
       title: 'Home',
       icon: Icon(Icons.home),
       route: HomePage.route,
+    ),
+    DrawerItem(
+      title: 'Lines',
+      icon: Icon(Icons.http),
+      route: LinesPage.route,
     ),
     DrawerItem(
       title: 'Settings',
