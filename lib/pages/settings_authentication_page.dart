@@ -53,7 +53,7 @@ class _SettingsAuthenticationPageState
                         initialValue: data.getString('APP_ID') ?? '',
                         focusNode: _appIdFocus,
                         decoration: InputDecoration(
-                          labelText: 'App ID',
+                          labelText: 'App id',
                         ),
                         textInputAction: TextInputAction.next,
                         onEditingComplete: () {
@@ -74,7 +74,7 @@ class _SettingsAuthenticationPageState
                         initialValue: data.getString('APP_KEY') ?? '',
                         focusNode: _appKeyFocus,
                         decoration: InputDecoration(
-                          labelText: 'App Key',
+                          labelText: 'App key',
                         ),
                         textInputAction: TextInputAction.done,
                         onEditingComplete: () {
