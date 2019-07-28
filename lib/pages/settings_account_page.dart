@@ -16,7 +16,7 @@ class _SettingsAccountPageState extends State<SettingsAccountPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Authentication'),
+        title: Text('Account'),
       ),
       body: CircularProgressIndicatorFutureBuilder<SharedPreferences>(
         future: SharedPreferences.getInstance(),
