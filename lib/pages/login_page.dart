@@ -43,89 +43,83 @@ class _LoginPageState extends State<LoginPage> {
               vertical: 8.0,
               horizontal: 16.0,
             ),
-            child: Consumer<TflApiChangeNotifier>(
-              builder: (context, value, child) {
-                return Form(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      TextFormField(
-                        key: _appIdKey,
-                        initialValue: value.appId,
-                        focusNode: _appIdFocus,
-                        decoration: InputDecoration(
-                          labelText: 'App id',
-                        ),
-                        textInputAction: TextInputAction.next,
-                        onEditingComplete: () {
-                          if (_appIdKey.currentState.validate()) {
-                            _appIdFocus.unfocus();
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: <Widget>[
+                  TextFormField(
+                    key: _appIdKey,
+                    initialValue: data.getString('APP_ID'),
+                    focusNode: _appIdFocus,
+                    decoration: InputDecoration(
+                      labelText: 'App id',
+                    ),
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () {
+                      if (_appIdKey.currentState.validate()) {
+                        _appIdFocus.unfocus();
 
-                            FocusScope.of(context).requestFocus(_appKeyFocus);
-                          }
-                        },
-                        validator: (value) {
-                          return value.isEmpty
-                              ? 'Please enter your app id.'
-                              : null;
-                        },
-                      ),
-                      TextFormField(
-                        key: _appKeyKey,
-                        initialValue: value.appKey,
-                        focusNode: _appKeyFocus,
-                        decoration: InputDecoration(
-                          labelText: 'App key',
-                        ),
-                        textInputAction: TextInputAction.go,
-                        onEditingComplete: () async {
-                          if (_appKeyKey.currentState.validate()) {
-                            _appKeyFocus.unfocus();
-
-                            await _login();
-                          }
-                        },
-                        validator: (value) {
-                          return value.isEmpty
-                              ? 'Please enter your app key.'
-                              : null;
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Expanded(
-                              flex: 2,
-                              child: RaisedButton(
-                                onPressed: () async {
-                                  await launch(
-                                    'https://api-portal.tfl.gov.uk/signup',
-                                  );
-                                },
-                                child: Text('Sign up'),
-                              ),
-                            ),
-                            Spacer(
-                              flex: 1,
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: RaisedButton(
-                                onPressed: () async {
-                                  await _login();
-                                },
-                                child: Text('Sign in'),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+                        FocusScope.of(context).requestFocus(_appKeyFocus);
+                      }
+                    },
+                    validator: (value) {
+                      return value.isEmpty ? 'Please enter your app id.' : null;
+                    },
                   ),
-                );
-              },
+                  TextFormField(
+                    key: _appKeyKey,
+                    initialValue: data.getString('APP_KEY'),
+                    focusNode: _appKeyFocus,
+                    decoration: InputDecoration(
+                      labelText: 'App key',
+                    ),
+                    textInputAction: TextInputAction.go,
+                    onEditingComplete: () async {
+                      if (_appKeyKey.currentState.validate()) {
+                        _appKeyFocus.unfocus();
+
+                        await _login();
+                      }
+                    },
+                    validator: (value) {
+                      return value.isEmpty
+                          ? 'Please enter your app key.'
+                          : null;
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 2,
+                          child: RaisedButton(
+                            onPressed: () async {
+                              await launch(
+                                'https://api-portal.tfl.gov.uk/signup',
+                              );
+                            },
+                            child: Text('Sign up'),
+                          ),
+                        ),
+                        Spacer(
+                          flex: 1,
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: RaisedButton(
+                            onPressed: () async {
+                              await _login();
+                            },
+                            child: Text('Sign in'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           );
         },
