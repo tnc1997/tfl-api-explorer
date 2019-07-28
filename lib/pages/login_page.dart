@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,6 +36,26 @@ class _LoginPageState extends State<LoginPage> {
       body: CircularProgressIndicatorFutureBuilder<SharedPreferences>(
         future: SharedPreferences.getInstance(),
         builder: (context, data) {
+          void login() {
+            if (_formKey.currentState.validate()) {
+              final appId = _appIdKey.currentState.value;
+              final appKey = _appKeyKey.currentState.value;
+
+              data.setString('APP_ID', appId);
+              data.setString('APP_KEY', appKey);
+
+              Provider.of<TflApiChangeNotifier>(context, listen: false).update(
+                appId,
+                appKey,
+              );
+
+              Navigator.pushReplacementNamed(
+                context,
+                HomePage.route,
+              );
+            }
+          }
+
           return Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 8.0,
@@ -78,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                       if (_appKeyKey.currentState.validate()) {
                         _appKeyFocus.unfocus();
 
-                        await _login();
+                        await login();
                       }
                     },
                     validator: (value) {
@@ -110,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                           flex: 2,
                           child: RaisedButton(
                             onPressed: () async {
-                              await _login();
+                              await login();
                             },
                             child: Text('Sign in'),
                           ),
@@ -125,19 +143,5 @@ class _LoginPageState extends State<LoginPage> {
         },
       ),
     );
-  }
-
-  Future<void> _login() async {
-    if (_formKey.currentState.validate()) {
-      await Provider.of<TflApiChangeNotifier>(context, listen: false).update(
-        _appIdKey.currentState.value,
-        _appKeyKey.currentState.value,
-      );
-
-      Navigator.pushReplacementNamed(
-        context,
-        HomePage.route,
-      );
-    }
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
-import '../widgets/async.dart';
+import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/text.dart';
 
 class SettingsAccountPage extends StatefulWidget {
@@ -18,18 +18,17 @@ class _SettingsAccountPageState extends State<SettingsAccountPage> {
       appBar: AppBar(
         title: Text('Account'),
       ),
-      body: CircularProgressIndicatorFutureBuilder<SharedPreferences>(
-        future: SharedPreferences.getInstance(),
-        builder: (context, data) {
+      body: Consumer<TflApiChangeNotifier>(
+        builder: (context, tflApi, child) {
           return ListView(
             children: <Widget>[
               ListTile(
                 title: Text('App id'),
-                subtitle: NullableText(data.getString('APP_ID')),
+                subtitle: NullableText(tflApi.appId),
               ),
               ListTile(
                 title: Text('App key'),
-                subtitle: NullableText(data.getString('APP_KEY')),
+                subtitle: NullableText(tflApi.appKey),
               ),
             ],
           );

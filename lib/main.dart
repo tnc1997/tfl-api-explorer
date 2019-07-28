@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tfl_api_explorer/notifiers/tfl_api_change_notifier.dart';
 
 import 'errors/page_not_found_error.dart';
 import 'material/colors.dart';
+import 'notifiers/lines_filter_change_notifier.dart';
+import 'notifiers/tfl_api_change_notifier.dart';
 import 'pages/home_page.dart';
 import 'pages/lines_page.dart';
-import 'pages/settings_page.dart';
 import 'pages/login_page.dart';
+import 'pages/settings_page.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      builder: (context) {
-        return TflApiChangeNotifier();
-      },
+    return MultiProvider(
+      providers: <SingleChildCloneableWidget>[
+        ChangeNotifierProvider(
+          builder: (context) {
+            return TflApiChangeNotifier();
+          },
+        ),
+        ChangeNotifierProvider(
+          builder: (context) {
+            return LinesFilterChangeNotifier();
+          },
+        ),
+      ],
       child: MaterialApp(
         home: LoginPage(),
         onGenerateRoute: _onGenerateRoute,
@@ -49,16 +59,16 @@ class MyApp extends StatelessWidget {
             return LinesPage();
           },
         );
-      case SettingsPage.route:
-        return MaterialPageRoute(
-          builder: (context) {
-            return SettingsPage();
-          },
-        );
       case LoginPage.route:
         return MaterialPageRoute(
           builder: (context) {
             return LoginPage();
+          },
+        );
+      case SettingsPage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return SettingsPage();
           },
         );
       default:

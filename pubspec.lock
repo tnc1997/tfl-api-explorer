@@ -181,11 +181,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v0.3.0"
-      resolved-ref: "565fd71467a54e5b97803642d49294138f660243"
+      ref: "v0.3.1"
+      resolved-ref: "2f9e77e7ec90ebb487389ed8b9776a2615d83caa"
       url: "https://github.com/tnc1997/dart-tfl-api-client.git"
     source: git
-    version: "0.3.0"
+    version: "0.3.1"
   typed_data:
     dependency: transitive
     description:
