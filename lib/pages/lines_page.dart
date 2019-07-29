@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
@@ -19,7 +21,7 @@ class LinesPage extends StatefulWidget {
 }
 
 class _LinesPageState extends State<LinesPage> {
-  List<Line> _lines;
+  final _streamController = StreamController<List<Line>>();
 
   @override
   Widget build(BuildContext context) {
@@ -43,41 +45,41 @@ class _LinesPageState extends State<LinesPage> {
           ),
         ],
       ),
-      body: Consumer<LinesFilterChangeNotifier>(
-        builder: (context, linesFilter, child) {
-          return Consumer<TflApiChangeNotifier>(
-            builder: (context, tflApi, child) {
-              final linesFuture = tflApi.tflApi.lines.get(
-                mode: linesFilter.mode,
-              );
+      body: Consumer<TflApiChangeNotifier>(
+        builder: (context, tflApi, child) {
+          return Consumer<LinesFilterChangeNotifier>(
+            builder: (context, linesFilter, child) {
+              final getLines = () {
+                return tflApi.tflApi.lines.get(
+                  mode: linesFilter.mode,
+                );
+              };
 
-              return CircularProgressIndicatorFutureBuilder<List<Line>>(
-                future: linesFuture,
+              getLines().then(_streamController.add);
+
+              return CircularProgressIndicatorStreamBuilder<List<Line>>(
+                stream: _streamController.stream,
                 builder: (context, data) {
-                  _lines = data;
-
                   return RefreshIndicator(
                     child: ListView.builder(
                       itemBuilder: (context, index) {
                         return ListTile(
                           title: NullableText(
-                            _lines[index].id,
+                            data[index].id,
                             overflow: TextOverflow.ellipsis,
                           ),
                           subtitle: NullableText(
-                            _lines[index].name,
+                            data[index].name,
                             overflow: TextOverflow.ellipsis,
                           ),
                         );
                       },
-                      itemCount: _lines.length,
+                      itemCount: data.length,
                     ),
                     onRefresh: () async {
-                      final lines = await linesFuture;
+                      final lines = await getLines();
 
-                      setState(() {
-                        _lines = lines;
-                      });
+                      _streamController.add(lines);
                     },
                   );
                 },
