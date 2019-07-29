@@ -19,6 +19,8 @@ class LinesPage extends StatefulWidget {
 }
 
 class _LinesPageState extends State<LinesPage> {
+  List<Line> _lines;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,23 +47,38 @@ class _LinesPageState extends State<LinesPage> {
         builder: (context, linesFilter, child) {
           return Consumer<TflApiChangeNotifier>(
             builder: (context, tflApi, child) {
+              final linesFuture = tflApi.tflApi.lines.get(
+                mode: linesFilter.mode,
+              );
+
               return CircularProgressIndicatorFutureBuilder<List<Line>>(
-                future: tflApi.tflApi.lines.get(mode: linesFilter.mode),
+                future: linesFuture,
                 builder: (context, data) {
-                  return ListView.builder(
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: NullableText(
-                          data[index].id,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        subtitle: NullableText(
-                          data[index].name,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      );
+                  _lines = data;
+
+                  return RefreshIndicator(
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: NullableText(
+                            _lines[index].id,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          subtitle: NullableText(
+                            _lines[index].name,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        );
+                      },
+                      itemCount: _lines.length,
+                    ),
+                    onRefresh: () async {
+                      final lines = await linesFuture;
+
+                      setState(() {
+                        _lines = lines;
+                      });
                     },
-                    itemCount: data.length,
                   );
                 },
               );
