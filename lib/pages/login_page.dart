@@ -49,10 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                 appKey,
               );
 
-              Navigator.pushReplacementNamed(
-                context,
-                HomePage.route,
-              );
+              Navigator.of(context).pushReplacementNamed(HomePage.route);
             }
           }
 

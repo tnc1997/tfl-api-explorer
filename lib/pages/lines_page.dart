@@ -9,6 +9,7 @@ import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
 import '../widgets/drawer.dart';
 import '../widgets/text.dart';
+import 'line_page.dart';
 import 'lines_filter_page.dart';
 
 class LinesPage extends StatefulWidget {
@@ -32,8 +33,7 @@ class _LinesPageState extends State<LinesPage> {
           IconButton(
             icon: Icon(Icons.filter_list),
             onPressed: () {
-              Navigator.push(
-                context,
+              Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
                     return LinesFilterPage();
@@ -72,6 +72,12 @@ class _LinesPageState extends State<LinesPage> {
                             data[index].name,
                             overflow: TextOverflow.ellipsis,
                           ),
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                              LinePage.route,
+                              arguments: data[index].id,
+                            );
+                          },
                         );
                       },
                       itemCount: data.length,

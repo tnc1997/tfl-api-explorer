@@ -31,8 +31,7 @@ class AppDrawer extends Drawer {
               return ListTile(
                 leading: _drawerItems[index].icon,
                 onTap: () {
-                  Navigator.pushReplacementNamed(
-                    context,
+                  Navigator.of(context).pushReplacementNamed(
                     _drawerItems[index].route,
                   );
                 },

@@ -32,8 +32,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 title: Text('Account'),
                 subtitle: Text('App id, app key'),
                 onTap: () {
-                  Navigator.push(
-                    context,
+                  Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
                         return SettingsAccountPage();
@@ -47,8 +46,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 title: Text('About'),
                 subtitle: Text('Package name, package version'),
                 onTap: () {
-                  Navigator.push(
-                    context,
+                  Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
                         return SettingsAboutPage();
