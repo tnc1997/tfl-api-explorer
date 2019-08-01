@@ -42,109 +42,55 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
               return RefreshIndicator(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].destinationName,
-                                  style: Theme.of(context).textTheme.headline,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Vehicle',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].vehicleId,
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Stop Point',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].stationName,
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Line',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].lineName,
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Platform',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].platformName,
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Current Location',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].currentLocation,
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Expected Arrival',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].expectedArrival?.toIso8601String(),
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                            ],
+                    return ExpansionTile(
+                      title: NullableText(
+                        data[index].id,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      children: <Widget>[
+                        ListTile(
+                          title: Text('Vehicle'),
+                          subtitle: NullableText(
+                            data[index].vehicleId,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                      ),
+                        ListTile(
+                          title: Text('Stop Point'),
+                          subtitle: NullableText(
+                            data[index].stationName,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        ListTile(
+                          title: Text('Platform'),
+                          subtitle: NullableText(
+                            data[index].platformName,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        ListTile(
+                          title: Text('Destination'),
+                          subtitle: NullableText(
+                            data[index].destinationName,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        ListTile(
+                          title: Text('Current Location'),
+                          subtitle: NullableText(
+                            data[index].currentLocation,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        ListTile(
+                          title: Text('Expected Arrival'),
+                          subtitle: NullableText(
+                            data[index].expectedArrival?.toIso8601String(),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
                     );
                   },
                   itemCount: data.length,

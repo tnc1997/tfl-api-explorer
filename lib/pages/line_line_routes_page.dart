@@ -42,7 +42,37 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
               return RefreshIndicator(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return Padding(
+                    return ExpansionTile(
+                      title: NullableText(
+                        data[index].name,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      children: <Widget>[
+                        ListTile(
+                          title: Text('Service Type'),
+                          subtitle: NullableText(
+                            data[index].serviceType,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        ListTile(
+                          title: Text('Valid To'),
+                          subtitle: NullableText(
+                            data[index].validTo?.toIso8601String(),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        ListTile(
+                          title: Text('Valid From'),
+                          subtitle: NullableText(
+                            data[index].validFrom?.toIso8601String(),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    );
+
+                    /*return Padding(
                       padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
                       child: Card(
                         child: Padding(
@@ -117,7 +147,7 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
                           ),
                         ),
                       ),
-                    );
+                    );*/
                   },
                   itemCount: data.length,
                 ),

@@ -16,7 +16,8 @@ class LineLineDisruptionsPage extends StatefulWidget {
   LineLineDisruptionsPage({Key key, @required this.id}) : super(key: key);
 
   @override
-  _LineLineDisruptionsPageState createState() => _LineLineDisruptionsPageState();
+  _LineLineDisruptionsPageState createState() =>
+      _LineLineDisruptionsPageState();
 }
 
 class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
@@ -42,95 +43,40 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
               return RefreshIndicator(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].category,
-                                  style: Theme.of(context).textTheme.headline,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Description',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].description,
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Summary',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].summary,
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Information',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].additionalInfo,
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Created',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].created?.toIso8601String(),
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Updated',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].lastUpdate?.toIso8601String(),
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                    return ExpansionTile(
+                      title: NullableText(
+                        data[index].category,
+                        overflow: TextOverflow.ellipsis,
                       ),
+                      children: <Widget>[
+                        ListTile(
+                          title: Text('Description'),
+                          subtitle: NullableText(
+                            data[index].description,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          isThreeLine: true,
+                        ),
+                        ListTile(
+                          title: Text('Summary'),
+                          subtitle: NullableText(
+                            data[index].summary,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          isThreeLine: true,
+                        ),
+                        ListTile(
+                          title: Text('Information'),
+                          subtitle: NullableText(
+                            data[index].additionalInfo,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          isThreeLine: true,
+                        ),
+                      ],
                     );
                   },
                   itemCount: data.length,

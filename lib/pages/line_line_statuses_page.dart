@@ -42,67 +42,36 @@ class _LineLineStatusesPageState extends State<LineLineStatusesPage> {
               return RefreshIndicator(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].statusSeverityDescription,
-                                  style: Theme.of(context).textTheme.headline,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Reason',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].reason,
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Created',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].created?.toIso8601String(),
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Modified',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].modified?.toIso8601String(),
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                            ],
+                    return ExpansionTile(
+                      title: Text(
+                        data[index].statusSeverityDescription,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      children: <Widget>[
+                        ListTile(
+                          title: Text('Reason'),
+                          subtitle: NullableText(
+                            data[index].reason,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          isThreeLine: true,
+                        ),
+                        ListTile(
+                          title: Text('Created'),
+                          subtitle: NullableText(
+                            data[index].created?.toIso8601String(),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                      ),
+                        ListTile(
+                          title: Text('Modified'),
+                          subtitle: NullableText(
+                            data[index].modified?.toIso8601String(),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
                     );
                   },
                   itemCount: data.length,

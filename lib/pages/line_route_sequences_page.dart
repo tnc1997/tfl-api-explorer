@@ -42,41 +42,72 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
               return RefreshIndicator(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].direction,
-                                  style: Theme.of(context).textTheme.headline,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Stop Points',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].stations.map((stopPoint) {
-                                    return stopPoint.name;
-                                  }).join(', '),
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                    final lineStrings = data[index].lineStrings.map(
+                      (lineString) {
+                        return lineString
+                            .substring(3, lineString.length - 3)
+                            .split('],[');
+                      },
+                    ).fold<List<String>>(
+                      <String>[],
+                      (previousValue, element) {
+                        return previousValue..addAll(element);
+                      },
+                    ).toList();
+
+                    final stopPoints = data[index].stopPointSequences.map(
+                      (stopPointSequence) {
+                        return stopPointSequence.stopPoint;
+                      },
+                    ).fold<List<MatchedStop>>(
+                      <MatchedStop>[],
+                      (previousValue, element) {
+                        return previousValue..addAll(element);
+                      },
+                    ).toList();
+
+                    return ExpansionTile(
+                      title: NullableText(
+                        data[index].direction,
+                        overflow: TextOverflow.ellipsis,
                       ),
+                      children: <Widget>[
+                        ExpansionTile(
+                          title: Text('Line Strings'),
+                          children: lineStrings.map((lineString) {
+                            return ListTile(
+                              title: NullableText(
+                                lineString,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              subtitle: NullableText(
+                                'Lat Lon',
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                        ExpansionTile(
+                            title: Text('Stop Points'),
+                            children: stopPoints.map((stopPoint) {
+                              return ListTile(
+                                title: NullableText(
+                                  stopPoint.id,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                subtitle: NullableText(
+                                  stopPoint.name,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                onTap: () {
+                                  /*Navigator.of(context).pushNamed(
+                                    StopPointPage.route,
+                                    arguments: stopPoint.id,
+                                  );*/
+                                },
+                              );
+                            }).toList()),
+                      ],
                     );
                   },
                   itemCount: data.length,
