@@ -8,35 +8,35 @@ import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
 import '../widgets/text.dart';
 
-class LineStatusesPage extends StatefulWidget {
-  static const route = '/lines/:id/line_statuses';
+class LinePredictionsPage extends StatefulWidget {
+  static const route = '/lines/:id/predictions';
 
   final String id;
 
-  LineStatusesPage({Key key, @required this.id}) : super(key: key);
+  LinePredictionsPage({Key key, @required this.id}) : super(key: key);
 
   @override
-  _LineStatusesPageState createState() => _LineStatusesPageState();
+  _LinePredictionsPageState createState() => _LinePredictionsPageState();
 }
 
-class _LineStatusesPageState extends State<LineStatusesPage> {
-  final _streamController = StreamController<List<LineStatus>>();
+class _LinePredictionsPageState extends State<LinePredictionsPage> {
+  final _streamController = StreamController<List<Prediction>>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Line Statuses'),
+        title: Text('Predictions'),
       ),
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
-          final getLineStatuses = () {
-            return tflApi.tflApi.lines.getLineStatuses(widget.id);
+          final getPredictions = () {
+            return tflApi.tflApi.lines.getPredictions(widget.id);
           };
 
-          getLineStatuses().then(_streamController.add);
+          getPredictions().then(_streamController.add);
 
-          return CircularProgressIndicatorStreamBuilder<List<LineStatus>>(
+          return CircularProgressIndicatorStreamBuilder<List<Prediction>>(
             stream: _streamController.stream,
             builder: (context, data) {
               return RefreshIndicator(
@@ -53,49 +53,91 @@ class _LineStatusesPageState extends State<LineStatusesPage> {
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 8),
                                 child: NullableText(
-                                  data[index].statusSeverityDescription,
+                                  data[index].destinationName,
                                   style: Theme.of(context).textTheme.headline,
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 8),
                                 child: Text(
-                                  'Reason',
+                                  'Vehicle',
                                   style: Theme.of(context).textTheme.subtitle,
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 8),
                                 child: NullableText(
-                                  data[index].reason,
+                                  data[index].vehicleId,
                                   textAlign: TextAlign.justify,
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 8),
                                 child: Text(
-                                  'Created',
+                                  'Stop Point',
                                   style: Theme.of(context).textTheme.subtitle,
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 8),
                                 child: NullableText(
-                                  data[index].created?.toIso8601String(),
+                                  data[index].stationName,
                                   textAlign: TextAlign.justify,
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 8),
                                 child: Text(
-                                  'Modified',
+                                  'Line',
                                   style: Theme.of(context).textTheme.subtitle,
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 8),
                                 child: NullableText(
-                                  data[index].modified?.toIso8601String(),
+                                  data[index].lineName,
+                                  textAlign: TextAlign.justify,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: Text(
+                                  'Platform',
+                                  style: Theme.of(context).textTheme.subtitle,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: NullableText(
+                                  data[index].platformName,
+                                  textAlign: TextAlign.justify,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: Text(
+                                  'Current Location',
+                                  style: Theme.of(context).textTheme.subtitle,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: NullableText(
+                                  data[index].currentLocation,
+                                  textAlign: TextAlign.justify,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: Text(
+                                  'Expected Arrival',
+                                  style: Theme.of(context).textTheme.subtitle,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: NullableText(
+                                  data[index].expectedArrival?.toIso8601String(),
                                   textAlign: TextAlign.justify,
                                 ),
                               ),
@@ -108,7 +150,7 @@ class _LineStatusesPageState extends State<LineStatusesPage> {
                   itemCount: data.length,
                 ),
                 onRefresh: () async {
-                  final lineDisruptions = await getLineStatuses();
+                  final lineDisruptions = await getPredictions();
 
                   _streamController.add(lineDisruptions);
                 },

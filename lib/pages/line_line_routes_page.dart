@@ -8,18 +8,18 @@ import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
 import '../widgets/text.dart';
 
-class LineRoutesPage extends StatefulWidget {
+class LineLineRoutesPage extends StatefulWidget {
   static const route = '/lines/:id/line_routes';
 
   final String id;
 
-  LineRoutesPage({Key key, @required this.id}) : super(key: key);
+  LineLineRoutesPage({Key key, @required this.id}) : super(key: key);
 
   @override
-  _LineRoutesPageState createState() => _LineRoutesPageState();
+  _LineLineRoutesPageState createState() => _LineLineRoutesPageState();
 }
 
-class _LineRoutesPageState extends State<LineRoutesPage> {
+class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
   final _streamController = StreamController<List<LineRoute>>();
 
   @override

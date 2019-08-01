@@ -6,10 +6,11 @@ import 'material/colors.dart';
 import 'notifiers/lines_filter_change_notifier.dart';
 import 'notifiers/tfl_api_change_notifier.dart';
 import 'pages/home_page.dart';
-import 'pages/line_disruptions_page.dart';
+import 'pages/line_line_disruptions_page.dart';
+import 'pages/line_line_routes_page.dart';
+import 'pages/line_line_statuses_page.dart';
 import 'pages/line_page.dart';
-import 'pages/line_routes_page.dart';
-import 'pages/line_statuses_page.dart';
+import 'pages/line_predictions_page.dart';
 import 'pages/lines_page.dart';
 import 'pages/login_page.dart';
 import 'pages/settings_page.dart';
@@ -57,10 +58,22 @@ class MyApp extends StatelessWidget {
             return HomePage();
           },
         );
-      case LineDisruptionsPage.route:
+      case LineLineDisruptionsPage.route:
         return MaterialPageRoute(
           builder: (context) {
-            return LineDisruptionsPage(id: routeSettings.arguments);
+            return LineLineDisruptionsPage(id: routeSettings.arguments);
+          },
+        );
+      case LineLineRoutesPage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return LineLineRoutesPage(id: routeSettings.arguments);
+          },
+        );
+      case LineLineStatusesPage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return LineLineStatusesPage(id: routeSettings.arguments);
           },
         );
       case LinePage.route:
@@ -69,22 +82,10 @@ class MyApp extends StatelessWidget {
             return LinePage(id: routeSettings.arguments);
           },
         );
-      case LineRoutesPage.route:
+      case LinePredictionsPage.route:
         return MaterialPageRoute(
           builder: (context) {
-            return LineRoutesPage(id: routeSettings.arguments);
-          },
-        );
-      case LineRoutesPage.route:
-        return MaterialPageRoute(
-          builder: (context) {
-            return LineRoutesPage(id: routeSettings.arguments);
-          },
-        );
-      case LineStatusesPage.route:
-        return MaterialPageRoute(
-          builder: (context) {
-            return LineStatusesPage(id: routeSettings.arguments);
+            return LinePredictionsPage(id: routeSettings.arguments);
           },
         );
       case LinesPage.route:

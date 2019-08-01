@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'line_disruptions_page.dart';
-import 'line_routes_page.dart';
-import 'line_statuses_page.dart';
+import 'line_line_disruptions_page.dart';
+import 'line_line_routes_page.dart';
+import 'line_line_statuses_page.dart';
+import 'line_predictions_page.dart';
 
 class LinePage extends StatefulWidget {
   static const route = '/lines/:id';
@@ -29,7 +30,7 @@ class _LinePageState extends State<LinePage> {
             title: Text('Line Disruptions'),
             onTap: () {
               Navigator.of(context).pushNamed(
-                LineDisruptionsPage.route,
+                LineLineDisruptionsPage.route,
                 arguments: widget.id,
               );
             },
@@ -39,7 +40,7 @@ class _LinePageState extends State<LinePage> {
             title: Text('Line Routes'),
             onTap: () {
               Navigator.of(context).pushNamed(
-                LineRoutesPage.route,
+                LineLineRoutesPage.route,
                 arguments: widget.id,
               );
             },
@@ -49,7 +50,17 @@ class _LinePageState extends State<LinePage> {
             title: Text('Line Statuses'),
             onTap: () {
               Navigator.of(context).pushNamed(
-                LineStatusesPage.route,
+                LineLineStatusesPage.route,
+                arguments: widget.id,
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.http),
+            title: Text('Predictions'),
+            onTap: () {
+              Navigator.of(context).pushNamed(
+                LinePredictionsPage.route,
                 arguments: widget.id,
               );
             },

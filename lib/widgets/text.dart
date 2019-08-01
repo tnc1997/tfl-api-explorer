@@ -16,7 +16,7 @@ class NullableText extends Text {
     String semanticsLabel,
     TextWidthBasis textWidthBasis,
   }) : super(
-          data ?? 'Unknown',
+          data != null && data.isNotEmpty ? data : 'Unknown',
           key: key,
           style: style,
           strutStyle: strutStyle,
