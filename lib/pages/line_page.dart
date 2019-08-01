@@ -5,6 +5,7 @@ import 'line_line_routes_page.dart';
 import 'line_line_statuses_page.dart';
 import 'line_predictions_page.dart';
 import 'line_route_sequences_page.dart';
+import 'line_stop_points_page.dart';
 
 class LinePage extends StatefulWidget {
   static const route = '/lines/:id';
@@ -72,6 +73,16 @@ class _LinePageState extends State<LinePage> {
             onTap: () {
               Navigator.of(context).pushNamed(
                 LineRouteSequencesPage.route,
+                arguments: widget.id,
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.http),
+            title: Text('Stop Points'),
+            onTap: () {
+              Navigator.of(context).pushNamed(
+                LineStopPointsPage.route,
                 arguments: widget.id,
               );
             },
