@@ -28,7 +28,7 @@ class _LineLineStatusesPageState extends State<LineLineStatusesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Line Statuses'),
+        title: Text('Line statuses'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.filter_list),

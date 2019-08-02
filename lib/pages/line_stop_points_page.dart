@@ -26,7 +26,7 @@ class _LineStopPointsPageState extends State<LineStopPointsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stop Points'),
+        title: Text('Stop points'),
       ),
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {

@@ -29,7 +29,7 @@ class _LinePageState extends State<LinePage> {
         children: <Widget>[
           ListTile(
             leading: Icon(Icons.http),
-            title: Text('Line Disruptions'),
+            title: Text('Line disruptions'),
             onTap: () {
               Navigator.of(context).pushNamed(
                 LineLineDisruptionsPage.route,
@@ -39,7 +39,7 @@ class _LinePageState extends State<LinePage> {
           ),
           ListTile(
             leading: Icon(Icons.http),
-            title: Text('Line Routes'),
+            title: Text('Line routes'),
             onTap: () {
               Navigator.of(context).pushNamed(
                 LineLineRoutesPage.route,
@@ -49,7 +49,7 @@ class _LinePageState extends State<LinePage> {
           ),
           ListTile(
             leading: Icon(Icons.http),
-            title: Text('Line Statuses'),
+            title: Text('Line statuses'),
             onTap: () {
               Navigator.of(context).pushNamed(
                 LineLineStatusesPage.route,
@@ -69,7 +69,7 @@ class _LinePageState extends State<LinePage> {
           ),
           ListTile(
             leading: Icon(Icons.http),
-            title: Text('Route Sequences'),
+            title: Text('Route sequences'),
             onTap: () {
               Navigator.of(context).pushNamed(
                 LineRouteSequencesPage.route,
@@ -79,7 +79,7 @@ class _LinePageState extends State<LinePage> {
           ),
           ListTile(
             leading: Icon(Icons.http),
-            title: Text('Stop Points'),
+            title: Text('Stop points'),
             onTap: () {
               Navigator.of(context).pushNamed(
                 LineStopPointsPage.route,

@@ -42,7 +42,7 @@ class _LineLineRoutesFilterPageState extends State<LineLineRoutesFilterPage> {
                   return ListView(
                     children: <Widget>[
                       ExpansionTile(
-                        title: Text('Service Types'),
+                        title: Text('Service types'),
                         children: data.map((serviceType) {
                           return CheckboxListTile(
                             value: lineLineRoutesFilter.serviceTypes

@@ -28,10 +28,10 @@ class _SettingsFiltersPageState extends State<SettingsFiltersPage> {
               Consumer<LineLineRoutesFilterChangeNotifier>(
                 builder: (context, lineLineRoutesFilter, child) {
                   return ExpansionTile(
-                    title: Text('Line Routes'),
+                    title: Text('Line routes'),
                     children: <Widget>[
                       ListTile(
-                        title: Text('Service Types'),
+                        title: Text('Service types'),
                         subtitle: NullableText(
                           lineLineRoutesFilter.serviceTypes.join(', '),
                           overflow: TextOverflow.ellipsis,
@@ -50,7 +50,7 @@ class _SettingsFiltersPageState extends State<SettingsFiltersPage> {
               Consumer<LineLineStatusesFilterChangeNotifier>(
                 builder: (context, lineLineStatusesFilter, child) {
                   return ExpansionTile(
-                    title: Text('Line Statuses'),
+                    title: Text('Line statuses'),
                     children: <Widget>[
                       ListTile(
                         title: Text('Date'),
@@ -75,7 +75,7 @@ class _SettingsFiltersPageState extends State<SettingsFiltersPage> {
                     title: Text('Predictions'),
                     children: <Widget>[
                       ListTile(
-                        title: Text('Stop Point'),
+                        title: Text('Stop point'),
                         subtitle: NullableText(
                           lineLineStatusesFilter.stopPoint,
                           overflow: TextOverflow.ellipsis,

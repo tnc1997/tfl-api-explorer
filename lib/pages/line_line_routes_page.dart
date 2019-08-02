@@ -28,7 +28,7 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Line Routes'),
+        title: Text('Line routes'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.filter_list),
@@ -87,21 +87,21 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
                               ),
                             ),
                             ListTile(
-                              title: Text('Service Type'),
+                              title: Text('Service type'),
                               subtitle: NullableText(
                                 data[index].serviceType,
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
                             ListTile(
-                              title: Text('Valid To'),
+                              title: Text('Valid to'),
                               subtitle: NullableText(
                                 data[index].validTo?.toIso8601String(),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
                             ListTile(
-                              title: Text('Valid From'),
+                              title: Text('Valid from'),
                               subtitle: NullableText(
                                 data[index].validFrom?.toIso8601String(),
                                 overflow: TextOverflow.ellipsis,

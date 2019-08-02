@@ -45,7 +45,7 @@ class _LinePredictionsFilterPageState extends State<LinePredictionsFilterPage> {
                   return ListView(
                     children: <Widget>[
                       ExpansionTile(
-                        title: Text('Stop Point'),
+                        title: Text('Stop point'),
                         children: data.map((stopPoint) {
                           return RadioListTile<String>(
                             value: stopPoint.id,

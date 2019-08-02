@@ -26,7 +26,7 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Route Sequences'),
+        title: Text('Route sequences'),
       ),
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
@@ -75,11 +75,10 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
                       ),
                       children: <Widget>[
                         ExpansionTile(
-                          title: Text('Line Strings'),
+                          title: Text('Line strings'),
                           children: lineStrings.map((lineString) {
                             return ListTile(
-                              title: Text('Lat Lon'),
-                              subtitle: NullableText(
+                              title: NullableText(
                                 lineString,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -87,7 +86,7 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
                           }).toList(),
                         ),
                         ExpansionTile(
-                            title: Text('Stop Points'),
+                            title: Text('Stop points'),
                             children: stopPoints.map((stopPoint) {
                               return ListTile(
                                 title: NullableText(

@@ -81,7 +81,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
                               ),
                             ),
                             ListTile(
-                              title: Text('Stop Point'),
+                              title: Text('Stop point'),
                               subtitle: NullableText(
                                 data[index].stationName,
                                 overflow: TextOverflow.ellipsis,
@@ -102,14 +102,14 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
                               ),
                             ),
                             ListTile(
-                              title: Text('Current Location'),
+                              title: Text('Current location'),
                               subtitle: NullableText(
                                 data[index].currentLocation,
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
                             ListTile(
-                              title: Text('Expected Arrival'),
+                              title: Text('Expected arrival'),
                               subtitle: NullableText(
                                 data[index].expectedArrival?.toIso8601String(),
                                 overflow: TextOverflow.ellipsis,

@@ -27,7 +27,7 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Line Disruptions'),
+        title: Text('Line disruptions'),
       ),
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
