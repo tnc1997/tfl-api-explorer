@@ -22,7 +22,7 @@ class LinePredictionsPage extends StatefulWidget {
 }
 
 class _LinePredictionsPageState extends State<LinePredictionsPage> {
-  final _streamController = StreamController<List<Prediction>>();
+  StreamController<List<Prediction>> _streamController;
 
   @override
   Widget build(BuildContext context) {
@@ -120,10 +120,10 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
                       },
                       itemCount: data.length,
                     ),
-                    onRefresh: () async {
-                      final lineDisruptions = await getPredictions();
-
-                      _streamController.add(lineDisruptions);
+                    onRefresh: () {
+                      return getPredictions()
+                          .then(_streamController.add)
+                          .catchError(_streamController.addError);
                     },
                   );
                 },
@@ -133,5 +133,19 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    _streamController.close();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _streamController = StreamController<List<Prediction>>();
   }
 }

@@ -21,7 +21,7 @@ class LineLineDisruptionsPage extends StatefulWidget {
 }
 
 class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
-  final _streamController = StreamController<List<LineDisruption>>();
+  StreamController<List<LineDisruption>> _streamController;
 
   @override
   Widget build(BuildContext context) {
@@ -83,10 +83,10 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
                   },
                   itemCount: data.length,
                 ),
-                onRefresh: () async {
-                  final lineDisruptions = await getLineDisruptions();
-
-                  _streamController.add(lineDisruptions);
+                onRefresh: () {
+                  return getLineDisruptions()
+                      .then(_streamController.add)
+                      .catchError(_streamController.addError);
                 },
               );
             },
@@ -94,5 +94,19 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    _streamController.close();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _streamController = StreamController<List<LineDisruption>>();
   }
 }

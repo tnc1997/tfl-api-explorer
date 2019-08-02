@@ -20,7 +20,7 @@ class LineRouteSequencesPage extends StatefulWidget {
 }
 
 class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
-  final _streamController = StreamController<List<RouteSequence>>();
+  StreamController<List<RouteSequence>> _streamController;
 
   @override
   Widget build(BuildContext context) {
@@ -110,10 +110,10 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
                   },
                   itemCount: data.length,
                 ),
-                onRefresh: () async {
-                  final lineDisruptions = await getRouteSequences();
-
-                  _streamController.add(lineDisruptions);
+                onRefresh: () {
+                  return getRouteSequences()
+                      .then(_streamController.add)
+                      .catchError(_streamController.addError);
                 },
               );
             },
@@ -121,5 +121,19 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    _streamController.close();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _streamController = StreamController<List<RouteSequence>>();
   }
 }

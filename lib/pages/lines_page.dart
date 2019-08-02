@@ -22,7 +22,7 @@ class LinesPage extends StatefulWidget {
 }
 
 class _LinesPageState extends State<LinesPage> {
-  final _streamController = StreamController<List<Line>>();
+  StreamController<List<Line>> _streamController;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,9 @@ class _LinesPageState extends State<LinesPage> {
                 );
               };
 
-              getLines().then(_streamController.add);
+              getLines()
+                  .then(_streamController.add)
+                  .catchError(_streamController.addError);
 
               return CircularProgressIndicatorStreamBuilder<List<Line>>(
                 stream: _streamController.stream,
@@ -82,10 +84,10 @@ class _LinesPageState extends State<LinesPage> {
                       },
                       itemCount: data.length,
                     ),
-                    onRefresh: () async {
-                      final lines = await getLines();
-
-                      _streamController.add(lines);
+                    onRefresh: () {
+                      return getLines()
+                          .then(_streamController.add)
+                          .catchError(_streamController.addError);
                     },
                   );
                 },
@@ -96,5 +98,19 @@ class _LinesPageState extends State<LinesPage> {
       ),
       drawer: AppDrawer(),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    _streamController.close();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _streamController = StreamController<List<Line>>();
   }
 }

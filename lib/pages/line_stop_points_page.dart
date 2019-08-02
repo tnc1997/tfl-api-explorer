@@ -20,7 +20,7 @@ class LineStopPointsPage extends StatefulWidget {
 }
 
 class _LineStopPointsPageState extends State<LineStopPointsPage> {
-  final _streamController = StreamController<List<StopPoint>>();
+  StreamController<List<StopPoint>> _streamController;
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +63,10 @@ class _LineStopPointsPageState extends State<LineStopPointsPage> {
                   },
                   itemCount: data.length,
                 ),
-                onRefresh: () async {
-                  final lineDisruptions = await getStopPoints();
-
-                  _streamController.add(lineDisruptions);
+                onRefresh: () {
+                  return getStopPoints()
+                      .then(_streamController.add)
+                      .catchError(_streamController.addError);
                 },
               );
             },
@@ -74,5 +74,19 @@ class _LineStopPointsPageState extends State<LineStopPointsPage> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    _streamController.close();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _streamController = StreamController<List<StopPoint>>();
   }
 }
