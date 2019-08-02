@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../material/expansion_tile.dart';
+import '../material/list_tile.dart';
 import '../notifiers/line_predictions_filter_change_notifier.dart';
 import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
@@ -67,7 +67,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
                   return RefreshIndicator(
                     child: ListView.builder(
                       itemBuilder: (context, index) {
-                        return PredictionExpansionTile(
+                        return PredictionListTile(
                           context: context,
                           prediction: data[index],
                         );

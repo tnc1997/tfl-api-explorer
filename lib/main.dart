@@ -18,6 +18,7 @@ import 'pages/line_route_sequences_page.dart';
 import 'pages/line_stop_points_page.dart';
 import 'pages/lines_page.dart';
 import 'pages/login_page.dart';
+import 'pages/prediction_page.dart';
 import 'pages/settings_page.dart';
 
 void main() => runApp(MyApp());
@@ -130,6 +131,12 @@ class MyApp extends StatelessWidget {
         return MaterialPageRoute(
           builder: (context) {
             return LoginPage();
+          },
+        );
+      case PredictionPage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return PredictionPage(prediction: routeSettings.arguments);
           },
         );
       case SettingsPage.route:
