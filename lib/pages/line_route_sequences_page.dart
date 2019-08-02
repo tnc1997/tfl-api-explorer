@@ -76,12 +76,9 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
                           title: Text('Line Strings'),
                           children: lineStrings.map((lineString) {
                             return ListTile(
-                              title: NullableText(
-                                lineString,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                              title: Text('Lat Lon'),
                               subtitle: NullableText(
-                                'Lat Lon',
+                                lineString,
                                 overflow: TextOverflow.ellipsis,
                               ),
                             );
