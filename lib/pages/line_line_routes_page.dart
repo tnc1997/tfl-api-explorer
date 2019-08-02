@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../notifiers/line_line_routes_filter_change_notifier.dart';
 import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
 import '../widgets/text.dart';
+import 'line_line_routes_filter_page.dart';
 
 class LineLineRoutesPage extends StatefulWidget {
   static const route = '/lines/:id/line_routes';
@@ -27,134 +29,95 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Line Routes'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.filter_list),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return LineLineRoutesFilterPage();
+                  },
+                  fullscreenDialog: true,
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
-          final getLineRoutes = () {
-            return tflApi.tflApi.lines.getLineRoutes(widget.id);
-          };
+          return Consumer<LineLineRoutesFilterChangeNotifier>(
+            builder: (context, lineLineRoutesFilter, child) {
+              final getLineRoutes = () {
+                return tflApi.tflApi.lines.getLineRoutes(
+                  widget.id,
+                  serviceTypes: lineLineRoutesFilter.serviceTypes,
+                );
+              };
 
-          getLineRoutes().then(_streamController.add);
+              getLineRoutes()
+                  .then(_streamController.add)
+                  .catchError(_streamController.addError);
 
-          return CircularProgressIndicatorStreamBuilder<List<LineRoute>>(
-            stream: _streamController.stream,
-            builder: (context, data) {
-              return RefreshIndicator(
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return ExpansionTile(
-                      title: NullableText(
-                        data[index].name,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      children: <Widget>[
-                        ListTile(
-                          title: Text('Service Type'),
-                          subtitle: NullableText(
-                            data[index].serviceType,
+              return CircularProgressIndicatorStreamBuilder<List<LineRoute>>(
+                stream: _streamController.stream,
+                builder: (context, data) {
+                  return RefreshIndicator(
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        return ExpansionTile(
+                          title: NullableText(
+                            data[index].name,
                             overflow: TextOverflow.ellipsis,
                           ),
-                        ),
-                        ListTile(
-                          title: Text('Valid To'),
-                          subtitle: NullableText(
-                            data[index].validTo?.toIso8601String(),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        ListTile(
-                          title: Text('Valid From'),
-                          subtitle: NullableText(
-                            data[index].validFrom?.toIso8601String(),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    );
+                          children: <Widget>[
+                            ListTile(
+                              title: Text('Origination'),
+                              subtitle: NullableText(
+                                data[index].originationName,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            ListTile(
+                              title: Text('Destination'),
+                              subtitle: NullableText(
+                                data[index].destinationName,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            ListTile(
+                              title: Text('Service Type'),
+                              subtitle: NullableText(
+                                data[index].serviceType,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            ListTile(
+                              title: Text('Valid To'),
+                              subtitle: NullableText(
+                                data[index].validTo?.toIso8601String(),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            ListTile(
+                              title: Text('Valid From'),
+                              subtitle: NullableText(
+                                data[index].validFrom?.toIso8601String(),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                      itemCount: data.length,
+                    ),
+                    onRefresh: () async {
+                      final lineDisruptions = await getLineRoutes();
 
-                    /*return Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].name,
-                                  style: Theme.of(context).textTheme.headline,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Direction',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].direction,
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Service Type',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].serviceType,
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Valid To',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].validTo?.toIso8601String(),
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  'Valid From',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: NullableText(
-                                  data[index].validFrom?.toIso8601String(),
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );*/
-                  },
-                  itemCount: data.length,
-                ),
-                onRefresh: () async {
-                  final lineDisruptions = await getLineRoutes();
-
-                  _streamController.add(lineDisruptions);
+                      _streamController.add(lineDisruptions);
+                    },
+                  );
                 },
               );
             },

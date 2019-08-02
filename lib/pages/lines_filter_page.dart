@@ -20,6 +20,17 @@ class _LinesFilterPageState extends State<LinesFilterPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Filter'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.restore),
+            onPressed: () {
+              Provider.of<LinesFilterChangeNotifier>(
+                context,
+                listen: false,
+              ).reset();
+            },
+          ),
+        ],
       ),
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
@@ -41,6 +52,10 @@ class _LinesFilterPageState extends State<LinesFilterPage> {
                             },
                             title: NullableText(
                               mode.modeName,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            subtitle: NullableText(
+                              mode.isTflService ? 'Operated by TfL' : '',
                               overflow: TextOverflow.ellipsis,
                             ),
                           );

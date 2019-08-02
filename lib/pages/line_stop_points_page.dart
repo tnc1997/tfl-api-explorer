@@ -34,7 +34,9 @@ class _LineStopPointsPageState extends State<LineStopPointsPage> {
             return tflApi.tflApi.lines.getStopPoints(widget.id);
           };
 
-          getStopPoints().then(_streamController.add);
+          getStopPoints()
+              .then(_streamController.add)
+              .catchError(_streamController.addError);
 
           return CircularProgressIndicatorStreamBuilder<List<StopPoint>>(
             stream: _streamController.stream,

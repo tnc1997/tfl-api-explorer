@@ -5,6 +5,7 @@ import '../widgets/async.dart';
 import '../widgets/drawer.dart';
 import 'settings_about_page.dart';
 import 'settings_account_page.dart';
+import 'settings_filters_page.dart';
 
 class SettingsPage extends StatefulWidget {
   static const route = '/settings';
@@ -36,6 +37,20 @@ class _SettingsPageState extends State<SettingsPage> {
                     MaterialPageRoute(
                       builder: (context) {
                         return SettingsAccountPage();
+                      },
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.filter_list),
+                title: Text('Filters'),
+                subtitle: Text('View filters, reset filters'),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return SettingsFiltersPage();
                       },
                     ),
                   );

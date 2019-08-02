@@ -35,7 +35,9 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
             return tflApi.tflApi.lines.getLineDisruptions(widget.id);
           };
 
-          getLineDisruptions().then(_streamController.add);
+          getLineDisruptions()
+              .then(_streamController.add)
+              .catchError(_streamController.addError);
 
           return CircularProgressIndicatorStreamBuilder<List<LineDisruption>>(
             stream: _streamController.stream,

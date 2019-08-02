@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 
 import 'errors/page_not_found_error.dart';
 import 'material/colors.dart';
+import 'notifiers/line_line_routes_filter_change_notifier.dart';
+import 'notifiers/line_line_statuses_filter_change_notifier.dart';
+import 'notifiers/line_predictions_filter_change_notifier.dart';
 import 'notifiers/lines_filter_change_notifier.dart';
 import 'notifiers/tfl_api_change_notifier.dart';
 import 'pages/home_page.dart';
@@ -27,6 +30,21 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           builder: (context) {
             return TflApiChangeNotifier();
+          },
+        ),
+        ChangeNotifierProvider(
+          builder: (context) {
+            return LineLineRoutesFilterChangeNotifier();
+          },
+        ),
+        ChangeNotifierProvider(
+          builder: (context) {
+            return LineLineStatusesFilterChangeNotifier();
+          },
+        ),
+        ChangeNotifierProvider(
+          builder: (context) {
+            return LinePredictionsFilterChangeNotifier();
           },
         ),
         ChangeNotifierProvider(

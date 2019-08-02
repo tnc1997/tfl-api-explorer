@@ -34,7 +34,9 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
             return tflApi.tflApi.lines.getRouteSequences(widget.id);
           };
 
-          getRouteSequences().then(_streamController.add);
+          getRouteSequences()
+              .then(_streamController.add)
+              .catchError(_streamController.addError);
 
           return CircularProgressIndicatorStreamBuilder<List<RouteSequence>>(
             stream: _streamController.stream,
