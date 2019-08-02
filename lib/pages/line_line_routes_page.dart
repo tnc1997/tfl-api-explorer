@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../material/expansion_tile.dart';
 import '../notifiers/line_line_routes_filter_change_notifier.dart';
 import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
-import '../widgets/text.dart';
 import 'line_line_routes_filter_page.dart';
 
 class LineLineRoutesPage extends StatefulWidget {
@@ -66,48 +66,9 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
                   return RefreshIndicator(
                     child: ListView.builder(
                       itemBuilder: (context, index) {
-                        return ExpansionTile(
-                          title: NullableText(
-                            data[index].name,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          children: <Widget>[
-                            ListTile(
-                              title: Text('Origination'),
-                              subtitle: NullableText(
-                                data[index].originationName,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            ListTile(
-                              title: Text('Destination'),
-                              subtitle: NullableText(
-                                data[index].destinationName,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            ListTile(
-                              title: Text('Service type'),
-                              subtitle: NullableText(
-                                data[index].serviceType,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            ListTile(
-                              title: Text('Valid to'),
-                              subtitle: NullableText(
-                                data[index].validTo?.toIso8601String(),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            ListTile(
-                              title: Text('Valid from'),
-                              subtitle: NullableText(
-                                data[index].validFrom?.toIso8601String(),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
+                        return LineRouteExpansionTile(
+                          context: context,
+                          lineRoute: data[index],
                         );
                       },
                       itemCount: data.length,

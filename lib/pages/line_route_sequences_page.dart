@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../material/list_tile.dart';
 import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
 import '../widgets/text.dart';
@@ -86,25 +87,17 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
                           }).toList(),
                         ),
                         ExpansionTile(
-                            title: Text('Stop points'),
-                            children: stopPoints.map((stopPoint) {
-                              return ListTile(
-                                title: NullableText(
-                                  stopPoint.id,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                subtitle: NullableText(
-                                  stopPoint.name,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                onTap: () {
-                                  /*Navigator.of(context).pushNamed(
-                                    StopPointPage.route,
-                                    arguments: stopPoint.id,
-                                  );*/
-                                },
-                              );
-                            }).toList()),
+                          title: Text('Stop points'),
+                          children: stopPoints.map((stopPoint) {
+                            return StopPointListTile(
+                              context: context,
+                              stopPoint: StopPoint(
+                                id: stopPoint.id,
+                                commonName: stopPoint.name,
+                              ),
+                            );
+                          }).toList(),
+                        ),
                       ],
                     );
                   },

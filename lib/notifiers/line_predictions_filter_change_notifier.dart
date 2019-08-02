@@ -1,21 +1,23 @@
+import 'package:tfl_api_client/tfl_api_client.dart';
+
 import 'filter_change_notifier.dart';
 
 class LinePredictionsFilterChangeNotifier extends FilterChangeNotifier {
-  String _stopPoint;
+  StopPoint _stopPoint;
 
-  String _destination;
+  StopPoint _destination;
 
-  String get stopPoint => _stopPoint;
+  StopPoint get stopPoint => _stopPoint;
 
-  set stopPoint(String value) {
+  set stopPoint(StopPoint value) {
     _stopPoint = value;
 
     notifyListeners();
   }
 
-  String get destination => _destination;
+  StopPoint get destination => _destination;
 
-  set destination(String value) {
+  set destination(StopPoint value) {
     _destination = value;
 
     notifyListeners();
@@ -24,6 +26,7 @@ class LinePredictionsFilterChangeNotifier extends FilterChangeNotifier {
   @override
   void reset() {
     _stopPoint = null;
+    _destination = null;
 
     notifyListeners();
   }

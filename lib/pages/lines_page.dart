@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../material/list_tile.dart';
 import '../notifiers/lines_filter_change_notifier.dart';
 import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
 import '../widgets/drawer.dart';
-import '../widgets/text.dart';
-import 'line_page.dart';
 import 'lines_filter_page.dart';
 
 class LinesPage extends StatefulWidget {
@@ -51,7 +50,7 @@ class _LinesPageState extends State<LinesPage> {
             builder: (context, linesFilter, child) {
               final getLines = () {
                 return tflApi.tflApi.lines.get(
-                  mode: linesFilter.mode,
+                  mode: linesFilter.mode?.modeName,
                 );
               };
 
@@ -65,21 +64,9 @@ class _LinesPageState extends State<LinesPage> {
                   return RefreshIndicator(
                     child: ListView.builder(
                       itemBuilder: (context, index) {
-                        return ListTile(
-                          title: NullableText(
-                            data[index].id,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          subtitle: NullableText(
-                            data[index].name,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          onTap: () {
-                            Navigator.of(context).pushNamed(
-                              LinePage.route,
-                              arguments: data[index].id,
-                            );
-                          },
+                        return LineListTile(
+                          context: context,
+                          line: data[index],
                         );
                       },
                       itemCount: data.length,

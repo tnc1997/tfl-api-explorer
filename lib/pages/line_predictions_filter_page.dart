@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../material/radio_list_tile.dart';
 import '../notifiers/line_predictions_filter_change_notifier.dart';
 import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
-import '../widgets/text.dart';
 
 class LinePredictionsFilterPage extends StatefulWidget {
   final String id;
@@ -47,40 +47,24 @@ class _LinePredictionsFilterPageState extends State<LinePredictionsFilterPage> {
                       ExpansionTile(
                         title: Text('Stop point'),
                         children: data.map((stopPoint) {
-                          return RadioListTile<String>(
-                            value: stopPoint.id,
+                          return StopPointRadioListTile(
+                            value: stopPoint,
                             groupValue: linePredictionsFilter.stopPoint,
                             onChanged: (stopPoint) {
                               linePredictionsFilter.stopPoint = stopPoint;
                             },
-                            title: NullableText(
-                              stopPoint.id,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            subtitle: NullableText(
-                              stopPoint.commonName,
-                              overflow: TextOverflow.ellipsis,
-                            ),
                           );
                         }).toList(),
                       ),
                       ExpansionTile(
                         title: Text('Destination'),
                         children: data.map((stopPoint) {
-                          return RadioListTile<String>(
-                            value: stopPoint.id,
+                          return StopPointRadioListTile(
+                            value: stopPoint,
                             groupValue: linePredictionsFilter.destination,
                             onChanged: (stopPoint) {
                               linePredictionsFilter.destination = stopPoint;
                             },
-                            title: NullableText(
-                              stopPoint.id,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            subtitle: NullableText(
-                              stopPoint.commonName,
-                              overflow: TextOverflow.ellipsis,
-                            ),
                           );
                         }).toList(),
                       ),

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../material/list_tile.dart';
 import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
-import '../widgets/text.dart';
 
 class LineStopPointsPage extends StatefulWidget {
   static const route = '/lines/:id/stop_points';
@@ -44,21 +44,9 @@ class _LineStopPointsPageState extends State<LineStopPointsPage> {
               return RefreshIndicator(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: NullableText(
-                        data[index].naptanId,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      subtitle: NullableText(
-                        data[index].commonName,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      onTap: () {
-                        /*Navigator.of(context).pushNamed(
-                          StopPointPage.route,
-                          arguments: data[index].id,
-                        );*/
-                      },
+                    return StopPointListTile(
+                      context: context,
+                      stopPoint: data[index],
                     );
                   },
                   itemCount: data.length,

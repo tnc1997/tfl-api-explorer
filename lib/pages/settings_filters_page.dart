@@ -77,7 +77,7 @@ class _SettingsFiltersPageState extends State<SettingsFiltersPage> {
                       ListTile(
                         title: Text('Stop point'),
                         subtitle: NullableText(
-                          lineLineStatusesFilter.stopPoint,
+                          lineLineStatusesFilter.stopPoint?.commonName,
                           overflow: TextOverflow.ellipsis,
                         ),
                         trailing: IconButton(
@@ -90,7 +90,7 @@ class _SettingsFiltersPageState extends State<SettingsFiltersPage> {
                       ListTile(
                         title: Text('Destination'),
                         subtitle: NullableText(
-                          lineLineStatusesFilter.destination,
+                          lineLineStatusesFilter.destination?.commonName,
                           overflow: TextOverflow.ellipsis,
                         ),
                         trailing: IconButton(

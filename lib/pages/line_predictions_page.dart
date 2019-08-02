@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../material/expansion_tile.dart';
 import '../notifiers/line_predictions_filter_change_notifier.dart';
 import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
-import '../widgets/text.dart';
 import 'line_predictions_filter_page.dart';
 
 class LinePredictionsPage extends StatefulWidget {
@@ -52,8 +52,8 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
               final getPredictions = () {
                 return tflApi.tflApi.lines.getPredictions(
                   widget.id,
-                  stopPointId: linePredictionsFilter.stopPoint,
-                  destinationStationId: linePredictionsFilter.destination,
+                  stopPointId: linePredictionsFilter.stopPoint?.id,
+                  destinationStationId: linePredictionsFilter.destination?.id,
                 );
               };
 
@@ -67,55 +67,9 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
                   return RefreshIndicator(
                     child: ListView.builder(
                       itemBuilder: (context, index) {
-                        return ExpansionTile(
-                          title: NullableText(
-                            data[index].id,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          children: <Widget>[
-                            ListTile(
-                              title: Text('Vehicle'),
-                              subtitle: NullableText(
-                                data[index].vehicleId,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            ListTile(
-                              title: Text('Stop point'),
-                              subtitle: NullableText(
-                                data[index].stationName,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            ListTile(
-                              title: Text('Platform'),
-                              subtitle: NullableText(
-                                data[index].platformName,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            ListTile(
-                              title: Text('Destination'),
-                              subtitle: NullableText(
-                                data[index].destinationName,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            ListTile(
-                              title: Text('Current location'),
-                              subtitle: NullableText(
-                                data[index].currentLocation,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            ListTile(
-                              title: Text('Expected arrival'),
-                              subtitle: NullableText(
-                                data[index].expectedArrival?.toIso8601String(),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
+                        return PredictionExpansionTile(
+                          context: context,
+                          prediction: data[index],
                         );
                       },
                       itemCount: data.length,

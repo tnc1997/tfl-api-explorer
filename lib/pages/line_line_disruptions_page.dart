@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../material/expansion_tile.dart';
 import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
-import '../widgets/text.dart';
 
 class LineLineDisruptionsPage extends StatefulWidget {
   static const route = '/lines/:id/line_disruptions';
@@ -45,40 +45,9 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
               return RefreshIndicator(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return ExpansionTile(
-                      title: NullableText(
-                        data[index].category,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      children: <Widget>[
-                        ListTile(
-                          title: Text('Description'),
-                          subtitle: NullableText(
-                            data[index].description,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                          ),
-                          isThreeLine: true,
-                        ),
-                        ListTile(
-                          title: Text('Summary'),
-                          subtitle: NullableText(
-                            data[index].summary,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                          ),
-                          isThreeLine: true,
-                        ),
-                        ListTile(
-                          title: Text('Information'),
-                          subtitle: NullableText(
-                            data[index].additionalInfo,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                          ),
-                          isThreeLine: true,
-                        ),
-                      ],
+                    return LineDisruptionExpansionTile(
+                      context: context,
+                      lineDisruption: data[index],
                     );
                   },
                   itemCount: data.length,

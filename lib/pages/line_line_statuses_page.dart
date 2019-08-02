@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../material/expansion_tile.dart';
 import '../notifiers/line_line_statuses_filter_change_notifier.dart';
 import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
-import '../widgets/text.dart';
 import 'line_line_statuses_filter_page.dart';
 
 class LineLineStatusesPage extends StatefulWidget {
@@ -69,36 +69,9 @@ class _LineLineStatusesPageState extends State<LineLineStatusesPage> {
                   return RefreshIndicator(
                     child: ListView.builder(
                       itemBuilder: (context, index) {
-                        return ExpansionTile(
-                          title: Text(
-                            data[index].statusSeverityDescription,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          children: <Widget>[
-                            ListTile(
-                              title: Text('Reason'),
-                              subtitle: NullableText(
-                                data[index].reason,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                              ),
-                              isThreeLine: true,
-                            ),
-                            ListTile(
-                              title: Text('Created'),
-                              subtitle: NullableText(
-                                data[index].created?.toIso8601String(),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            ListTile(
-                              title: Text('Modified'),
-                              subtitle: NullableText(
-                                data[index].modified?.toIso8601String(),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
+                        return LineStatusExpansionTile(
+                          context: context,
+                          lineStatus: data[index],
                         );
                       },
                       itemCount: data.length,

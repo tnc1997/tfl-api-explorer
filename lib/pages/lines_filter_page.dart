@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../material/radio_list_tile.dart';
 import '../notifiers/lines_filter_change_notifier.dart';
 import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
-import '../widgets/text.dart';
 
 class LinesFilterPage extends StatefulWidget {
   LinesFilterPage({Key key}) : super(key: key);
@@ -44,20 +44,12 @@ class _LinesFilterPageState extends State<LinesFilterPage> {
                       ExpansionTile(
                         title: Text('Mode'),
                         children: data.map((mode) {
-                          return RadioListTile<String>(
-                            value: mode.modeName,
+                          return ModeRadioListTile(
+                            value: mode,
                             groupValue: linesFilter.mode,
                             onChanged: (mode) {
                               linesFilter.mode = mode;
                             },
-                            title: NullableText(
-                              mode.modeName,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            subtitle: NullableText(
-                              mode.isTflService ? 'Operated by TfL' : '',
-                              overflow: TextOverflow.ellipsis,
-                            ),
                           );
                         }).toList(),
                       ),
