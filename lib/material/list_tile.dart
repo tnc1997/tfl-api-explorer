@@ -7,6 +7,9 @@ import '../pages/line_page.dart';
 import '../pages/line_route_page.dart';
 import '../pages/line_status_page.dart';
 import '../pages/prediction_page.dart';
+import '../pages/route_sequence_page.dart';
+import '../pages/stop_point_page.dart';
+import '../pages/stop_point_sequence_page.dart';
 import '../widgets/text.dart';
 
 class LineDisruptionListTile extends ListTile {
@@ -130,6 +133,30 @@ class PredictionListTile extends ListTile {
         );
 }
 
+class RouteSequenceListTile extends ListTile {
+  RouteSequenceListTile({
+    Key key,
+    @required BuildContext context,
+    @required tflApiClient.RouteSequence routeSequence,
+  }) : super(
+          key: key,
+          title: NullableText(
+            routeSequence.direction,
+            overflow: TextOverflow.ellipsis,
+          ),
+          subtitle: NullableText(
+            routeSequence.orderedLineRoutes.first.name,
+            overflow: TextOverflow.ellipsis,
+          ),
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              RouteSequencePage.route,
+              arguments: routeSequence,
+            );
+          },
+        );
+}
+
 class StopPointListTile extends ListTile {
   StopPointListTile({
     Key key,
@@ -146,10 +173,34 @@ class StopPointListTile extends ListTile {
             overflow: TextOverflow.ellipsis,
           ),
           onTap: () {
-            /*Navigator.of(context).pushNamed(
+            Navigator.of(context).pushNamed(
               StopPointPage.route,
-              arguments: stopPoint.id,
-            );*/
+              arguments: stopPoint,
+            );
+          },
+        );
+}
+
+class StopPointSequenceListTile extends ListTile {
+  StopPointSequenceListTile({
+    Key key,
+    @required BuildContext context,
+    @required tflApiClient.StopPointSequence stopPointSequence,
+  }) : super(
+          key: key,
+          title: NullableText(
+            '${stopPointSequence.branchId}',
+            overflow: TextOverflow.ellipsis,
+          ),
+          subtitle: NullableText(
+            stopPointSequence.serviceType,
+            overflow: TextOverflow.ellipsis,
+          ),
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              StopPointSequencePage.route,
+              arguments: stopPointSequence,
+            );
           },
         );
 }

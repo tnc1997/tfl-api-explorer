@@ -7,7 +7,6 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import '../material/list_tile.dart';
 import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
-import '../widgets/text.dart';
 
 class LineRouteSequencesPage extends StatefulWidget {
   static const route = '/lines/:id/route_sequences';
@@ -45,60 +44,9 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
               return RefreshIndicator(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    final lineStrings = data[index].lineStrings.map(
-                      (lineString) {
-                        return lineString
-                            .substring(3, lineString.length - 3)
-                            .split('],[');
-                      },
-                    ).fold<List<String>>(
-                      <String>[],
-                      (previousValue, element) {
-                        return previousValue..addAll(element);
-                      },
-                    ).toList();
-
-                    final stopPoints = data[index].stopPointSequences.map(
-                      (stopPointSequence) {
-                        return stopPointSequence.stopPoint;
-                      },
-                    ).fold<List<MatchedStop>>(
-                      <MatchedStop>[],
-                      (previousValue, element) {
-                        return previousValue..addAll(element);
-                      },
-                    ).toList();
-
-                    return ExpansionTile(
-                      title: NullableText(
-                        data[index].direction,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      children: <Widget>[
-                        ExpansionTile(
-                          title: Text('Line strings'),
-                          children: lineStrings.map((lineString) {
-                            return ListTile(
-                              title: NullableText(
-                                lineString,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                        ExpansionTile(
-                          title: Text('Stop points'),
-                          children: stopPoints.map((stopPoint) {
-                            return StopPointListTile(
-                              context: context,
-                              stopPoint: StopPoint(
-                                id: stopPoint.id,
-                                commonName: stopPoint.name,
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ],
+                    return RouteSequenceListTile(
+                      context: context,
+                      routeSequence: data[index],
                     );
                   },
                   itemCount: data.length,

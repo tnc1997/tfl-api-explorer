@@ -22,6 +22,7 @@ class _PredictionPageState extends State<PredictionPage> {
         title: Text(widget.prediction.id),
       ),
       body: PredictionListView(
+        context: context,
         prediction: widget.prediction,
       ),
     );

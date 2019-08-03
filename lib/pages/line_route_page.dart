@@ -22,6 +22,7 @@ class _LineRoutePageState extends State<LineRoutePage> {
         title: Text(widget.lineRoute.name),
       ),
       body: LineRouteListView(
+        context: context,
         lineRoute: widget.lineRoute,
       ),
     );

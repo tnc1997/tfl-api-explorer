@@ -26,7 +26,12 @@ import 'pages/line_stop_points_page.dart';
 import 'pages/lines_page.dart';
 import 'pages/login_page.dart';
 import 'pages/prediction_page.dart';
+import 'pages/route_sequence_page.dart';
+import 'pages/route_sequence_stop_point_sequences_page.dart';
 import 'pages/settings_page.dart';
+import 'pages/stop_point_page.dart';
+import 'pages/stop_point_sequence_page.dart';
+import 'pages/stop_point_sequence_stop_points_page.dart';
 
 Future<void> main() async {
   await _configureIntl();
@@ -174,10 +179,48 @@ class MyApp extends StatelessWidget {
             return PredictionPage(prediction: routeSettings.arguments);
           },
         );
+      case RouteSequencePage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return RouteSequencePage(routeSequence: routeSettings.arguments);
+          },
+        );
+      case RouteSequenceStopPointSequencesPage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return RouteSequenceStopPointSequencesPage(
+              routeSequence: routeSettings.arguments,
+            );
+          },
+        );
       case SettingsPage.route:
         return MaterialPageRoute(
           builder: (context) {
             return SettingsPage();
+          },
+        );
+      case StopPointPage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return StopPointPage(
+              stopPoint: routeSettings.arguments,
+            );
+          },
+        );
+      case StopPointSequencePage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return StopPointSequencePage(
+              stopPointSequence: routeSettings.arguments,
+            );
+          },
+        );
+      case StopPointSequenceStopPointsPage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return StopPointSequenceStopPointsPage(
+              stopPointSequence: routeSettings.arguments,
+            );
           },
         );
       default:
