@@ -8,7 +8,10 @@ class StopPointPage extends StatefulWidget {
 
   final StopPoint stopPoint;
 
-  StopPointPage({Key key, @required this.stopPoint}) : super(key: key);
+  StopPointPage({
+    Key key,
+    @required this.stopPoint,
+  }) : super(key: key);
 
   @override
   _StopPointPageState createState() => _StopPointPageState();

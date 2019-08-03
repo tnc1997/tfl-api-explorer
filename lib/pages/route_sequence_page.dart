@@ -8,7 +8,10 @@ class RouteSequencePage extends StatefulWidget {
 
   final RouteSequence routeSequence;
 
-  RouteSequencePage({Key key, @required this.routeSequence}) : super(key: key);
+  RouteSequencePage({
+    Key key,
+    @required this.routeSequence,
+  }) : super(key: key);
 
   @override
   _RouteSequencePageState createState() => _RouteSequencePageState();

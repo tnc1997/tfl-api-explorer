@@ -2,9 +2,102 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../pages/line_line_disruptions_page.dart';
+import '../pages/line_line_routes_page.dart';
+import '../pages/line_line_statuses_page.dart';
+import '../pages/line_predictions_page.dart';
+import '../pages/line_route_sequences_page.dart';
+import '../pages/line_stop_points_page.dart';
 import '../pages/route_sequence_stop_point_sequences_page.dart';
 import '../pages/stop_point_sequence_stop_points_page.dart';
 import '../widgets/text.dart';
+
+class LineListView extends ListView {
+  LineListView({
+    Key key,
+    @required BuildContext context,
+    @required Line line,
+  }) : super(
+          key: key,
+          children: <Widget>[
+            ListTile(
+              title: Text('Name'),
+              subtitle: NullableText(
+                line.name,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            ListTile(
+              title: Text('Mode'),
+              subtitle: NullableText(
+                line.modeName,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.http),
+              title: Text('Line disruptions'),
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  LineLineDisruptionsPage.route,
+                  arguments: line,
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.http),
+              title: Text('Line routes'),
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  LineLineRoutesPage.route,
+                  arguments: line,
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.http),
+              title: Text('Line statuses'),
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  LineLineStatusesPage.route,
+                  arguments: line,
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.http),
+              title: Text('Predictions'),
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  LinePredictionsPage.route,
+                  arguments: line,
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.http),
+              title: Text('Route sequences'),
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  LineRouteSequencesPage.route,
+                  arguments: line,
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.http),
+              title: Text('Stop points'),
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  LineStopPointsPage.route,
+                  arguments: line,
+                );
+              },
+            ),
+          ],
+        );
+}
 
 class LineRouteListView extends ListView {
   LineRouteListView({

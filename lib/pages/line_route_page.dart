@@ -8,7 +8,10 @@ class LineRoutePage extends StatefulWidget {
 
   final LineRoute lineRoute;
 
-  LineRoutePage({Key key, @required this.lineRoute}) : super(key: key);
+  LineRoutePage({
+    Key key,
+    @required this.lineRoute,
+  }) : super(key: key);
 
   @override
   _LineRoutePageState createState() => _LineRoutePageState();

@@ -8,9 +8,12 @@ import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
 
 class LinePredictionsFilterPage extends StatefulWidget {
-  final String id;
+  final Line line;
 
-  LinePredictionsFilterPage({Key key, @required this.id}) : super(key: key);
+  LinePredictionsFilterPage({
+    Key key,
+    @required this.line,
+  }) : super(key: key);
 
   @override
   _LinePredictionsFilterPageState createState() =>
@@ -38,7 +41,7 @@ class _LinePredictionsFilterPageState extends State<LinePredictionsFilterPage> {
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
           return CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
-            future: tflApi.tflApi.lines.getStopPoints(widget.id),
+            future: tflApi.tflApi.lines.getStopPoints(widget.line.id),
             builder: (context, data) {
               return Consumer<LinePredictionsFilterChangeNotifier>(
                 builder: (context, linePredictionsFilter, child) {

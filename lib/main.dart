@@ -110,31 +110,31 @@ class MyApp extends StatelessWidget {
       case LineLineDisruptionsPage.route:
         return MaterialPageRoute(
           builder: (context) {
-            return LineLineDisruptionsPage(id: routeSettings.arguments);
+            return LineLineDisruptionsPage(line: routeSettings.arguments);
           },
         );
       case LineLineRoutesPage.route:
         return MaterialPageRoute(
           builder: (context) {
-            return LineLineRoutesPage(id: routeSettings.arguments);
+            return LineLineRoutesPage(line: routeSettings.arguments);
           },
         );
       case LineLineStatusesPage.route:
         return MaterialPageRoute(
           builder: (context) {
-            return LineLineStatusesPage(id: routeSettings.arguments);
+            return LineLineStatusesPage(line: routeSettings.arguments);
           },
         );
       case LinePage.route:
         return MaterialPageRoute(
           builder: (context) {
-            return LinePage(id: routeSettings.arguments);
+            return LinePage(line: routeSettings.arguments);
           },
         );
       case LinePredictionsPage.route:
         return MaterialPageRoute(
           builder: (context) {
-            return LinePredictionsPage(id: routeSettings.arguments);
+            return LinePredictionsPage(line: routeSettings.arguments);
           },
         );
       case LineRoutePage.route:
@@ -146,7 +146,7 @@ class MyApp extends StatelessWidget {
       case LineRouteSequencesPage.route:
         return MaterialPageRoute(
           builder: (context) {
-            return LineRouteSequencesPage(id: routeSettings.arguments);
+            return LineRouteSequencesPage(line: routeSettings.arguments);
           },
         );
       case LineStatusPage.route:
@@ -158,7 +158,7 @@ class MyApp extends StatelessWidget {
       case LineStopPointsPage.route:
         return MaterialPageRoute(
           builder: (context) {
-            return LineStopPointsPage(id: routeSettings.arguments);
+            return LineStopPointsPage(line: routeSettings.arguments);
           },
         );
       case LinesPage.route:

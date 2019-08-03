@@ -13,9 +13,12 @@ import 'line_line_routes_filter_page.dart';
 class LineLineRoutesPage extends StatefulWidget {
   static const route = '/lines/:id/line_routes';
 
-  final String id;
+  final Line line;
 
-  LineLineRoutesPage({Key key, @required this.id}) : super(key: key);
+  LineLineRoutesPage({
+    Key key,
+    @required this.line,
+  }) : super(key: key);
 
   @override
   _LineLineRoutesPageState createState() => _LineLineRoutesPageState();
@@ -51,7 +54,7 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
             builder: (context, lineLineRoutesFilter, child) {
               final getLineRoutes = () {
                 return tflApi.tflApi.lines.getLineRoutes(
-                  widget.id,
+                  widget.line.id,
                   serviceTypes: lineLineRoutesFilter.serviceTypes,
                 );
               };

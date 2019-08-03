@@ -55,7 +55,7 @@ class LineListTile extends ListTile {
           onTap: () {
             Navigator.of(context).pushNamed(
               LinePage.route,
-              arguments: line.id,
+              arguments: line,
             );
           },
         );

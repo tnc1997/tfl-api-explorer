@@ -13,9 +13,12 @@ import 'line_predictions_filter_page.dart';
 class LinePredictionsPage extends StatefulWidget {
   static const route = '/lines/:id/predictions';
 
-  final String id;
+  final Line line;
 
-  LinePredictionsPage({Key key, @required this.id}) : super(key: key);
+  LinePredictionsPage({
+    Key key,
+    @required this.line,
+  }) : super(key: key);
 
   @override
   _LinePredictionsPageState createState() => _LinePredictionsPageState();
@@ -36,7 +39,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return LinePredictionsFilterPage(id: widget.id);
+                    return LinePredictionsFilterPage(line: widget.line);
                   },
                   fullscreenDialog: true,
                 ),
@@ -51,7 +54,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
             builder: (context, linePredictionsFilter, child) {
               final getPredictions = () {
                 return tflApi.tflApi.lines.getPredictions(
-                  widget.id,
+                  widget.line.id,
                   stopPointId: linePredictionsFilter.stopPoint?.id,
                   destinationStationId: linePredictionsFilter.destination?.id,
                 );

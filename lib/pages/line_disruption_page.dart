@@ -8,8 +8,10 @@ class LineDisruptionPage extends StatefulWidget {
 
   final LineDisruption lineDisruption;
 
-  LineDisruptionPage({Key key, @required this.lineDisruption})
-      : super(key: key);
+  LineDisruptionPage({
+    Key key,
+    @required this.lineDisruption,
+  }) : super(key: key);
 
   @override
   _LineDisruptionPageState createState() => _LineDisruptionPageState();

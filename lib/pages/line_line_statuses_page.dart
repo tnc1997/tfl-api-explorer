@@ -13,9 +13,12 @@ import 'line_line_statuses_filter_page.dart';
 class LineLineStatusesPage extends StatefulWidget {
   static const route = '/lines/:id/line_statuses';
 
-  final String id;
+  final Line line;
 
-  LineLineStatusesPage({Key key, @required this.id}) : super(key: key);
+  LineLineStatusesPage({
+    Key key,
+    @required this.line,
+  }) : super(key: key);
 
   @override
   _LineLineStatusesPageState createState() => _LineLineStatusesPageState();
@@ -51,7 +54,7 @@ class _LineLineStatusesPageState extends State<LineLineStatusesPage> {
             builder: (context, lineLineStatusesFilter, child) {
               final getLineStatuses = () {
                 return tflApi.tflApi.lines.getLineStatuses(
-                  widget.id,
+                  widget.line.id,
                   startDate: lineLineStatusesFilter.date?.toIso8601String(),
                   endDate: lineLineStatusesFilter.date
                       ?.add(Duration(days: 1))

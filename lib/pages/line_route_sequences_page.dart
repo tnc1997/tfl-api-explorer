@@ -11,9 +11,12 @@ import '../widgets/async.dart';
 class LineRouteSequencesPage extends StatefulWidget {
   static const route = '/lines/:id/route_sequences';
 
-  final String id;
+  final Line line;
 
-  LineRouteSequencesPage({Key key, @required this.id}) : super(key: key);
+  LineRouteSequencesPage({
+    Key key,
+    @required this.line,
+  }) : super(key: key);
 
   @override
   _LineRouteSequencesPageState createState() => _LineRouteSequencesPageState();
@@ -31,7 +34,7 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
           final getRouteSequences = () {
-            return tflApi.tflApi.lines.getRouteSequences(widget.id);
+            return tflApi.tflApi.lines.getRouteSequences(widget.line.id);
           };
 
           getRouteSequences()

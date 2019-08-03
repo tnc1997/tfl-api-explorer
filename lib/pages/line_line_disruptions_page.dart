@@ -11,9 +11,12 @@ import '../widgets/async.dart';
 class LineLineDisruptionsPage extends StatefulWidget {
   static const route = '/lines/:id/line_disruptions';
 
-  final String id;
+  final Line line;
 
-  LineLineDisruptionsPage({Key key, @required this.id}) : super(key: key);
+  LineLineDisruptionsPage({
+    Key key,
+    @required this.line,
+  }) : super(key: key);
 
   @override
   _LineLineDisruptionsPageState createState() =>
@@ -32,7 +35,7 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
           final getLineDisruptions = () {
-            return tflApi.tflApi.lines.getLineDisruptions(widget.id);
+            return tflApi.tflApi.lines.getLineDisruptions(widget.line.id);
           };
 
           getLineDisruptions()

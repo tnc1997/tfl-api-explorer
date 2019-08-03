@@ -8,7 +8,10 @@ class LineStatusPage extends StatefulWidget {
 
   final LineStatus lineStatus;
 
-  LineStatusPage({Key key, @required this.lineStatus}) : super(key: key);
+  LineStatusPage({
+    Key key,
+    @required this.lineStatus,
+  }) : super(key: key);
 
   @override
   _LineStatusPageState createState() => _LineStatusPageState();

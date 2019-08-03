@@ -8,7 +8,10 @@ class PredictionPage extends StatefulWidget {
 
   final Prediction prediction;
 
-  PredictionPage({Key key, @required this.prediction}) : super(key: key);
+  PredictionPage({
+    Key key,
+    @required this.prediction,
+  }) : super(key: key);
 
   @override
   _PredictionPageState createState() => _PredictionPageState();

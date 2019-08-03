@@ -11,9 +11,12 @@ import '../widgets/async.dart';
 class LineStopPointsPage extends StatefulWidget {
   static const route = '/lines/:id/stop_points';
 
-  final String id;
+  final Line line;
 
-  LineStopPointsPage({Key key, @required this.id}) : super(key: key);
+  LineStopPointsPage({
+    Key key,
+    @required this.line,
+  }) : super(key: key);
 
   @override
   _LineStopPointsPageState createState() => _LineStopPointsPageState();
@@ -31,7 +34,7 @@ class _LineStopPointsPageState extends State<LineStopPointsPage> {
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
           final getStopPoints = () {
-            return tflApi.tflApi.lines.getStopPoints(widget.id);
+            return tflApi.tflApi.lines.getStopPoints(widget.line.id);
           };
 
           getStopPoints()
