@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'errors/page_not_found_error.dart';
@@ -15,13 +19,24 @@ import 'pages/line_line_statuses_page.dart';
 import 'pages/line_page.dart';
 import 'pages/line_predictions_page.dart';
 import 'pages/line_route_sequences_page.dart';
+import 'pages/line_status_page.dart';
 import 'pages/line_stop_points_page.dart';
 import 'pages/lines_page.dart';
 import 'pages/login_page.dart';
 import 'pages/prediction_page.dart';
 import 'pages/settings_page.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  await _configureIntl();
+
+  runApp(MyApp());
+}
+
+Future<void> _configureIntl() async {
+  Intl.defaultLocale = 'en_GB';
+
+  await initializeDateFormatting('en_GB');
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -113,6 +128,12 @@ class MyApp extends StatelessWidget {
         return MaterialPageRoute(
           builder: (context) {
             return LineRouteSequencesPage(id: routeSettings.arguments);
+          },
+        );
+      case LineStatusPage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return LineStatusPage(lineStatus: routeSettings.arguments);
           },
         );
       case LineStopPointsPage.route:
