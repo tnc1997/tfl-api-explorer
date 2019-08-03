@@ -171,6 +171,13 @@ class PredictionListView extends ListView {
               ),
             ),
             ListTile(
+              title: Text('Line'),
+              subtitle: NullableText(
+                prediction.lineName,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            ListTile(
               title: Text('Platform'),
               subtitle: NullableText(
                 prediction.platformName,
@@ -204,6 +211,13 @@ class PredictionListView extends ListView {
                 prediction.expectedArrival,
                 overflow: TextOverflow.ellipsis,
                 dateFormat: DateFormat.Hm(),
+              ),
+            ),
+            ListTile(
+              title: Text('Mode'),
+              subtitle: NullableText(
+                prediction.modeName,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
