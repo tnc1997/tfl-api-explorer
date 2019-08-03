@@ -5,11 +5,11 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../material/list_tile.dart';
-import '../../notifiers/lines_filter_change_notifier.dart';
+import '../../notifiers/lines_filters_change_notifier.dart';
 import '../../notifiers/tfl_api_change_notifier.dart';
 import '../../widgets/async.dart';
 import '../../widgets/drawer.dart';
-import 'lines_filter_page.dart';
+import 'lines_filters_page.dart';
 
 class LinesPage extends StatefulWidget {
   static const route = '/lines';
@@ -35,7 +35,7 @@ class _LinesPageState extends State<LinesPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return LinesFilterPage();
+                    return LinesFiltersPage();
                   },
                   fullscreenDialog: true,
                 ),
@@ -46,11 +46,11 @@ class _LinesPageState extends State<LinesPage> {
       ),
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
-          return Consumer<LinesFilterChangeNotifier>(
-            builder: (context, linesFilter, child) {
+          return Consumer<LinesFiltersChangeNotifier>(
+            builder: (context, linesFilters, child) {
               final getLines = () {
                 return tflApi.tflApi.lines.get(
-                  mode: linesFilter.mode?.modeName,
+                  mode: linesFilters.mode?.modeName,
                 );
               };
 

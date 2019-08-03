@@ -3,34 +3,34 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../material/radio_list_tile.dart';
-import '../../notifiers/line_predictions_filter_change_notifier.dart';
+import '../../notifiers/line_predictions_filters_change_notifier.dart';
 import '../../notifiers/tfl_api_change_notifier.dart';
 import '../../widgets/async.dart';
 
-class LinePredictionsFilterPage extends StatefulWidget {
+class LinePredictionsFiltersPage extends StatefulWidget {
   final Line line;
 
-  LinePredictionsFilterPage({
+  LinePredictionsFiltersPage({
     Key key,
     @required this.line,
   }) : super(key: key);
 
   @override
-  _LinePredictionsFilterPageState createState() =>
-      _LinePredictionsFilterPageState();
+  _LinePredictionsFiltersPageState createState() =>
+      _LinePredictionsFiltersPageState();
 }
 
-class _LinePredictionsFilterPageState extends State<LinePredictionsFilterPage> {
+class _LinePredictionsFiltersPageState extends State<LinePredictionsFiltersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Filter'),
+        title: Text('Filters'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.restore),
             onPressed: () {
-              Provider.of<LinePredictionsFilterChangeNotifier>(
+              Provider.of<LinePredictionsFiltersChangeNotifier>(
                 context,
                 listen: false,
               ).reset();
@@ -43,8 +43,8 @@ class _LinePredictionsFilterPageState extends State<LinePredictionsFilterPage> {
           return CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
             future: tflApi.tflApi.lines.getStopPoints(widget.line.id),
             builder: (context, data) {
-              return Consumer<LinePredictionsFilterChangeNotifier>(
-                builder: (context, linePredictionsFilter, child) {
+              return Consumer<LinePredictionsFiltersChangeNotifier>(
+                builder: (context, linePredictionsFilters, child) {
                   return ListView(
                     children: <Widget>[
                       ExpansionTile(
@@ -52,9 +52,9 @@ class _LinePredictionsFilterPageState extends State<LinePredictionsFilterPage> {
                         children: data.map((stopPoint) {
                           return StopPointRadioListTile(
                             value: stopPoint,
-                            groupValue: linePredictionsFilter.stopPoint,
+                            groupValue: linePredictionsFilters.stopPoint,
                             onChanged: (stopPoint) {
-                              linePredictionsFilter.stopPoint = stopPoint;
+                              linePredictionsFilters.stopPoint = stopPoint;
                             },
                           );
                         }).toList(),
@@ -64,9 +64,9 @@ class _LinePredictionsFilterPageState extends State<LinePredictionsFilterPage> {
                         children: data.map((stopPoint) {
                           return StopPointRadioListTile(
                             value: stopPoint,
-                            groupValue: linePredictionsFilter.destination,
+                            groupValue: linePredictionsFilters.destination,
                             onChanged: (stopPoint) {
-                              linePredictionsFilter.destination = stopPoint;
+                              linePredictionsFilters.destination = stopPoint;
                             },
                           );
                         }).toList(),

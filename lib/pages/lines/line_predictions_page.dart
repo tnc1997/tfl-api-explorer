@@ -5,10 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../material/list_tile.dart';
-import '../../notifiers/line_predictions_filter_change_notifier.dart';
+import '../../notifiers/line_predictions_filters_change_notifier.dart';
 import '../../notifiers/tfl_api_change_notifier.dart';
 import '../../widgets/async.dart';
-import 'line_predictions_filter_page.dart';
+import 'line_predictions_filters_page.dart';
 
 class LinePredictionsPage extends StatefulWidget {
   static const route = '/lines/:id/predictions';
@@ -39,7 +39,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return LinePredictionsFilterPage(line: widget.line);
+                    return LinePredictionsFiltersPage(line: widget.line);
                   },
                   fullscreenDialog: true,
                 ),
@@ -50,13 +50,13 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
       ),
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
-          return Consumer<LinePredictionsFilterChangeNotifier>(
-            builder: (context, linePredictionsFilter, child) {
+          return Consumer<LinePredictionsFiltersChangeNotifier>(
+            builder: (context, linePredictionsFilters, child) {
               final getPredictions = () {
                 return tflApi.tflApi.lines.getPredictions(
                   widget.line.id,
-                  stopPointId: linePredictionsFilter.stopPoint?.id,
-                  destinationStationId: linePredictionsFilter.destination?.id,
+                  stopPointId: linePredictionsFilters.stopPoint?.id,
+                  destinationStationId: linePredictionsFilters.destination?.id,
                 );
               };
 

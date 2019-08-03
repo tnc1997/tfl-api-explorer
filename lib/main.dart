@@ -7,10 +7,10 @@ import 'package:provider/provider.dart';
 
 import 'errors/page_not_found_error.dart';
 import 'material/colors.dart';
-import 'notifiers/line_line_routes_filter_change_notifier.dart';
-import 'notifiers/line_line_statuses_filter_change_notifier.dart';
-import 'notifiers/line_predictions_filter_change_notifier.dart';
-import 'notifiers/lines_filter_change_notifier.dart';
+import 'notifiers/line_line_routes_filters_change_notifier.dart';
+import 'notifiers/line_line_statuses_filters_change_notifier.dart';
+import 'notifiers/line_predictions_filters_change_notifier.dart';
+import 'notifiers/lines_filters_change_notifier.dart';
 import 'notifiers/tfl_api_change_notifier.dart';
 import 'pages/line_disruptions/line_disruption_page.dart';
 import 'pages/line_routes/line_route_page.dart';
@@ -57,22 +57,22 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           builder: (context) {
-            return LineLineRoutesFilterChangeNotifier();
+            return LineLineRoutesFiltersChangeNotifier();
           },
         ),
         ChangeNotifierProvider(
           builder: (context) {
-            return LineLineStatusesFilterChangeNotifier();
+            return LineLineStatusesFiltersChangeNotifier();
           },
         ),
         ChangeNotifierProvider(
           builder: (context) {
-            return LinePredictionsFilterChangeNotifier();
+            return LinePredictionsFiltersChangeNotifier();
           },
         ),
         ChangeNotifierProvider(
           builder: (context) {
-            return LinesFilterChangeNotifier();
+            return LinesFiltersChangeNotifier();
           },
         ),
       ],

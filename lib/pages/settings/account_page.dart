@@ -4,14 +4,14 @@ import 'package:provider/provider.dart';
 import '../../notifiers/tfl_api_change_notifier.dart';
 import '../../widgets/text.dart';
 
-class SettingsAccountPage extends StatefulWidget {
-  SettingsAccountPage({Key key}) : super(key: key);
+class AccountPage extends StatefulWidget {
+  AccountPage({Key key}) : super(key: key);
 
   @override
-  _SettingsAccountPageState createState() => _SettingsAccountPageState();
+  _AccountPageState createState() => _AccountPageState();
 }
 
-class _SettingsAccountPageState extends State<SettingsAccountPage> {
+class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

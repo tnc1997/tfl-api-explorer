@@ -1,6 +1,6 @@
-import 'filter_change_notifier.dart';
+import 'filters_change_notifier.dart';
 
-class LineLineStatusesFilterChangeNotifier extends FilterChangeNotifier {
+class LineLineStatusesFiltersChangeNotifier extends FiltersChangeNotifier {
   DateTime _date;
 
   DateTime get date => _date;

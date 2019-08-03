@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../notifiers/line_line_routes_filter_change_notifier.dart';
+import '../../notifiers/line_line_routes_filters_change_notifier.dart';
 import '../../notifiers/tfl_api_change_notifier.dart';
 import '../../widgets/async.dart';
 import '../../widgets/text.dart';
 
-class LineLineRoutesFilterPage extends StatefulWidget {
-  LineLineRoutesFilterPage({Key key}) : super(key: key);
+class LineLineRoutesFiltersPage extends StatefulWidget {
+  LineLineRoutesFiltersPage({Key key}) : super(key: key);
 
   @override
-  _LineLineRoutesFilterPageState createState() =>
-      _LineLineRoutesFilterPageState();
+  _LineLineRoutesFiltersPageState createState() =>
+      _LineLineRoutesFiltersPageState();
 }
 
-class _LineLineRoutesFilterPageState extends State<LineLineRoutesFilterPage> {
+class _LineLineRoutesFiltersPageState extends State<LineLineRoutesFiltersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Filter'),
+        title: Text('Filters'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.restore),
             onPressed: () {
-              Provider.of<LineLineRoutesFilterChangeNotifier>(
+              Provider.of<LineLineRoutesFiltersChangeNotifier>(
                 context,
                 listen: false,
               ).reset();
@@ -37,21 +37,21 @@ class _LineLineRoutesFilterPageState extends State<LineLineRoutesFilterPage> {
           return CircularProgressIndicatorFutureBuilder<List<String>>(
             future: tflApi.tflApi.lineServiceTypes.get(),
             builder: (context, data) {
-              return Consumer<LineLineRoutesFilterChangeNotifier>(
-                builder: (context, lineLineRoutesFilter, child) {
+              return Consumer<LineLineRoutesFiltersChangeNotifier>(
+                builder: (context, lineLineRoutesFilters, child) {
                   return ListView(
                     children: <Widget>[
                       ExpansionTile(
                         title: Text('Service types'),
                         children: data.map((serviceType) {
                           return CheckboxListTile(
-                            value: lineLineRoutesFilter.serviceTypes
+                            value: lineLineRoutesFilters.serviceTypes
                                 .contains(serviceType),
                             onChanged: (isChecked) {
                               isChecked
-                                  ? lineLineRoutesFilter
+                                  ? lineLineRoutesFilters
                                       .addServiceType(serviceType)
-                                  : lineLineRoutesFilter
+                                  : lineLineRoutesFilters
                                       .removeServiceType(serviceType);
                             },
                             title: NullableText(

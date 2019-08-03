@@ -5,10 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../material/list_tile.dart';
-import '../../notifiers/line_line_statuses_filter_change_notifier.dart';
+import '../../notifiers/line_line_statuses_filters_change_notifier.dart';
 import '../../notifiers/tfl_api_change_notifier.dart';
 import '../../widgets/async.dart';
-import 'line_line_statuses_filter_page.dart';
+import 'line_line_statuses_filters_page.dart';
 
 class LineLineStatusesPage extends StatefulWidget {
   static const route = '/lines/:id/line_statuses';
@@ -39,7 +39,7 @@ class _LineLineStatusesPageState extends State<LineLineStatusesPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return LineLineStatusesFilterPage();
+                    return LineLineStatusesFiltersPage();
                   },
                   fullscreenDialog: true,
                 ),
@@ -50,13 +50,13 @@ class _LineLineStatusesPageState extends State<LineLineStatusesPage> {
       ),
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
-          return Consumer<LineLineStatusesFilterChangeNotifier>(
-            builder: (context, lineLineStatusesFilter, child) {
+          return Consumer<LineLineStatusesFiltersChangeNotifier>(
+            builder: (context, lineLineStatusesFilters, child) {
               final getLineStatuses = () {
                 return tflApi.tflApi.lines.getLineStatuses(
                   widget.line.id,
-                  startDate: lineLineStatusesFilter.date?.toIso8601String(),
-                  endDate: lineLineStatusesFilter.date
+                  startDate: lineLineStatusesFilters.date?.toIso8601String(),
+                  endDate: lineLineStatusesFilters.date
                       ?.add(Duration(days: 1))
                       ?.toIso8601String(),
                 );

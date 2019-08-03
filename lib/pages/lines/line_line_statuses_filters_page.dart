@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../notifiers/line_line_statuses_filter_change_notifier.dart';
+import '../../notifiers/line_line_statuses_filters_change_notifier.dart';
 
-class LineLineStatusesFilterPage extends StatefulWidget {
-  LineLineStatusesFilterPage({Key key}) : super(key: key);
+class LineLineStatusesFiltersPage extends StatefulWidget {
+  LineLineStatusesFiltersPage({Key key}) : super(key: key);
 
   @override
-  _LineLineStatusesFilterPageState createState() =>
-      _LineLineStatusesFilterPageState();
+  _LineLineStatusesFiltersPageState createState() =>
+      _LineLineStatusesFiltersPageState();
 }
 
-class _LineLineStatusesFilterPageState
-    extends State<LineLineStatusesFilterPage> {
+class _LineLineStatusesFiltersPageState
+    extends State<LineLineStatusesFiltersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Filter'),
+        title: Text('Filters'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.restore),
             onPressed: () {
-              Provider.of<LineLineStatusesFilterChangeNotifier>(
+              Provider.of<LineLineStatusesFiltersChangeNotifier>(
                 context,
                 listen: false,
               ).reset();
@@ -30,8 +30,8 @@ class _LineLineStatusesFilterPageState
           ),
         ],
       ),
-      body: Consumer<LineLineStatusesFilterChangeNotifier>(
-        builder: (context, lineLineStatusesFilter, child) {
+      body: Consumer<LineLineStatusesFiltersChangeNotifier>(
+        builder: (context, lineLineStatusesFilters, child) {
           final now = DateTime.now();
           final today = DateTime(now.year, now.month, now.day);
 
@@ -43,12 +43,12 @@ class _LineLineStatusesFilterPageState
                 onTap: () async {
                   final date = await showDatePicker(
                     context: context,
-                    initialDate: lineLineStatusesFilter.date ?? today,
+                    initialDate: lineLineStatusesFilters.date ?? today,
                     firstDate: today,
                     lastDate: today.add(Duration(days: 30)),
                   );
 
-                  lineLineStatusesFilter.date = date;
+                  lineLineStatusesFilters.date = date;
                 },
               ),
             ],

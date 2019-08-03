@@ -1,8 +1,8 @@
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import 'filter_change_notifier.dart';
+import 'filters_change_notifier.dart';
 
-class LinePredictionsFilterChangeNotifier extends FilterChangeNotifier {
+class LinePredictionsFiltersChangeNotifier extends FiltersChangeNotifier {
   StopPoint _stopPoint;
 
   StopPoint _destination;

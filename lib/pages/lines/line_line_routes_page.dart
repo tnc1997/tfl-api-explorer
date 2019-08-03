@@ -5,10 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../material/list_tile.dart';
-import '../../notifiers/line_line_routes_filter_change_notifier.dart';
+import '../../notifiers/line_line_routes_filters_change_notifier.dart';
 import '../../notifiers/tfl_api_change_notifier.dart';
 import '../../widgets/async.dart';
-import 'line_line_routes_filter_page.dart';
+import 'line_line_routes_filters_page.dart';
 
 class LineLineRoutesPage extends StatefulWidget {
   static const route = '/lines/:id/line_routes';
@@ -39,7 +39,7 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return LineLineRoutesFilterPage();
+                    return LineLineRoutesFiltersPage();
                   },
                   fullscreenDialog: true,
                 ),
@@ -50,12 +50,12 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
       ),
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
-          return Consumer<LineLineRoutesFilterChangeNotifier>(
-            builder: (context, lineLineRoutesFilter, child) {
+          return Consumer<LineLineRoutesFiltersChangeNotifier>(
+            builder: (context, lineLineRoutesFilters, child) {
               final getLineRoutes = () {
                 return tflApi.tflApi.lines.getLineRoutes(
                   widget.line.id,
-                  serviceTypes: lineLineRoutesFilter.serviceTypes,
+                  serviceTypes: lineLineRoutesFilters.serviceTypes,
                 );
               };
 

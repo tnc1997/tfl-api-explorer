@@ -3,28 +3,28 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../material/radio_list_tile.dart';
-import '../../notifiers/lines_filter_change_notifier.dart';
+import '../../notifiers/lines_filters_change_notifier.dart';
 import '../../notifiers/tfl_api_change_notifier.dart';
 import '../../widgets/async.dart';
 
-class LinesFilterPage extends StatefulWidget {
-  LinesFilterPage({Key key}) : super(key: key);
+class LinesFiltersPage extends StatefulWidget {
+  LinesFiltersPage({Key key}) : super(key: key);
 
   @override
-  _LinesFilterPageState createState() => _LinesFilterPageState();
+  _LinesFiltersPageState createState() => _LinesFiltersPageState();
 }
 
-class _LinesFilterPageState extends State<LinesFilterPage> {
+class _LinesFiltersPageState extends State<LinesFiltersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Filter'),
+        title: Text('Filters'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.restore),
             onPressed: () {
-              Provider.of<LinesFilterChangeNotifier>(
+              Provider.of<LinesFiltersChangeNotifier>(
                 context,
                 listen: false,
               ).reset();
@@ -37,8 +37,8 @@ class _LinesFilterPageState extends State<LinesFilterPage> {
           return CircularProgressIndicatorFutureBuilder<List<Mode>>(
             future: tflApi.tflApi.lineModes.get(),
             builder: (context, data) {
-              return Consumer<LinesFilterChangeNotifier>(
-                builder: (context, linesFilter, child) {
+              return Consumer<LinesFiltersChangeNotifier>(
+                builder: (context, linesFilters, child) {
                   return ListView(
                     children: <Widget>[
                       ExpansionTile(
@@ -46,9 +46,9 @@ class _LinesFilterPageState extends State<LinesFilterPage> {
                         children: data.map((mode) {
                           return ModeRadioListTile(
                             value: mode,
-                            groupValue: linesFilter.mode,
+                            groupValue: linesFilters.mode,
                             onChanged: (mode) {
-                              linesFilter.mode = mode;
+                              linesFilters.mode = mode;
                             },
                           );
                         }).toList(),

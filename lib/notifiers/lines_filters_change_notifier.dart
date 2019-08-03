@@ -1,8 +1,8 @@
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import 'filter_change_notifier.dart';
+import 'filters_change_notifier.dart';
 
-class LinesFilterChangeNotifier extends FilterChangeNotifier {
+class LinesFiltersChangeNotifier extends FiltersChangeNotifier {
   Mode _mode;
 
   Mode get mode => _mode;

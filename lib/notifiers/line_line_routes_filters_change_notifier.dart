@@ -1,6 +1,6 @@
-import 'filter_change_notifier.dart';
+import 'filters_change_notifier.dart';
 
-class LineLineRoutesFilterChangeNotifier extends FilterChangeNotifier {
+class LineLineRoutesFiltersChangeNotifier extends FiltersChangeNotifier {
   final _serviceTypes = Set<String>();
 
   List<String> get serviceTypes => List.unmodifiable(_serviceTypes);
