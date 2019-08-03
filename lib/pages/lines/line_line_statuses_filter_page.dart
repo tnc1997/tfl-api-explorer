@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../notifiers/line_line_statuses_filter_change_notifier.dart';
+import '../../notifiers/line_line_statuses_filter_change_notifier.dart';
 
 class LineLineStatusesFilterPage extends StatefulWidget {
   LineLineStatusesFilterPage({Key key}) : super(key: key);

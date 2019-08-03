@@ -4,30 +4,34 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../material/list_tile.dart';
-import '../notifiers/lines_filter_change_notifier.dart';
-import '../notifiers/tfl_api_change_notifier.dart';
-import '../widgets/async.dart';
-import '../widgets/drawer.dart';
-import 'lines_filter_page.dart';
+import '../../material/list_tile.dart';
+import '../../notifiers/line_predictions_filter_change_notifier.dart';
+import '../../notifiers/tfl_api_change_notifier.dart';
+import '../../widgets/async.dart';
+import 'line_predictions_filter_page.dart';
 
-class LinesPage extends StatefulWidget {
-  static const route = '/lines';
+class LinePredictionsPage extends StatefulWidget {
+  static const route = '/lines/:id/predictions';
 
-  LinesPage({Key key}) : super(key: key);
+  final Line line;
+
+  LinePredictionsPage({
+    Key key,
+    @required this.line,
+  }) : super(key: key);
 
   @override
-  _LinesPageState createState() => _LinesPageState();
+  _LinePredictionsPageState createState() => _LinePredictionsPageState();
 }
 
-class _LinesPageState extends State<LinesPage> {
-  StreamController<List<Line>> _streamController;
+class _LinePredictionsPageState extends State<LinePredictionsPage> {
+  StreamController<List<Prediction>> _streamController;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lines'),
+        title: Text('Predictions'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.filter_list),
@@ -35,7 +39,7 @@ class _LinesPageState extends State<LinesPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return LinesFilterPage();
+                    return LinePredictionsFilterPage(line: widget.line);
                   },
                   fullscreenDialog: true,
                 ),
@@ -46,33 +50,35 @@ class _LinesPageState extends State<LinesPage> {
       ),
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
-          return Consumer<LinesFilterChangeNotifier>(
-            builder: (context, linesFilter, child) {
-              final getLines = () {
-                return tflApi.tflApi.lines.get(
-                  mode: linesFilter.mode?.modeName,
+          return Consumer<LinePredictionsFilterChangeNotifier>(
+            builder: (context, linePredictionsFilter, child) {
+              final getPredictions = () {
+                return tflApi.tflApi.lines.getPredictions(
+                  widget.line.id,
+                  stopPointId: linePredictionsFilter.stopPoint?.id,
+                  destinationStationId: linePredictionsFilter.destination?.id,
                 );
               };
 
-              getLines()
+              getPredictions()
                   .then(_streamController.add)
                   .catchError(_streamController.addError);
 
-              return CircularProgressIndicatorStreamBuilder<List<Line>>(
+              return CircularProgressIndicatorStreamBuilder<List<Prediction>>(
                 stream: _streamController.stream,
                 builder: (context, data) {
                   return RefreshIndicator(
                     child: ListView.builder(
                       itemBuilder: (context, index) {
-                        return LineListTile(
+                        return PredictionListTile(
                           context: context,
-                          line: data[index],
+                          prediction: data[index],
                         );
                       },
                       itemCount: data.length,
                     ),
                     onRefresh: () {
-                      return getLines()
+                      return getPredictions()
                           .then(_streamController.add)
                           .catchError(_streamController.addError);
                     },
@@ -83,7 +89,6 @@ class _LinesPageState extends State<LinesPage> {
           );
         },
       ),
-      drawer: AppDrawer(),
     );
   }
 
@@ -98,6 +103,6 @@ class _LinesPageState extends State<LinesPage> {
   void initState() {
     super.initState();
 
-    _streamController = StreamController<List<Line>>();
+    _streamController = StreamController<List<Prediction>>();
   }
 }

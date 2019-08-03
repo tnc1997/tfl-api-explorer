@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../widgets/text.dart';
+import '../../widgets/text.dart';
 
 class LineDisruptionPage extends StatefulWidget {
   static const route = '/line_disruptions/:id';

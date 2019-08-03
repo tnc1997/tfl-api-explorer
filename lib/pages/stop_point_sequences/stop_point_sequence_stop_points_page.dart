@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../material/list_tile.dart';
+import '../../material/list_tile.dart';
 
 class StopPointSequenceStopPointsPage extends StatefulWidget {
   static const route = '/stop_point_sequences/:id/stop_points';

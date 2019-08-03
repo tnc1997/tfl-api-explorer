@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../material/scroll_view.dart';
+import '../../material/scroll_view.dart';
 
 class LineRoutePage extends StatefulWidget {
   static const route = '/line_routes/:id';

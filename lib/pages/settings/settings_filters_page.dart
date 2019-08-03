@@ -4,7 +4,7 @@ import 'package:tfl_api_explorer/notifiers/line_line_routes_filter_change_notifi
 import 'package:tfl_api_explorer/notifiers/line_line_statuses_filter_change_notifier.dart';
 import 'package:tfl_api_explorer/notifiers/line_predictions_filter_change_notifier.dart';
 
-import '../widgets/text.dart';
+import '../../widgets/text.dart';
 
 class SettingsFiltersPage extends StatefulWidget {
   SettingsFiltersPage({Key key}) : super(key: key);

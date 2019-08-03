@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
 
-import '../widgets/async.dart';
-import '../widgets/drawer.dart';
+import '../../widgets/async.dart';
+import '../../widgets/drawer.dart';
 import 'settings_about_page.dart';
 import 'settings_account_page.dart';
 import 'settings_filters_page.dart';

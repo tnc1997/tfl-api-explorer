@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../pages/line_line_disruptions_page.dart';
-import '../pages/line_line_routes_page.dart';
-import '../pages/line_line_statuses_page.dart';
-import '../pages/line_predictions_page.dart';
-import '../pages/line_route_sequences_page.dart';
-import '../pages/line_stop_points_page.dart';
-import '../pages/route_sequence_stop_point_sequences_page.dart';
-import '../pages/stop_point_sequence_stop_points_page.dart';
+import '../pages/lines/line_line_disruptions_page.dart';
+import '../pages/lines/line_line_routes_page.dart';
+import '../pages/lines/line_line_statuses_page.dart';
+import '../pages/lines/line_predictions_page.dart';
+import '../pages/lines/line_route_sequences_page.dart';
+import '../pages/lines/line_stop_points_page.dart';
+import '../pages/route_sequences/route_sequence_stop_point_sequences_page.dart';
+import '../pages/stop_point_sequences/stop_point_sequence_stop_points_page.dart';
 import '../widgets/text.dart';
 
 class LineListView extends ListView {

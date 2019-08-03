@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../models/drawer_item.dart';
+import '../pages/lines/lines_page.dart';
+import '../pages/settings/settings_page.dart';
 import '../pages/home_page.dart';
-import '../pages/lines_page.dart';
-import '../pages/settings_page.dart';
 
 class AppDrawer extends Drawer {
   static final List<DrawerItem> _drawerItems = [

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../notifiers/tfl_api_change_notifier.dart';
-import '../widgets/text.dart';
+import '../../notifiers/tfl_api_change_notifier.dart';
+import '../../widgets/text.dart';
 
 class SettingsAccountPage extends StatefulWidget {
   SettingsAccountPage({Key key}) : super(key: key);

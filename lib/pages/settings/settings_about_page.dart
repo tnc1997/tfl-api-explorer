@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
 
-import '../widgets/async.dart';
-import '../widgets/text.dart';
+import '../../widgets/async.dart';
+import '../../widgets/text.dart';
 
 class SettingsAboutPage extends StatefulWidget {
   SettingsAboutPage({Key key}) : super(key: key);

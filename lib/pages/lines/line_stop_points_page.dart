@@ -4,59 +4,58 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../material/list_tile.dart';
-import '../notifiers/tfl_api_change_notifier.dart';
-import '../widgets/async.dart';
+import '../../material/list_tile.dart';
+import '../../notifiers/tfl_api_change_notifier.dart';
+import '../../widgets/async.dart';
 
-class LineLineDisruptionsPage extends StatefulWidget {
-  static const route = '/lines/:id/line_disruptions';
+class LineStopPointsPage extends StatefulWidget {
+  static const route = '/lines/:id/stop_points';
 
   final Line line;
 
-  LineLineDisruptionsPage({
+  LineStopPointsPage({
     Key key,
     @required this.line,
   }) : super(key: key);
 
   @override
-  _LineLineDisruptionsPageState createState() =>
-      _LineLineDisruptionsPageState();
+  _LineStopPointsPageState createState() => _LineStopPointsPageState();
 }
 
-class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
-  StreamController<List<LineDisruption>> _streamController;
+class _LineStopPointsPageState extends State<LineStopPointsPage> {
+  StreamController<List<StopPoint>> _streamController;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Line disruptions'),
+        title: Text('Stop points'),
       ),
       body: Consumer<TflApiChangeNotifier>(
         builder: (context, tflApi, child) {
-          final getLineDisruptions = () {
-            return tflApi.tflApi.lines.getLineDisruptions(widget.line.id);
+          final getStopPoints = () {
+            return tflApi.tflApi.lines.getStopPoints(widget.line.id);
           };
 
-          getLineDisruptions()
+          getStopPoints()
               .then(_streamController.add)
               .catchError(_streamController.addError);
 
-          return CircularProgressIndicatorStreamBuilder<List<LineDisruption>>(
+          return CircularProgressIndicatorStreamBuilder<List<StopPoint>>(
             stream: _streamController.stream,
             builder: (context, data) {
               return RefreshIndicator(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return LineDisruptionListTile(
+                    return StopPointListTile(
                       context: context,
-                      lineDisruption: data[index],
+                      stopPoint: data[index],
                     );
                   },
                   itemCount: data.length,
                 ),
                 onRefresh: () {
-                  return getLineDisruptions()
+                  return getStopPoints()
                       .then(_streamController.add)
                       .catchError(_streamController.addError);
                 },
@@ -79,6 +78,6 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
   void initState() {
     super.initState();
 
-    _streamController = StreamController<List<LineDisruption>>();
+    _streamController = StreamController<List<StopPoint>>();
   }
 }

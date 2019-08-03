@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart' as tflApiClient;
 
-import '../pages/line_disruption_page.dart';
-import '../pages/line_page.dart';
-import '../pages/line_route_page.dart';
-import '../pages/line_status_page.dart';
-import '../pages/prediction_page.dart';
-import '../pages/route_sequence_page.dart';
-import '../pages/stop_point_page.dart';
-import '../pages/stop_point_sequence_page.dart';
+import '../pages/lines/line_disruption_page.dart';
+import '../pages/lines/line_page.dart';
+import '../pages/lines/line_route_page.dart';
+import '../pages/lines/line_status_page.dart';
+import '../pages/predictions/prediction_page.dart';
+import '../pages/route_sequences/route_sequence_page.dart';
+import '../pages/stop_points/stop_point_page.dart';
+import '../pages/stop_point_sequences/stop_point_sequence_page.dart';
 import '../widgets/text.dart';
 
 class LineDisruptionListTile extends ListTile {
