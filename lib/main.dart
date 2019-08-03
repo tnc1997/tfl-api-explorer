@@ -13,6 +13,7 @@ import 'notifiers/line_predictions_filter_change_notifier.dart';
 import 'notifiers/lines_filter_change_notifier.dart';
 import 'notifiers/tfl_api_change_notifier.dart';
 import 'pages/home_page.dart';
+import 'pages/line_disruption_page.dart';
 import 'pages/line_line_disruptions_page.dart';
 import 'pages/line_line_routes_page.dart';
 import 'pages/line_line_statuses_page.dart';
@@ -93,6 +94,12 @@ class MyApp extends StatelessWidget {
         return MaterialPageRoute(
           builder: (context) {
             return HomePage();
+          },
+        );
+      case LineDisruptionPage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return LineDisruptionPage(lineDisruption: routeSettings.arguments);
           },
         );
       case LineLineDisruptionsPage.route:

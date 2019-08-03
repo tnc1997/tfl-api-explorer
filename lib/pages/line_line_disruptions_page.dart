@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../material/expansion_tile.dart';
+import '../material/list_tile.dart';
 import '../notifiers/tfl_api_change_notifier.dart';
 import '../widgets/async.dart';
 
@@ -45,7 +45,7 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
               return RefreshIndicator(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return LineDisruptionExpansionTile(
+                    return LineDisruptionListTile(
                       context: context,
                       lineDisruption: data[index],
                     );
