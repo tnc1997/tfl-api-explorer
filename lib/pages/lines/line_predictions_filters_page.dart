@@ -20,7 +20,8 @@ class LinePredictionsFiltersPage extends StatefulWidget {
       _LinePredictionsFiltersPageState();
 }
 
-class _LinePredictionsFiltersPageState extends State<LinePredictionsFiltersPage> {
+class _LinePredictionsFiltersPageState
+    extends State<LinePredictionsFiltersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +49,7 @@ class _LinePredictionsFiltersPageState extends State<LinePredictionsFiltersPage>
                   return ListView(
                     children: <Widget>[
                       ExpansionTile(
+                        leading: SizedBox(),
                         title: Text('Stop point'),
                         children: data.map((stopPoint) {
                           return StopPointRadioListTile(
@@ -60,6 +62,7 @@ class _LinePredictionsFiltersPageState extends State<LinePredictionsFiltersPage>
                         }).toList(),
                       ),
                       ExpansionTile(
+                        leading: SizedBox(),
                         title: Text('Destination'),
                         children: data.map((stopPoint) {
                           return StopPointRadioListTile(

@@ -11,6 +11,7 @@ import '../pages/lines/line_stop_points_page.dart';
 import '../pages/route_sequences/route_sequence_stop_point_sequences_page.dart';
 import '../pages/stop_point_sequences/stop_point_sequence_stop_points_page.dart';
 import '../widgets/text.dart';
+import 'list_tile.dart';
 
 class LineListView extends ListView {
   LineListView({
@@ -20,14 +21,14 @@ class LineListView extends ListView {
   }) : super(
           key: key,
           children: <Widget>[
-            ListTile(
+            AlignedListTile(
               title: Text('Name'),
               subtitle: NullableText(
                 line.name,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Mode'),
               subtitle: NullableText(
                 line.modeName,
@@ -35,8 +36,7 @@ class LineListView extends ListView {
               ),
             ),
             Divider(),
-            ListTile(
-              leading: Icon(Icons.http),
+            AlignedListTile(
               title: Text('Line disruptions'),
               onTap: () {
                 Navigator.of(context).pushNamed(
@@ -45,8 +45,7 @@ class LineListView extends ListView {
                 );
               },
             ),
-            ListTile(
-              leading: Icon(Icons.http),
+            AlignedListTile(
               title: Text('Line routes'),
               onTap: () {
                 Navigator.of(context).pushNamed(
@@ -55,8 +54,7 @@ class LineListView extends ListView {
                 );
               },
             ),
-            ListTile(
-              leading: Icon(Icons.http),
+            AlignedListTile(
               title: Text('Line statuses'),
               onTap: () {
                 Navigator.of(context).pushNamed(
@@ -65,8 +63,7 @@ class LineListView extends ListView {
                 );
               },
             ),
-            ListTile(
-              leading: Icon(Icons.http),
+            AlignedListTile(
               title: Text('Predictions'),
               onTap: () {
                 Navigator.of(context).pushNamed(
@@ -75,8 +72,7 @@ class LineListView extends ListView {
                 );
               },
             ),
-            ListTile(
-              leading: Icon(Icons.http),
+            AlignedListTile(
               title: Text('Route sequences'),
               onTap: () {
                 Navigator.of(context).pushNamed(
@@ -85,8 +81,7 @@ class LineListView extends ListView {
                 );
               },
             ),
-            ListTile(
-              leading: Icon(Icons.http),
+            AlignedListTile(
               title: Text('Stop points'),
               onTap: () {
                 Navigator.of(context).pushNamed(
@@ -107,28 +102,28 @@ class LineRouteListView extends ListView {
   }) : super(
           key: key,
           children: <Widget>[
-            ListTile(
+            AlignedListTile(
               title: Text('Origination'),
               subtitle: NullableText(
                 lineRoute.originationName,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Destination'),
               subtitle: NullableText(
                 lineRoute.destinationName,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Service type'),
               subtitle: NullableText(
                 lineRoute.serviceType,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Valid to'),
               subtitle: DateTimeNullableText(
                 lineRoute.validTo,
@@ -136,7 +131,7 @@ class LineRouteListView extends ListView {
                 dateFormat: DateFormat.yMMMd(),
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Valid from'),
               subtitle: DateTimeNullableText(
                 lineRoute.validFrom,
@@ -156,56 +151,56 @@ class PredictionListView extends ListView {
   }) : super(
           key: key,
           children: <Widget>[
-            ListTile(
+            AlignedListTile(
               title: Text('Vehicle'),
               subtitle: NullableText(
                 prediction.vehicleId,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Stop point'),
               subtitle: NullableText(
                 prediction.stationName,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Line'),
               subtitle: NullableText(
                 prediction.lineName,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Platform'),
               subtitle: NullableText(
                 prediction.platformName,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Destination'),
               subtitle: NullableText(
                 prediction.destinationName,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Current location'),
               subtitle: NullableText(
                 prediction.currentLocation,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Towards'),
               subtitle: NullableText(
                 prediction.towards,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Expected arrival'),
               subtitle: DateTimeNullableText(
                 prediction.expectedArrival,
@@ -213,7 +208,7 @@ class PredictionListView extends ListView {
                 dateFormat: DateFormat.Hm(),
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Mode'),
               subtitle: NullableText(
                 prediction.modeName,
@@ -232,14 +227,14 @@ class RouteSequenceListView extends ListView {
   }) : super(
           key: key,
           children: <Widget>[
-            ListTile(
+            AlignedListTile(
               title: Text('Line'),
               subtitle: NullableText(
                 routeSequence.lineName,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Mode'),
               subtitle: NullableText(
                 routeSequence.mode,
@@ -247,8 +242,7 @@ class RouteSequenceListView extends ListView {
               ),
             ),
             Divider(),
-            ListTile(
-              leading: Icon(Icons.http),
+            AlignedListTile(
               title: Text('Stop point sequences'),
               onTap: () {
                 Navigator.of(context).pushNamed(
@@ -269,7 +263,7 @@ class StopPointListView extends ListView {
   }) : super(
           key: key,
           children: <Widget>[
-            ListTile(
+            AlignedListTile(
               title: Text('Name'),
               subtitle: NullableText(
                 stopPoint.commonName,
@@ -288,14 +282,14 @@ class StopPointSequenceListView extends ListView {
   }) : super(
           key: key,
           children: <Widget>[
-            ListTile(
+            AlignedListTile(
               title: Text('Line'),
               subtitle: NullableText(
                 stopPointSequence.lineName,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            ListTile(
+            AlignedListTile(
               title: Text('Service type'),
               subtitle: NullableText(
                 stopPointSequence.serviceType,
@@ -303,8 +297,7 @@ class StopPointSequenceListView extends ListView {
               ),
             ),
             Divider(),
-            ListTile(
-              leading: Icon(Icons.http),
+            AlignedListTile(
               title: Text('Stop points'),
               onTap: () {
                 Navigator.of(context).pushNamed(

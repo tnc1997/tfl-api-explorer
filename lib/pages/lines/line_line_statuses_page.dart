@@ -48,43 +48,40 @@ class _LineLineStatusesPageState extends State<LineLineStatusesPage> {
           ),
         ],
       ),
-      body: Consumer<TflApiChangeNotifier>(
-        builder: (context, tflApi, child) {
-          return Consumer<LineLineStatusesFiltersChangeNotifier>(
-            builder: (context, lineLineStatusesFilters, child) {
-              final getLineStatuses = () {
-                return tflApi.tflApi.lines.getLineStatuses(
-                  widget.line.id,
-                  startDate: lineLineStatusesFilters.date?.toIso8601String(),
-                  endDate: lineLineStatusesFilters.date
-                      ?.add(Duration(days: 1))
-                      ?.toIso8601String(),
-                );
-              };
+      body: Consumer2<LineLineStatusesFiltersChangeNotifier,
+          TflApiChangeNotifier>(
+        builder: (context, lineLineStatusesFilters, tflApi, child) {
+          final getLineStatuses = () {
+            return tflApi.tflApi.lines.getLineStatuses(
+              widget.line.id,
+              startDate: lineLineStatusesFilters.date?.toIso8601String(),
+              endDate: lineLineStatusesFilters.date
+                  ?.add(Duration(days: 1))
+                  ?.toIso8601String(),
+            );
+          };
 
-              getLineStatuses()
-                  .then(_streamController.add)
-                  .catchError(_streamController.addError);
+          getLineStatuses()
+              .then(_streamController.add)
+              .catchError(_streamController.addError);
 
-              return CircularProgressIndicatorStreamBuilder<List<LineStatus>>(
-                stream: _streamController.stream,
-                builder: (context, data) {
-                  return RefreshIndicator(
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        return LineStatusListTile(
-                          context: context,
-                          lineStatus: data[index],
-                        );
-                      },
-                      itemCount: data.length,
-                    ),
-                    onRefresh: () {
-                      return getLineStatuses()
-                          .then(_streamController.add)
-                          .catchError(_streamController.addError);
-                    },
-                  );
+          return CircularProgressIndicatorStreamBuilder<List<LineStatus>>(
+            stream: _streamController.stream,
+            builder: (context, data) {
+              return RefreshIndicator(
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    return LineStatusListTile(
+                      context: context,
+                      lineStatus: data[index],
+                    );
+                  },
+                  itemCount: data.length,
+                ),
+                onRefresh: () {
+                  return getLineStatuses()
+                      .then(_streamController.add)
+                      .catchError(_streamController.addError);
                 },
               );
             },

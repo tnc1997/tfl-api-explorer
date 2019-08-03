@@ -42,6 +42,7 @@ class _LinesFiltersPageState extends State<LinesFiltersPage> {
                   return ListView(
                     children: <Widget>[
                       ExpansionTile(
+                        leading: SizedBox(),
                         title: Text('Mode'),
                         children: data.map((mode) {
                           return ModeRadioListTile(

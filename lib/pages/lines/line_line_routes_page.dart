@@ -48,40 +48,37 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
           ),
         ],
       ),
-      body: Consumer<TflApiChangeNotifier>(
-        builder: (context, tflApi, child) {
-          return Consumer<LineLineRoutesFiltersChangeNotifier>(
-            builder: (context, lineLineRoutesFilters, child) {
-              final getLineRoutes = () {
-                return tflApi.tflApi.lines.getLineRoutes(
-                  widget.line.id,
-                  serviceTypes: lineLineRoutesFilters.serviceTypes,
-                );
-              };
+      body:
+          Consumer2<LineLineRoutesFiltersChangeNotifier, TflApiChangeNotifier>(
+        builder: (context, lineLineRoutesFilters, tflApi, child) {
+          final getLineRoutes = () {
+            return tflApi.tflApi.lines.getLineRoutes(
+              widget.line.id,
+              serviceTypes: lineLineRoutesFilters.serviceTypes,
+            );
+          };
 
-              getLineRoutes()
-                  .then(_streamController.add)
-                  .catchError(_streamController.addError);
+          getLineRoutes()
+              .then(_streamController.add)
+              .catchError(_streamController.addError);
 
-              return CircularProgressIndicatorStreamBuilder<List<LineRoute>>(
-                stream: _streamController.stream,
-                builder: (context, data) {
-                  return RefreshIndicator(
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        return LineRouteListTile(
-                          context: context,
-                          lineRoute: data[index],
-                        );
-                      },
-                      itemCount: data.length,
-                    ),
-                    onRefresh: () {
-                      return getLineRoutes()
-                          .then(_streamController.add)
-                          .catchError(_streamController.addError);
-                    },
-                  );
+          return CircularProgressIndicatorStreamBuilder<List<LineRoute>>(
+            stream: _streamController.stream,
+            builder: (context, data) {
+              return RefreshIndicator(
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    return LineRouteListTile(
+                      context: context,
+                      lineRoute: data[index],
+                    );
+                  },
+                  itemCount: data.length,
+                ),
+                onRefresh: () {
+                  return getLineRoutes()
+                      .then(_streamController.add)
+                      .catchError(_streamController.addError);
                 },
               );
             },

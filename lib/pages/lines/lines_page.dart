@@ -44,39 +44,35 @@ class _LinesPageState extends State<LinesPage> {
           ),
         ],
       ),
-      body: Consumer<TflApiChangeNotifier>(
-        builder: (context, tflApi, child) {
-          return Consumer<LinesFiltersChangeNotifier>(
-            builder: (context, linesFilters, child) {
-              final getLines = () {
-                return tflApi.tflApi.lines.get(
-                  mode: linesFilters.mode?.modeName,
-                );
-              };
+      body: Consumer2<LinesFiltersChangeNotifier, TflApiChangeNotifier>(
+        builder: (context, linesFilters, tflApi, child) {
+          final getLines = () {
+            return tflApi.tflApi.lines.get(
+              mode: linesFilters.mode?.modeName,
+            );
+          };
 
-              getLines()
-                  .then(_streamController.add)
-                  .catchError(_streamController.addError);
+          getLines()
+              .then(_streamController.add)
+              .catchError(_streamController.addError);
 
-              return CircularProgressIndicatorStreamBuilder<List<Line>>(
-                stream: _streamController.stream,
-                builder: (context, data) {
-                  return RefreshIndicator(
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        return LineListTile(
-                          context: context,
-                          line: data[index],
-                        );
-                      },
-                      itemCount: data.length,
-                    ),
-                    onRefresh: () {
-                      return getLines()
-                          .then(_streamController.add)
-                          .catchError(_streamController.addError);
-                    },
-                  );
+          return CircularProgressIndicatorStreamBuilder<List<Line>>(
+            stream: _streamController.stream,
+            builder: (context, data) {
+              return RefreshIndicator(
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    return LineListTile(
+                      context: context,
+                      line: data[index],
+                    );
+                  },
+                  itemCount: data.length,
+                ),
+                onRefresh: () {
+                  return getLines()
+                      .then(_streamController.add)
+                      .catchError(_streamController.addError);
                 },
               );
             },

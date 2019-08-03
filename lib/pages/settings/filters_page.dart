@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../material/list_tile.dart';
 import 'lines_filters_page.dart';
 
 class FiltersPage extends StatefulWidget {
@@ -18,7 +19,7 @@ class _FiltersPageState extends State<FiltersPage> {
       ),
       body: ListView(
         children: <Widget>[
-          ListTile(
+          AlignedListTile(
             title: Text('Lines'),
             subtitle: Text('Line routes, line statuses, predictions'),
             onTap: () {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../material/list_tile.dart';
 import '../../notifiers/tfl_api_change_notifier.dart';
 import '../../widgets/text.dart';
 
@@ -22,11 +23,11 @@ class _AccountPageState extends State<AccountPage> {
         builder: (context, tflApi, child) {
           return ListView(
             children: <Widget>[
-              ListTile(
+              AlignedListTile(
                 title: Text('App id'),
                 subtitle: NullableText(tflApi.appId),
               ),
-              ListTile(
+              AlignedListTile(
                 title: Text('App key'),
                 subtitle: NullableText(tflApi.appKey),
               ),

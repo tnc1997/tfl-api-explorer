@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../material/list_tile.dart';
 import '../../notifiers/line_line_statuses_filters_change_notifier.dart';
 
 class LineLineStatusesFiltersPage extends StatefulWidget {
@@ -37,7 +38,7 @@ class _LineLineStatusesFiltersPageState
 
           return ListView(
             children: <Widget>[
-              ListTile(
+              AlignedListTile(
                 title: Text('Date'),
                 trailing: Icon(Icons.navigate_next),
                 onTap: () async {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../material/list_tile.dart';
 import '../../notifiers/line_line_statuses_filters_change_notifier.dart';
 import '../../widgets/text.dart';
 
@@ -25,7 +26,7 @@ class _LineLineStatusesFiltersPageState
         builder: (context, lineLineStatusesFilters, child) {
           return ListView(
             children: <Widget>[
-              ListTile(
+              AlignedListTile(
                 title: Text('Date'),
                 subtitle: DateTimeNullableText(
                   lineLineStatusesFilters.date,

@@ -42,6 +42,7 @@ class _LineLineRoutesFiltersPageState extends State<LineLineRoutesFiltersPage> {
                   return ListView(
                     children: <Widget>[
                       ExpansionTile(
+                        leading: SizedBox(),
                         title: Text('Service types'),
                         children: data.map((serviceType) {
                           return CheckboxListTile(
@@ -58,6 +59,7 @@ class _LineLineRoutesFiltersPageState extends State<LineLineRoutesFiltersPage> {
                               serviceType,
                               overflow: TextOverflow.ellipsis,
                             ),
+                            secondary: SizedBox(),
                           );
                         }).toList(),
                       ),

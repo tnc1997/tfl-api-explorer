@@ -12,6 +12,36 @@ import '../pages/stop_points/stop_point_page.dart';
 import '../pages/stop_point_sequences/stop_point_sequence_page.dart';
 import '../widgets/text.dart';
 
+class AlignedListTile extends ListTile {
+  AlignedListTile({
+    Key key,
+    Widget leading = const SizedBox(),
+    Widget title,
+    Widget subtitle,
+    Widget trailing,
+    bool isThreeLine = false,
+    bool dense,
+    EdgeInsetsGeometry contentPadding,
+    bool enabled = true,
+    VoidCallback onTap,
+    VoidCallback onLongPress,
+    bool selected = false,
+  }) : super(
+          key: key,
+          leading: leading,
+          title: title,
+          subtitle: subtitle,
+          trailing: trailing,
+          isThreeLine: isThreeLine,
+          dense: dense,
+          contentPadding: contentPadding,
+          enabled: enabled,
+          onTap: onTap,
+          onLongPress: onLongPress,
+          selected: selected,
+        );
+}
+
 class LineDisruptionListTile extends ListTile {
   LineDisruptionListTile({
     Key key,
@@ -19,6 +49,7 @@ class LineDisruptionListTile extends ListTile {
     @required tflApiClient.LineDisruption lineDisruption,
   }) : super(
           key: key,
+          leading: SizedBox(),
           title: NullableText(
             lineDisruption.categoryDescription,
             overflow: TextOverflow.ellipsis,
@@ -44,6 +75,7 @@ class LineListTile extends ListTile {
     @required tflApiClient.Line line,
   }) : super(
           key: key,
+          leading: SizedBox(),
           title: NullableText(
             line.id,
             overflow: TextOverflow.ellipsis,
@@ -68,6 +100,7 @@ class LineRouteListTile extends ListTile {
     @required tflApiClient.LineRoute lineRoute,
   }) : super(
           key: key,
+          leading: SizedBox(),
           title: NullableText(
             lineRoute.name,
             overflow: TextOverflow.ellipsis,
@@ -92,6 +125,7 @@ class LineStatusListTile extends ListTile {
     @required tflApiClient.LineStatus lineStatus,
   }) : super(
           key: key,
+          leading: SizedBox(),
           title: NullableText(
             lineStatus.statusSeverityDescription,
             overflow: TextOverflow.ellipsis,
@@ -116,6 +150,7 @@ class PredictionListTile extends ListTile {
     @required tflApiClient.Prediction prediction,
   }) : super(
           key: key,
+          leading: SizedBox(),
           title: NullableText(
             prediction.id,
             overflow: TextOverflow.ellipsis,
@@ -140,6 +175,7 @@ class RouteSequenceListTile extends ListTile {
     @required tflApiClient.RouteSequence routeSequence,
   }) : super(
           key: key,
+          leading: SizedBox(),
           title: NullableText(
             routeSequence.direction,
             overflow: TextOverflow.ellipsis,
@@ -164,6 +200,7 @@ class StopPointListTile extends ListTile {
     @required tflApiClient.StopPoint stopPoint,
   }) : super(
           key: key,
+          leading: SizedBox(),
           title: NullableText(
             stopPoint.id,
             overflow: TextOverflow.ellipsis,
@@ -188,6 +225,7 @@ class StopPointSequenceListTile extends ListTile {
     @required tflApiClient.StopPointSequence stopPointSequence,
   }) : super(
           key: key,
+          leading: SizedBox(),
           title: NullableText(
             '${stopPointSequence.branchId}',
             overflow: TextOverflow.ellipsis,

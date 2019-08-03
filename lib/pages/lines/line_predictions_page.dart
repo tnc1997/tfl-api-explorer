@@ -48,41 +48,38 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
           ),
         ],
       ),
-      body: Consumer<TflApiChangeNotifier>(
-        builder: (context, tflApi, child) {
-          return Consumer<LinePredictionsFiltersChangeNotifier>(
-            builder: (context, linePredictionsFilters, child) {
-              final getPredictions = () {
-                return tflApi.tflApi.lines.getPredictions(
-                  widget.line.id,
-                  stopPointId: linePredictionsFilters.stopPoint?.id,
-                  destinationStationId: linePredictionsFilters.destination?.id,
-                );
-              };
+      body:
+          Consumer2<LinePredictionsFiltersChangeNotifier, TflApiChangeNotifier>(
+        builder: (context, linePredictionsFilters, tflApi, child) {
+          final getPredictions = () {
+            return tflApi.tflApi.lines.getPredictions(
+              widget.line.id,
+              stopPointId: linePredictionsFilters.stopPoint?.id,
+              destinationStationId: linePredictionsFilters.destination?.id,
+            );
+          };
 
-              getPredictions()
-                  .then(_streamController.add)
-                  .catchError(_streamController.addError);
+          getPredictions()
+              .then(_streamController.add)
+              .catchError(_streamController.addError);
 
-              return CircularProgressIndicatorStreamBuilder<List<Prediction>>(
-                stream: _streamController.stream,
-                builder: (context, data) {
-                  return RefreshIndicator(
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        return PredictionListTile(
-                          context: context,
-                          prediction: data[index],
-                        );
-                      },
-                      itemCount: data.length,
-                    ),
-                    onRefresh: () {
-                      return getPredictions()
-                          .then(_streamController.add)
-                          .catchError(_streamController.addError);
-                    },
-                  );
+          return CircularProgressIndicatorStreamBuilder<List<Prediction>>(
+            stream: _streamController.stream,
+            builder: (context, data) {
+              return RefreshIndicator(
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    return PredictionListTile(
+                      context: context,
+                      prediction: data[index],
+                    );
+                  },
+                  itemCount: data.length,
+                ),
+                onRefresh: () {
+                  return getPredictions()
+                      .then(_streamController.add)
+                      .catchError(_streamController.addError);
                 },
               );
             },
