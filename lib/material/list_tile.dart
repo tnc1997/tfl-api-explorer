@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart' as tflApiClient;
 
 import '../pages/line_page.dart';
+import '../pages/line_route_page.dart';
 import '../pages/line_status_page.dart';
 import '../pages/prediction_page.dart';
 import '../widgets/text.dart';
@@ -26,6 +27,30 @@ class LineListTile extends ListTile {
             Navigator.of(context).pushNamed(
               LinePage.route,
               arguments: line.id,
+            );
+          },
+        );
+}
+
+class LineRouteListTile extends ListTile {
+  LineRouteListTile({
+    Key key,
+    @required BuildContext context,
+    @required tflApiClient.LineRoute lineRoute,
+  }) : super(
+          key: key,
+          title: NullableText(
+            lineRoute.name,
+            overflow: TextOverflow.ellipsis,
+          ),
+          subtitle: NullableText(
+            lineRoute.serviceType,
+            overflow: TextOverflow.ellipsis,
+          ),
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              LineRoutePage.route,
+              arguments: lineRoute,
             );
           },
         );

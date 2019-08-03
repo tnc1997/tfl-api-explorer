@@ -18,6 +18,7 @@ import 'pages/line_line_routes_page.dart';
 import 'pages/line_line_statuses_page.dart';
 import 'pages/line_page.dart';
 import 'pages/line_predictions_page.dart';
+import 'pages/line_route_page.dart';
 import 'pages/line_route_sequences_page.dart';
 import 'pages/line_status_page.dart';
 import 'pages/line_stop_points_page.dart';
@@ -122,6 +123,12 @@ class MyApp extends StatelessWidget {
         return MaterialPageRoute(
           builder: (context) {
             return LinePredictionsPage(id: routeSettings.arguments);
+          },
+        );
+      case LineRoutePage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return LineRoutePage(lineRoute: routeSettings.arguments);
           },
         );
       case LineRouteSequencesPage.route:
