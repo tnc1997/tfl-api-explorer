@@ -1,22 +1,25 @@
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../specifications/line_mode_name_specification.dart';
+import '../specifications/specification.dart';
 import 'filters_change_notifier.dart';
 
-class LinesFiltersChangeNotifier extends FiltersChangeNotifier {
-  Mode _mode;
+class LinesFiltersChangeNotifier extends FiltersChangeNotifier<Line> {
+  LinesFiltersChangeNotifier()
+      : super(
+          <String, Specification<Line>>{
+            'Mode name': LineModeNameSpecification('tube'),
+          },
+        );
 
-  Mode get mode => _mode;
-
-  set mode(Mode value) {
-    _mode = value;
-
-    notifyListeners();
+  String get modeName {
+    return specifications['Mode name']?.toString();
   }
 
-  @override
-  void reset() {
-    _mode = null;
-
-    notifyListeners();
+  set modeName(String value) {
+    super.update(
+      'Mode name',
+      LineModeNameSpecification(value),
+    );
   }
 }

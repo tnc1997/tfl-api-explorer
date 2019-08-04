@@ -29,7 +29,7 @@ class LineListView extends ListView {
               ),
             ),
             AlignedListTile(
-              title: Text('Mode'),
+              title: Text('Mode name'),
               subtitle: NullableText(
                 line.modeName,
                 overflow: TextOverflow.ellipsis,
@@ -159,28 +159,28 @@ class PredictionListView extends ListView {
               ),
             ),
             AlignedListTile(
-              title: Text('Stop point'),
+              title: Text('Station name'),
               subtitle: NullableText(
                 prediction.stationName,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
             AlignedListTile(
-              title: Text('Line'),
+              title: Text('Line name'),
               subtitle: NullableText(
                 prediction.lineName,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
             AlignedListTile(
-              title: Text('Platform'),
+              title: Text('Platform name'),
               subtitle: NullableText(
                 prediction.platformName,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
             AlignedListTile(
-              title: Text('Destination'),
+              title: Text('Destination name'),
               subtitle: NullableText(
                 prediction.destinationName,
                 overflow: TextOverflow.ellipsis,
@@ -209,7 +209,7 @@ class PredictionListView extends ListView {
               ),
             ),
             AlignedListTile(
-              title: Text('Mode'),
+              title: Text('Mode name'),
               subtitle: NullableText(
                 prediction.modeName,
                 overflow: TextOverflow.ellipsis,
@@ -228,7 +228,7 @@ class RouteSequenceListView extends ListView {
           key: key,
           children: <Widget>[
             AlignedListTile(
-              title: Text('Line'),
+              title: Text('Line name'),
               subtitle: NullableText(
                 routeSequence.lineName,
                 overflow: TextOverflow.ellipsis,
@@ -283,7 +283,7 @@ class StopPointSequenceListView extends ListView {
           key: key,
           children: <Widget>[
             AlignedListTile(
-              title: Text('Line'),
+              title: Text('Line name'),
               subtitle: NullableText(
                 stopPointSequence.lineName,
                 overflow: TextOverflow.ellipsis,

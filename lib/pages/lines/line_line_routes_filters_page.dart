@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../notifiers/line_line_routes_filters_change_notifier.dart';
-import '../../notifiers/tfl_api_change_notifier.dart';
+import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
 import '../../widgets/text.dart';
 
@@ -15,62 +17,55 @@ class LineLineRoutesFiltersPage extends StatefulWidget {
 }
 
 class _LineLineRoutesFiltersPageState extends State<LineLineRoutesFiltersPage> {
+  Future<List<String>> _lineServiceTypesFuture;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Filters'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.restore),
-            onPressed: () {
-              Provider.of<LineLineRoutesFiltersChangeNotifier>(
-                context,
-                listen: false,
-              ).reset();
-            },
-          ),
-        ],
       ),
-      body: Consumer<TflApiChangeNotifier>(
-        builder: (context, tflApi, child) {
-          return CircularProgressIndicatorFutureBuilder<List<String>>(
-            future: tflApi.tflApi.lineServiceTypes.get(),
-            builder: (context, data) {
-              return Consumer<LineLineRoutesFiltersChangeNotifier>(
-                builder: (context, lineLineRoutesFilters, child) {
-                  return ListView(
-                    children: <Widget>[
-                      ExpansionTile(
-                        leading: SizedBox(),
-                        title: Text('Service types'),
-                        children: data.map((serviceType) {
-                          return CheckboxListTile(
-                            value: lineLineRoutesFilters.serviceTypes
-                                .contains(serviceType),
-                            onChanged: (isChecked) {
-                              isChecked
-                                  ? lineLineRoutesFilters
-                                      .addServiceType(serviceType)
-                                  : lineLineRoutesFilters
-                                      .removeServiceType(serviceType);
-                            },
-                            title: NullableText(
-                              serviceType,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            secondary: SizedBox(),
-                          );
-                        }).toList(),
-                      ),
-                    ],
-                  );
-                },
+      body: CircularProgressIndicatorFutureBuilder<List<String>>(
+        future: _lineServiceTypesFuture,
+        builder: (context, data) {
+          return Consumer<LineLineRoutesFiltersChangeNotifier>(
+            builder: (context, lineLineRoutesFilters, child) {
+              return ListView(
+                children: <Widget>[
+                  ExpansionTile(
+                    leading: SizedBox(),
+                    title: Text('Service type'),
+                    children: data.map((serviceType) {
+                      return RadioListTile<String>(
+                        value: serviceType,
+                        groupValue: lineLineRoutesFilters.serviceType,
+                        onChanged: (value) {
+                          lineLineRoutesFilters.serviceType = value;
+                        },
+                        title: NullableText(
+                          serviceType,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ],
               );
             },
           );
         },
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    final tflApi = Provider.of<TflApiState>(
+      context,
+      listen: false,
+    );
+    _lineServiceTypesFuture = tflApi.tflApi.lineServiceTypes.get();
   }
 }

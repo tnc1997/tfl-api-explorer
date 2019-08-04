@@ -26,7 +26,10 @@ class _LineDisruptionPageState extends State<LineDisruptionPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: NullableText(widget.lineDisruption.description),
+        child: NullableText(
+          widget.lineDisruption.description,
+          textAlign: TextAlign.justify,
+        ),
       ),
     );
   }

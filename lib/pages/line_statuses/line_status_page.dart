@@ -26,7 +26,10 @@ class _LineStatusPageState extends State<LineStatusPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: NullableText(widget.lineStatus.reason),
+        child: NullableText(
+          widget.lineStatus.reason,
+          textAlign: TextAlign.justify,
+        ),
       ),
     );
   }

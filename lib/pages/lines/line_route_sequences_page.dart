@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../material/list_tile.dart';
-import '../../notifiers/tfl_api_change_notifier.dart';
+import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
 
 class LineRouteSequencesPage extends StatefulWidget {
@@ -23,7 +23,7 @@ class LineRouteSequencesPage extends StatefulWidget {
 }
 
 class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
-  StreamController<List<RouteSequence>> _streamController;
+  Future<List<RouteSequence>> _routeSequencesFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -31,36 +31,17 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
       appBar: AppBar(
         title: Text('Route sequences'),
       ),
-      body: Consumer<TflApiChangeNotifier>(
-        builder: (context, tflApi, child) {
-          final getRouteSequences = () {
-            return tflApi.tflApi.lines.getRouteSequences(widget.line.id);
-          };
-
-          getRouteSequences()
-              .then(_streamController.add)
-              .catchError(_streamController.addError);
-
-          return CircularProgressIndicatorStreamBuilder<List<RouteSequence>>(
-            stream: _streamController.stream,
-            builder: (context, data) {
-              return RefreshIndicator(
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return RouteSequenceListTile(
-                      context: context,
-                      routeSequence: data[index],
-                    );
-                  },
-                  itemCount: data.length,
-                ),
-                onRefresh: () {
-                  return getRouteSequences()
-                      .then(_streamController.add)
-                      .catchError(_streamController.addError);
-                },
+      body: CircularProgressIndicatorFutureBuilder<List<RouteSequence>>(
+        future: _routeSequencesFuture,
+        builder: (context, data) {
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              return RouteSequenceListTile(
+                context: context,
+                routeSequence: data[index],
               );
             },
+            itemCount: data.length,
           );
         },
       ),
@@ -68,16 +49,15 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-
-    _streamController.close();
-  }
-
-  @override
   void initState() {
     super.initState();
 
-    _streamController = StreamController<List<RouteSequence>>();
+    final tflApi = Provider.of<TflApiState>(
+      context,
+      listen: false,
+    );
+    _routeSequencesFuture = tflApi.tflApi.lines.getRouteSequences(
+      widget.line.id,
+    );
   }
 }

@@ -6,7 +6,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../material/list_tile.dart';
 import '../../notifiers/lines_filters_change_notifier.dart';
-import '../../notifiers/tfl_api_change_notifier.dart';
+import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
 import '../../widgets/drawer.dart';
 import 'lines_filters_page.dart';
@@ -21,7 +21,7 @@ class LinesPage extends StatefulWidget {
 }
 
 class _LinesPageState extends State<LinesPage> {
-  StreamController<List<Line>> _streamController;
+  Future<List<Line>> _linesFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -44,36 +44,29 @@ class _LinesPageState extends State<LinesPage> {
           ),
         ],
       ),
-      body: Consumer2<LinesFiltersChangeNotifier, TflApiChangeNotifier>(
-        builder: (context, linesFilters, tflApi, child) {
-          final getLines = () {
-            return tflApi.tflApi.lines.get(
-              mode: linesFilters.mode?.modeName,
-            );
-          };
+      body: CircularProgressIndicatorFutureBuilder<List<Line>>(
+        future: _linesFuture,
+        builder: (context, data) {
+          return Consumer<LinesFiltersChangeNotifier>(
+            builder: (context, linesFilters, child) {
+              var lines = data.toList();
 
-          getLines()
-              .then(_streamController.add)
-              .catchError(_streamController.addError);
+              if (linesFilters.specification != null) {
+                lines = lines
+                    .where(
+                      linesFilters.specification.isSatisfiedBy,
+                    )
+                    .toList();
+              }
 
-          return CircularProgressIndicatorStreamBuilder<List<Line>>(
-            stream: _streamController.stream,
-            builder: (context, data) {
-              return RefreshIndicator(
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return LineListTile(
-                      context: context,
-                      line: data[index],
-                    );
-                  },
-                  itemCount: data.length,
-                ),
-                onRefresh: () {
-                  return getLines()
-                      .then(_streamController.add)
-                      .catchError(_streamController.addError);
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  return LineListTile(
+                    context: context,
+                    line: lines[index],
+                  );
                 },
+                itemCount: lines.length,
               );
             },
           );
@@ -84,16 +77,19 @@ class _LinesPageState extends State<LinesPage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-
-    _streamController.close();
-  }
-
-  @override
   void initState() {
     super.initState();
 
-    _streamController = StreamController<List<Line>>();
+    final tflApi = Provider.of<TflApiState>(
+      context,
+      listen: false,
+    );
+    final linesFilters = Provider.of<LinesFiltersChangeNotifier>(
+      context,
+      listen: false,
+    );
+    _linesFuture = tflApi.tflApi.lines.get(
+      mode: linesFilters.modeName,
+    );
   }
 }

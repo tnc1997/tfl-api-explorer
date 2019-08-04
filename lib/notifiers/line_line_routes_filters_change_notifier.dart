@@ -1,36 +1,26 @@
+import 'package:tfl_api_client/tfl_api_client.dart';
+
+import '../specifications/line_route_service_type_specification.dart';
+import '../specifications/specification.dart';
 import 'filters_change_notifier.dart';
 
-class LineLineRoutesFiltersChangeNotifier extends FiltersChangeNotifier {
-  final _serviceTypes = Set<String>();
+class LineLineRoutesFiltersChangeNotifier
+    extends FiltersChangeNotifier<LineRoute> {
+  LineLineRoutesFiltersChangeNotifier()
+      : super(
+          <String, Specification<LineRoute>>{
+            'Service type': LineRouteServiceTypeSpecification('Regular'),
+          },
+        );
 
-  List<String> get serviceTypes => List.unmodifiable(_serviceTypes);
-
-  bool addServiceType(String serviceType) {
-    final result = _serviceTypes.add(serviceType);
-
-    notifyListeners();
-
-    return result;
+  String get serviceType {
+    return specifications['Service type']?.toString();
   }
 
-  void clearServiceTypes() {
-    _serviceTypes.clear();
-
-    notifyListeners();
-  }
-
-  bool removeServiceType(String serviceType) {
-    final result = _serviceTypes.remove(serviceType);
-
-    notifyListeners();
-
-    return result;
-  }
-
-  @override
-  void reset() {
-    _serviceTypes.clear();
-
-    notifyListeners();
+  set serviceType(String value) {
+    super.update(
+      'Service type',
+      LineRouteServiceTypeSpecification(value),
+    );
   }
 }

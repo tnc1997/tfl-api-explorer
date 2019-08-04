@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
+import 'package:tfl_api_explorer/widgets/text.dart';
 
-import '../../material/radio_list_tile.dart';
 import '../../notifiers/lines_filters_change_notifier.dart';
-import '../../notifiers/tfl_api_change_notifier.dart';
+import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
 
 class LinesFiltersPage extends StatefulWidget {
@@ -15,27 +17,18 @@ class LinesFiltersPage extends StatefulWidget {
 }
 
 class _LinesFiltersPageState extends State<LinesFiltersPage> {
+  Future<List<Mode>> _lineModesFuture;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Filters'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.restore),
-            onPressed: () {
-              Provider.of<LinesFiltersChangeNotifier>(
-                context,
-                listen: false,
-              ).reset();
-            },
-          ),
-        ],
       ),
-      body: Consumer<TflApiChangeNotifier>(
+      body: Consumer<TflApiState>(
         builder: (context, tflApi, child) {
           return CircularProgressIndicatorFutureBuilder<List<Mode>>(
-            future: tflApi.tflApi.lineModes.get(),
+            future: _lineModesFuture,
             builder: (context, data) {
               return Consumer<LinesFiltersChangeNotifier>(
                 builder: (context, linesFilters, child) {
@@ -43,14 +36,18 @@ class _LinesFiltersPageState extends State<LinesFiltersPage> {
                     children: <Widget>[
                       ExpansionTile(
                         leading: SizedBox(),
-                        title: Text('Mode'),
+                        title: Text('Mode name'),
                         children: data.map((mode) {
-                          return ModeRadioListTile(
-                            value: mode,
-                            groupValue: linesFilters.mode,
-                            onChanged: (mode) {
-                              linesFilters.mode = mode;
+                          return RadioListTile<String>(
+                            value: mode.modeName,
+                            groupValue: linesFilters.modeName,
+                            onChanged: (value) {
+                              linesFilters.modeName = value;
                             },
+                            title: NullableText(
+                              mode.modeName,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           );
                         }).toList(),
                       ),
@@ -63,5 +60,13 @@ class _LinesFiltersPageState extends State<LinesFiltersPage> {
         },
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    final tflApi = Provider.of<TflApiState>(context, listen: false);
+    _lineModesFuture = tflApi.tflApi.lineModes.get();
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../material/list_tile.dart';
-import '../../notifiers/tfl_api_change_notifier.dart';
+import '../../states/tfl_api_state.dart';
 import '../../widgets/text.dart';
 
 class AccountPage extends StatefulWidget {
@@ -19,7 +19,7 @@ class _AccountPageState extends State<AccountPage> {
       appBar: AppBar(
         title: Text('Account'),
       ),
-      body: Consumer<TflApiChangeNotifier>(
+      body: Consumer<TflApiState>(
         builder: (context, tflApi, child) {
           return ListView(
             children: <Widget>[

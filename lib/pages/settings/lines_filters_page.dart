@@ -5,7 +5,6 @@ import '../../material/list_tile.dart';
 import '../../notifiers/lines_filters_change_notifier.dart';
 import '../../widgets/text.dart';
 import 'line_line_routes_filters_page.dart';
-import 'line_line_statuses_filters_page.dart';
 import 'line_predictions_filters_page.dart';
 
 class LinesFiltersPage extends StatefulWidget {
@@ -24,53 +23,52 @@ class _LinesFiltersPageState extends State<LinesFiltersPage> {
       ),
       body: Consumer<LinesFiltersChangeNotifier>(
         builder: (context, linesFilters, child) {
-          return ListView(
-            children: <Widget>[
-              AlignedListTile(
-                title: Text('Mode'),
-                subtitle: NullableText(
-                  linesFilters.mode?.modeName,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                trailing: IconButton(
-                  icon: Icon(Icons.restore),
-                  onPressed: () {
-                    linesFilters.mode = null;
-                  },
-                ),
+          List<AlignedListTile> listTiles =
+              linesFilters.specifications.entries.map((entry) {
+            return AlignedListTile(
+              title: Text(entry.key),
+              subtitle: NullableText(
+                entry.value?.toString(),
+                overflow: TextOverflow.ellipsis,
               ),
-              Divider(),
-              AlignedListTile(
-                title: Text('Line routes'),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) {
-                      return LineLineRoutesFiltersPage();
-                    }),
-                  );
+              trailing: IconButton(
+                icon: Icon(Icons.restore),
+                onPressed: () {
+                  linesFilters.update(entry.key, null);
                 },
               ),
-              AlignedListTile(
-                title: Text('Line statuses'),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) {
-                      return LineLineStatusesFiltersPage();
-                    }),
-                  );
-                },
-              ),
-              AlignedListTile(
-                title: Text('Predictions'),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) {
-                      return LinePredictionsFiltersPage();
-                    }),
-                  );
-                },
-              ),
-            ],
+            );
+          }).toList();
+
+          listTiles.addAll([
+            null,
+            AlignedListTile(
+              title: Text('Line routes'),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) {
+                    return LineLineRoutesFiltersPage();
+                  }),
+                );
+              },
+            ),
+            AlignedListTile(
+              title: Text('Predictions'),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) {
+                    return LinePredictionsFiltersPage();
+                  }),
+                );
+              },
+            ),
+          ]);
+
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              return listTiles[index] ?? Divider();
+            },
+            itemCount: listTiles.length,
           );
         },
       ),

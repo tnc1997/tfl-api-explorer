@@ -6,7 +6,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../material/list_tile.dart';
 import '../../notifiers/line_predictions_filters_change_notifier.dart';
-import '../../notifiers/tfl_api_change_notifier.dart';
+import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
 import 'line_predictions_filters_page.dart';
 
@@ -25,7 +25,7 @@ class LinePredictionsPage extends StatefulWidget {
 }
 
 class _LinePredictionsPageState extends State<LinePredictionsPage> {
-  StreamController<List<Prediction>> _streamController;
+  StreamController<List<Prediction>> _predictionsStreamController;
 
   @override
   Widget build(BuildContext context) {
@@ -48,41 +48,34 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
           ),
         ],
       ),
-      body:
-          Consumer2<LinePredictionsFiltersChangeNotifier, TflApiChangeNotifier>(
-        builder: (context, linePredictionsFilters, tflApi, child) {
-          final getPredictions = () {
-            return tflApi.tflApi.lines.getPredictions(
-              widget.line.id,
-              stopPointId: linePredictionsFilters.stopPoint?.id,
-              destinationStationId: linePredictionsFilters.destination?.id,
-            );
-          };
+      body: CircularProgressIndicatorStreamBuilder<List<Prediction>>(
+        stream: _predictionsStreamController.stream,
+        builder: (context, data) {
+          return RefreshIndicator(
+            child: Consumer<LinePredictionsFiltersChangeNotifier>(
+              builder: (context, linePredictionsFilters, child) {
+                var predictions = data.toList();
 
-          getPredictions()
-              .then(_streamController.add)
-              .catchError(_streamController.addError);
+                if (linePredictionsFilters.specification != null) {
+                  predictions = predictions
+                      .where(
+                        linePredictionsFilters.specification.isSatisfiedBy,
+                      )
+                      .toList();
+                }
 
-          return CircularProgressIndicatorStreamBuilder<List<Prediction>>(
-            stream: _streamController.stream,
-            builder: (context, data) {
-              return RefreshIndicator(
-                child: ListView.builder(
+                return ListView.builder(
                   itemBuilder: (context, index) {
                     return PredictionListTile(
                       context: context,
-                      prediction: data[index],
+                      prediction: predictions[index],
                     );
                   },
-                  itemCount: data.length,
-                ),
-                onRefresh: () {
-                  return getPredictions()
-                      .then(_streamController.add)
-                      .catchError(_streamController.addError);
-                },
-              );
-            },
+                  itemCount: predictions.length,
+                );
+              },
+            ),
+            onRefresh: _refreshPredictions,
           );
         },
       ),
@@ -93,13 +86,45 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
   void dispose() {
     super.dispose();
 
-    _streamController.close();
+    _predictionsStreamController.close();
   }
 
   @override
   void initState() {
     super.initState();
 
-    _streamController = StreamController<List<Prediction>>();
+    _predictionsStreamController = StreamController<List<Prediction>>();
+
+    _refreshPredictions();
+  }
+
+  Future<void> _refreshPredictions() async {
+    final tflApi = Provider.of<TflApiState>(
+      context,
+      listen: false,
+    );
+    final linePredictionsFilters =
+        Provider.of<LinePredictionsFiltersChangeNotifier>(
+      context,
+      listen: false,
+    );
+
+    try {
+      var predictions = await tflApi.tflApi.lines.getPredictions(
+        widget.line.id,
+      );
+
+      if (linePredictionsFilters.specification != null) {
+        predictions = predictions
+            .where(
+              linePredictionsFilters.specification.isSatisfiedBy,
+            )
+            .toList();
+      }
+
+      _predictionsStreamController.add(predictions);
+    } catch (error) {
+      _predictionsStreamController.addError(error);
+    }
   }
 }

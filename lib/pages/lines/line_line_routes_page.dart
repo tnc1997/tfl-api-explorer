@@ -6,7 +6,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../material/list_tile.dart';
 import '../../notifiers/line_line_routes_filters_change_notifier.dart';
-import '../../notifiers/tfl_api_change_notifier.dart';
+import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
 import 'line_line_routes_filters_page.dart';
 
@@ -25,7 +25,7 @@ class LineLineRoutesPage extends StatefulWidget {
 }
 
 class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
-  StreamController<List<LineRoute>> _streamController;
+  Future<List<LineRoute>> _lineRoutesFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -48,38 +48,29 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
           ),
         ],
       ),
-      body:
-          Consumer2<LineLineRoutesFiltersChangeNotifier, TflApiChangeNotifier>(
-        builder: (context, lineLineRoutesFilters, tflApi, child) {
-          final getLineRoutes = () {
-            return tflApi.tflApi.lines.getLineRoutes(
-              widget.line.id,
-              serviceTypes: lineLineRoutesFilters.serviceTypes,
-            );
-          };
+      body: CircularProgressIndicatorFutureBuilder<List<LineRoute>>(
+        future: _lineRoutesFuture,
+        builder: (context, data) {
+          return Consumer<LineLineRoutesFiltersChangeNotifier>(
+            builder: (context, lineLineRoutesFilters, child) {
+              var lineRoutes = data.toList();
 
-          getLineRoutes()
-              .then(_streamController.add)
-              .catchError(_streamController.addError);
+              if (lineLineRoutesFilters.specification != null) {
+                lineRoutes = lineRoutes
+                    .where(
+                      lineLineRoutesFilters.specification.isSatisfiedBy,
+                    )
+                    .toList();
+              }
 
-          return CircularProgressIndicatorStreamBuilder<List<LineRoute>>(
-            stream: _streamController.stream,
-            builder: (context, data) {
-              return RefreshIndicator(
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return LineRouteListTile(
-                      context: context,
-                      lineRoute: data[index],
-                    );
-                  },
-                  itemCount: data.length,
-                ),
-                onRefresh: () {
-                  return getLineRoutes()
-                      .then(_streamController.add)
-                      .catchError(_streamController.addError);
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  return LineRouteListTile(
+                    context: context,
+                    lineRoute: lineRoutes[index],
+                  );
                 },
+                itemCount: lineRoutes.length,
               );
             },
           );
@@ -89,16 +80,21 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-
-    _streamController.close();
-  }
-
-  @override
   void initState() {
     super.initState();
 
-    _streamController = StreamController<List<LineRoute>>();
+    final tflApi = Provider.of<TflApiState>(
+      context,
+      listen: false,
+    );
+    final lineLineRoutesFilters =
+        Provider.of<LineLineRoutesFiltersChangeNotifier>(
+      context,
+      listen: false,
+    );
+    _lineRoutesFuture = tflApi.tflApi.lines.getLineRoutes(
+      widget.line.id,
+      serviceTypes: <String>[lineLineRoutesFilters.serviceType],
+    );
   }
 }

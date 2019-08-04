@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../material/list_tile.dart';
-import '../../notifiers/tfl_api_change_notifier.dart';
+import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
 
 class LineStopPointsPage extends StatefulWidget {
@@ -23,7 +23,7 @@ class LineStopPointsPage extends StatefulWidget {
 }
 
 class _LineStopPointsPageState extends State<LineStopPointsPage> {
-  StreamController<List<StopPoint>> _streamController;
+  Future<List<StopPoint>> _stopPointsFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -31,36 +31,17 @@ class _LineStopPointsPageState extends State<LineStopPointsPage> {
       appBar: AppBar(
         title: Text('Stop points'),
       ),
-      body: Consumer<TflApiChangeNotifier>(
-        builder: (context, tflApi, child) {
-          final getStopPoints = () {
-            return tflApi.tflApi.lines.getStopPoints(widget.line.id);
-          };
-
-          getStopPoints()
-              .then(_streamController.add)
-              .catchError(_streamController.addError);
-
-          return CircularProgressIndicatorStreamBuilder<List<StopPoint>>(
-            stream: _streamController.stream,
-            builder: (context, data) {
-              return RefreshIndicator(
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return StopPointListTile(
-                      context: context,
-                      stopPoint: data[index],
-                    );
-                  },
-                  itemCount: data.length,
-                ),
-                onRefresh: () {
-                  return getStopPoints()
-                      .then(_streamController.add)
-                      .catchError(_streamController.addError);
-                },
+      body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
+        future: _stopPointsFuture,
+        builder: (context, data) {
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              return StopPointListTile(
+                context: context,
+                stopPoint: data[index],
               );
             },
+            itemCount: data.length,
           );
         },
       ),
@@ -68,16 +49,15 @@ class _LineStopPointsPageState extends State<LineStopPointsPage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-
-    _streamController.close();
-  }
-
-  @override
   void initState() {
     super.initState();
 
-    _streamController = StreamController<List<StopPoint>>();
+    final tflApi = Provider.of<TflApiState>(
+      context,
+      listen: false,
+    );
+    _stopPointsFuture = tflApi.tflApi.lines.getStopPoints(
+      widget.line.id,
+    );
   }
 }

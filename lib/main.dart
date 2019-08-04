@@ -8,10 +8,8 @@ import 'package:provider/provider.dart';
 import 'errors/page_not_found_error.dart';
 import 'material/colors.dart';
 import 'notifiers/line_line_routes_filters_change_notifier.dart';
-import 'notifiers/line_line_statuses_filters_change_notifier.dart';
 import 'notifiers/line_predictions_filters_change_notifier.dart';
 import 'notifiers/lines_filters_change_notifier.dart';
-import 'notifiers/tfl_api_change_notifier.dart';
 import 'pages/line_disruptions/line_disruption_page.dart';
 import 'pages/line_routes/line_route_page.dart';
 import 'pages/line_statuses/line_status_page.dart';
@@ -32,6 +30,7 @@ import 'pages/stop_point_sequences/stop_point_sequence_page.dart';
 import 'pages/stop_point_sequences/stop_point_sequence_stop_points_page.dart';
 import 'pages/home_page.dart';
 import 'pages/login_page.dart';
+import 'states/tfl_api_state.dart';
 
 Future<void> main() async {
   await _configureIntl();
@@ -50,29 +49,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: <SingleChildCloneableWidget>[
-        ChangeNotifierProvider(
-          builder: (context) {
-            return TflApiChangeNotifier();
-          },
-        ),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<LineLineRoutesFiltersChangeNotifier>(
           builder: (context) {
             return LineLineRoutesFiltersChangeNotifier();
           },
         ),
-        ChangeNotifierProvider(
-          builder: (context) {
-            return LineLineStatusesFiltersChangeNotifier();
-          },
-        ),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<LinePredictionsFiltersChangeNotifier>(
           builder: (context) {
             return LinePredictionsFiltersChangeNotifier();
           },
         ),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<LinesFiltersChangeNotifier>(
           builder: (context) {
             return LinesFiltersChangeNotifier();
+          },
+        ),
+        Provider<TflApiState>(
+          builder: (context) {
+            return TflApiState();
           },
         ),
       ],

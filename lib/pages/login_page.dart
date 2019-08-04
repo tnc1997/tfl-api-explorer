@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../notifiers/tfl_api_change_notifier.dart';
+import '../states/tfl_api_state.dart';
 import '../widgets/async.dart';
 import 'home_page.dart';
 
@@ -44,10 +44,9 @@ class _LoginPageState extends State<LoginPage> {
               data.setString('APP_ID', appId);
               data.setString('APP_KEY', appKey);
 
-              Provider.of<TflApiChangeNotifier>(context, listen: false).update(
-                appId,
-                appKey,
-              );
+              final tflApi = Provider.of<TflApiState>(context, listen: false);
+              tflApi.appId = appId;
+              tflApi.appKey = appKey;
 
               Navigator.of(context).pushReplacementNamed(HomePage.route);
             }
@@ -93,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                       if (_appKeyKey.currentState.validate()) {
                         _appKeyFocus.unfocus();
 
-                        await login();
+                        login();
                       }
                     },
                     validator: (value) {
@@ -125,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                           flex: 2,
                           child: RaisedButton(
                             onPressed: () async {
-                              await login();
+                              login();
                             },
                             child: Text('Sign in'),
                           ),

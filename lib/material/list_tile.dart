@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tfl_api_client/tfl_api_client.dart' as tflApiClient;
+import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../pages/line_disruptions/line_disruption_page.dart';
 import '../pages/line_routes/line_route_page.dart';
@@ -46,7 +46,7 @@ class LineDisruptionListTile extends ListTile {
   LineDisruptionListTile({
     Key key,
     @required BuildContext context,
-    @required tflApiClient.LineDisruption lineDisruption,
+    @required LineDisruption lineDisruption,
   }) : super(
           key: key,
           leading: SizedBox(),
@@ -72,7 +72,7 @@ class LineListTile extends ListTile {
   LineListTile({
     Key key,
     @required BuildContext context,
-    @required tflApiClient.Line line,
+    @required Line line,
   }) : super(
           key: key,
           leading: SizedBox(),
@@ -97,7 +97,7 @@ class LineRouteListTile extends ListTile {
   LineRouteListTile({
     Key key,
     @required BuildContext context,
-    @required tflApiClient.LineRoute lineRoute,
+    @required LineRoute lineRoute,
   }) : super(
           key: key,
           leading: SizedBox(),
@@ -122,7 +122,7 @@ class LineStatusListTile extends ListTile {
   LineStatusListTile({
     Key key,
     @required BuildContext context,
-    @required tflApiClient.LineStatus lineStatus,
+    @required LineStatus lineStatus,
   }) : super(
           key: key,
           leading: SizedBox(),
@@ -147,7 +147,7 @@ class PredictionListTile extends ListTile {
   PredictionListTile({
     Key key,
     @required BuildContext context,
-    @required tflApiClient.Prediction prediction,
+    @required Prediction prediction,
   }) : super(
           key: key,
           leading: SizedBox(),
@@ -172,7 +172,7 @@ class RouteSequenceListTile extends ListTile {
   RouteSequenceListTile({
     Key key,
     @required BuildContext context,
-    @required tflApiClient.RouteSequence routeSequence,
+    @required RouteSequence routeSequence,
   }) : super(
           key: key,
           leading: SizedBox(),
@@ -197,7 +197,7 @@ class StopPointListTile extends ListTile {
   StopPointListTile({
     Key key,
     @required BuildContext context,
-    @required tflApiClient.StopPoint stopPoint,
+    @required StopPoint stopPoint,
   }) : super(
           key: key,
           leading: SizedBox(),
@@ -222,7 +222,7 @@ class StopPointSequenceListTile extends ListTile {
   StopPointSequenceListTile({
     Key key,
     @required BuildContext context,
-    @required tflApiClient.StopPointSequence stopPointSequence,
+    @required StopPointSequence stopPointSequence,
   }) : super(
           key: key,
           leading: SizedBox(),

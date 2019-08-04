@@ -23,35 +23,26 @@ class _LinePredictionsFiltersPageState
       ),
       body: Consumer<LinePredictionsFiltersChangeNotifier>(
         builder: (context, linePredictionsFilters, child) {
-          return ListView(
-            children: <Widget>[
-              AlignedListTile(
-                title: Text('Stop point'),
+          final entries =
+              linePredictionsFilters.specifications.entries.toList();
+
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              return AlignedListTile(
+                title: Text(entries[index].key),
                 subtitle: NullableText(
-                  linePredictionsFilters.stopPoint?.commonName,
+                  entries[index].value?.toString(),
                   overflow: TextOverflow.ellipsis,
                 ),
                 trailing: IconButton(
                   icon: Icon(Icons.restore),
                   onPressed: () {
-                    linePredictionsFilters.stopPoint = null;
+                    linePredictionsFilters.update(entries[index].key, null);
                   },
                 ),
-              ),
-              AlignedListTile(
-                title: Text('Destination'),
-                subtitle: NullableText(
-                  linePredictionsFilters.destination?.commonName,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                trailing: IconButton(
-                  icon: Icon(Icons.restore),
-                  onPressed: () {
-                    linePredictionsFilters.destination = null;
-                  },
-                ),
-              ),
-            ],
+              );
+            },
+            itemCount: entries.length,
           );
         },
       ),
