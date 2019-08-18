@@ -23,52 +23,43 @@ class _LinesFiltersPageState extends State<LinesFiltersPage> {
       ),
       body: Consumer<LinesFiltersChangeNotifier>(
         builder: (context, linesFilters, child) {
-          List<AlignedListTile> listTiles =
-              linesFilters.specifications.entries.map((entry) {
-            return AlignedListTile(
-              title: Text(entry.key),
-              subtitle: NullableText(
-                entry.value?.toString(),
-                overflow: TextOverflow.ellipsis,
+          return ListView(
+            children: <Widget>[
+              AlignedListTile(
+                title: Text('Mode name'),
+                subtitle: NullableText(
+                  linesFilters.modeName,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                trailing: IconButton(
+                  icon: Icon(Icons.restore),
+                  onPressed: () {
+                    linesFilters.modeName = null;
+                  },
+                ),
               ),
-              trailing: IconButton(
-                icon: Icon(Icons.restore),
-                onPressed: () {
-                  linesFilters.update(entry.key, null);
+              Divider(),
+              AlignedListTile(
+                title: Text('Line routes'),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) {
+                      return LineLineRoutesFiltersPage();
+                    }),
+                  );
                 },
               ),
-            );
-          }).toList();
-
-          listTiles.addAll([
-            null,
-            AlignedListTile(
-              title: Text('Line routes'),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) {
-                    return LineLineRoutesFiltersPage();
-                  }),
-                );
-              },
-            ),
-            AlignedListTile(
-              title: Text('Predictions'),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) {
-                    return LinePredictionsFiltersPage();
-                  }),
-                );
-              },
-            ),
-          ]);
-
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return listTiles[index] ?? Divider();
-            },
-            itemCount: listTiles.length,
+              AlignedListTile(
+                title: Text('Predictions'),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) {
+                      return LinePredictionsFiltersPage();
+                    }),
+                  );
+                },
+              ),
+            ],
           );
         },
       ),

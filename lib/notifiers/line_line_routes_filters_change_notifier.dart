@@ -6,21 +6,42 @@ import 'filters_change_notifier.dart';
 
 class LineLineRoutesFiltersChangeNotifier
     extends FiltersChangeNotifier<LineRoute> {
-  LineLineRoutesFiltersChangeNotifier()
-      : super(
-          <String, Specification<LineRoute>>{
-            'Service type': LineRouteServiceTypeSpecification('Regular'),
-          },
-        );
+  String _serviceType;
 
-  String get serviceType {
-    return specifications['Service type']?.toString();
-  }
+  String get serviceType => _serviceType;
 
   set serviceType(String value) {
-    super.update(
-      'Service type',
-      LineRouteServiceTypeSpecification(value),
-    );
+    _serviceType = value;
+
+    notifyListeners();
+  }
+
+  @override
+  bool areSatisfiedBy(LineRoute value) {
+    final specifications = <Specification<LineRoute>>[];
+
+    if (_serviceType != null) {
+      specifications.add(
+        LineRouteServiceTypeSpecification(_serviceType),
+      );
+    }
+
+    if (specifications.isNotEmpty) {
+      final specification = specifications.fold<Specification<LineRoute>>(
+        null,
+            (previousValue, element) => previousValue?.and(element) ?? element,
+      );
+
+      return specification.isSatisfiedBy(value);
+    }
+
+    return true;
+  }
+
+  @override
+  void reset() {
+    _serviceType = null;
+
+    notifyListeners();
   }
 }

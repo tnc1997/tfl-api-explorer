@@ -7,33 +7,59 @@ import 'filters_change_notifier.dart';
 
 class LinePredictionsFiltersChangeNotifier
     extends FiltersChangeNotifier<Prediction> {
-  LinePredictionsFiltersChangeNotifier()
-      : super(
-          <String, Specification<Prediction>>{
-            'Station name': null,
-            'Destination name': null,
-          },
-        );
+  String _destinationName;
 
-  String get stationName {
-    return specifications['Station name']?.toString();
-  }
+  String _stationName;
+
+  String get stationName => _stationName;
 
   set stationName(String value) {
-    super.update(
-      'Station name',
-      PredictionStationNameSpecification(value),
-    );
+    _stationName = value;
+
+    notifyListeners();
   }
 
-  String get destinationName {
-    return specifications['Destination name']?.toString();
-  }
+  String get destinationName => _destinationName;
 
   set destinationName(String value) {
-    super.update(
-      'Destination name',
-      PredictionDestinationNameSpecification(value),
-    );
+    _destinationName = value;
+
+    notifyListeners();
+  }
+
+  @override
+  bool areSatisfiedBy(Prediction value) {
+    final specifications = <Specification<Prediction>>[];
+
+    if (_destinationName != null) {
+      specifications.add(
+        PredictionDestinationNameSpecification(_destinationName),
+      );
+    }
+
+    if (_stationName != null) {
+      specifications.add(
+        PredictionStationNameSpecification(_stationName),
+      );
+    }
+
+    if (specifications.isNotEmpty) {
+      final specification = specifications.fold<Specification<Prediction>>(
+        null,
+        (previousValue, element) => previousValue?.and(element) ?? element,
+      );
+
+      return specification.isSatisfiedBy(value);
+    }
+
+    return true;
+  }
+
+  @override
+  void reset() {
+    _destinationName = null;
+    _stationName = null;
+
+    notifyListeners();
   }
 }

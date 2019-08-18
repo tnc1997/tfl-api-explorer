@@ -49,15 +49,7 @@ class _LinesPageState extends State<LinesPage> {
         builder: (context, data) {
           return Consumer<LinesFiltersChangeNotifier>(
             builder: (context, linesFilters, child) {
-              var lines = data.toList();
-
-              if (linesFilters.specification != null) {
-                lines = lines
-                    .where(
-                      linesFilters.specification.isSatisfiedBy,
-                    )
-                    .toList();
-              }
+              final lines = data.where(linesFilters.areSatisfiedBy).toList();
 
               return ListView.builder(
                 itemBuilder: (context, index) {
@@ -80,16 +72,9 @@ class _LinesPageState extends State<LinesPage> {
   void initState() {
     super.initState();
 
-    final tflApi = Provider.of<TflApiState>(
+    _linesFuture = Provider.of<TflApiState>(
       context,
       listen: false,
-    );
-    final linesFilters = Provider.of<LinesFiltersChangeNotifier>(
-      context,
-      listen: false,
-    );
-    _linesFuture = tflApi.tflApi.lines.get(
-      mode: linesFilters.modeName,
-    );
+    ).tflApi.lines.get();
   }
 }

@@ -5,21 +5,42 @@ import '../specifications/specification.dart';
 import 'filters_change_notifier.dart';
 
 class LinesFiltersChangeNotifier extends FiltersChangeNotifier<Line> {
-  LinesFiltersChangeNotifier()
-      : super(
-          <String, Specification<Line>>{
-            'Mode name': LineModeNameSpecification('tube'),
-          },
-        );
+  String _modeName;
 
-  String get modeName {
-    return specifications['Mode name']?.toString();
-  }
+  String get modeName => _modeName;
 
   set modeName(String value) {
-    super.update(
-      'Mode name',
-      LineModeNameSpecification(value),
-    );
+    _modeName = value;
+
+    notifyListeners();
+  }
+
+  @override
+  bool areSatisfiedBy(Line value) {
+    final specifications = <Specification<Line>>[];
+
+    if (_modeName != null) {
+      specifications.add(
+        LineModeNameSpecification(_modeName),
+      );
+    }
+
+    if (specifications.isNotEmpty) {
+      final specification = specifications.fold<Specification<Line>>(
+        null,
+        (previousValue, element) => previousValue?.and(element) ?? element,
+      );
+
+      return specification.isSatisfiedBy(value);
+    }
+
+    return true;
+  }
+
+  @override
+  void reset() {
+    _modeName = null;
+
+    notifyListeners();
   }
 }

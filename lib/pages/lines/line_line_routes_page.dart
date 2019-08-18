@@ -53,15 +53,8 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
         builder: (context, data) {
           return Consumer<LineLineRoutesFiltersChangeNotifier>(
             builder: (context, lineLineRoutesFilters, child) {
-              var lineRoutes = data.toList();
-
-              if (lineLineRoutesFilters.specification != null) {
-                lineRoutes = lineRoutes
-                    .where(
-                      lineLineRoutesFilters.specification.isSatisfiedBy,
-                    )
-                    .toList();
-              }
+              final lineRoutes =
+                  data.where(lineLineRoutesFilters.areSatisfiedBy).toList();
 
               return ListView.builder(
                 itemBuilder: (context, index) {
@@ -83,18 +76,9 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
   void initState() {
     super.initState();
 
-    final tflApi = Provider.of<TflApiState>(
+    _lineRoutesFuture = Provider.of<TflApiState>(
       context,
       listen: false,
-    );
-    final lineLineRoutesFilters =
-        Provider.of<LineLineRoutesFiltersChangeNotifier>(
-      context,
-      listen: false,
-    );
-    _lineRoutesFuture = tflApi.tflApi.lines.getLineRoutes(
-      widget.line.id,
-      serviceTypes: <String>[lineLineRoutesFilters.serviceType],
-    );
+    ).tflApi.lines.getLineRoutes(widget.line.id);
   }
 }

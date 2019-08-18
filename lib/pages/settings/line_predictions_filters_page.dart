@@ -23,26 +23,35 @@ class _LinePredictionsFiltersPageState
       ),
       body: Consumer<LinePredictionsFiltersChangeNotifier>(
         builder: (context, linePredictionsFilters, child) {
-          final entries =
-              linePredictionsFilters.specifications.entries.toList();
-
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return AlignedListTile(
-                title: Text(entries[index].key),
+          return ListView(
+            children: <Widget>[
+              AlignedListTile(
+                title: Text('Station name'),
                 subtitle: NullableText(
-                  entries[index].value?.toString(),
+                  linePredictionsFilters.stationName,
                   overflow: TextOverflow.ellipsis,
                 ),
                 trailing: IconButton(
                   icon: Icon(Icons.restore),
                   onPressed: () {
-                    linePredictionsFilters.update(entries[index].key, null);
+                    linePredictionsFilters.stationName = null;
                   },
                 ),
-              );
-            },
-            itemCount: entries.length,
+              ),
+              AlignedListTile(
+                title: Text('Destination name'),
+                subtitle: NullableText(
+                  linePredictionsFilters.destinationName,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                trailing: IconButton(
+                  icon: Icon(Icons.restore),
+                  onPressed: () {
+                    linePredictionsFilters.destinationName = null;
+                  },
+                ),
+              ),
+            ],
           );
         },
       ),

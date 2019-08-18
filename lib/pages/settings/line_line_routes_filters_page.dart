@@ -22,25 +22,22 @@ class _LineLineRoutesFiltersPageState extends State<LineLineRoutesFiltersPage> {
       ),
       body: Consumer<LineLineRoutesFiltersChangeNotifier>(
         builder: (context, lineLineRoutesFilters, child) {
-          final entries = lineLineRoutesFilters.specifications.entries.toList();
-
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return AlignedListTile(
-                title: Text(entries[index].key),
+          return ListView(
+            children: <Widget>[
+              AlignedListTile(
+                title: Text('Service type'),
                 subtitle: NullableText(
-                  entries[index].value?.toString(),
+                  lineLineRoutesFilters.serviceType,
                   overflow: TextOverflow.ellipsis,
                 ),
                 trailing: IconButton(
                   icon: Icon(Icons.restore),
                   onPressed: () {
-                    lineLineRoutesFilters.update(entries[index].key, null);
+                    lineLineRoutesFilters.serviceType = null;
                   },
                 ),
-              );
-            },
-            itemCount: entries.length,
+              ),
+            ],
           );
         },
       ),
