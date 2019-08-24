@@ -4,7 +4,7 @@ import '../specifications/line_mode_name_specification.dart';
 import '../specifications/specification.dart';
 import 'filters_change_notifier.dart';
 
-class LinesFiltersChangeNotifier extends FiltersChangeNotifier<Line> {
+class LineFiltersChangeNotifier extends FiltersChangeNotifier<Line> {
   String _modeName;
 
   String get modeName => _modeName;
@@ -27,8 +27,8 @@ class LinesFiltersChangeNotifier extends FiltersChangeNotifier<Line> {
 
     if (specifications.isNotEmpty) {
       final specification = specifications.fold<Specification<Line>>(
-        null,
-        (previousValue, element) => previousValue?.and(element) ?? element,
+        specifications.first,
+        (previousValue, element) => previousValue.and(element),
       );
 
       return specification.isSatisfiedBy(value);

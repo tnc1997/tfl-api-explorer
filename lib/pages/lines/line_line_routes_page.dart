@@ -5,10 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../material/list_tile.dart';
-import '../../notifiers/line_line_routes_filters_change_notifier.dart';
+import '../../notifiers/line_line_route_filters_change_notifier.dart';
 import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
-import 'line_line_routes_filters_page.dart';
+import 'line_line_route_filters_page.dart';
 
 class LineLineRoutesPage extends StatefulWidget {
   static const route = '/lines/:id/line_routes';
@@ -39,9 +39,8 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return LineLineRoutesFiltersPage();
+                    return LineLineRouteFiltersPage();
                   },
-                  fullscreenDialog: true,
                 ),
               );
             },
@@ -51,10 +50,10 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
       body: CircularProgressIndicatorFutureBuilder<List<LineRoute>>(
         future: _lineRoutesFuture,
         builder: (context, data) {
-          return Consumer<LineLineRoutesFiltersChangeNotifier>(
-            builder: (context, lineLineRoutesFilters, child) {
+          return Consumer<LineLineRouteFiltersChangeNotifier>(
+            builder: (context, lineLineRouteFilters, child) {
               final lineRoutes =
-                  data.where(lineLineRoutesFilters.areSatisfiedBy).toList();
+                  data.where(lineLineRouteFilters.areSatisfiedBy).toList();
 
               return ListView.builder(
                 itemBuilder: (context, index) {

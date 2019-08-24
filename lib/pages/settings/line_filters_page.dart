@@ -2,39 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../material/list_tile.dart';
-import '../../notifiers/lines_filters_change_notifier.dart';
+import '../../notifiers/line_filters_change_notifier.dart';
 import '../../widgets/text.dart';
-import 'line_line_routes_filters_page.dart';
-import 'line_predictions_filters_page.dart';
+import 'line_line_route_filters_page.dart';
+import 'line_prediction_filters_page.dart';
 
-class LinesFiltersPage extends StatefulWidget {
-  LinesFiltersPage({Key key}) : super(key: key);
+class LineFiltersPage extends StatefulWidget {
+  LineFiltersPage({Key key}) : super(key: key);
 
   @override
-  _LinesFiltersPageState createState() => _LinesFiltersPageState();
+  _LineFiltersPageState createState() => _LineFiltersPageState();
 }
 
-class _LinesFiltersPageState extends State<LinesFiltersPage> {
+class _LineFiltersPageState extends State<LineFiltersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Lines'),
       ),
-      body: Consumer<LinesFiltersChangeNotifier>(
-        builder: (context, linesFilters, child) {
+      body: Consumer<LineFiltersChangeNotifier>(
+        builder: (context, lineFilters, child) {
           return ListView(
             children: <Widget>[
               AlignedListTile(
                 title: Text('Mode name'),
                 subtitle: NullableText(
-                  linesFilters.modeName,
+                  lineFilters.modeName,
                   overflow: TextOverflow.ellipsis,
                 ),
                 trailing: IconButton(
                   icon: Icon(Icons.restore),
                   onPressed: () {
-                    linesFilters.modeName = null;
+                    lineFilters.modeName = null;
                   },
                 ),
               ),
@@ -44,7 +44,7 @@ class _LinesFiltersPageState extends State<LinesFiltersPage> {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) {
-                      return LineLineRoutesFiltersPage();
+                      return LineLineRouteFiltersPage();
                     }),
                   );
                 },
@@ -54,7 +54,7 @@ class _LinesFiltersPageState extends State<LinesFiltersPage> {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) {
-                      return LinePredictionsFiltersPage();
+                      return LinePredictionFiltersPage();
                     }),
                   );
                 },

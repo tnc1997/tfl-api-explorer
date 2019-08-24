@@ -4,7 +4,7 @@ import '../specifications/line_route_service_type_specification.dart';
 import '../specifications/specification.dart';
 import 'filters_change_notifier.dart';
 
-class LineLineRoutesFiltersChangeNotifier
+class LineLineRouteFiltersChangeNotifier
     extends FiltersChangeNotifier<LineRoute> {
   String _serviceType;
 
@@ -28,8 +28,8 @@ class LineLineRoutesFiltersChangeNotifier
 
     if (specifications.isNotEmpty) {
       final specification = specifications.fold<Specification<LineRoute>>(
-        null,
-            (previousValue, element) => previousValue?.and(element) ?? element,
+        specifications.first,
+        (previousValue, element) => previousValue.and(element),
       );
 
       return specification.isSatisfiedBy(value);

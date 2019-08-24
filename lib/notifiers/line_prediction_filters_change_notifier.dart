@@ -5,7 +5,7 @@ import '../specifications/prediction_station_name_specification.dart';
 import '../specifications/specification.dart';
 import 'filters_change_notifier.dart';
 
-class LinePredictionsFiltersChangeNotifier
+class LinePredictionFiltersChangeNotifier
     extends FiltersChangeNotifier<Prediction> {
   String _destinationName;
 
@@ -45,8 +45,8 @@ class LinePredictionsFiltersChangeNotifier
 
     if (specifications.isNotEmpty) {
       final specification = specifications.fold<Specification<Prediction>>(
-        null,
-        (previousValue, element) => previousValue?.and(element) ?? element,
+        specifications.first,
+        (previousValue, element) => previousValue.and(element),
       );
 
       return specification.isSatisfiedBy(value);

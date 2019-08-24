@@ -5,10 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../material/list_tile.dart';
-import '../../notifiers/line_predictions_filters_change_notifier.dart';
+import '../../notifiers/line_prediction_filters_change_notifier.dart';
 import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
-import 'line_predictions_filters_page.dart';
+import 'line_prediction_filters_page.dart';
 
 class LinePredictionsPage extends StatefulWidget {
   static const route = '/lines/:id/predictions';
@@ -39,9 +39,8 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return LinePredictionsFiltersPage(line: widget.line);
+                    return LinePredictionFiltersPage(line: widget.line);
                   },
-                  fullscreenDialog: true,
                 ),
               );
             },
@@ -52,10 +51,10 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
         stream: _predictionsStreamController.stream,
         builder: (context, data) {
           return RefreshIndicator(
-            child: Consumer<LinePredictionsFiltersChangeNotifier>(
-              builder: (context, linePredictionsFilters, child) {
+            child: Consumer<LinePredictionFiltersChangeNotifier>(
+              builder: (context, linePredictionFilters, child) {
                 final predictions =
-                    data.where(linePredictionsFilters.areSatisfiedBy).toList();
+                    data.where(linePredictionFilters.areSatisfiedBy).toList();
 
                 return ListView.builder(
                   itemBuilder: (context, index) {
@@ -100,7 +99,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
 
       predictions = predictions
           .where(
-            Provider.of<LinePredictionsFiltersChangeNotifier>(
+            Provider.of<LinePredictionFiltersChangeNotifier>(
               context,
               listen: false,
             ).areSatisfiedBy,

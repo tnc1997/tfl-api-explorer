@@ -7,9 +7,9 @@ import 'package:provider/provider.dart';
 
 import 'errors/page_not_found_error.dart';
 import 'material/colors.dart';
-import 'notifiers/line_line_routes_filters_change_notifier.dart';
-import 'notifiers/line_predictions_filters_change_notifier.dart';
-import 'notifiers/lines_filters_change_notifier.dart';
+import 'notifiers/line_filters_change_notifier.dart';
+import 'notifiers/line_line_route_filters_change_notifier.dart';
+import 'notifiers/line_prediction_filters_change_notifier.dart';
 import 'pages/line_disruptions/line_disruption_page.dart';
 import 'pages/line_routes/line_route_page.dart';
 import 'pages/line_statuses/line_status_page.dart';
@@ -49,19 +49,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: <SingleChildCloneableWidget>[
-        ChangeNotifierProvider<LineLineRoutesFiltersChangeNotifier>(
+        ChangeNotifierProvider<LineFiltersChangeNotifier>(
           builder: (context) {
-            return LineLineRoutesFiltersChangeNotifier();
+            return LineFiltersChangeNotifier();
           },
         ),
-        ChangeNotifierProvider<LinePredictionsFiltersChangeNotifier>(
+        ChangeNotifierProvider<LineLineRouteFiltersChangeNotifier>(
           builder: (context) {
-            return LinePredictionsFiltersChangeNotifier();
+            return LineLineRouteFiltersChangeNotifier();
           },
         ),
-        ChangeNotifierProvider<LinesFiltersChangeNotifier>(
+        ChangeNotifierProvider<LinePredictionFiltersChangeNotifier>(
           builder: (context) {
-            return LinesFiltersChangeNotifier();
+            return LinePredictionFiltersChangeNotifier();
           },
         ),
         Provider<TflApiState>(

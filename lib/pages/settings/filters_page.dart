@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../material/list_tile.dart';
-import 'lines_filters_page.dart';
+import 'line_filters_page.dart';
 
 class FiltersPage extends StatefulWidget {
   FiltersPage({Key key}) : super(key: key);
@@ -21,11 +21,11 @@ class _FiltersPageState extends State<FiltersPage> {
         children: <Widget>[
           AlignedListTile(
             title: Text('Lines'),
-            subtitle: Text('Line routes, line statuses, predictions'),
+            subtitle: Text('Line routes, predictions'),
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) {
-                  return LinesFiltersPage();
+                  return LineFiltersPage();
                 }),
               );
             },
