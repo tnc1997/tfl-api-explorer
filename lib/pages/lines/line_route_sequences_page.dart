@@ -7,6 +7,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import '../../material/list_tile.dart';
 import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
+import '../../widgets/basic.dart';
 
 class LineRouteSequencesPage extends StatefulWidget {
   static const route = '/lines/:id/route_sequences';
@@ -34,15 +35,19 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
       body: CircularProgressIndicatorFutureBuilder<List<RouteSequence>>(
         future: _routeSequencesFuture,
         builder: (context, data) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return RouteSequenceListTile(
-                context: context,
-                routeSequence: data[index],
-              );
-            },
-            itemCount: data.length,
-          );
+          if (data != null && data.isNotEmpty) {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return RouteSequenceListTile(
+                  context: context,
+                  routeSequence: data[index],
+                );
+              },
+              itemCount: data.length,
+            );
+          } else {
+            return TextCenter('N/A');
+          }
         },
       ),
     );

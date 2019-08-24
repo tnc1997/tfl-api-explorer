@@ -8,6 +8,7 @@ import '../../material/list_tile.dart';
 import '../../notifiers/line_prediction_filters_change_notifier.dart';
 import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
+import '../../widgets/basic.dart';
 import 'line_prediction_filters_page.dart';
 
 class LinePredictionsPage extends StatefulWidget {
@@ -53,18 +54,22 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
           return RefreshIndicator(
             child: Consumer<LinePredictionFiltersChangeNotifier>(
               builder: (context, linePredictionFilters, child) {
-                final predictions =
-                    data.where(linePredictionFilters.areSatisfiedBy).toList();
+                if (data != null && data.isNotEmpty) {
+                  final predictions =
+                      data.where(linePredictionFilters.areSatisfiedBy).toList();
 
-                return ListView.builder(
-                  itemBuilder: (context, index) {
-                    return PredictionListTile(
-                      context: context,
-                      prediction: predictions[index],
-                    );
-                  },
-                  itemCount: predictions.length,
-                );
+                  return ListView.builder(
+                    itemBuilder: (context, index) {
+                      return PredictionListTile(
+                        context: context,
+                        prediction: predictions[index],
+                      );
+                    },
+                    itemCount: predictions.length,
+                  );
+                } else {
+                  return TextCenter('N/A');
+                }
               },
             ),
             onRefresh: _refreshPredictions,

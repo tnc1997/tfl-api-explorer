@@ -8,6 +8,7 @@ import '../../material/list_tile.dart';
 import '../../notifiers/line_filters_change_notifier.dart';
 import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
+import '../../widgets/basic.dart';
 import '../../widgets/drawer.dart';
 import 'line_filters_page.dart';
 
@@ -48,17 +49,21 @@ class _LinesPageState extends State<LinesPage> {
         builder: (context, data) {
           return Consumer<LineFiltersChangeNotifier>(
             builder: (context, lineFilters, child) {
-              final lines = data.where(lineFilters.areSatisfiedBy).toList();
+              if (data != null && data.isNotEmpty) {
+                final lines = data.where(lineFilters.areSatisfiedBy).toList();
 
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  return LineListTile(
-                    context: context,
-                    line: lines[index],
-                  );
-                },
-                itemCount: lines.length,
-              );
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    return LineListTile(
+                      context: context,
+                      line: lines[index],
+                    );
+                  },
+                  itemCount: lines.length,
+                );
+              } else {
+                return TextCenter('N/A');
+              }
             },
           );
         },

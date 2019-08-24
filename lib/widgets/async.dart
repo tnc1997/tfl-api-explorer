@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 import 'basic.dart';
 
@@ -14,13 +13,15 @@ class CircularProgressIndicatorFutureBuilder<T> extends FutureBuilder<T> {
           key: key,
           future: future,
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return builder(context, snapshot.data);
-            } else if (snapshot.hasError) {
-              return TextCenter('${snapshot.error}');
-            } else {
+            if (snapshot.connectionState == ConnectionState.waiting) {
               return CircularProgressIndicatorCenter();
             }
+
+            if (snapshot.hasError) {
+              return TextCenter('${snapshot.error}');
+            }
+
+            return builder(context, snapshot.data);
           },
         );
 }
@@ -34,13 +35,15 @@ class CircularProgressIndicatorStreamBuilder<T> extends StreamBuilder<T> {
           key: key,
           stream: stream,
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return builder(context, snapshot.data);
-            } else if (snapshot.hasError) {
-              return TextCenter('${snapshot.error}');
-            } else {
+            if (snapshot.connectionState == ConnectionState.waiting) {
               return CircularProgressIndicatorCenter();
             }
+
+            if (snapshot.hasError) {
+              return TextCenter('${snapshot.error}');
+            }
+
+            return builder(context, snapshot.data);
           },
         );
 }

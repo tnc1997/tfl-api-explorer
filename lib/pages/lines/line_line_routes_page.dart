@@ -8,6 +8,7 @@ import '../../material/list_tile.dart';
 import '../../notifiers/line_line_route_filters_change_notifier.dart';
 import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
+import '../../widgets/basic.dart';
 import 'line_line_route_filters_page.dart';
 
 class LineLineRoutesPage extends StatefulWidget {
@@ -52,18 +53,22 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
         builder: (context, data) {
           return Consumer<LineLineRouteFiltersChangeNotifier>(
             builder: (context, lineLineRouteFilters, child) {
-              final lineRoutes =
-                  data.where(lineLineRouteFilters.areSatisfiedBy).toList();
+              if (data != null && data.isNotEmpty) {
+                final lineRoutes =
+                    data.where(lineLineRouteFilters.areSatisfiedBy).toList();
 
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  return LineRouteListTile(
-                    context: context,
-                    lineRoute: lineRoutes[index],
-                  );
-                },
-                itemCount: lineRoutes.length,
-              );
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    return LineRouteListTile(
+                      context: context,
+                      lineRoute: lineRoutes[index],
+                    );
+                  },
+                  itemCount: lineRoutes.length,
+                );
+              } else {
+                return TextCenter('N/A');
+              }
             },
           );
         },

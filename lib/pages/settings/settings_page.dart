@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:package_info/package_info.dart';
 
-import '../../widgets/async.dart';
 import '../../widgets/drawer.dart';
 import 'about_page.dart';
 import 'account_page.dart';
@@ -23,53 +21,48 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         title: Text('Settings'),
       ),
-      body: CircularProgressIndicatorFutureBuilder<PackageInfo>(
-        future: PackageInfo.fromPlatform(),
-        builder: (context, data) {
-          return ListView(
-            children: <Widget>[
-              ListTile(
-                title: Text('Account'),
-                subtitle: Text('App id, app key'),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return AccountPage();
-                      },
-                    ),
-                  );
-                },
-              ),
-              ListTile(
-                title: Text('Filters'),
-                subtitle: Text('Lines'),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return FiltersPage();
-                      },
-                    ),
-                  );
-                },
-              ),
-              ListTile(
-                title: Text('About'),
-                subtitle: Text('Package name, version'),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return AboutPage();
-                      },
-                    ),
-                  );
-                },
-              ),
-            ],
-          );
-        },
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            title: Text('Account'),
+            subtitle: Text('App id, app key'),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return AccountPage();
+                  },
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Filters'),
+            subtitle: Text('Lines'),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return FiltersPage();
+                  },
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('About'),
+            subtitle: Text('Package name, version'),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return AboutPage();
+                  },
+                ),
+              );
+            },
+          ),
+        ],
       ),
       drawer: AppDrawer(),
     );

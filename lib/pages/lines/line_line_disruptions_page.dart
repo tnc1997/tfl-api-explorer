@@ -7,6 +7,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import '../../material/list_tile.dart';
 import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
+import '../../widgets/basic.dart';
 
 class LineLineDisruptionsPage extends StatefulWidget {
   static const route = '/lines/:id/line_disruptions';
@@ -35,15 +36,19 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
       body: CircularProgressIndicatorFutureBuilder<List<LineDisruption>>(
         future: _lineDisruptionsFuture,
         builder: (context, data) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return LineDisruptionListTile(
-                context: context,
-                lineDisruption: data[index],
-              );
-            },
-            itemCount: data.length,
-          );
+          if (data != null && data.isNotEmpty) {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return LineDisruptionListTile(
+                  context: context,
+                  lineDisruption: data[index],
+                );
+              },
+              itemCount: data.length,
+            );
+          } else {
+            return TextCenter('N/A');
+          }
         },
       ),
     );
