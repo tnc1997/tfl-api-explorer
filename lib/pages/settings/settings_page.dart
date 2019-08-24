@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/drawer.dart';
+import '../../material/drawer.dart';
 import 'about_page.dart';
 import 'account_page.dart';
 import 'filters_page.dart';

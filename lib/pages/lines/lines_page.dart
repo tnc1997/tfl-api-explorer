@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../../material/drawer.dart';
 import '../../material/list_tile.dart';
 import '../../notifiers/line_filters_change_notifier.dart';
 import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
 import '../../widgets/basic.dart';
-import '../../widgets/drawer.dart';
 import 'line_filters_page.dart';
 
 class LinesPage extends StatefulWidget {
