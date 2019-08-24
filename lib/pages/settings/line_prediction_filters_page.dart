@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../material/list_tile.dart';
 import '../../notifiers/line_prediction_filters_change_notifier.dart';
 import '../../widgets/text.dart';
 
@@ -25,7 +24,7 @@ class _LinePredictionFiltersPageState
         builder: (context, linePredictionFilters, child) {
           return ListView(
             children: <Widget>[
-              AlignedListTile(
+              ListTile(
                 title: Text('Station name'),
                 subtitle: NullableText(
                   linePredictionFilters.stationName,
@@ -38,7 +37,7 @@ class _LinePredictionFiltersPageState
                   },
                 ),
               ),
-              AlignedListTile(
+              ListTile(
                 title: Text('Destination name'),
                 subtitle: NullableText(
                   linePredictionFilters.destinationName,

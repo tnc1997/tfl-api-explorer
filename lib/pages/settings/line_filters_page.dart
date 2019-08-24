@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../material/list_tile.dart';
 import '../../notifiers/line_filters_change_notifier.dart';
 import '../../widgets/text.dart';
 import 'line_line_route_filters_page.dart';
@@ -25,7 +24,7 @@ class _LineFiltersPageState extends State<LineFiltersPage> {
         builder: (context, lineFilters, child) {
           return ListView(
             children: <Widget>[
-              AlignedListTile(
+              ListTile(
                 title: Text('Mode name'),
                 subtitle: NullableText(
                   lineFilters.modeName,
@@ -39,7 +38,7 @@ class _LineFiltersPageState extends State<LineFiltersPage> {
                 ),
               ),
               Divider(),
-              AlignedListTile(
+              ListTile(
                 title: Text('Line routes'),
                 onTap: () {
                   Navigator.of(context).push(
@@ -49,7 +48,7 @@ class _LineFiltersPageState extends State<LineFiltersPage> {
                   );
                 },
               ),
-              AlignedListTile(
+              ListTile(
                 title: Text('Predictions'),
                 onTap: () {
                   Navigator.of(context).push(

@@ -29,7 +29,6 @@ class _SettingsPageState extends State<SettingsPage> {
           return ListView(
             children: <Widget>[
               ListTile(
-                leading: Icon(Icons.account_circle),
                 title: Text('Account'),
                 subtitle: Text('App id, app key'),
                 onTap: () {
@@ -43,7 +42,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.filter_list),
                 title: Text('Filters'),
                 subtitle: Text('Lines'),
                 onTap: () {
@@ -57,9 +55,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.info),
                 title: Text('About'),
-                subtitle: Text('Package name, package version'),
+                subtitle: Text('Package name, version'),
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(

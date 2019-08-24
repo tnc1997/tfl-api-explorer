@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../material/list_tile.dart';
 import '../../notifiers/line_line_route_filters_change_notifier.dart';
 import '../../widgets/text.dart';
 
@@ -24,7 +23,7 @@ class _LineLineRouteFiltersPageState extends State<LineLineRouteFiltersPage> {
         builder: (context, lineLineRouteFilters, child) {
           return ListView(
             children: <Widget>[
-              AlignedListTile(
+              ListTile(
                 title: Text('Service type'),
                 subtitle: NullableText(
                   lineLineRouteFilters.serviceType,

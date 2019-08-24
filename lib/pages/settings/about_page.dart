@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
 
-import '../../material/list_tile.dart';
 import '../../widgets/async.dart';
 import '../../widgets/text.dart';
 
@@ -24,12 +23,12 @@ class _AboutPageState extends State<AboutPage> {
         builder: (context, data) {
           return ListView(
             children: <Widget>[
-              AlignedListTile(
+              ListTile(
                 title: Text('Package name'),
                 subtitle: NullableText(data.packageName),
               ),
-              AlignedListTile(
-                title: Text('Package version'),
+              ListTile(
+                title: Text('Version'),
                 subtitle: NullableText(data.version),
               ),
             ],
