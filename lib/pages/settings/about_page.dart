@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
 
-import '../widgets/async.dart';
-import '../widgets/text.dart';
+import '../../widgets/async.dart';
+import '../../widgets/text.dart';
 
-class SettingsAboutPage extends StatefulWidget {
-  SettingsAboutPage({Key key}) : super(key: key);
+class AboutPage extends StatefulWidget {
+  AboutPage({Key key}) : super(key: key);
 
   @override
-  _SettingsAboutPageState createState() => _SettingsAboutPageState();
+  _AboutPageState createState() => _AboutPageState();
 }
 
-class _SettingsAboutPageState extends State<SettingsAboutPage> {
+class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +28,7 @@ class _SettingsAboutPageState extends State<SettingsAboutPage> {
                 subtitle: NullableText(data.packageName),
               ),
               ListTile(
-                title: Text('Package version'),
+                title: Text('Version'),
                 subtitle: NullableText(data.version),
               ),
             ],

@@ -1,11 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../notifiers/tfl_api_change_notifier.dart';
+import '../states/tfl_api_state.dart';
 import '../widgets/async.dart';
 import 'home_page.dart';
 
@@ -38,6 +36,22 @@ class _LoginPageState extends State<LoginPage> {
       body: CircularProgressIndicatorFutureBuilder<SharedPreferences>(
         future: SharedPreferences.getInstance(),
         builder: (context, data) {
+          void login() {
+            if (_formKey.currentState.validate()) {
+              final appId = _appIdKey.currentState.value;
+              final appKey = _appKeyKey.currentState.value;
+
+              data.setString('APP_ID', appId);
+              data.setString('APP_KEY', appKey);
+
+              final tflApi = Provider.of<TflApiState>(context, listen: false);
+              tflApi.appId = appId;
+              tflApi.appKey = appKey;
+
+              Navigator.of(context).pushReplacementNamed(HomePage.route);
+            }
+          }
+
           return Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 8.0,
@@ -78,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                       if (_appKeyKey.currentState.validate()) {
                         _appKeyFocus.unfocus();
 
-                        await _login();
+                        login();
                       }
                     },
                     validator: (value) {
@@ -110,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                           flex: 2,
                           child: RaisedButton(
                             onPressed: () async {
-                              await _login();
+                              login();
                             },
                             child: Text('Sign in'),
                           ),
@@ -125,19 +139,5 @@ class _LoginPageState extends State<LoginPage> {
         },
       ),
     );
-  }
-
-  Future<void> _login() async {
-    if (_formKey.currentState.validate()) {
-      await Provider.of<TflApiChangeNotifier>(context, listen: false).update(
-        _appIdKey.currentState.value,
-        _appKeyKey.currentState.value,
-      );
-
-      Navigator.pushReplacementNamed(
-        context,
-        HomePage.route,
-      );
-    }
   }
 }
