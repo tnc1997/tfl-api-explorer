@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../../notifiers/line_prediction_filters_change_notifier.dart';
+import '../../widgets/text.dart';
 import 'line_prediction_destination_name_filter_page.dart';
 import 'line_prediction_station_name_filter_page.dart';
 
@@ -23,38 +26,61 @@ class _LinePredictionFiltersPageState extends State<LinePredictionFiltersPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Filters'),
-      ),
-      body: ListView(
-        children: <Widget>[
-          ListTile(
-            title: Text('Station name'),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return LinePredictionStationNameFilterPage(
-                      line: widget.line,
-                    );
-                  },
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Destination name'),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return LinePredictionDestinationNameFilterPage(
-                      line: widget.line,
-                    );
-                  },
-                ),
-              );
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.restore),
+            onPressed: () {
+              Provider.of<LinePredictionFiltersChangeNotifier>(
+                context,
+                listen: false,
+              ).reset();
             },
           ),
         ],
+      ),
+      body: Consumer<LinePredictionFiltersChangeNotifier>(
+        builder: (context, linePredictionFilters, child) {
+          return ListView(
+            children: <Widget>[
+              ListTile(
+                title: Text('Station name'),
+                subtitle: NullableText(
+                  linePredictionFilters.stationName,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return LinePredictionStationNameFilterPage(
+                          line: widget.line,
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Destination name'),
+                subtitle: NullableText(
+                  linePredictionFilters.destinationName,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return LinePredictionDestinationNameFilterPage(
+                          line: widget.line,
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            ],
+          );
+        },
       ),
     );
   }

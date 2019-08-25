@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../material/drawer.dart';
 import 'about_page.dart';
 import 'account_page.dart';
-import 'filters_page.dart';
 
 class SettingsPage extends StatefulWidget {
   static const route = '/settings';
@@ -31,19 +30,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 MaterialPageRoute(
                   builder: (context) {
                     return AccountPage();
-                  },
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Filters'),
-            subtitle: Text('Lines'),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return FiltersPage();
                   },
                 ),
               );
