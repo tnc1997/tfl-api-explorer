@@ -1,0 +1,54 @@
+build_task:
+  only_if: $CIRRUS_BRANCH == "master"
+  container:
+    image: cirrusci/flutter:latest
+  env:
+    ARCHIVE_KEY: ENCRYPTED[...]
+  depends_on:
+    - test
+    - version
+  pub_cache:
+    folder: ~/.pub-cache
+  checkout_script:
+    - git checkout master
+    - git pull origin master
+  build_script:
+    - flutter build appbundle
+  build_artifacts:
+    path: "build/app/outputs/bundle/release/*.aab"
+  decrypt_script:
+    - openssl aes-256-cbc -k "$ARCHIVE_KEY" -in archive.tar.enc -out archive.tar -d
+    - tar xvf archive.tar
+  deploy_script:
+    - cd android
+    - bundle install
+    - bundle exec fastlane deploy
+
+test_task:
+  container:
+    image: cirrusci/flutter:latest
+  pub_cache:
+    folder: ~/.pub-cache
+  test_script:
+    - flutter test
+
+version_task:
+  only_if: $CIRRUS_BRANCH == "master"
+  container:
+    image: node:latest
+  node_modules_cache:
+    folder: node_modules
+    fingerprint_script: cat package-lock.json
+    populate_script: npm ci
+  checkout_script:
+    - git checkout master
+    - git pull origin master
+  bump_script:
+    - npx beachball bump
+  version_script: |
+    VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
+    sed -i -e 's/version: .*/version: '"$VERSION"'/g' pubspec.yaml
+
+    git add --all
+    git commit --message 'release: cut the v'"$VERSION"' release [skip ci]'
+    git push --follow-tags origin master

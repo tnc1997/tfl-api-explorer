@@ -1,0 +1,55 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc 'Deploys the current build to the Internal track'
+  lane :deploy do
+    begin
+      upload_to_play_store(
+        track: 'internal',
+        aab: '../build/app/outputs/bundle/release/app.aab'
+      )
+    rescue => exception
+      raise exception unless exception.message.include?('apkUpgradeVersionConflict')
+      puts 'Current version already present on the Play Store. Omitting this upload.'
+    end
+  end
+
+  desc 'Promotes the Internal track to the Alpha track'
+  lane :promote_internal do
+    upload_to_play_store(
+      track: 'internal',
+      track_promote_to: 'alpha'
+    )
+  end
+
+  desc 'Promotes the Alpha track to the Beta track'
+  lane :promote_alpha do
+    upload_to_play_store(
+      track: 'alpha',
+      track_promote_to: 'beta'
+    )
+  end
+
+  desc 'Promotes the Beta track to the Production track'
+  lane :promote_beta do
+    upload_to_play_store(
+      track: 'beta',
+      track_promote_to: 'production'
+    )
+  end
+end

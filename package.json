@@ -1,0 +1,9 @@
+{
+  "name": "tfl_api_explorer",
+  "version": "0.1.0",
+  "description": "A new Flutter application.",
+  "private": true,
+  "devDependencies": {
+    "beachball": "^1.0.0"
+  }
+}

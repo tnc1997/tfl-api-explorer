@@ -1,0 +1,7 @@
+The TfL API Explorer allows you to explore the TfL API.
+
+Please note that the TfL API Explorer is unofficial and not endorsed by TfL. The information contained within is licensed 'as is' and all representations, warranties, obligations and liabilities in relation to the information are excluded to the maximum extent permitted by law.
+
+The TfL API Explorer is powered by TfL Open Data. Contains OS data © Crown copyright and database rights 2016 and UK map data © Geomni and database rights 2019.
+
+Please submit feature requests and bugs at the issue tracker here: https://github.com/tnc1997/flutter-tfl-api-explorer/issues.
