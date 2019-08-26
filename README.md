@@ -1,5 +1,7 @@
 # TfL API Explorer
 
+[![Build Status](https://api.cirrus-ci.com/github/tnc1997/flutter-tfl-api-explorer.svg)](https://cirrus-ci.com/github/tnc1997/flutter-tfl-api-explorer)
+
 A new Flutter application.
 
 ## Getting Started

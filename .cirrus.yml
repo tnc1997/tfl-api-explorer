@@ -3,7 +3,7 @@ build_task:
   container:
     image: cirrusci/flutter:latest
   env:
-    ARCHIVE_KEY: ENCRYPTED[...]
+    ARCHIVE_KEY: ENCRYPTED[f3d5f08c9cf0641ef54718954b215ca444e9f080c6ac2451b51800c08de4bec38ea445153f7958ccdce1d8324881337b]
   depends_on:
     - test
     - version
@@ -14,7 +14,7 @@ build_task:
     - git pull origin master
   build_script:
     - flutter build appbundle
-  build_artifacts:
+  binaries_artifacts:
     path: "build/app/outputs/bundle/release/*.aab"
   decrypt_script:
     - openssl aes-256-cbc -k "$ARCHIVE_KEY" -in archive.tar.enc -out archive.tar -d
