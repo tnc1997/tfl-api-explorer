@@ -7,5 +7,5 @@ jobs:
       - uses: actions/checkout@master
       - uses: tnc1997/github-actions/setup-flutter@master
         with:
-          channel: 'stable'
+          channel: 'dev'
       - run: flutter test
