@@ -1,0 +1,39 @@
+on:
+  push:
+    branches:
+      - master
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: '12.x'
+      - run: npm ci
+      - name: version
+        run: |
+          npx beachball bump
+          VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
+          sed -i -e 's/version: .*/version: '"$VERSION"'/g' pubspec.yaml
+          git add --all
+          git commit --message 'release: cut the v'"$VERSION"' release [skip ci]'
+          git push --follow-tags origin master
+      - uses: tnc1997/github-actions/setup-flutter@master
+        with:
+          channel: 'dev'
+      - run: flutter build appbundle
+      - uses: actions/setup-ruby@master
+        with:
+          ruby-version: '2.x'
+      - name: decrypt
+        env:
+          ARCHIVE_PASSPHRASE: ${{ secrets.ARCHIVE_PASSPHRASE }}
+        run: |
+          gpg --quiet --yes --decrypt --passphrase "$ARCHIVE_PASSPHRASE" --output "archive.tar" archive.tar.gpg
+          tar -xf archive.tar
+      - name: deploy
+        run: |
+          cd android
+          bundle install
+          bundle exec fastlane deploy
