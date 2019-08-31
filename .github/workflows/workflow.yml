@@ -2,7 +2,7 @@ name: Test workflow
 on: [push]
 jobs:
   run:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - uses: tnc1997/github-actions/setup-flutter@master
