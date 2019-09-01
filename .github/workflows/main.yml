@@ -11,13 +11,15 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm ci
-      - name: version
+      - name: Run version
         run: |
+          git config --global user.email "tnc1997@virginmedia.com"
+          git config --global user.name "Thomas Clark"
           npx beachball bump
-          VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
-          sed -i -e 's/version: .*/version: '"$VERSION"'/g' pubspec.yaml
+          VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed "s/[\",]//g" | tr -d "[[:space:]]")
+          sed -i -e "s/version: .*/version: $VERSION/g" pubspec.yaml
           git add --all
-          git commit --message 'release: cut the v'"$VERSION"' release [skip ci]'
+          git commit --message "release: cut the v$VERSION release [skip ci]"
           git push --follow-tags origin master
       - uses: tnc1997/github-actions/setup-flutter@master
         with:
@@ -26,13 +28,13 @@ jobs:
       - uses: actions/setup-ruby@master
         with:
           ruby-version: '2.x'
-      - name: decrypt
+      - name: Run decrypt
         env:
           ARCHIVE_PASSPHRASE: ${{ secrets.ARCHIVE_PASSPHRASE }}
         run: |
           gpg --quiet --yes --decrypt --passphrase "$ARCHIVE_PASSPHRASE" --output "archive.tar" archive.tar.gpg
           tar -xf archive.tar
-      - name: deploy
+      - name: Run deploy
         run: |
           cd android
           bundle install
