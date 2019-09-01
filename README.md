@@ -1,8 +1,8 @@
 # TfL API Explorer
 
-[![Build Status](https://api.cirrus-ci.com/github/tnc1997/flutter-tfl-api-explorer.svg)](https://cirrus-ci.com/github/tnc1997/flutter-tfl-api-explorer)
+[![Build Status](https://github.com/tnc1997/flutter-tfl-api-explorer/workflows/main/badge.svg)](https://github.com/tnc1997/flutter-tfl-api-explorer)
 
-A new Flutter application.
+The TfL API Explorer allows you to explore the TfL API.
 
 ## Getting Started
 

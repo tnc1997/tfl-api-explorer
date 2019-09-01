@@ -1,7 +1,7 @@
 {
   "name": "tfl_api_explorer",
   "version": "0.1.0",
-  "description": "A new Flutter application.",
+  "description": "The TfL API Explorer allows you to explore the TfL API.",
   "private": true,
   "devDependencies": {
     "beachball": "^1.0.0"
