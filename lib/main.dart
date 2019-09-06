@@ -10,6 +10,9 @@ import 'material/colors.dart';
 import 'notifiers/line_filters_change_notifier.dart';
 import 'notifiers/line_line_route_filters_change_notifier.dart';
 import 'notifiers/line_prediction_filters_change_notifier.dart';
+import 'pages/bike_points/bike_point_additional_properties_page.dart';
+import 'pages/bike_points/bike_point_page.dart';
+import 'pages/bike_points/bike_points_page.dart';
 import 'pages/line_disruptions/line_disruption_page.dart';
 import 'pages/line_routes/line_route_page.dart';
 import 'pages/line_statuses/line_status_page.dart';
@@ -89,6 +92,26 @@ class MyApp extends StatelessWidget {
 
   Route _onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
+      case BikePointAdditionalPropertiesPage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return BikePointAdditionalPropertiesPage(
+              bikePoint: routeSettings.arguments,
+            );
+          },
+        );
+      case BikePointPage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return BikePointPage(bikePoint: routeSettings.arguments);
+          },
+        );
+      case BikePointsPage.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return BikePointsPage();
+          },
+        );
       case HomePage.route:
         return MaterialPageRoute(
           builder: (context) {

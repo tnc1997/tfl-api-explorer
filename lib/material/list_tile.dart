@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../pages/bike_points/bike_point_page.dart';
 import '../pages/line_disruptions/line_disruption_page.dart';
 import '../pages/line_routes/line_route_page.dart';
 import '../pages/line_statuses/line_status_page.dart';
@@ -11,6 +12,24 @@ import '../pages/route_sequences/route_sequence_page.dart';
 import '../pages/stop_points/stop_point_page.dart';
 import '../pages/stop_point_sequences/stop_point_sequence_page.dart';
 import '../widgets/text.dart';
+
+class BikePointListTile extends PlaceListTile {
+  BikePointListTile({
+    Key key,
+    @required BuildContext context,
+    @required Place bikePoint,
+  }) : super(
+          key: key,
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              BikePointPage.route,
+              arguments: bikePoint,
+            );
+          },
+          context: context,
+          place: bikePoint,
+        );
+}
 
 class LineDisruptionListTile extends ListTile {
   LineDisruptionListTile({
@@ -106,6 +125,26 @@ class LineStatusListTile extends ListTile {
               arguments: lineStatus,
             );
           },
+        );
+}
+
+class PlaceListTile extends ListTile {
+  PlaceListTile({
+    Key key,
+    GestureTapCallback onTap,
+    @required BuildContext context,
+    @required Place place,
+  }) : super(
+          key: key,
+          title: NullableText(
+            place.id,
+            overflow: TextOverflow.ellipsis,
+          ),
+          subtitle: NullableText(
+            place.commonName,
+            overflow: TextOverflow.ellipsis,
+          ),
+          onTap: onTap,
         );
 }
 

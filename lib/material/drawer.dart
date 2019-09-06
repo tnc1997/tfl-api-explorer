@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/drawer_item.dart';
+import '../pages/bike_points/bike_points_page.dart';
 import '../pages/lines/lines_page.dart';
 import '../pages/settings/settings_page.dart';
 import '../pages/home_page.dart';
@@ -11,6 +12,11 @@ class AppDrawer extends Drawer {
       title: 'Home',
       icon: Icon(Icons.home),
       route: HomePage.route,
+    ),
+    DrawerItem(
+      title: 'Bike points',
+      icon: Icon(Icons.http),
+      route: BikePointsPage.route,
     ),
     DrawerItem(
       title: 'Lines',
