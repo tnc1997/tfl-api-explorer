@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../../delegates/bike_point_search_delegate.dart';
 import '../../material/drawer.dart';
 import '../../material/list_tile.dart';
 import '../../states/tfl_api_state.dart';
 import '../../widgets/async.dart';
 import '../../widgets/basic.dart';
+import 'bike_point_page.dart';
 
 class BikePointsPage extends StatefulWidget {
   static const route = '/bike_points';
@@ -27,6 +29,36 @@ class _BikePointsPageState extends State<BikePointsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Bike points'),
+        actions: <Widget>[
+          FutureBuilder<List<Place>>(
+            future: _bikePointsFuture,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () async {
+                    final bikePoint = await showSearch(
+                      context: context,
+                      delegate: BikePointSearchDelegate(snapshot.data),
+                    );
+
+                    if (bikePoint != null) {
+                      Navigator.of(context).pushNamed(
+                        BikePointPage.route,
+                        arguments: bikePoint,
+                      );
+                    }
+                  },
+                );
+              }
+
+              return IconButton(
+                icon: Icon(Icons.search),
+                onPressed: null,
+              );
+            },
+          ),
+        ],
       ),
       body: CircularProgressIndicatorFutureBuilder<List<Place>>(
         future: _bikePointsFuture,
