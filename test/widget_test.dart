@@ -8,6 +8,8 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/notifiers/line_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/notifiers/line_line_route_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/notifiers/line_prediction_filters_change_notifier.dart';
+import 'package:tfl_api_explorer/pages/bike_points/bike_point_page.dart';
+import 'package:tfl_api_explorer/pages/bike_points/bike_points_page.dart';
 import 'package:tfl_api_explorer/pages/lines/line_line_disruptions_page.dart';
 import 'package:tfl_api_explorer/pages/lines/line_line_routes_page.dart';
 import 'package:tfl_api_explorer/pages/lines/line_line_statuses_page.dart';
@@ -26,6 +28,32 @@ import 'mocks/tfl_api_mock.dart';
 import 'mocks/tfl_api_state_mock.dart';
 
 void main() {
+  final _bikePoints = <Place>[
+    Place(
+      id: 'BikePoints_1',
+      commonName: 'River Street, Clerkenwell',
+      placeType: 'BikePoint',
+      lat: 51.529162,
+      lon: -0.10997,
+    ),
+    Place(
+      id: 'BikePoints_2',
+      commonName: 'Phillimore Gardens, Kensington',
+      placeType: 'BikePoint',
+      lat: 51.499606,
+      lon: -0.197574,
+    ),
+    Place(
+      id: 'BikePoints_3',
+      commonName: 'Christopher Street, Liverpool Street',
+      placeType: 'BikePoint',
+      lat: 51.521283,
+      lon: -0.084605,
+    ),
+  ];
+
+  final _bikePointsResourceApi = BikePointsResourceApiMock();
+
   final _lineDisruptions = <LineDisruption>[
     LineDisruption(
       categoryDescription: 'PlannedWork',
@@ -122,6 +150,107 @@ void main() {
   final _tflApiState = TflApiStateMock();
 
   group('pages', () {
+    group('bike_points', () {
+      group('LinePage', () {
+        final _bikePoint = _bikePoints[0];
+
+        testWidgets('Name', (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: BikePointPage(bikePoint: _bikePoint),
+            ),
+          );
+
+          expect(
+            find.text('Name'),
+            findsWidgets,
+          );
+          expect(
+            find.text(_bikePoint.commonName),
+            findsWidgets,
+          );
+        });
+
+        testWidgets('Place type', (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: BikePointPage(bikePoint: _bikePoint),
+            ),
+          );
+
+          expect(
+            find.text('Place type'),
+            findsWidgets,
+          );
+          expect(
+            find.text(_bikePoint.placeType),
+            findsWidgets,
+          );
+        });
+
+        testWidgets('Lat', (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: BikePointPage(bikePoint: _bikePoint),
+            ),
+          );
+
+          expect(
+            find.text('Lat'),
+            findsWidgets,
+          );
+          expect(
+            find.text('${_bikePoint.lat}'),
+            findsWidgets,
+          );
+        });
+
+        testWidgets('Lon', (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: BikePointPage(bikePoint: _bikePoint),
+            ),
+          );
+
+          expect(
+            find.text('Lon'),
+            findsWidgets,
+          );
+          expect(
+            find.text('${_bikePoint.lon}'),
+            findsWidgets,
+          );
+        });
+      });
+
+      group('BikePointsPage', () {
+        testWidgets('', (tester) async {
+          await tester.pumpWidget(
+            MultiProvider(
+              providers: <SingleChildCloneableWidget>[
+                Provider<TflApiState>.value(value: _tflApiState),
+              ],
+              child: MaterialApp(
+                home: BikePointsPage(),
+              ),
+            ),
+          );
+          await tester.pumpAndSettle();
+
+          _bikePoints.forEach((bikePoint) {
+            expect(
+              find.text(bikePoint.id),
+              findsWidgets,
+            );
+            expect(
+              find.text(bikePoint.commonName),
+              findsWidgets,
+            );
+          });
+        });
+      });
+    });
+
     group('lines', () {
       group('LineLineDisruptionsPage', () {
         final _line = _lines[0];
@@ -516,6 +645,13 @@ void main() {
   });
 
   setUpAll(() {
+    when(_bikePointsResourceApi.get()).thenAnswer((answer) {
+      return Future.delayed(
+        Duration(seconds: 1),
+        () => _bikePoints,
+      );
+    });
+
     when(_linesResourceApi.get()).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
@@ -559,6 +695,7 @@ void main() {
       );
     });
 
+    when(_tflApi.bikePoints).thenReturn(_bikePointsResourceApi);
     when(_tflApi.lines).thenReturn(_linesResourceApi);
 
     when(_tflApiState.appId).thenReturn('123');

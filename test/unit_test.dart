@@ -2,11 +2,36 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/specifications/line_mode_name_specification.dart';
 import 'package:tfl_api_explorer/specifications/line_route_service_type_specification.dart';
+import 'package:tfl_api_explorer/specifications/place_common_name_specification.dart';
 import 'package:tfl_api_explorer/specifications/prediction_destination_name_specification.dart';
 import 'package:tfl_api_explorer/specifications/prediction_station_name_specification.dart';
 import 'package:tfl_api_explorer/specifications/specification.dart';
 
 void main() {
+  final _bikePoints = <Place>[
+    Place(
+      id: 'BikePoints_1',
+      commonName: 'River Street, Clerkenwell',
+      placeType: 'BikePoint',
+      lat: 51.529162,
+      lon: -0.10997,
+    ),
+    Place(
+      id: 'BikePoints_2',
+      commonName: 'Phillimore Gardens, Kensington',
+      placeType: 'BikePoint',
+      lat: 51.499606,
+      lon: -0.197574,
+    ),
+    Place(
+      id: 'BikePoints_3',
+      commonName: 'Christopher Street, Liverpool Street',
+      placeType: 'BikePoint',
+      lat: 51.521283,
+      lon: -0.084605,
+    ),
+  ];
+
   final _lineRoutes = <LineRoute>[
     LineRoute(
       serviceType: 'Night',
@@ -141,6 +166,48 @@ void main() {
         expect(
           _lineRoutes.where(specification.isSatisfiedBy).toList(),
           hasLength(1),
+        );
+      });
+    });
+
+    group('PlaceCommonNameSpecification', () {
+      test('isSatisfiedBy', () {
+        Specification<Place> specification;
+
+        specification = PlaceCommonNameSpecification('Christopher Street');
+        expect(
+          specification.isSatisfiedBy(_bikePoints[0]),
+          isFalse,
+        );
+        expect(
+          specification.isSatisfiedBy(_bikePoints[1]),
+          isFalse,
+        );
+        expect(
+          specification.isSatisfiedBy(_bikePoints[2]),
+          isTrue,
+        );
+        expect(
+          _bikePoints.where(specification.isSatisfiedBy).toList(),
+          hasLength(1),
+        );
+
+        specification = PlaceCommonNameSpecification('Russell Street');
+        expect(
+          specification.isSatisfiedBy(_bikePoints[0]),
+          isFalse,
+        );
+        expect(
+          specification.isSatisfiedBy(_bikePoints[1]),
+          isFalse,
+        );
+        expect(
+          specification.isSatisfiedBy(_bikePoints[2]),
+          isFalse,
+        );
+        expect(
+          _bikePoints.where(specification.isSatisfiedBy).toList(),
+          isEmpty,
         );
       });
     });
