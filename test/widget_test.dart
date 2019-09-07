@@ -151,7 +151,7 @@ void main() {
 
   group('pages', () {
     group('bike_points', () {
-      group('LinePage', () {
+      group('BikePointPage', () {
         final _bikePoint = _bikePoints[0];
 
         testWidgets('Name', (tester) async {
