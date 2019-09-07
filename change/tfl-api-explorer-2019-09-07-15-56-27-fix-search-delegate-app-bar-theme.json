@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Fix bike point search app bar theme.",
+  "packageName": "tfl_api_explorer",
+  "email": "tnc1997@virginmedia.com",
+  "commit": "4a603a983b8386b4b3e3ca4e8dde08e1c51189c9",
+  "date": "2019-09-07T14:56:27.942Z"
+}
