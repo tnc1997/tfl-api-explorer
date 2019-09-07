@@ -41,8 +41,9 @@ jobs:
         env:
           ARCHIVE_PASSPHRASE: ${{ secrets.ARCHIVE_PASSPHRASE }}
         run: |
-          gpg --quiet --yes --decrypt --passphrase "$ARCHIVE_PASSPHRASE" --output "archive.tar" archive.tar.gpg
+          gpg --quiet --batch --yes --decrypt --passphrase "$ARCHIVE_PASSPHRASE" --output "archive.tar" archive.tar.gpg
           tar -xf archive.tar
+          rm archive.tar
       - name: Run flutter build appbundle
         run: flutter build appbundle
       - uses: actions/setup-ruby@master
