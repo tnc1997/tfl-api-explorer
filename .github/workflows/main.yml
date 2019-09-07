@@ -7,33 +7,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: actions/setup-node@master
-        with:
-          node-version: '12.x'
-      - name: Run npm ci
-        run: npm ci
-      - name: Run version
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.email "tnc1997@virginmedia.com"
-          git config --global user.name "Thomas Clark"
-          git remote set-url origin https://tnc1997:"$GITHUB_TOKEN"@github.com/tnc1997/flutter-tfl-api-explorer.git
-          BRANCH=bump-$(date +"%s")
-          git checkout -b "$BRANCH"
-          npx beachball bump
-          VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed "s/[\",]//g" | tr -d "[[:space:]]")
-          sed -i -e "s/version: .*/version: $VERSION/g" pubspec.yaml
-          git add --all
-          git commit --message "release: cut the v$VERSION release [skip ci]"
-          git tag --annotate "v$VERSION" --message "v$VERSION"
-          git push --follow-tags origin HEAD:"$BRANCH"
-          git checkout master
-          git pull origin master
-          git merge --no-edit "$BRANCH"
-          git push --follow-tags origin master
-          git branch --delete "$BRANCH"
-          git push --delete origin "$BRANCH"
+#      - uses: actions/setup-node@master
+#        with:
+#          node-version: '12.x'
+#      - name: Run npm ci
+#        run: npm ci
+#      - name: Run version
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        run: |
+#          git config --global user.email "tnc1997@virginmedia.com"
+#          git config --global user.name "Thomas Clark"
+#          git remote set-url origin https://tnc1997:"$GITHUB_TOKEN"@github.com/tnc1997/flutter-tfl-api-explorer.git
+#          BRANCH=bump-$(date +"%s")
+#          git checkout -b "$BRANCH"
+#          npx beachball bump
+#          VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed "s/[\",]//g" | tr -d "[[:space:]]")
+#          sed -i -e "s/version: .*/version: $VERSION/g" pubspec.yaml
+#          git add --all
+#          git commit --message "release: cut the v$VERSION release [skip ci]"
+#          git tag --annotate "v$VERSION" --message "v$VERSION"
+#          git push --follow-tags origin HEAD:"$BRANCH"
+#          git checkout master
+#          git pull origin master
+#          git merge --no-edit "$BRANCH"
+#          git push --follow-tags origin master
+#          git branch --delete "$BRANCH"
+#          git push --delete origin "$BRANCH"
       - uses: tnc1997/github-actions/setup-flutter@master
         with:
           channel: 'dev'
