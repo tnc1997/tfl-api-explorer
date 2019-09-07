@@ -2,6 +2,20 @@
   "name": "tfl_api_explorer",
   "entries": [
     {
+      "date": "Sat, 07 Sep 2019 15:39:16 GMT",
+      "tag": "tfl_api_explorer_v0.2.1",
+      "version": "0.2.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fix bike point search app bar theme.",
+            "author": "tnc1997@virginmedia.com",
+            "commit": "4a603a983b8386b4b3e3ca4e8dde08e1c51189c9"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 07 Sep 2019 13:09:26 GMT",
       "tag": "tfl_api_explorer_v0.2.0",
       "version": "0.2.0",
