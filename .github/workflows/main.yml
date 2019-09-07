@@ -37,17 +37,17 @@ jobs:
       - uses: tnc1997/github-actions/setup-flutter@master
         with:
           channel: 'dev'
-      - name: Run flutter build appbundle
-        run: flutter build appbundle
-      - uses: actions/setup-ruby@master
-        with:
-          ruby-version: '2.x'
       - name: Run decrypt
         env:
           ARCHIVE_PASSPHRASE: ${{ secrets.ARCHIVE_PASSPHRASE }}
         run: |
           gpg --quiet --yes --decrypt --passphrase "$ARCHIVE_PASSPHRASE" --output "archive.tar" archive.tar.gpg
           tar -xf archive.tar
+      - name: Run flutter build appbundle
+        run: flutter build appbundle
+      - uses: actions/setup-ruby@master
+        with:
+          ruby-version: '2.x'
       - name: Run deploy
         run: |
           cd android
