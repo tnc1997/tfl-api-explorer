@@ -1,0 +1,19 @@
+{
+  "name": "tfl_api_explorer",
+  "entries": [
+    {
+      "date": "Sat, 07 Sep 2019 13:09:26 GMT",
+      "tag": "tfl_api_explorer_v0.2.0",
+      "version": "0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Add the bike points page.",
+            "author": "tnc1997@virginmedia.com",
+            "commit": "11c43510a328a97cdbd411835ad78707421710ce"
+          }
+        ]
+      }
+    }
+  ]
+}
