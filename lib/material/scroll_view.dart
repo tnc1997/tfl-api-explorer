@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../pages/bike_points/bike_point_additional_properties_page.dart';
 import '../pages/lines/line_line_disruptions_page.dart';
 import '../pages/lines/line_line_routes_page.dart';
 import '../pages/lines/line_line_statuses_page.dart';
@@ -11,6 +12,30 @@ import '../pages/lines/line_stop_points_page.dart';
 import '../pages/route_sequences/route_sequence_stop_point_sequences_page.dart';
 import '../pages/stop_point_sequences/stop_point_sequence_stop_points_page.dart';
 import '../widgets/text.dart';
+
+class BikePointListView extends PlaceListView {
+  BikePointListView({
+    Key key,
+    @required BuildContext context,
+    @required Place bikePoint,
+  }) : super(
+          key: key,
+          children: <Widget>[
+            Divider(),
+            ListTile(
+              title: Text('Additional properties'),
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  BikePointAdditionalPropertiesPage.route,
+                  arguments: bikePoint,
+                );
+              },
+            ),
+          ],
+          context: context,
+          place: bikePoint,
+        );
+}
 
 class LineListView extends ListView {
   LineListView({
@@ -139,6 +164,47 @@ class LineRouteListView extends ListView {
               ),
             ),
           ],
+        );
+}
+
+class PlaceListView extends ListView {
+  PlaceListView({
+    Key key,
+    List<Widget> children = const <Widget>[],
+    @required BuildContext context,
+    @required Place place,
+  }) : super(
+          key: key,
+          children: <Widget>[
+            ListTile(
+              title: Text('Name'),
+              subtitle: NullableText(
+                place.commonName,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            ListTile(
+              title: Text('Place type'),
+              subtitle: NullableText(
+                place.placeType,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            ListTile(
+              title: Text('Lat'),
+              subtitle: NullableText(
+                '${place.lat}',
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            ListTile(
+              title: Text('Lon'),
+              subtitle: NullableText(
+                '${place.lon}',
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ]..addAll(children),
         );
 }
 
