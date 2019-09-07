@@ -26,7 +26,7 @@ jobs:
           sed -i -e "s/version: .*/version: $VERSION/g" pubspec.yaml
           git add --all
           git commit --message "release: cut the v$VERSION release [skip ci]"
-          git tag --annotate "v$VERSION" --message "v$VERSION"
+          git tag --annotate "tfl_api_explorer_v$VERSION" --message "tfl_api_explorer v$VERSION"
           git push --follow-tags origin HEAD:"$BRANCH"
           git checkout master
           git pull origin master
