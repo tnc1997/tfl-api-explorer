@@ -1,9 +1,9 @@
 {
-  "name": "tfl_api_explorer",
+  "name": "tfl-api-explorer",
   "entries": [
     {
       "date": "Sat, 07 Sep 2019 15:39:16 GMT",
-      "tag": "tfl_api_explorer_v0.2.1",
+      "tag": "tfl-api-explorer_v0.2.1",
       "version": "0.2.1",
       "comments": {
         "patch": [
@@ -17,7 +17,7 @@
     },
     {
       "date": "Sat, 07 Sep 2019 13:09:26 GMT",
-      "tag": "tfl_api_explorer_v0.2.0",
+      "tag": "tfl-api-explorer_v0.2.0",
       "version": "0.2.0",
       "comments": {
         "minor": [
@@ -25,6 +25,20 @@
             "comment": "Add the bike points page.",
             "author": "tnc1997@virginmedia.com",
             "commit": "11c43510a328a97cdbd411835ad78707421710ce"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 25 Aug 2019 14:22:00 GMT",
+      "tag": "tfl-api-explorer_v0.1.0",
+      "version": "0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Initial commit.",
+            "author": "tnc1997@virginmedia.com",
+            "commit": "4497f6e8e69366e7666c9c5792879e5e263def14"
           }
         ]
       }
