@@ -3,8 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/pages/bike_points/bike_points_page.dart';
-import 'package:tfl_api_explorer/states/tfl_api_state.dart';
+import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
 
 import 'mocks/tfl_api_mock.dart';
 import 'mocks/tfl_api_state_mock.dart';
@@ -56,8 +55,8 @@ void main() {
   testWidgets('Bike point search', (tester) async {
     await tester.pumpWidget(
       MultiProvider(
-        providers: <SingleChildCloneableWidget>[
-          Provider<TflApiState>.value(value: _tflApiState),
+        providers: [
+          Provider.value(value: _tflApiState),
         ],
         child: MaterialApp(
           home: BikePointsPage(),

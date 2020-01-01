@@ -5,24 +5,23 @@ import 'package:intl/intl.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/notifiers/line_filters_change_notifier.dart';
-import 'package:tfl_api_explorer/notifiers/line_line_route_filters_change_notifier.dart';
-import 'package:tfl_api_explorer/notifiers/line_prediction_filters_change_notifier.dart';
-import 'package:tfl_api_explorer/pages/bike_points/bike_point_page.dart';
-import 'package:tfl_api_explorer/pages/bike_points/bike_points_page.dart';
-import 'package:tfl_api_explorer/pages/lines/line_line_disruptions_page.dart';
-import 'package:tfl_api_explorer/pages/lines/line_line_routes_page.dart';
-import 'package:tfl_api_explorer/pages/lines/line_line_statuses_page.dart';
-import 'package:tfl_api_explorer/pages/lines/line_page.dart';
-import 'package:tfl_api_explorer/pages/lines/line_predictions_page.dart';
-import 'package:tfl_api_explorer/pages/lines/line_route_sequences_page.dart';
-import 'package:tfl_api_explorer/pages/lines/line_stop_points_page.dart';
-import 'package:tfl_api_explorer/pages/lines/lines_page.dart';
-import 'package:tfl_api_explorer/pages/settings/about_page.dart';
-import 'package:tfl_api_explorer/pages/settings/account_page.dart';
-import 'package:tfl_api_explorer/pages/settings/settings_page.dart';
-import 'package:tfl_api_explorer/pages/home_page.dart';
-import 'package:tfl_api_explorer/states/tfl_api_state.dart';
+import 'package:tfl_api_explorer/src/notifiers/line_filters_change_notifier.dart';
+import 'package:tfl_api_explorer/src/notifiers/line_line_route_filters_change_notifier.dart';
+import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_notifier.dart';
+import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_page.dart';
+import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
+import 'package:tfl_api_explorer/src/pages/lines/line_line_disruptions_page.dart';
+import 'package:tfl_api_explorer/src/pages/lines/line_line_routes_page.dart';
+import 'package:tfl_api_explorer/src/pages/lines/line_line_statuses_page.dart';
+import 'package:tfl_api_explorer/src/pages/lines/line_page.dart';
+import 'package:tfl_api_explorer/src/pages/lines/line_predictions_page.dart';
+import 'package:tfl_api_explorer/src/pages/lines/line_route_sequences_page.dart';
+import 'package:tfl_api_explorer/src/pages/lines/line_stop_points_page.dart';
+import 'package:tfl_api_explorer/src/pages/lines/lines_page.dart';
+import 'package:tfl_api_explorer/src/pages/settings/about_page.dart';
+import 'package:tfl_api_explorer/src/pages/settings/account_page.dart';
+import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
+import 'package:tfl_api_explorer/src/pages/home_page.dart';
 
 import 'mocks/tfl_api_mock.dart';
 import 'mocks/tfl_api_state_mock.dart';
@@ -227,8 +226,8 @@ void main() {
         testWidgets('', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
-              providers: <SingleChildCloneableWidget>[
-                Provider<TflApiState>.value(value: _tflApiState),
+              providers: [
+                Provider.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: BikePointsPage(),
@@ -258,8 +257,8 @@ void main() {
         testWidgets('', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
-              providers: <SingleChildCloneableWidget>[
-                Provider<TflApiState>.value(value: _tflApiState),
+              providers: [
+                Provider.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: LineLineDisruptionsPage(line: _line),
@@ -287,13 +286,13 @@ void main() {
         testWidgets('', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
-              providers: <SingleChildCloneableWidget>[
+              providers: [
                 ChangeNotifierProvider(
-                  builder: (context) {
+                  create: (context) {
                     return LineLineRouteFiltersChangeNotifier();
                   },
                 ),
-                Provider<TflApiState>.value(value: _tflApiState),
+                Provider.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: LineLineRoutesPage(line: _line),
@@ -321,8 +320,8 @@ void main() {
         testWidgets('', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
-              providers: <SingleChildCloneableWidget>[
-                Provider<TflApiState>.value(value: _tflApiState),
+              providers: [
+                Provider.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: LineLineStatusesPage(line: _line),
@@ -384,13 +383,13 @@ void main() {
         testWidgets('', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
-              providers: <SingleChildCloneableWidget>[
+              providers: [
                 ChangeNotifierProvider(
-                  builder: (context) {
+                  create: (context) {
                     return LinePredictionFiltersChangeNotifier();
                   },
                 ),
-                Provider<TflApiState>.value(value: _tflApiState),
+                Provider.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: LinePredictionsPage(line: _line),
@@ -420,8 +419,8 @@ void main() {
         testWidgets('', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
-              providers: <SingleChildCloneableWidget>[
-                Provider<TflApiState>.value(value: _tflApiState),
+              providers: [
+                Provider.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: LineRouteSequencesPage(line: _line),
@@ -449,8 +448,8 @@ void main() {
         testWidgets('', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
-              providers: <SingleChildCloneableWidget>[
-                Provider<TflApiState>.value(value: _tflApiState),
+              providers: [
+                Provider.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: LineStopPointsPage(line: _line),
@@ -476,13 +475,13 @@ void main() {
         testWidgets('', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
-              providers: <SingleChildCloneableWidget>[
-                ChangeNotifierProvider<LineFiltersChangeNotifier>(
-                  builder: (context) {
+              providers: [
+                ChangeNotifierProvider(
+                  create: (context) {
                     return LineFiltersChangeNotifier();
                   },
                 ),
-                Provider<TflApiState>.value(value: _tflApiState),
+                Provider.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: LinesPage(),
@@ -566,8 +565,8 @@ void main() {
         testWidgets('App id', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
-              providers: <SingleChildCloneableWidget>[
-                Provider<TflApiState>.value(value: _tflApiState),
+              providers: [
+                Provider.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: AccountPage(),
@@ -588,8 +587,8 @@ void main() {
         testWidgets('App key', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
-              providers: <SingleChildCloneableWidget>[
-                Provider<TflApiState>.value(value: _tflApiState),
+              providers: [
+                Provider.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: AccountPage(),

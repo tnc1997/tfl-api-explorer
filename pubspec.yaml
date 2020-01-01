@@ -16,12 +16,11 @@ dependencies:
       url: https://github.com/tnc1997/dart-tfl-api-client.git
       ref: v0.3.1
 
-  cupertino_icons: ^0.1.2
+  cupertino_icons: ^0.1.0
   http: ^0.12.0
-  intl: ^0.15.0
-  meta: ^1.0.0
+  intl: ^0.16.0
   package_info: ^0.4.0
-  provider: ^3.0.0
+  provider: ^4.0.0
   shared_preferences: ^0.5.0
   url_launcher: ^5.0.0
 
