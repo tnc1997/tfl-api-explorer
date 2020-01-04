@@ -4,6 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
+import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
 
 import 'mocks/tfl_api_mock.dart';
 import 'mocks/tfl_api_state_mock.dart';
@@ -56,7 +57,7 @@ void main() {
     await tester.pumpWidget(
       MultiProvider(
         providers: [
-          Provider.value(value: _tflApiState),
+          Provider<TflApiState>.value(value: _tflApiState),
         ],
         child: MaterialApp(
           home: BikePointsPage(),

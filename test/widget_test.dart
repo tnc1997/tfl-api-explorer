@@ -22,6 +22,7 @@ import 'package:tfl_api_explorer/src/pages/settings/about_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/account_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
 import 'package:tfl_api_explorer/src/pages/home_page.dart';
+import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
 
 import 'mocks/tfl_api_mock.dart';
 import 'mocks/tfl_api_state_mock.dart';
@@ -227,7 +228,7 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider.value(value: _tflApiState),
+                Provider<TflApiState>.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: BikePointsPage(),
@@ -258,7 +259,7 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider.value(value: _tflApiState),
+                Provider<TflApiState>.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: LineLineDisruptionsPage(line: _line),
@@ -292,7 +293,7 @@ void main() {
                     return LineLineRouteFiltersChangeNotifier();
                   },
                 ),
-                Provider.value(value: _tflApiState),
+                Provider<TflApiState>.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: LineLineRoutesPage(line: _line),
@@ -321,7 +322,7 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider.value(value: _tflApiState),
+                Provider<TflApiState>.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: LineLineStatusesPage(line: _line),
@@ -389,7 +390,7 @@ void main() {
                     return LinePredictionFiltersChangeNotifier();
                   },
                 ),
-                Provider.value(value: _tflApiState),
+                Provider<TflApiState>.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: LinePredictionsPage(line: _line),
@@ -420,7 +421,7 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider.value(value: _tflApiState),
+                Provider<TflApiState>.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: LineRouteSequencesPage(line: _line),
@@ -449,7 +450,7 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider.value(value: _tflApiState),
+                Provider<TflApiState>.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: LineStopPointsPage(line: _line),
@@ -481,7 +482,7 @@ void main() {
                     return LineFiltersChangeNotifier();
                   },
                 ),
-                Provider.value(value: _tflApiState),
+                Provider<TflApiState>.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: LinesPage(),
@@ -566,7 +567,7 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider.value(value: _tflApiState),
+                Provider<TflApiState>.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: AccountPage(),
@@ -588,7 +589,7 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider.value(value: _tflApiState),
+                Provider<TflApiState>.value(value: _tflApiState),
               ],
               child: MaterialApp(
                 home: AccountPage(),

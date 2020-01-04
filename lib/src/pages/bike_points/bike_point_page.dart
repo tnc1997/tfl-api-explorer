@@ -35,6 +35,27 @@ class _BikePointPageState extends State<BikePointPage> {
               overflow: TextOverflow.ellipsis,
             ),
           ),
+          ListTile(
+            title: Text('Place type'),
+            subtitle: NullableText(
+              widget.bikePoint.placeType,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          ListTile(
+            title: Text('Lat'),
+            subtitle: NullableText(
+              widget.bikePoint.lat?.toString(),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          ListTile(
+            title: Text('Lon'),
+            subtitle: NullableText(
+              widget.bikePoint.lon?.toString(),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
           Divider(),
           ListTile(
             title: Text('Additional properties'),
