@@ -1,18 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/specifications/specification.dart';
 
 class LineModeNameSpecification extends Specification<Line> {
-  final String _modeName;
+  LineModeNameSpecification({
+    @required this.modeName,
+  });
 
-  LineModeNameSpecification(this._modeName) : assert(_modeName != null);
+  final String modeName;
 
   @override
   bool isSatisfiedBy(Line value) {
-    return value.modeName == _modeName;
+    return value.modeName == modeName;
   }
 
   @override
   String toString() {
-    return _modeName;
+    return modeName;
   }
 }

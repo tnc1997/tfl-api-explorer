@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tfl_api_explorer/src/material/drawer.dart';
 import 'package:tfl_api_explorer/src/pages/settings/about_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/account_page.dart';
+import 'package:tfl_api_explorer/src/widgets/drawer.dart' as drawer;
 
 class SettingsPage extends StatefulWidget {
   static const route = '/settings';
 
-  SettingsPage({Key key}) : super(key: key);
+  SettingsPage({
+    Key key,
+  }) : super(
+          key: key,
+        );
 
   @override
   _SettingsPageState createState() => _SettingsPageState();
@@ -49,7 +53,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
         ],
       ),
-      drawer: AppDrawer(),
+      drawer: drawer.Drawer(),
     );
   }
 }

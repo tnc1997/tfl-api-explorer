@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/widgets/text.dart';
+import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class BikePointAdditionalPropertiesPage extends StatefulWidget {
   static const route = '/bike_points/:id/additional_properties';
@@ -10,7 +10,9 @@ class BikePointAdditionalPropertiesPage extends StatefulWidget {
   BikePointAdditionalPropertiesPage({
     Key key,
     @required this.bikePoint,
-  }) : super(key: key);
+  }) : super(
+          key: key,
+        );
 
   @override
   _BikePointAdditionalPropertiesPageState createState() =>
@@ -29,11 +31,11 @@ class _BikePointAdditionalPropertiesPageState
         itemBuilder: (context, index) {
           return ListTile(
             title: NullableText(
-              widget.bikePoint.additionalProperties[index].key,
+              widget.bikePoint?.additionalProperties[index]?.key,
               overflow: TextOverflow.ellipsis,
             ),
             subtitle: NullableText(
-              widget.bikePoint.additionalProperties[index].value,
+              widget.bikePoint?.additionalProperties[index]?.value,
               overflow: TextOverflow.ellipsis,
             ),
           );

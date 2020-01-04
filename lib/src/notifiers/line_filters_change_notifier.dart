@@ -20,7 +20,9 @@ class LineFiltersChangeNotifier extends FiltersChangeNotifier<Line> {
 
     if (_modeName != null) {
       specifications.add(
-        LineModeNameSpecification(_modeName),
+        LineModeNameSpecification(
+          modeName: _modeName,
+        ),
       );
     }
 

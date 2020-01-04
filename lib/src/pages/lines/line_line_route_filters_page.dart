@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_line_route_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_line_route_service_type_filter_page.dart';
-import 'package:tfl_api_explorer/src/widgets/text.dart';
+import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class LineLineRouteFiltersPage extends StatefulWidget {
-  LineLineRouteFiltersPage({Key key}) : super(key: key);
+  LineLineRouteFiltersPage({
+    Key key,
+  }) : super(
+          key: key,
+        );
 
   @override
   _LineLineRouteFiltersPageState createState() =>

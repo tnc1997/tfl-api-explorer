@@ -32,13 +32,17 @@ class LinePredictionFiltersChangeNotifier
 
     if (_destinationName != null) {
       specifications.add(
-        PredictionDestinationNameSpecification(_destinationName),
+        PredictionDestinationNameSpecification(
+          destinationName: _destinationName,
+        ),
       );
     }
 
     if (_stationName != null) {
       specifications.add(
-        PredictionStationNameSpecification(_stationName),
+        PredictionStationNameSpecification(
+          stationName: _stationName,
+        ),
       );
     }
 

@@ -78,7 +78,9 @@ void main() {
       test('isSatisfiedBy', () {
         Specification<Line> specification;
 
-        specification = LineModeNameSpecification('bus');
+        specification = LineModeNameSpecification(
+          modeName: 'bus',
+        );
         expect(
           specification.isSatisfiedBy(_lines[0]),
           isTrue,
@@ -92,7 +94,9 @@ void main() {
           hasLength(1),
         );
 
-        specification = LineModeNameSpecification('overground');
+        specification = LineModeNameSpecification(
+          modeName: 'overground',
+        );
         expect(
           specification.isSatisfiedBy(_lines[0]),
           isFalse,
@@ -106,7 +110,9 @@ void main() {
           isEmpty,
         );
 
-        specification = LineModeNameSpecification('tube');
+        specification = LineModeNameSpecification(
+          modeName: 'tube',
+        );
         expect(
           specification.isSatisfiedBy(_lines[0]),
           isFalse,
@@ -126,7 +132,9 @@ void main() {
       test('isSatisfiedBy', () {
         Specification<LineRoute> specification;
 
-        specification = LineRouteServiceTypeSpecification('Day');
+        specification = LineRouteServiceTypeSpecification(
+          serviceType: 'Day',
+        );
         expect(
           specification.isSatisfiedBy(_lineRoutes[0]),
           isFalse,
@@ -140,7 +148,9 @@ void main() {
           isEmpty,
         );
 
-        specification = LineRouteServiceTypeSpecification('Night');
+        specification = LineRouteServiceTypeSpecification(
+          serviceType: 'Night',
+        );
         expect(
           specification.isSatisfiedBy(_lineRoutes[0]),
           isTrue,
@@ -154,7 +164,9 @@ void main() {
           hasLength(1),
         );
 
-        specification = LineRouteServiceTypeSpecification('Regular');
+        specification = LineRouteServiceTypeSpecification(
+          serviceType: 'Regular',
+        );
         expect(
           specification.isSatisfiedBy(_lineRoutes[0]),
           isFalse,
@@ -174,7 +186,9 @@ void main() {
       test('isSatisfiedBy', () {
         Specification<Place> specification;
 
-        specification = PlaceCommonNameSpecification('Christopher Street');
+        specification = PlaceCommonNameSpecification(
+          commonName: 'Christopher Street',
+        );
         expect(
           specification.isSatisfiedBy(_bikePoints[0]),
           isFalse,
@@ -192,7 +206,9 @@ void main() {
           hasLength(1),
         );
 
-        specification = PlaceCommonNameSpecification('Russell Street');
+        specification = PlaceCommonNameSpecification(
+          commonName: 'Russell Street',
+        );
         expect(
           specification.isSatisfiedBy(_bikePoints[0]),
           isFalse,
@@ -217,7 +233,7 @@ void main() {
         Specification<Prediction> specification;
 
         specification = PredictionDestinationNameSpecification(
-          'Canada Water',
+          destinationName: 'Canada Water',
         );
         expect(
           specification.isSatisfiedBy(_predictions[0]),
@@ -241,7 +257,7 @@ void main() {
         );
 
         specification = PredictionDestinationNameSpecification(
-          'Surrey Quays',
+          destinationName: 'Surrey Quays',
         );
         expect(
           specification.isSatisfiedBy(_predictions[0]),
@@ -265,7 +281,7 @@ void main() {
         );
 
         specification = PredictionDestinationNameSpecification(
-          'Tottenham Court Road',
+          destinationName: 'Tottenham Court Road',
         );
         expect(
           specification.isSatisfiedBy(_predictions[0]),
@@ -295,7 +311,7 @@ void main() {
         Specification<Prediction> specification;
 
         specification = PredictionStationNameSpecification(
-          'Elephant & Castle',
+          stationName: 'Elephant & Castle',
         );
         expect(
           specification.isSatisfiedBy(_predictions[0]),
@@ -319,7 +335,7 @@ void main() {
         );
 
         specification = PredictionStationNameSpecification(
-          'Holborn',
+          stationName: 'Holborn',
         );
         expect(
           specification.isSatisfiedBy(_predictions[0]),
@@ -343,7 +359,7 @@ void main() {
         );
 
         specification = PredictionStationNameSpecification(
-          'Waterloo',
+          stationName: 'Waterloo',
         );
         expect(
           specification.isSatisfiedBy(_predictions[0]),

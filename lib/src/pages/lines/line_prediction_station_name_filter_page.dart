@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
-import 'package:tfl_api_explorer/src/widgets/async.dart';
-import 'package:tfl_api_explorer/src/widgets/text.dart';
+import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
+import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class LinePredictionStationNameFilterPage extends StatefulWidget {
   final Line line;
@@ -14,7 +14,9 @@ class LinePredictionStationNameFilterPage extends StatefulWidget {
   LinePredictionStationNameFilterPage({
     Key key,
     @required this.line,
-  }) : super(key: key);
+  }) : super(
+          key: key,
+        );
 
   @override
   _LinePredictionStationNameFilterPageState createState() =>

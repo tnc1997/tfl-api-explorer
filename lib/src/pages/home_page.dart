@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:tfl_api_explorer/src/material/drawer.dart';
+import 'package:tfl_api_explorer/src/widgets/drawer.dart' as drawer;
 
 class HomePage extends StatefulWidget {
   static const route = '/home';
 
-  HomePage({Key key}) : super(key: key);
+  HomePage({
+    Key key,
+  }) : super(
+          key: key,
+        );
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -20,7 +24,7 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Text('Welcome to the TfL API Explorer'),
       ),
-      drawer: AppDrawer(),
+      drawer: drawer.Drawer(),
     );
   }
 }

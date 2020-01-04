@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/material/list_tile.dart';
 import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
-import 'package:tfl_api_explorer/src/widgets/async.dart';
-import 'package:tfl_api_explorer/src/widgets/basic.dart';
+import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
+import 'package:tfl_api_explorer/src/widgets/line_disruption_list_tile.dart';
 
 class LineLineDisruptionsPage extends StatefulWidget {
   static const route = '/lines/:id/line_disruptions';
@@ -16,7 +15,9 @@ class LineLineDisruptionsPage extends StatefulWidget {
   LineLineDisruptionsPage({
     Key key,
     @required this.line,
-  }) : super(key: key);
+  }) : super(
+          key: key,
+        );
 
   @override
   _LineLineDisruptionsPageState createState() =>
@@ -39,14 +40,15 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
             return ListView.builder(
               itemBuilder: (context, index) {
                 return LineDisruptionListTile(
-                  context: context,
                   lineDisruption: data[index],
                 );
               },
               itemCount: data.length,
             );
           } else {
-            return TextCenter('N/A');
+            return Center(
+              child: Text('N/A'),
+            );
           }
         },
       ),

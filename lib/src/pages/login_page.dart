@@ -3,13 +3,17 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tfl_api_explorer/src/pages/home_page.dart';
 import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
-import 'package:tfl_api_explorer/src/widgets/async.dart';
+import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatefulWidget {
   static const route = '/login';
 
-  LoginPage({Key key}) : super(key: key);
+  LoginPage({
+    Key key,
+  }) : super(
+          key: key,
+        );
 
   @override
   _LoginPageState createState() => _LoginPageState();

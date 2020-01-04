@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/material/scroll_view.dart';
+import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class StopPointPage extends StatefulWidget {
   static const route = '/stop_points/:id';
@@ -10,7 +10,9 @@ class StopPointPage extends StatefulWidget {
   StopPointPage({
     Key key,
     @required this.stopPoint,
-  }) : super(key: key);
+  }) : super(
+          key: key,
+        );
 
   @override
   _StopPointPageState createState() => _StopPointPageState();
@@ -23,9 +25,16 @@ class _StopPointPageState extends State<StopPointPage> {
       appBar: AppBar(
         title: Text(widget.stopPoint.id),
       ),
-      body: StopPointListView(
-        context: context,
-        stopPoint: widget.stopPoint,
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            title: Text('Name'),
+            subtitle: NullableText(
+              widget.stopPoint.commonName,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
       ),
     );
   }
