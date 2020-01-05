@@ -1,19 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/specifications/specification.dart';
 
 class LineRouteServiceTypeSpecification extends Specification<LineRoute> {
-  final String _serviceType;
+  LineRouteServiceTypeSpecification({
+    @required this.serviceType,
+  });
 
-  LineRouteServiceTypeSpecification(this._serviceType)
-      : assert(_serviceType != null);
+  final String serviceType;
 
   @override
   bool isSatisfiedBy(LineRoute value) {
-    return value.serviceType == _serviceType;
+    return value.serviceType == serviceType;
   }
 
   @override
   String toString() {
-    return _serviceType;
+    return serviceType;
   }
 }

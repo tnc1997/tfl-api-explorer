@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
-import 'package:tfl_api_explorer/src/widgets/async.dart';
-import 'package:tfl_api_explorer/src/widgets/text.dart';
+import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
+import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class AboutPage extends StatefulWidget {
-  AboutPage({Key key}) : super(key: key);
+  AboutPage({
+    Key key,
+  }) : super(
+          key: key,
+        );
 
   @override
   _AboutPageState createState() => _AboutPageState();

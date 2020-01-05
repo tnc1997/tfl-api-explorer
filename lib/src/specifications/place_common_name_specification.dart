@@ -1,18 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/specifications/specification.dart';
 
 class PlaceCommonNameSpecification extends Specification<Place> {
-  final String _commonName;
+  PlaceCommonNameSpecification({
+    @required this.commonName,
+  });
 
-  PlaceCommonNameSpecification(this._commonName) : assert(_commonName != null);
+  final String commonName;
 
   @override
   bool isSatisfiedBy(Place value) {
-    return value.commonName.toLowerCase().contains(_commonName.toLowerCase());
+    return value.commonName.toLowerCase().contains(commonName.toLowerCase());
   }
 
   @override
   String toString() {
-    return _commonName;
+    return commonName;
   }
 }

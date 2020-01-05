@@ -1,19 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/specifications/specification.dart';
 
 class PredictionDestinationNameSpecification extends Specification<Prediction> {
-  final String _destinationName;
+  PredictionDestinationNameSpecification({
+    @required this.destinationName,
+  });
 
-  PredictionDestinationNameSpecification(this._destinationName)
-      : assert(_destinationName != null);
+  final String destinationName;
 
   @override
   bool isSatisfiedBy(Prediction value) {
-    return value.destinationName == _destinationName;
+    return value.destinationName == destinationName;
   }
 
   @override
   String toString() {
-    return _destinationName;
+    return destinationName;
   }
 }

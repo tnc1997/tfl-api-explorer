@@ -21,7 +21,9 @@ class LineLineRouteFiltersChangeNotifier
 
     if (_serviceType != null) {
       specifications.add(
-        LineRouteServiceTypeSpecification(_serviceType),
+        LineRouteServiceTypeSpecification(
+          serviceType: _serviceType,
+        ),
       );
     }
 

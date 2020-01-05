@@ -1,7 +1,11 @@
-class PageNotFoundError extends Error {
-  final String route;
+import 'package:flutter/foundation.dart';
 
-  PageNotFoundError(this.route);
+class PageNotFoundError extends Error {
+  PageNotFoundError({
+    @required this.route,
+  });
+
+  final String route;
 
   @override
   String toString() {

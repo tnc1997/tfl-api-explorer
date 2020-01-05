@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/material/list_tile.dart';
+import 'package:tfl_api_explorer/src/widgets/stop_point_list_tile.dart';
 
 class StopPointSequenceStopPointsPage extends StatefulWidget {
   static const route = '/stop_point_sequences/:id/stop_points';
@@ -10,7 +10,9 @@ class StopPointSequenceStopPointsPage extends StatefulWidget {
   StopPointSequenceStopPointsPage({
     Key key,
     @required this.stopPointSequence,
-  }) : super(key: key);
+  }) : super(
+          key: key,
+        );
 
   @override
   _StopPointSequenceStopPointsPageState createState() =>
@@ -38,7 +40,6 @@ class _StopPointSequenceStopPointsPageState
       body: ListView.builder(
         itemBuilder: (context, index) {
           return StopPointListTile(
-            context: context,
             stopPoint: stopPoints[index],
           );
         },

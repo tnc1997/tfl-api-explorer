@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/specifications/place_common_name_specification.dart';
-import 'package:tfl_api_explorer/src/widgets/text.dart';
+import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class BikePointSearchDelegate extends SearchDelegate<Place> {
-  final List<Place> _bikePoints;
+  BikePointSearchDelegate({
+    @required this.bikePoints,
+  });
 
-  BikePointSearchDelegate(this._bikePoints);
+  final List<Place> bikePoints;
 
   @override
   ThemeData appBarTheme(BuildContext context) {
@@ -56,8 +58,11 @@ class BikePointSearchDelegate extends SearchDelegate<Place> {
 
   @override
   Widget buildResults(BuildContext context) {
-    final specification = PlaceCommonNameSpecification(query);
-    final bikePoints = _bikePoints.where(specification.isSatisfiedBy).toList();
+    final specification = PlaceCommonNameSpecification(
+      commonName: query,
+    );
+    final bikePoints =
+        this.bikePoints.where(specification.isSatisfiedBy).toList();
 
     return ListView.builder(
       itemBuilder: (context, index) {
@@ -81,8 +86,11 @@ class BikePointSearchDelegate extends SearchDelegate<Place> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final specification = PlaceCommonNameSpecification(query);
-    final bikePoints = _bikePoints.where(specification.isSatisfiedBy).toList();
+    final specification = PlaceCommonNameSpecification(
+      commonName: query,
+    );
+    final bikePoints =
+        this.bikePoints.where(specification.isSatisfiedBy).toList();
 
     return ListView.builder(
       itemBuilder: (context, index) {

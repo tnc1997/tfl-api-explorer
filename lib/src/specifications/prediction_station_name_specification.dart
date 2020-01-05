@@ -1,19 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/specifications/specification.dart';
 
 class PredictionStationNameSpecification extends Specification<Prediction> {
-  final String _stationName;
+  PredictionStationNameSpecification({
+    @required this.stationName,
+  });
 
-  PredictionStationNameSpecification(this._stationName)
-      : assert(_stationName != null);
+  final String stationName;
 
   @override
   bool isSatisfiedBy(Prediction value) {
-    return value.stationName == _stationName;
+    return value.stationName == stationName;
   }
 
   @override
   String toString() {
-    return _stationName;
+    return stationName;
   }
 }

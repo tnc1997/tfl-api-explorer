@@ -4,7 +4,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_prediction_destination_name_filter_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_prediction_station_name_filter_page.dart';
-import 'package:tfl_api_explorer/src/widgets/text.dart';
+import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class LinePredictionFiltersPage extends StatefulWidget {
   final Line line;
@@ -12,7 +12,9 @@ class LinePredictionFiltersPage extends StatefulWidget {
   LinePredictionFiltersPage({
     Key key,
     @required this.line,
-  }) : super(key: key);
+  }) : super(
+          key: key,
+        );
 
   @override
   _LinePredictionFiltersPageState createState() =>

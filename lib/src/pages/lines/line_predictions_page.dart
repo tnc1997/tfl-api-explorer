@@ -3,12 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/material/list_tile.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_prediction_filters_page.dart';
 import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
-import 'package:tfl_api_explorer/src/widgets/async.dart';
-import 'package:tfl_api_explorer/src/widgets/basic.dart';
+import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_stream_builder.dart';
+import 'package:tfl_api_explorer/src/widgets/prediction_list_tile.dart';
 
 class LinePredictionsPage extends StatefulWidget {
   static const route = '/lines/:id/predictions';
@@ -18,7 +17,9 @@ class LinePredictionsPage extends StatefulWidget {
   LinePredictionsPage({
     Key key,
     @required this.line,
-  }) : super(key: key);
+  }) : super(
+          key: key,
+        );
 
   @override
   _LinePredictionsPageState createState() => _LinePredictionsPageState();
@@ -60,14 +61,15 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
                   return ListView.builder(
                     itemBuilder: (context, index) {
                       return PredictionListTile(
-                        context: context,
                         prediction: predictions[index],
                       );
                     },
                     itemCount: predictions.length,
                   );
                 } else {
-                  return TextCenter('N/A');
+                  return Center(
+                    child: Text('N/A'),
+                  );
                 }
               },
             ),

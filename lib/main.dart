@@ -240,7 +240,9 @@ class MyApp extends StatelessWidget {
           },
         );
       default:
-        throw PageNotFoundError(routeSettings.name);
+        throw PageNotFoundError(
+          route: routeSettings.name,
+        );
     }
   }
 }

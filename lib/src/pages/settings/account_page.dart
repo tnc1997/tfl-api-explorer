@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
-import 'package:tfl_api_explorer/src/widgets/text.dart';
+import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class AccountPage extends StatefulWidget {
-  AccountPage({Key key}) : super(key: key);
+  AccountPage({
+    Key key,
+  }) : super(
+          key: key,
+        );
 
   @override
   _AccountPageState createState() => _AccountPageState();

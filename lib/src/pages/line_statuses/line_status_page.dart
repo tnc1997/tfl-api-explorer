@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/widgets/text.dart';
+import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class LineStatusPage extends StatefulWidget {
   static const route = '/line_statuses/:id';
@@ -10,7 +10,9 @@ class LineStatusPage extends StatefulWidget {
   LineStatusPage({
     Key key,
     @required this.lineStatus,
-  }) : super(key: key);
+  }) : super(
+          key: key,
+        );
 
   @override
   _LineStatusPageState createState() => _LineStatusPageState();
@@ -26,7 +28,7 @@ class _LineStatusPageState extends State<LineStatusPage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: NullableText(
-          widget.lineStatus.reason,
+          widget.lineStatus?.reason,
           textAlign: TextAlign.justify,
         ),
       ),
