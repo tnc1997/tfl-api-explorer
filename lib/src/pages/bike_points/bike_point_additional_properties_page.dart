@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
-class BikePointAdditionalPropertiesPage extends StatefulWidget {
-  static const route = '/bike_points/:id/additional_properties';
-
-  final Place bikePoint;
+class BikePointAdditionalPropertiesPage extends StatelessWidget {
+  static const routeName = '/bike_points/:id/additional_properties';
 
   BikePointAdditionalPropertiesPage({
     Key key,
@@ -14,13 +12,8 @@ class BikePointAdditionalPropertiesPage extends StatefulWidget {
           key: key,
         );
 
-  @override
-  _BikePointAdditionalPropertiesPageState createState() =>
-      _BikePointAdditionalPropertiesPageState();
-}
+  final Place bikePoint;
 
-class _BikePointAdditionalPropertiesPageState
-    extends State<BikePointAdditionalPropertiesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,16 +24,16 @@ class _BikePointAdditionalPropertiesPageState
         itemBuilder: (context, index) {
           return ListTile(
             title: NullableText(
-              widget.bikePoint?.additionalProperties[index]?.key,
+              bikePoint.additionalProperties[index]?.key,
               overflow: TextOverflow.ellipsis,
             ),
             subtitle: NullableText(
-              widget.bikePoint?.additionalProperties[index]?.value,
+              bikePoint.additionalProperties[index]?.value,
               overflow: TextOverflow.ellipsis,
             ),
           );
         },
-        itemCount: widget.bikePoint.additionalProperties.length,
+        itemCount: bikePoint.additionalProperties?.length,
       ),
     );
   }

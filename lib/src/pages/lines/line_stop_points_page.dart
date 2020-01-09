@@ -1,16 +1,11 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:tfl_api_explorer/src/widgets/stop_point_list_tile.dart';
 
-class LineStopPointsPage extends StatefulWidget {
-  static const route = '/lines/:id/stop_points';
-
-  final Line line;
+class LineStopPointsPage extends StatelessWidget {
+  static const routeName = '/lines/:id/stop_points';
 
   LineStopPointsPage({
     Key key,
@@ -19,51 +14,32 @@ class LineStopPointsPage extends StatefulWidget {
           key: key,
         );
 
-  @override
-  _LineStopPointsPageState createState() => _LineStopPointsPageState();
-}
-
-class _LineStopPointsPageState extends State<LineStopPointsPage> {
-  Future<List<StopPoint>> _stopPointsFuture;
+  final Line line;
 
   @override
   Widget build(BuildContext context) {
+    final stopPointsFuture = Provider.of<TflApi>(
+      context,
+      listen: false,
+    ).lines.getStopPoints(line.id);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Stop points'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
-        future: _stopPointsFuture,
+        future: stopPointsFuture,
         builder: (context, data) {
-          if (data != null && data.isNotEmpty) {
-            return ListView.builder(
-              itemBuilder: (context, index) {
-                return StopPointListTile(
-                  stopPoint: data[index],
-                );
-              },
-              itemCount: data.length,
-            );
-          } else {
-            return Center(
-              child: Text('N/A'),
-            );
-          }
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              return StopPointListTile(
+                stopPoint: data[index],
+              );
+            },
+            itemCount: data.length,
+          );
         },
       ),
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    final tflApi = Provider.of<TflApiState>(
-      context,
-      listen: false,
-    );
-    _stopPointsFuture = tflApi.tflApi.lines.getStopPoints(
-      widget.line.id,
     );
   }
 }

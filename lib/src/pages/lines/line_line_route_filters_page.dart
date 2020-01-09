@@ -4,19 +4,13 @@ import 'package:tfl_api_explorer/src/notifiers/line_line_route_filters_change_no
 import 'package:tfl_api_explorer/src/pages/lines/line_line_route_service_type_filter_page.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
-class LineLineRouteFiltersPage extends StatefulWidget {
+class LineLineRouteFiltersPage extends StatelessWidget {
   LineLineRouteFiltersPage({
     Key key,
   }) : super(
           key: key,
         );
 
-  @override
-  _LineLineRouteFiltersPageState createState() =>
-      _LineLineRouteFiltersPageState();
-}
-
-class _LineLineRouteFiltersPageState extends State<LineLineRouteFiltersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,13 +29,13 @@ class _LineLineRouteFiltersPageState extends State<LineLineRouteFiltersPage> {
         ],
       ),
       body: Consumer<LineLineRouteFiltersChangeNotifier>(
-        builder: (context, lineFilters, child) {
+        builder: (context, lineLineRouteFiltersChangeNotifier, child) {
           return ListView(
             children: <Widget>[
               ListTile(
                 title: Text('Service type'),
                 subtitle: NullableText(
-                  lineFilters.serviceType,
+                  lineLineRouteFiltersChangeNotifier.serviceType,
                   overflow: TextOverflow.ellipsis,
                 ),
                 onTap: () {

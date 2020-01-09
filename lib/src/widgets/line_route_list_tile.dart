@@ -26,7 +26,7 @@ class LineRouteListTile extends StatelessWidget {
       ),
       onTap: () {
         Navigator.of(context).pushNamed(
-          LineRoutePage.route,
+          LineRoutePage.routeName,
           arguments: lineRoute,
         );
       },

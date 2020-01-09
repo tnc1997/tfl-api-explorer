@@ -6,9 +6,7 @@ import 'package:tfl_api_explorer/src/pages/lines/line_prediction_destination_nam
 import 'package:tfl_api_explorer/src/pages/lines/line_prediction_station_name_filter_page.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
-class LinePredictionFiltersPage extends StatefulWidget {
-  final Line line;
-
+class LinePredictionFiltersPage extends StatelessWidget {
   LinePredictionFiltersPage({
     Key key,
     @required this.line,
@@ -16,12 +14,8 @@ class LinePredictionFiltersPage extends StatefulWidget {
           key: key,
         );
 
-  @override
-  _LinePredictionFiltersPageState createState() =>
-      _LinePredictionFiltersPageState();
-}
+  final Line line;
 
-class _LinePredictionFiltersPageState extends State<LinePredictionFiltersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,13 +34,13 @@ class _LinePredictionFiltersPageState extends State<LinePredictionFiltersPage> {
         ],
       ),
       body: Consumer<LinePredictionFiltersChangeNotifier>(
-        builder: (context, linePredictionFilters, child) {
+        builder: (context, linePredictionFiltersChangeNotifier, child) {
           return ListView(
             children: <Widget>[
               ListTile(
                 title: Text('Station name'),
                 subtitle: NullableText(
-                  linePredictionFilters.stationName,
+                  linePredictionFiltersChangeNotifier.stationName,
                   overflow: TextOverflow.ellipsis,
                 ),
                 onTap: () {
@@ -54,7 +48,7 @@ class _LinePredictionFiltersPageState extends State<LinePredictionFiltersPage> {
                     MaterialPageRoute(
                       builder: (context) {
                         return LinePredictionStationNameFilterPage(
-                          line: widget.line,
+                          line: line,
                         );
                       },
                     ),
@@ -64,7 +58,7 @@ class _LinePredictionFiltersPageState extends State<LinePredictionFiltersPage> {
               ListTile(
                 title: Text('Destination name'),
                 subtitle: NullableText(
-                  linePredictionFilters.destinationName,
+                  linePredictionFiltersChangeNotifier.destinationName,
                   overflow: TextOverflow.ellipsis,
                 ),
                 onTap: () {
@@ -72,7 +66,7 @@ class _LinePredictionFiltersPageState extends State<LinePredictionFiltersPage> {
                     MaterialPageRoute(
                       builder: (context) {
                         return LinePredictionDestinationNameFilterPage(
-                          line: widget.line,
+                          line: line,
                         );
                       },
                     ),

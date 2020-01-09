@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
+import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_line_route_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_notifier.dart';
@@ -22,12 +23,13 @@ import 'package:tfl_api_explorer/src/pages/settings/about_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/account_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
 import 'package:tfl_api_explorer/src/pages/home_page.dart';
-import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
 
+import 'mocks/authentication_change_notifier_mock.dart';
 import 'mocks/tfl_api_mock.dart';
-import 'mocks/tfl_api_state_mock.dart';
 
 void main() {
+  final _authenticationChangeNotifier = AuthenticationChangeNotifierMock();
+
   final _bikePoints = <Place>[
     Place(
       id: 'BikePoints_1',
@@ -147,8 +149,6 @@ void main() {
 
   final _tflApi = TflApiMock();
 
-  final _tflApiState = TflApiStateMock();
-
   group('pages', () {
     group('bike_points', () {
       group('BikePointPage', () {
@@ -228,7 +228,9 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider<TflApiState>.value(value: _tflApiState),
+                Provider<TflApi>.value(
+                  value: _tflApi,
+                ),
               ],
               child: MaterialApp(
                 home: BikePointsPage(),
@@ -259,7 +261,9 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider<TflApiState>.value(value: _tflApiState),
+                Provider<TflApi>.value(
+                  value: _tflApi,
+                ),
               ],
               child: MaterialApp(
                 home: LineLineDisruptionsPage(line: _line),
@@ -293,7 +297,9 @@ void main() {
                     return LineLineRouteFiltersChangeNotifier();
                   },
                 ),
-                Provider<TflApiState>.value(value: _tflApiState),
+                Provider<TflApi>.value(
+                  value: _tflApi,
+                ),
               ],
               child: MaterialApp(
                 home: LineLineRoutesPage(line: _line),
@@ -322,7 +328,9 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider<TflApiState>.value(value: _tflApiState),
+                Provider<TflApi>.value(
+                  value: _tflApi,
+                ),
               ],
               child: MaterialApp(
                 home: LineLineStatusesPage(line: _line),
@@ -390,7 +398,9 @@ void main() {
                     return LinePredictionFiltersChangeNotifier();
                   },
                 ),
-                Provider<TflApiState>.value(value: _tflApiState),
+                Provider<TflApi>.value(
+                  value: _tflApi,
+                ),
               ],
               child: MaterialApp(
                 home: LinePredictionsPage(line: _line),
@@ -421,7 +431,9 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider<TflApiState>.value(value: _tflApiState),
+                Provider<TflApi>.value(
+                  value: _tflApi,
+                ),
               ],
               child: MaterialApp(
                 home: LineRouteSequencesPage(line: _line),
@@ -450,7 +462,9 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider<TflApiState>.value(value: _tflApiState),
+                Provider<TflApi>.value(
+                  value: _tflApi,
+                ),
               ],
               child: MaterialApp(
                 home: LineStopPointsPage(line: _line),
@@ -482,7 +496,9 @@ void main() {
                     return LineFiltersChangeNotifier();
                   },
                 ),
-                Provider<TflApiState>.value(value: _tflApiState),
+                Provider<TflApi>.value(
+                  value: _tflApi,
+                ),
               ],
               child: MaterialApp(
                 home: LinesPage(),
@@ -567,7 +583,9 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider<TflApiState>.value(value: _tflApiState),
+                ChangeNotifierProvider<AuthenticationChangeNotifier>.value(
+                  value: _authenticationChangeNotifier,
+                ),
               ],
               child: MaterialApp(
                 home: AccountPage(),
@@ -589,7 +607,9 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider<TflApiState>.value(value: _tflApiState),
+                ChangeNotifierProvider<AuthenticationChangeNotifier>.value(
+                  value: _authenticationChangeNotifier,
+                ),
               ],
               child: MaterialApp(
                 home: AccountPage(),
@@ -698,8 +718,7 @@ void main() {
     when(_tflApi.bikePoints).thenReturn(_bikePointsResourceApi);
     when(_tflApi.lines).thenReturn(_linesResourceApi);
 
-    when(_tflApiState.appId).thenReturn('123');
-    when(_tflApiState.appKey).thenReturn('abc');
-    when(_tflApiState.tflApi).thenReturn(_tflApi);
+    when(_authenticationChangeNotifier.appId).thenReturn('123');
+    when(_authenticationChangeNotifier.appKey).thenReturn('abc');
   });
 }

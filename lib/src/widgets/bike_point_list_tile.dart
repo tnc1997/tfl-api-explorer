@@ -26,7 +26,7 @@ class BikePointListTile extends StatelessWidget {
       ),
       onTap: () {
         Navigator.of(context).pushNamed(
-          BikePointPage.route,
+          BikePointPage.routeName,
           arguments: bikePoint,
         );
       },

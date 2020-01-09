@@ -3,10 +3,8 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/stop_point_sequences/stop_point_sequence_stop_points_page.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
-class StopPointSequencePage extends StatefulWidget {
-  static const route = '/stop_point_sequences/:id';
-
-  final StopPointSequence stopPointSequence;
+class StopPointSequencePage extends StatelessWidget {
+  static const routeName = '/stop_point_sequences/:id';
 
   StopPointSequencePage({
     Key key,
@@ -15,30 +13,27 @@ class StopPointSequencePage extends StatefulWidget {
           key: key,
         );
 
-  @override
-  _StopPointSequencePageState createState() => _StopPointSequencePageState();
-}
+  final StopPointSequence stopPointSequence;
 
-class _StopPointSequencePageState extends State<StopPointSequencePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.stopPointSequence.branchId}'),
+        title: Text(stopPointSequence.branchId.toString()),
       ),
       body: ListView(
         children: <Widget>[
           ListTile(
             title: Text('Line name'),
             subtitle: NullableText(
-              widget.stopPointSequence.lineName,
+              stopPointSequence.lineName,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Service type'),
             subtitle: NullableText(
-              widget.stopPointSequence.serviceType,
+              stopPointSequence.serviceType,
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -47,8 +42,8 @@ class _StopPointSequencePageState extends State<StopPointSequencePage> {
             title: Text('Stop points'),
             onTap: () {
               Navigator.of(context).pushNamed(
-                StopPointSequenceStopPointsPage.route,
-                arguments: widget.stopPointSequence,
+                StopPointSequenceStopPointsPage.routeName,
+                arguments: stopPointSequence,
               );
             },
           ),

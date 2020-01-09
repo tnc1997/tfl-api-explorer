@@ -27,7 +27,7 @@ class PredictionListTile extends StatelessWidget {
       ),
       onTap: () {
         Navigator.of(context).pushNamed(
-          PredictionPage.route,
+          PredictionPage.routeName,
           arguments: prediction,
         );
       },

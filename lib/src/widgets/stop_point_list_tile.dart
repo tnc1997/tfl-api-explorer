@@ -26,7 +26,7 @@ class StopPointListTile extends StatelessWidget {
       ),
       onTap: () {
         Navigator.of(context).pushNamed(
-          StopPointPage.route,
+          StopPointPage.routeName,
           arguments: stopPoint,
         );
       },

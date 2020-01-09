@@ -3,10 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
-class PredictionPage extends StatefulWidget {
-  static const route = '/predictions/:id';
-
-  final Prediction prediction;
+class PredictionPage extends StatelessWidget {
+  static const routeName = '/predictions/:id';
 
   PredictionPage({
     Key key,
@@ -15,65 +13,62 @@ class PredictionPage extends StatefulWidget {
           key: key,
         );
 
-  @override
-  _PredictionPageState createState() => _PredictionPageState();
-}
+  final Prediction prediction;
 
-class _PredictionPageState extends State<PredictionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.prediction.id),
+        title: Text(prediction.id),
       ),
       body: ListView(
         children: <Widget>[
           ListTile(
             title: Text('Vehicle'),
             subtitle: NullableText(
-              widget.prediction.vehicleId,
+              prediction.vehicleId,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Station name'),
             subtitle: NullableText(
-              widget.prediction.stationName,
+              prediction.stationName,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Line name'),
             subtitle: NullableText(
-              widget.prediction.lineName,
+              prediction.lineName,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Platform name'),
             subtitle: NullableText(
-              widget.prediction.platformName,
+              prediction.platformName,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Destination name'),
             subtitle: NullableText(
-              widget.prediction.destinationName,
+              prediction.destinationName,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Current location'),
             subtitle: NullableText(
-              widget.prediction.currentLocation,
+              prediction.currentLocation,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Towards'),
             subtitle: NullableText(
-              widget.prediction.towards,
+              prediction.towards,
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -81,14 +76,14 @@ class _PredictionPageState extends State<PredictionPage> {
             title: Text('Expected arrival'),
             subtitle: Text(
               DateFormat.Hm().format(
-                widget.prediction.expectedArrival,
+                prediction.expectedArrival,
               ),
             ),
           ),
           ListTile(
             title: Text('Mode name'),
             subtitle: NullableText(
-              widget.prediction.modeName,
+              prediction.modeName,
               overflow: TextOverflow.ellipsis,
             ),
           ),

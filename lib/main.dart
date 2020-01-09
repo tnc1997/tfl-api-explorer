@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/errors/page_not_found_error.dart';
 import 'package:tfl_api_explorer/src/material/colors.dart';
+import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_line_route_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_notifier.dart';
@@ -32,7 +34,6 @@ import 'package:tfl_api_explorer/src/pages/stop_point_sequences/stop_point_seque
 import 'package:tfl_api_explorer/src/pages/stop_point_sequences/stop_point_sequence_stop_points_page.dart';
 import 'package:tfl_api_explorer/src/pages/home_page.dart';
 import 'package:tfl_api_explorer/src/pages/login_page.dart';
-import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
 
 Future<void> main() async {
   await _configureIntl();
@@ -51,24 +52,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<AuthenticationChangeNotifier>(
+          create: (context) {
+            return AuthenticationChangeNotifier();
+          },
+        ),
+        ChangeNotifierProvider<LineFiltersChangeNotifier>(
           create: (context) {
             return LineFiltersChangeNotifier();
           },
         ),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<LineLineRouteFiltersChangeNotifier>(
           create: (context) {
             return LineLineRouteFiltersChangeNotifier();
           },
         ),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<LinePredictionFiltersChangeNotifier>(
           create: (context) {
             return LinePredictionFiltersChangeNotifier();
           },
         ),
-        Provider(
-          create: (context) {
-            return TflApiState();
+        ProxyProvider<AuthenticationChangeNotifier, TflApi>(
+          update: (context, authenticationChangeNotifier, tflApi) {
+            return TflApi(authenticationChangeNotifier.client);
           },
         ),
       ],
@@ -91,7 +97,7 @@ class MyApp extends StatelessWidget {
 
   Route _onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case BikePointAdditionalPropertiesPage.route:
+      case BikePointAdditionalPropertiesPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return BikePointAdditionalPropertiesPage(
@@ -99,67 +105,67 @@ class MyApp extends StatelessWidget {
             );
           },
         );
-      case BikePointPage.route:
+      case BikePointPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return BikePointPage(bikePoint: routeSettings.arguments);
           },
         );
-      case BikePointsPage.route:
+      case BikePointsPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return BikePointsPage();
           },
         );
-      case HomePage.route:
+      case HomePage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return HomePage();
           },
         );
-      case LineDisruptionPage.route:
+      case LineDisruptionPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return LineDisruptionPage(lineDisruption: routeSettings.arguments);
           },
         );
-      case LineLineDisruptionsPage.route:
+      case LineLineDisruptionsPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return LineLineDisruptionsPage(line: routeSettings.arguments);
           },
         );
-      case LineLineRoutesPage.route:
+      case LineLineRoutesPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return LineLineRoutesPage(line: routeSettings.arguments);
           },
         );
-      case LineLineStatusesPage.route:
+      case LineLineStatusesPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return LineLineStatusesPage(line: routeSettings.arguments);
           },
         );
-      case LinePage.route:
+      case LinePage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return LinePage(line: routeSettings.arguments);
           },
         );
-      case LinePredictionsPage.route:
+      case LinePredictionsPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return LinePredictionsPage(line: routeSettings.arguments);
           },
         );
-      case LineRoutePage.route:
+      case LineRoutePage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return LineRoutePage(lineRoute: routeSettings.arguments);
           },
         );
-      case LineRouteSequencesPage.route:
+      case LineRouteSequencesPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return LineRouteSequencesPage(line: routeSettings.arguments);
@@ -171,37 +177,37 @@ class MyApp extends StatelessWidget {
             return LineStatusPage(lineStatus: routeSettings.arguments);
           },
         );
-      case LineStopPointsPage.route:
+      case LineStopPointsPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return LineStopPointsPage(line: routeSettings.arguments);
           },
         );
-      case LinesPage.route:
+      case LinesPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return LinesPage();
           },
         );
-      case LoginPage.route:
+      case LoginPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return LoginPage();
           },
         );
-      case PredictionPage.route:
+      case PredictionPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return PredictionPage(prediction: routeSettings.arguments);
           },
         );
-      case RouteSequencePage.route:
+      case RouteSequencePage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return RouteSequencePage(routeSequence: routeSettings.arguments);
           },
         );
-      case RouteSequenceStopPointSequencesPage.route:
+      case RouteSequenceStopPointSequencesPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return RouteSequenceStopPointSequencesPage(
@@ -209,13 +215,13 @@ class MyApp extends StatelessWidget {
             );
           },
         );
-      case SettingsPage.route:
+      case SettingsPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return SettingsPage();
           },
         );
-      case StopPointPage.route:
+      case StopPointPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return StopPointPage(
@@ -223,7 +229,7 @@ class MyApp extends StatelessWidget {
             );
           },
         );
-      case StopPointSequencePage.route:
+      case StopPointSequencePage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return StopPointSequencePage(
@@ -231,7 +237,7 @@ class MyApp extends StatelessWidget {
             );
           },
         );
-      case StopPointSequenceStopPointsPage.route:
+      case StopPointSequenceStopPointsPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
             return StopPointSequenceStopPointsPage(

@@ -29,7 +29,7 @@ class Drawer extends material.StatelessWidget {
             title: material.Text('Home'),
             onTap: () {
               material.Navigator.of(context).pushReplacementNamed(
-                HomePage.route,
+                HomePage.routeName,
               );
             },
           ),
@@ -38,7 +38,7 @@ class Drawer extends material.StatelessWidget {
             title: material.Text('Bike points'),
             onTap: () {
               material.Navigator.of(context).pushReplacementNamed(
-                BikePointsPage.route,
+                BikePointsPage.routeName,
               );
             },
           ),
@@ -47,7 +47,7 @@ class Drawer extends material.StatelessWidget {
             title: material.Text('Lines'),
             onTap: () {
               material.Navigator.of(context).pushReplacementNamed(
-                LinesPage.route,
+                LinesPage.routeName,
               );
             },
           ),
@@ -56,7 +56,7 @@ class Drawer extends material.StatelessWidget {
             title: material.Text('Settings'),
             onTap: () {
               material.Navigator.of(context).pushReplacementNamed(
-                SettingsPage.route,
+                SettingsPage.routeName,
               );
             },
           ),

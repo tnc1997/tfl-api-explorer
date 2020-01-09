@@ -4,18 +4,13 @@ import 'package:tfl_api_explorer/src/notifiers/line_filters_change_notifier.dart
 import 'package:tfl_api_explorer/src/pages/lines/line_mode_name_filter_page.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
-class LineFiltersPage extends StatefulWidget {
+class LineFiltersPage extends StatelessWidget {
   LineFiltersPage({
     Key key,
   }) : super(
           key: key,
         );
 
-  @override
-  _LineFiltersPageState createState() => _LineFiltersPageState();
-}
-
-class _LineFiltersPageState extends State<LineFiltersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,13 +29,13 @@ class _LineFiltersPageState extends State<LineFiltersPage> {
         ],
       ),
       body: Consumer<LineFiltersChangeNotifier>(
-        builder: (context, lineFilters, child) {
+        builder: (context, lineFiltersChangeNotifier, child) {
           return ListView(
             children: <Widget>[
               ListTile(
                 title: Text('Mode name'),
                 subtitle: NullableText(
-                  lineFilters.modeName,
+                  lineFiltersChangeNotifier.modeName,
                   overflow: TextOverflow.ellipsis,
                 ),
                 onTap: () {

@@ -1,16 +1,11 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_notifier.dart';
-import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
-class LinePredictionStationNameFilterPage extends StatefulWidget {
-  final Line line;
-
+class LinePredictionStationNameFilterPage extends StatelessWidget {
   LinePredictionStationNameFilterPage({
     Key key,
     @required this.line,
@@ -18,23 +13,21 @@ class LinePredictionStationNameFilterPage extends StatefulWidget {
           key: key,
         );
 
-  @override
-  _LinePredictionStationNameFilterPageState createState() =>
-      _LinePredictionStationNameFilterPageState();
-}
-
-class _LinePredictionStationNameFilterPageState
-    extends State<LinePredictionStationNameFilterPage> {
-  Future<List<StopPoint>> _stopPointsFuture;
+  final Line line;
 
   @override
   Widget build(BuildContext context) {
+    final stopPointsFuture = Provider.of<TflApi>(
+      context,
+      listen: false,
+    ).lines.getStopPoints(line.id);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Station name'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
-        future: _stopPointsFuture,
+        future: stopPointsFuture,
         builder: (context, data) {
           return Consumer<LinePredictionFiltersChangeNotifier>(
             builder: (context, linePredictionFilters, child) {
@@ -59,15 +52,5 @@ class _LinePredictionStationNameFilterPageState
         },
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    _stopPointsFuture = Provider.of<TflApiState>(
-      context,
-      listen: false,
-    ).tflApi.lines.getStopPoints(widget.line.id);
   }
 }

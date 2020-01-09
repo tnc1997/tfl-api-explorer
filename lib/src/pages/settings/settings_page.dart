@@ -3,8 +3,8 @@ import 'package:tfl_api_explorer/src/pages/settings/about_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/account_page.dart';
 import 'package:tfl_api_explorer/src/widgets/drawer.dart' as drawer;
 
-class SettingsPage extends StatefulWidget {
-  static const route = '/settings';
+class SettingsPage extends StatelessWidget {
+  static const routeName = '/settings';
 
   SettingsPage({
     Key key,
@@ -12,11 +12,6 @@ class SettingsPage extends StatefulWidget {
           key: key,
         );
 
-  @override
-  _SettingsPageState createState() => _SettingsPageState();
-}
-
-class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

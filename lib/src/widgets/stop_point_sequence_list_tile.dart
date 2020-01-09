@@ -26,7 +26,7 @@ class StopPointSequenceListTile extends StatelessWidget {
       ),
       onTap: () {
         Navigator.of(context).pushNamed(
-          StopPointSequencePage.route,
+          StopPointSequencePage.routeName,
           arguments: stopPointSequence,
         );
       },

@@ -4,10 +4,8 @@ import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
-import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
 
 import 'mocks/tfl_api_mock.dart';
-import 'mocks/tfl_api_state_mock.dart';
 
 void main() {
   final _bikePoints = <Place>[
@@ -38,8 +36,6 @@ void main() {
 
   final _tflApi = TflApiMock();
 
-  final _tflApiState = TflApiStateMock();
-
   setUpAll(() {
     when(_bikePointsResourceApi.get()).thenAnswer((answer) {
       return Future.delayed(
@@ -49,15 +45,15 @@ void main() {
     });
 
     when(_tflApi.bikePoints).thenReturn(_bikePointsResourceApi);
-
-    when(_tflApiState.tflApi).thenReturn(_tflApi);
   });
 
   testWidgets('Bike point search', (tester) async {
     await tester.pumpWidget(
       MultiProvider(
         providers: [
-          Provider<TflApiState>.value(value: _tflApiState),
+          Provider<TflApi>.value(
+            value: _tflApi,
+          ),
         ],
         child: MaterialApp(
           home: BikePointsPage(),

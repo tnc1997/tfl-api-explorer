@@ -3,10 +3,8 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/route_sequences/route_sequence_stop_point_sequences_page.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
-class RouteSequencePage extends StatefulWidget {
-  static const route = '/route_sequences/:id';
-
-  final RouteSequence routeSequence;
+class RouteSequencePage extends StatelessWidget {
+  static const routeName = '/route_sequences/:id';
 
   RouteSequencePage({
     Key key,
@@ -15,30 +13,27 @@ class RouteSequencePage extends StatefulWidget {
           key: key,
         );
 
-  @override
-  _RouteSequencePageState createState() => _RouteSequencePageState();
-}
+  final RouteSequence routeSequence;
 
-class _RouteSequencePageState extends State<RouteSequencePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.routeSequence.direction),
+        title: Text(routeSequence.direction),
       ),
       body: ListView(
         children: <Widget>[
           ListTile(
             title: Text('Line name'),
             subtitle: NullableText(
-              widget.routeSequence.lineName,
+              routeSequence.lineName,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Mode'),
             subtitle: NullableText(
-              widget.routeSequence.mode,
+              routeSequence.mode,
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -47,8 +42,8 @@ class _RouteSequencePageState extends State<RouteSequencePage> {
             title: Text('Stop point sequences'),
             onTap: () {
               Navigator.of(context).pushNamed(
-                RouteSequenceStopPointSequencesPage.route,
-                arguments: widget.routeSequence,
+                RouteSequenceStopPointSequencesPage.routeName,
+                arguments: routeSequence,
               );
             },
           ),
