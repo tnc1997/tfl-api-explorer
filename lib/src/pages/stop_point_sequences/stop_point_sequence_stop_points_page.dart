@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/widgets/stop_point_list_tile.dart';
 
-class StopPointSequenceStopPointsPage extends StatefulWidget {
-  static const route = '/stop_point_sequences/:id/stop_points';
-
-  final StopPointSequence stopPointSequence;
+class StopPointSequenceStopPointsPage extends StatelessWidget {
+  static const routeName = '/stop_point_sequences/:id/stop_points';
 
   StopPointSequenceStopPointsPage({
     Key key,
@@ -14,22 +12,17 @@ class StopPointSequenceStopPointsPage extends StatefulWidget {
           key: key,
         );
 
-  @override
-  _StopPointSequenceStopPointsPageState createState() =>
-      _StopPointSequenceStopPointsPageState();
-}
+  final StopPointSequence stopPointSequence;
 
-class _StopPointSequenceStopPointsPageState
-    extends State<StopPointSequenceStopPointsPage> {
   @override
   Widget build(BuildContext context) {
-    final stopPoints = widget.stopPointSequence.stopPoint.map((stopPoint) {
+    final stopPoints = stopPointSequence.stopPoint.map((matchedStop) {
       return StopPoint(
-        id: stopPoint.id,
-        url: stopPoint.url,
-        commonName: stopPoint.name,
-        lat: stopPoint.lat,
-        lon: stopPoint.lon,
+        id: matchedStop.id,
+        url: matchedStop.url,
+        commonName: matchedStop.name,
+        lat: matchedStop.lat,
+        lon: matchedStop.lon,
       );
     }).toList();
 

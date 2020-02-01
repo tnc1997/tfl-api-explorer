@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/widgets/stop_point_sequence_list_tile.dart';
 
-class RouteSequenceStopPointSequencesPage extends StatefulWidget {
-  static const route = '/route_sequences/:id/stop_point_sequences';
-
-  final RouteSequence routeSequence;
+class RouteSequenceStopPointSequencesPage extends StatelessWidget {
+  static const routeName = '/route_sequences/:id/stop_point_sequences';
 
   RouteSequenceStopPointSequencesPage({
     Key key,
@@ -14,13 +12,8 @@ class RouteSequenceStopPointSequencesPage extends StatefulWidget {
           key: key,
         );
 
-  @override
-  _RouteSequenceStopPointSequencesPageState createState() =>
-      _RouteSequenceStopPointSequencesPageState();
-}
+  final RouteSequence routeSequence;
 
-class _RouteSequenceStopPointSequencesPageState
-    extends State<RouteSequenceStopPointSequencesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +23,10 @@ class _RouteSequenceStopPointSequencesPageState
       body: ListView.builder(
         itemBuilder: (context, index) {
           return StopPointSequenceListTile(
-            stopPointSequence: widget.routeSequence.stopPointSequences[index],
+            stopPointSequence: routeSequence.stopPointSequences[index],
           );
         },
-        itemCount: widget.routeSequence.stopPointSequences.length,
+        itemCount: routeSequence.stopPointSequences?.length,
       ),
     );
   }

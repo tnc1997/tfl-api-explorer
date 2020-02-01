@@ -3,7 +3,7 @@ import 'package:package_info/package_info.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
-class AboutPage extends StatefulWidget {
+class AboutPage extends StatelessWidget {
   AboutPage({
     Key key,
   }) : super(
@@ -11,18 +11,15 @@ class AboutPage extends StatefulWidget {
         );
 
   @override
-  _AboutPageState createState() => _AboutPageState();
-}
-
-class _AboutPageState extends State<AboutPage> {
-  @override
   Widget build(BuildContext context) {
+    final packageInfoFuture = PackageInfo.fromPlatform();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('About'),
       ),
       body: CircularProgressIndicatorFutureBuilder<PackageInfo>(
-        future: PackageInfo.fromPlatform(),
+        future: packageInfoFuture,
         builder: (context, data) {
           return ListView(
             children: <Widget>[

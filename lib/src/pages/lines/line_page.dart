@@ -8,10 +8,8 @@ import 'package:tfl_api_explorer/src/pages/lines/line_route_sequences_page.dart'
 import 'package:tfl_api_explorer/src/pages/lines/line_stop_points_page.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
-class LinePage extends StatefulWidget {
-  static const route = '/lines/:id';
-
-  final Line line;
+class LinePage extends StatelessWidget {
+  static const routeName = '/lines/:id';
 
   LinePage({
     Key key,
@@ -20,30 +18,27 @@ class LinePage extends StatefulWidget {
           key: key,
         );
 
-  @override
-  _LinePageState createState() => _LinePageState();
-}
+  final Line line;
 
-class _LinePageState extends State<LinePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.line.id),
+        title: Text(line.id),
       ),
       body: ListView(
         children: <Widget>[
           ListTile(
             title: Text('Name'),
             subtitle: NullableText(
-              widget.line.name,
+              line.name,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Mode name'),
             subtitle: NullableText(
-              widget.line.modeName,
+              line.modeName,
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -52,8 +47,8 @@ class _LinePageState extends State<LinePage> {
             title: Text('Line disruptions'),
             onTap: () {
               Navigator.of(context).pushNamed(
-                LineLineDisruptionsPage.route,
-                arguments: widget.line,
+                LineLineDisruptionsPage.routeName,
+                arguments: line,
               );
             },
           ),
@@ -61,8 +56,8 @@ class _LinePageState extends State<LinePage> {
             title: Text('Line routes'),
             onTap: () {
               Navigator.of(context).pushNamed(
-                LineLineRoutesPage.route,
-                arguments: widget.line,
+                LineLineRoutesPage.routeName,
+                arguments: line,
               );
             },
           ),
@@ -70,8 +65,8 @@ class _LinePageState extends State<LinePage> {
             title: Text('Line statuses'),
             onTap: () {
               Navigator.of(context).pushNamed(
-                LineLineStatusesPage.route,
-                arguments: widget.line,
+                LineLineStatusesPage.routeName,
+                arguments: line,
               );
             },
           ),
@@ -79,8 +74,8 @@ class _LinePageState extends State<LinePage> {
             title: Text('Predictions'),
             onTap: () {
               Navigator.of(context).pushNamed(
-                LinePredictionsPage.route,
-                arguments: widget.line,
+                LinePredictionsPage.routeName,
+                arguments: line,
               );
             },
           ),
@@ -88,8 +83,8 @@ class _LinePageState extends State<LinePage> {
             title: Text('Route sequences'),
             onTap: () {
               Navigator.of(context).pushNamed(
-                LineRouteSequencesPage.route,
-                arguments: widget.line,
+                LineRouteSequencesPage.routeName,
+                arguments: line,
               );
             },
           ),
@@ -97,8 +92,8 @@ class _LinePageState extends State<LinePage> {
             title: Text('Stop points'),
             onTap: () {
               Navigator.of(context).pushNamed(
-                LineStopPointsPage.route,
-                arguments: widget.line,
+                LineStopPointsPage.routeName,
+                arguments: line,
               );
             },
           ),

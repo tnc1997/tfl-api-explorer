@@ -5,14 +5,11 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_prediction_filters_page.dart';
-import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_stream_builder.dart';
 import 'package:tfl_api_explorer/src/widgets/prediction_list_tile.dart';
 
 class LinePredictionsPage extends StatefulWidget {
-  static const route = '/lines/:id/predictions';
-
-  final Line line;
+  static const routeName = '/lines/:id/predictions';
 
   LinePredictionsPage({
     Key key,
@@ -21,12 +18,17 @@ class LinePredictionsPage extends StatefulWidget {
           key: key,
         );
 
+  final Line line;
+
   @override
   _LinePredictionsPageState createState() => _LinePredictionsPageState();
 }
 
 class _LinePredictionsPageState extends State<LinePredictionsPage> {
-  StreamController<List<Prediction>> _predictionsStreamController;
+  _LinePredictionsPageState()
+      : _predictionsStreamController = StreamController<List<Prediction>>();
+
+  final StreamController<List<Prediction>> _predictionsStreamController;
 
   @override
   Widget build(BuildContext context) {
@@ -53,24 +55,18 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
         builder: (context, data) {
           return RefreshIndicator(
             child: Consumer<LinePredictionFiltersChangeNotifier>(
-              builder: (context, linePredictionFilters, child) {
-                if (data != null && data.isNotEmpty) {
-                  final predictions =
-                      data.where(linePredictionFilters.areSatisfiedBy).toList();
+              builder: (context, linePredictionFiltersChangeNotifier, child) {
+                final predictions =
+                    data.where(linePredictionFiltersChangeNotifier.areSatisfiedBy).toList();
 
-                  return ListView.builder(
-                    itemBuilder: (context, index) {
-                      return PredictionListTile(
-                        prediction: predictions[index],
-                      );
-                    },
-                    itemCount: predictions.length,
-                  );
-                } else {
-                  return Center(
-                    child: Text('N/A'),
-                  );
-                }
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    return PredictionListTile(
+                      prediction: predictions[index],
+                    );
+                  },
+                  itemCount: predictions.length,
+                );
               },
             ),
             onRefresh: _refreshPredictions,
@@ -91,25 +87,24 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
   void initState() {
     super.initState();
 
-    _predictionsStreamController = StreamController<List<Prediction>>();
-
     _refreshPredictions();
   }
 
   Future<void> _refreshPredictions() async {
     try {
-      var predictions = await Provider.of<TflApiState>(
+      var predictions = await Provider.of<TflApi>(
         context,
         listen: false,
-      ).tflApi.lines.getPredictions(widget.line.id);
+      ).lines.getPredictions(widget.line.id);
+
+      final linePredictionFiltersChangeNotifier =
+          Provider.of<LinePredictionFiltersChangeNotifier>(
+        context,
+        listen: false,
+      );
 
       predictions = predictions
-          .where(
-            Provider.of<LinePredictionFiltersChangeNotifier>(
-              context,
-              listen: false,
-            ).areSatisfiedBy,
-          )
+          .where(linePredictionFiltersChangeNotifier.areSatisfiedBy)
           .toList();
 
       _predictionsStreamController.add(predictions);

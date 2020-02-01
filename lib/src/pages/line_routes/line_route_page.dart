@@ -3,10 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
-class LineRoutePage extends StatefulWidget {
-  static const route = '/line_routes/:id';
-
-  final LineRoute lineRoute;
+class LineRoutePage extends StatelessWidget {
+  static const routeName = '/line_routes/:id';
 
   LineRoutePage({
     Key key,
@@ -15,37 +13,34 @@ class LineRoutePage extends StatefulWidget {
           key: key,
         );
 
-  @override
-  _LineRoutePageState createState() => _LineRoutePageState();
-}
+  final LineRoute lineRoute;
 
-class _LineRoutePageState extends State<LineRoutePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.lineRoute.name),
+        title: Text(lineRoute.name),
       ),
       body: ListView(
         children: <Widget>[
           ListTile(
             title: Text('Origination'),
             subtitle: NullableText(
-              widget.lineRoute.originationName,
+              lineRoute.originationName,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Destination'),
             subtitle: NullableText(
-              widget.lineRoute.destinationName,
+              lineRoute.destinationName,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Service type'),
             subtitle: NullableText(
-              widget.lineRoute.serviceType,
+              lineRoute.serviceType,
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -53,7 +48,7 @@ class _LineRoutePageState extends State<LineRoutePage> {
             title: Text('Valid to'),
             subtitle: Text(
               DateFormat.yMMMd().format(
-                widget.lineRoute.validTo,
+                lineRoute.validTo,
               ),
             ),
           ),
@@ -61,7 +56,7 @@ class _LineRoutePageState extends State<LineRoutePage> {
             title: Text('Valid from'),
             subtitle: Text(
               DateFormat.yMMMd().format(
-                widget.lineRoute.validFrom,
+                lineRoute.validFrom,
               ),
             ),
           ),

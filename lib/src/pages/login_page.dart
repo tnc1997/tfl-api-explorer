@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.dart';
 import 'package:tfl_api_explorer/src/pages/home_page.dart';
-import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class LoginPage extends StatefulWidget {
-  static const route = '/login';
+class LoginPage extends StatelessWidget {
+  static const routeName = '/login';
 
   LoginPage({
     Key key,
-  }) : super(
+  })  : _appIdFocus = FocusNode(),
+        _appIdKey = GlobalKey<FormFieldState<String>>(),
+        _appKeyFocus = FocusNode(),
+        _appKeyKey = GlobalKey<FormFieldState<String>>(),
+        _formKey = GlobalKey<FormState>(),
+        super(
           key: key,
         );
 
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
+  final _appIdFocus;
 
-class _LoginPageState extends State<LoginPage> {
-  final _appIdFocus = FocusNode();
+  final _appIdKey;
 
-  final _appIdKey = GlobalKey<FormFieldState<String>>();
+  final _appKeyFocus;
 
-  final _appKeyFocus = FocusNode();
+  final _appKeyKey;
 
-  final _appKeyKey = GlobalKey<FormFieldState<String>>();
-
-  final _formKey = GlobalKey<FormState>();
+  final _formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +47,15 @@ class _LoginPageState extends State<LoginPage> {
               data.setString('APP_ID', appId);
               data.setString('APP_KEY', appKey);
 
-              final tflApi = Provider.of<TflApiState>(context, listen: false);
-              tflApi.appId = appId;
-              tflApi.appKey = appKey;
+              Provider.of<AuthenticationChangeNotifier>(
+                context,
+                listen: false,
+              ).login(
+                appId,
+                appKey,
+              );
 
-              Navigator.of(context).pushReplacementNamed(HomePage.route);
+              Navigator.of(context).pushReplacementNamed(HomePage.routeName);
             }
           }
 

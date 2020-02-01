@@ -28,7 +28,7 @@ class LineDisruptionListTile extends StatelessWidget {
       ),
       onTap: () {
         Navigator.of(context).pushNamed(
-          LineDisruptionPage.route,
+          LineDisruptionPage.routeName,
           arguments: lineDisruption,
         );
       },

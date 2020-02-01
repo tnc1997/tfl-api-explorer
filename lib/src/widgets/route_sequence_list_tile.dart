@@ -26,7 +26,7 @@ class RouteSequenceListTile extends StatelessWidget {
       ),
       onTap: () {
         Navigator.of(context).pushNamed(
-          RouteSequencePage.route,
+          RouteSequencePage.routeName,
           arguments: routeSequence,
         );
       },

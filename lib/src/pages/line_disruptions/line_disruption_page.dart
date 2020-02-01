@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
-class LineDisruptionPage extends StatefulWidget {
-  static const route = '/line_disruptions/:id';
-
-  final LineDisruption lineDisruption;
+class LineDisruptionPage extends StatelessWidget {
+  static const routeName = '/line_disruptions/:id';
 
   LineDisruptionPage({
     Key key,
@@ -14,21 +12,18 @@ class LineDisruptionPage extends StatefulWidget {
           key: key,
         );
 
-  @override
-  _LineDisruptionPageState createState() => _LineDisruptionPageState();
-}
+  final LineDisruption lineDisruption;
 
-class _LineDisruptionPageState extends State<LineDisruptionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.lineDisruption.categoryDescription),
+        title: Text(lineDisruption.categoryDescription),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: NullableText(
-          widget.lineDisruption?.description,
+          lineDisruption.description,
           textAlign: TextAlign.justify,
         ),
       ),

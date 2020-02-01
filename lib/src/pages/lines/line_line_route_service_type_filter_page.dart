@@ -1,13 +1,11 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_line_route_filters_change_notifier.dart';
-import 'package:tfl_api_explorer/src/states/tfl_api_state.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
-class LineLineRouteServiceTypeFilterPage extends StatefulWidget {
+class LineLineRouteServiceTypeFilterPage extends StatelessWidget {
   LineLineRouteServiceTypeFilterPage({
     Key key,
   }) : super(
@@ -15,32 +13,28 @@ class LineLineRouteServiceTypeFilterPage extends StatefulWidget {
         );
 
   @override
-  _LineLineRouteServiceTypeFilterPageState createState() =>
-      _LineLineRouteServiceTypeFilterPageState();
-}
-
-class _LineLineRouteServiceTypeFilterPageState
-    extends State<LineLineRouteServiceTypeFilterPage> {
-  Future<List<String>> _lineServiceTypesFuture;
-
-  @override
   Widget build(BuildContext context) {
+    final lineServiceTypesFuture = Provider.of<TflApi>(
+      context,
+      listen: false,
+    ).lineServiceTypes.get();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Service type'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<String>>(
-        future: _lineServiceTypesFuture,
+        future: lineServiceTypesFuture,
         builder: (context, data) {
           return Consumer<LineLineRouteFiltersChangeNotifier>(
-            builder: (context, lineLineRouteFilters, child) {
+            builder: (context, lineLineRouteFiltersChangeNotifier, child) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   return RadioListTile<String>(
                     value: data[index],
-                    groupValue: lineLineRouteFilters.serviceType,
+                    groupValue: lineLineRouteFiltersChangeNotifier.serviceType,
                     onChanged: (value) {
-                      lineLineRouteFilters.serviceType = value;
+                      lineLineRouteFiltersChangeNotifier.serviceType = value;
                     },
                     title: NullableText(
                       data[index],
@@ -55,15 +49,5 @@ class _LineLineRouteServiceTypeFilterPageState
         },
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    _lineServiceTypesFuture = Provider.of<TflApiState>(
-      context,
-      listen: false,
-    ).tflApi.lineServiceTypes.get();
   }
 }
