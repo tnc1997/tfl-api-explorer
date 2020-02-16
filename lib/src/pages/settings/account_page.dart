@@ -21,7 +21,7 @@ class AccountPage extends StatelessWidget {
           return ListView(
             children: <Widget>[
               ListTile(
-                title: Text('App id'),
+                title: Text('App ID'),
                 subtitle: NullableText(authenticationChangeNotifier.appId),
               ),
               ListTile(

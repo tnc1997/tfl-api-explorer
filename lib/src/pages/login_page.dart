@@ -20,15 +20,15 @@ class LoginPage extends StatelessWidget {
           key: key,
         );
 
-  final _appIdFocus;
+  final FocusNode _appIdFocus;
 
-  final _appIdKey;
+  final GlobalKey<FormFieldState<String>> _appIdKey;
 
-  final _appKeyFocus;
+  final FocusNode _appKeyFocus;
 
-  final _appKeyKey;
+  final GlobalKey<FormFieldState<String>> _appKeyKey;
 
-  final _formKey;
+  final GlobalKey<FormState> _formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,7 @@ class LoginPage extends StatelessWidget {
                       }
                     },
                     validator: (value) {
-                      return value.isEmpty ? 'Please enter your app id.' : null;
+                      return value.isEmpty ? 'Please enter your app ID.' : null;
                     },
                   ),
                   TextFormField(

@@ -22,7 +22,7 @@ class SettingsPage extends StatelessWidget {
         children: <Widget>[
           ListTile(
             title: Text('Account'),
-            subtitle: Text('App id, app key'),
+            subtitle: Text('App ID, app key'),
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(

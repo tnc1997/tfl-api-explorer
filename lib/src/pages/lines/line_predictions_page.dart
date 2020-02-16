@@ -56,8 +56,9 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
           return RefreshIndicator(
             child: Consumer<LinePredictionFiltersChangeNotifier>(
               builder: (context, linePredictionFiltersChangeNotifier, child) {
-                final predictions =
-                    data.where(linePredictionFiltersChangeNotifier.areSatisfiedBy).toList();
+                final predictions = data
+                    .where(linePredictionFiltersChangeNotifier.areSatisfiedBy)
+                    .toList();
 
                 return ListView.builder(
                   itemBuilder: (context, index) {

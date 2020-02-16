@@ -11,9 +11,11 @@ import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.da
 import 'package:tfl_api_explorer/src/notifiers/line_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_line_route_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_notifier.dart';
+import 'package:tfl_api_explorer/src/notifiers/stop_point_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_additional_properties_page.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_page.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
+import 'package:tfl_api_explorer/src/pages/home_page.dart';
 import 'package:tfl_api_explorer/src/pages/line_disruptions/line_disruption_page.dart';
 import 'package:tfl_api_explorer/src/pages/line_routes/line_route_page.dart';
 import 'package:tfl_api_explorer/src/pages/line_statuses/line_status_page.dart';
@@ -25,15 +27,18 @@ import 'package:tfl_api_explorer/src/pages/lines/line_predictions_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_route_sequences_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_stop_points_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/lines_page.dart';
+import 'package:tfl_api_explorer/src/pages/login_page.dart';
 import 'package:tfl_api_explorer/src/pages/predictions/prediction_page.dart';
 import 'package:tfl_api_explorer/src/pages/route_sequences/route_sequence_page.dart';
 import 'package:tfl_api_explorer/src/pages/route_sequences/route_sequence_stop_point_sequences_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
+import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_additional_properties_page.dart';
+import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_lines_page.dart';
+import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_modes_page.dart';
 import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_page.dart';
 import 'package:tfl_api_explorer/src/pages/stop_point_sequences/stop_point_sequence_page.dart';
 import 'package:tfl_api_explorer/src/pages/stop_point_sequences/stop_point_sequence_stop_points_page.dart';
-import 'package:tfl_api_explorer/src/pages/home_page.dart';
-import 'package:tfl_api_explorer/src/pages/login_page.dart';
+import 'package:tfl_api_explorer/src/pages/stop_points/stop_points_page.dart';
 
 Future<void> main() async {
   await _configureIntl();
@@ -72,6 +77,11 @@ class MyApp extends StatelessWidget {
             return LinePredictionFiltersChangeNotifier();
           },
         ),
+        ChangeNotifierProvider<StopPointFiltersChangeNotifier>(
+          create: (context) {
+            return StopPointFiltersChangeNotifier();
+          },
+        ),
         ProxyProvider<AuthenticationChangeNotifier, TflApi>(
           update: (context, authenticationChangeNotifier, tflApi) {
             return TflApi(authenticationChangeNotifier.client);
@@ -85,10 +95,14 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           brightness: Brightness.light,
           primarySwatch: TflColors.blue,
+          accentColor: TflColors.blue,
+          toggleableActiveColor: TflColors.blue,
         ),
         darkTheme: ThemeData(
           brightness: Brightness.dark,
           primarySwatch: TflColors.blue,
+          accentColor: TflColors.blue,
+          toggleableActiveColor: TflColors.blue,
         ),
         supportedLocales: const <Locale>[Locale('en', 'GB')],
       ),
@@ -221,6 +235,30 @@ class MyApp extends StatelessWidget {
             return SettingsPage();
           },
         );
+      case StopPointAdditionalPropertiesPage.routeName:
+        return MaterialPageRoute(
+          builder: (context) {
+            return StopPointAdditionalPropertiesPage(
+              stopPoint: routeSettings.arguments,
+            );
+          },
+        );
+      case StopPointLinesPage.routeName:
+        return MaterialPageRoute(
+          builder: (context) {
+            return StopPointLinesPage(
+              stopPoint: routeSettings.arguments,
+            );
+          },
+        );
+      case StopPointModesPage.routeName:
+        return MaterialPageRoute(
+          builder: (context) {
+            return StopPointModesPage(
+              stopPoint: routeSettings.arguments,
+            );
+          },
+        );
       case StopPointPage.routeName:
         return MaterialPageRoute(
           builder: (context) {
@@ -243,6 +281,12 @@ class MyApp extends StatelessWidget {
             return StopPointSequenceStopPointsPage(
               stopPointSequence: routeSettings.arguments,
             );
+          },
+        );
+      case StopPointsPage.routeName:
+        return MaterialPageRoute(
+          builder: (context) {
+            return StopPointsPage();
           },
         );
       default:
