@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - name: Configure git
+        run: |
+          git config --global user.email "tnc1997@virginmedia.com"
+          git config --global user.name "Thomas Clark"
       - uses: actions/setup-node@master
         with:
           node-version: '12.x'

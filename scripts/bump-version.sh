@@ -40,14 +40,14 @@ fi
 
 # Pushes the commit and the tag to the remote.
 git push --follow-tags origin HEAD:"$BRANCH"
-# Checks out the branch “dev”.
-git checkout dev
-# Pulls the branch “dev”.
-git pull origin dev
-# Merges the branch “bump-1580201010” into the branch “dev”.
+# Checks out the branch “master”.
+git checkout master
+# Pulls the branch “master”.
+git pull origin master
+# Merges the branch “bump-1580201010” into the branch “master”.
 git merge --no-edit "$BRANCH"
 # Pushes the commit and the tag to the remote.
-git push --follow-tags origin dev
+git push --follow-tags origin master
 # Deletes the branch “bump-1580201010”.
 git branch --delete "$BRANCH"
 # Deletes the branch “bump-1580201010” on the remote.
