@@ -151,10 +151,9 @@ GEM
 
 PLATFORMS
   ruby
-  x64-mingw32
 
 DEPENDENCIES
   fastlane
 
 BUNDLED WITH
-   1.17.2
+   2.1.4
