@@ -1,9 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Add the stop points page.",
-  "packageName": "tfl-api-explorer",
-  "email": "tnc1997@virginmedia.com",
-  "commit": "0b3ce959efd239cf90a990201be031890f532cdf",
-  "dependentChangeType": "patch",
-  "date": "2020-02-16T21:29:20.828Z"
-}

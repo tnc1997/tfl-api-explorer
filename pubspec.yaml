@@ -1,6 +1,6 @@
 name: tfl_api_explorer
 description: The TfL API Explorer allows you to explore the TfL API.
-version: 0.2.1
+version: 0.3.0
 homepage: https://github.com/tnc1997/flutter-tfl-api-explorer
 author: Thomas Clark
 

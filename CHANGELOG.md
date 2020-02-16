@@ -1,7 +1,13 @@
 # Change Log - tfl-api-explorer
 
-This log was last generated on Sat, 07 Sep 2019 15:39:16 GMT and should not be manually modified.
+This log was last generated on Sun, 16 Feb 2020 21:39:11 GMT and should not be manually modified.
 
+## 0.3.0
+Sun, 16 Feb 2020 21:39:11 GMT
+
+### Minor changes
+
+- Add the stop points page. (tnc1997@virginmedia.com)
 ## 0.2.1
 Sat, 07 Sep 2019 15:39:16 GMT
 
