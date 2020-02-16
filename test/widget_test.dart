@@ -9,8 +9,10 @@ import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.da
 import 'package:tfl_api_explorer/src/notifiers/line_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_line_route_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_notifier.dart';
+import 'package:tfl_api_explorer/src/notifiers/stop_point_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_page.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
+import 'package:tfl_api_explorer/src/pages/home_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_line_disruptions_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_line_routes_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_line_statuses_page.dart';
@@ -22,7 +24,8 @@ import 'package:tfl_api_explorer/src/pages/lines/lines_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/about_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/account_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
-import 'package:tfl_api_explorer/src/pages/home_page.dart';
+import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_page.dart';
+import 'package:tfl_api_explorer/src/pages/stop_points/stop_points_page.dart';
 
 import 'mocks/authentication_change_notifier_mock.dart';
 import 'mocks/tfl_api_mock.dart';
@@ -138,14 +141,38 @@ void main() {
 
   final _stopPoints = <StopPoint>[
     StopPoint(
+      naptanId: 'HUBZCW',
+      modes: ['bus', 'overground', 'tube'],
+      icsCode: '1000037',
+      smsCode: '48366',
+      stopType: 'TransportInterchange',
+      accessibilitySummary: 'N/A',
+      hubNaptanCode: 'HUBZCW',
       id: '490004733C',
+      url: 'N/A',
       commonName: 'Canada Water',
+      placeType: 'StopPoint',
+      lat: 51.498053,
+      lon: -0.049667,
     ),
     StopPoint(
+      naptanId: '940GZZLUTCR',
+      modes: ['bus', 'tube'],
+      icsCode: '1000235',
+      smsCode: '47657',
+      stopType: 'NaptanMetroStation',
+      accessibilitySummary: 'N/A',
+      hubNaptanCode: 'N/A',
       id: '490000235N',
+      url: 'N/A',
       commonName: 'Tottenham Court Road',
+      placeType: 'StopPoint',
+      lat: 51.516426,
+      lon: -0.13041,
     ),
   ];
+
+  final _stopPointsResourceApi = StopPointsResourceApiMock();
 
   final _tflApi = TflApiMock();
 
@@ -292,7 +319,7 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                ChangeNotifierProvider(
+                ChangeNotifierProvider<LineLineRouteFiltersChangeNotifier>(
                   create: (context) {
                     return LineLineRouteFiltersChangeNotifier();
                   },
@@ -393,7 +420,7 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                ChangeNotifierProvider(
+                ChangeNotifierProvider<LinePredictionFiltersChangeNotifier>(
                   create: (context) {
                     return LinePredictionFiltersChangeNotifier();
                   },
@@ -491,7 +518,7 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                ChangeNotifierProvider(
+                ChangeNotifierProvider<LineFiltersChangeNotifier>(
                   create: (context) {
                     return LineFiltersChangeNotifier();
                   },
@@ -579,7 +606,7 @@ void main() {
       });
 
       group('AccountPage', () {
-        testWidgets('App id', (tester) async {
+        testWidgets('App ID', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
@@ -594,7 +621,7 @@ void main() {
           );
 
           expect(
-            find.text('App id'),
+            find.text('App ID'),
             findsWidgets,
           );
           expect(
@@ -648,6 +675,182 @@ void main() {
       });
     });
 
+    group('stop_points', () {
+      group('StopPointPage', () {
+        final _stopPoint = _stopPoints[0];
+
+        testWidgets('Name', (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: StopPointPage(stopPoint: _stopPoint),
+            ),
+          );
+
+          expect(
+            find.text('Name'),
+            findsWidgets,
+          );
+          expect(
+            find.text(_stopPoint.commonName),
+            findsWidgets,
+          );
+        });
+
+        testWidgets('ICS code', (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: StopPointPage(stopPoint: _stopPoint),
+            ),
+          );
+
+          expect(
+            find.text('ICS code'),
+            findsWidgets,
+          );
+          expect(
+            find.text(_stopPoint.icsCode),
+            findsWidgets,
+          );
+        });
+
+        testWidgets('SMS code', (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: StopPointPage(stopPoint: _stopPoint),
+            ),
+          );
+
+          expect(
+            find.text('SMS code'),
+            findsWidgets,
+          );
+          expect(
+            find.text(_stopPoint.smsCode),
+            findsWidgets,
+          );
+        });
+
+        testWidgets('Stop type', (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: StopPointPage(stopPoint: _stopPoint),
+            ),
+          );
+
+          expect(
+            find.text('Stop type'),
+            findsWidgets,
+          );
+          expect(
+            find.text(_stopPoint.stopType),
+            findsWidgets,
+          );
+        });
+
+        testWidgets('Accessibility', (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: StopPointPage(stopPoint: _stopPoint),
+            ),
+          );
+
+          expect(
+            find.text('Accessibility'),
+            findsWidgets,
+          );
+          expect(
+            find.text(_stopPoint.accessibilitySummary),
+            findsWidgets,
+          );
+        });
+
+        testWidgets('Hub NaPTAN code', (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: StopPointPage(stopPoint: _stopPoint),
+            ),
+          );
+
+          expect(
+            find.text('Hub NaPTAN code'),
+            findsWidgets,
+          );
+          expect(
+            find.text(_stopPoint.hubNaptanCode),
+            findsWidgets,
+          );
+        });
+
+        testWidgets('URL', (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: StopPointPage(stopPoint: _stopPoint),
+            ),
+          );
+
+          expect(
+            find.text('URL'),
+            findsWidgets,
+          );
+          expect(
+            find.text(_stopPoint.url),
+            findsWidgets,
+          );
+        });
+
+        testWidgets('Place type', (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: StopPointPage(stopPoint: _stopPoint),
+            ),
+          );
+
+          expect(
+            find.text('Place type'),
+            findsWidgets,
+          );
+          expect(
+            find.text(_stopPoint.placeType),
+            findsWidgets,
+          );
+        });
+      });
+
+      group('StopPointsPage', () {
+        testWidgets('', (tester) async {
+          await tester.pumpWidget(
+            MultiProvider(
+              providers: [
+                ChangeNotifierProvider<StopPointFiltersChangeNotifier>(
+                  create: (context) {
+                    return StopPointFiltersChangeNotifier();
+                  },
+                ),
+                Provider<TflApi>.value(
+                  value: _tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: StopPointsPage(),
+              ),
+            ),
+          );
+          await tester.pumpAndSettle();
+
+          _stopPoints.forEach((stopPoint) {
+            expect(
+              find.text(stopPoint.id),
+              findsWidgets,
+            );
+            expect(
+              find.text(stopPoint.commonName),
+              findsWidgets,
+            );
+          });
+        });
+      });
+    });
+
     group('HomePage', () {
       testWidgets('Welcome to the TfL API Explorer', (tester) async {
         await tester.pumpWidget(
@@ -672,7 +875,7 @@ void main() {
       );
     });
 
-    when(_linesResourceApi.get()).thenAnswer((answer) {
+    when(_linesResourceApi.get(mode: anyNamed('mode'))).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
         () => _lines,
@@ -715,8 +918,16 @@ void main() {
       );
     });
 
+    when(_stopPointsResourceApi.get(type: anyNamed('type'), mode: anyNamed('mode'))).thenAnswer((answer) {
+      return Future.delayed(
+        Duration(seconds: 1),
+        () => _stopPoints,
+      );
+    });
+
     when(_tflApi.bikePoints).thenReturn(_bikePointsResourceApi);
     when(_tflApi.lines).thenReturn(_linesResourceApi);
+    when(_tflApi.stopPoints).thenReturn(_stopPointsResourceApi);
 
     when(_authenticationChangeNotifier.appId).thenReturn('123');
     when(_authenticationChangeNotifier.appKey).thenReturn('abc');

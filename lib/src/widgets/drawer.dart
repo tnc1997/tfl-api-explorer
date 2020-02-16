@@ -4,6 +4,7 @@ import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
 import 'package:tfl_api_explorer/src/pages/home_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/lines_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
+import 'package:tfl_api_explorer/src/pages/stop_points/stop_points_page.dart';
 
 class Drawer extends material.StatelessWidget {
   Drawer({
@@ -48,6 +49,15 @@ class Drawer extends material.StatelessWidget {
             onTap: () {
               material.Navigator.of(context).pushReplacementNamed(
                 LinesPage.routeName,
+              );
+            },
+          ),
+          material.ListTile(
+            leading: material.Icon(material.Icons.http),
+            title: material.Text('Stop points'),
+            onTap: () {
+              material.Navigator.of(context).pushReplacementNamed(
+                StopPointsPage.routeName,
               );
             },
           ),
