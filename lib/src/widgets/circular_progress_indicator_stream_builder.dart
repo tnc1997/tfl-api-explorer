@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:tfl_api_explorer/src/types/data_widget_builder.dart';
 
 class CircularProgressIndicatorStreamBuilder<T> extends StatelessWidget {
   CircularProgressIndicatorStreamBuilder({
@@ -14,7 +11,7 @@ class CircularProgressIndicatorStreamBuilder<T> extends StatelessWidget {
 
   final Stream<T> stream;
 
-  final DataWidgetBuilder<T> builder;
+  final Widget Function(BuildContext context, T data) builder;
 
   @override
   Widget build(BuildContext context) {

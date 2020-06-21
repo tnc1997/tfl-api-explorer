@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mdi/mdi.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_notifier.dart';
@@ -37,7 +38,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
         title: Text('Predictions'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.filter_list),
+            icon: Icon(Mdi.filter),
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mdi/mdi.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_mode_name_filter_page.dart';
@@ -18,7 +19,7 @@ class LineFiltersPage extends StatelessWidget {
         title: Text('Filters'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.restore),
+            icon: Icon(Mdi.restore),
             onPressed: () {
               Provider.of<LineFiltersChangeNotifier>(
                 context,

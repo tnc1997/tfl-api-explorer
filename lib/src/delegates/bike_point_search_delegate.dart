@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mdi/mdi.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/specifications/place_common_name_specification.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
@@ -36,7 +37,7 @@ class BikePointSearchDelegate extends SearchDelegate<Place> {
   List<Widget> buildActions(BuildContext context) {
     return <Widget>[
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: Icon(Mdi.close),
         onPressed: () {
           query = '';
 
@@ -49,7 +50,7 @@ class BikePointSearchDelegate extends SearchDelegate<Place> {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: Icon(Mdi.arrowLeft),
       onPressed: () {
         close(context, null);
       },

@@ -3,7 +3,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class LineStatusPage extends StatelessWidget {
-  static const route = '/line_statuses/:id';
+  static const routeName = '/line_statuses/:id';
 
   LineStatusPage({
     Key key,

@@ -918,7 +918,9 @@ void main() {
       );
     });
 
-    when(_stopPointsResourceApi.get(type: anyNamed('type'), mode: anyNamed('mode'))).thenAnswer((answer) {
+    when(_stopPointsResourceApi.get(
+            type: anyNamed('type'), mode: anyNamed('mode')))
+        .thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
         () => _stopPoints,

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mdi/mdi.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/delegates/bike_point_search_delegate.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_page.dart';
 import 'package:tfl_api_explorer/src/widgets/bike_point_list_tile.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
-import 'package:tfl_api_explorer/src/widgets/drawer.dart' as drawer;
+import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 
 class BikePointsPage extends StatelessWidget {
   static const routeName = '/bike_points';
@@ -32,7 +33,7 @@ class BikePointsPage extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return IconButton(
-                  icon: Icon(Icons.search),
+                  icon: Icon(Mdi.magnify),
                   onPressed: () async {
                     final bikePoint = await showSearch(
                       context: context,
@@ -42,7 +43,7 @@ class BikePointsPage extends StatelessWidget {
                     );
 
                     if (bikePoint != null) {
-                      Navigator.of(context).pushNamed(
+                      await Navigator.of(context).pushNamed(
                         BikePointPage.routeName,
                         arguments: bikePoint,
                       );
@@ -52,7 +53,7 @@ class BikePointsPage extends StatelessWidget {
               }
 
               return IconButton(
-                icon: Icon(Icons.search),
+                icon: Icon(Mdi.magnify),
                 onPressed: null,
               );
             },
@@ -78,7 +79,7 @@ class BikePointsPage extends StatelessWidget {
           }
         },
       ),
-      drawer: drawer.Drawer(),
+      drawer: TflApiExplorerDrawer(),
     );
   }
 }

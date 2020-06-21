@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tfl_api_explorer/src/widgets/drawer.dart' as drawer;
+import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 
 class HomePage extends StatelessWidget {
-  static const routeName = '/home';
+  static const routeName = Navigator.defaultRouteName;
 
   HomePage({
     Key key,
@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Text('Welcome to the TfL API Explorer'),
       ),
-      drawer: drawer.Drawer(),
+      drawer: TflApiExplorerDrawer(),
     );
   }
 }

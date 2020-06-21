@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_explorer/src/pages/settings/about_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/account_page.dart';
-import 'package:tfl_api_explorer/src/widgets/drawer.dart' as drawer;
+import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 
 class SettingsPage extends StatelessWidget {
   static const routeName = '/settings';
@@ -48,7 +48,7 @@ class SettingsPage extends StatelessWidget {
           ),
         ],
       ),
-      drawer: drawer.Drawer(),
+      drawer: TflApiExplorerDrawer(),
     );
   }
 }

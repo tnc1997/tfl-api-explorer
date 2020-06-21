@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:tfl_api_explorer/src/types/data_widget_builder.dart';
 
 class CircularProgressIndicatorFutureBuilder<T> extends StatelessWidget {
   CircularProgressIndicatorFutureBuilder({
@@ -14,7 +11,7 @@ class CircularProgressIndicatorFutureBuilder<T> extends StatelessWidget {
 
   final Future<T> future;
 
-  final DataWidgetBuilder<T> builder;
+  final Widget Function(BuildContext context, T data) builder;
 
   @override
   Widget build(BuildContext context) {
