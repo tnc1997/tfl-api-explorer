@@ -47,16 +47,6 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final theme = ThemeData(
-    visualDensity: VisualDensity.adaptivePlatformDensity,
-    brightness: Brightness.light,
-    primarySwatch: TflColors.blue,
-    inputDecorationTheme: const InputDecorationTheme(
-      filled: true,
-      border: UnderlineInputBorder(),
-    ),
-  );
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
