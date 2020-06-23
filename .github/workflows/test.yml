@@ -3,6 +3,23 @@ on:
     branches:
       - master
 jobs:
+  build:
+    if: contains(toJson(github.event.commits), '[skip ci]') == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: tnc1997/github-actions/actions/setup-flutter@setup-flutter_v1
+        with:
+          channel: 'dev'
+      - name: Run gpg decrypt
+        env:
+          ARCHIVE_PASSPHRASE: ${{ secrets.ARCHIVE_PASSPHRASE }}
+        run: |
+          gpg --quiet --batch --yes --decrypt --passphrase "$ARCHIVE_PASSPHRASE" --output "archive.tar" archive.tar.gpg
+          tar -xf archive.tar
+          rm archive.tar
+      - name: Run flutter build appbundle
+        run: flutter build appbundle
   test:
     if: contains(toJson(github.event.commits), '[skip ci]') == false
     runs-on: ubuntu-latest
