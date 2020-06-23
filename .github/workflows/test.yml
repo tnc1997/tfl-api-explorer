@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: tnc1997/github-actions/actions/setup-flutter@v1
+      - uses: tnc1997/github-actions/actions/setup-flutter@setup-flutter_v1
         with:
           channel: 'dev'
       - name: Run flutter test
