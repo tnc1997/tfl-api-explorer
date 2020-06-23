@@ -102,7 +102,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           primarySwatch: TflColors.blue,
           primaryColor: TflColors.blueGrey,
-          accentColor: Colors.white,
+          accentColor: TflColors.blue,
           canvasColor: TflColors.blueGrey,
           bottomAppBarColor: TflColors.blueGrey,
           cardColor: TflColors.blueGrey,

@@ -4,30 +4,30 @@ class TflColors {
   static const blue = MaterialColor(
     _bluePrimaryValue,
     <int, Color>{
-      50: Color(0xFFE2E7F2),
-      100: Color(0xFFB8C4DE),
-      200: Color(0xFF889DC9),
-      300: Color(0xFF5876B3),
-      400: Color(0xFF3558A2),
+      50: Color(0xFFE0E3F5),
+      100: Color(0xFFB3BAE5),
+      200: Color(0xFF808CD4),
+      300: Color(0xFF4D5EC2),
+      400: Color(0xFF263CB5),
       500: Color(_bluePrimaryValue),
-      600: Color(0xFF0F358A),
-      700: Color(0xFF0C2D7F),
-      800: Color(0xFF0A2675),
-      900: Color(0xFF051963),
+      600: Color(0xFF0016A0),
+      700: Color(0xFF001297),
+      800: Color(0xFF000E8D),
+      900: Color(0xFF00087D),
     },
   );
-  static const _bluePrimaryValue = 0xFF113B92;
+  static const _bluePrimaryValue = 0xFF0019A8;
 
   static const blueAccent = MaterialAccentColor(
     _blueAccentValue,
     <int, Color>{
-      100: Color(0xFF94A3FF),
+      100: Color(0xFFAAACFF),
       200: Color(_blueAccentValue),
-      400: Color(0xFF2E4CFF),
-      700: Color(0xFF1536FF),
+      400: Color(0xFF4447FF),
+      700: Color(0xFF2A2EFF),
     },
   );
-  static const _blueAccentValue = 0xFF6178FF;
+  static const _blueAccentValue = 0xFF7779FF;
 
   static const blueGrey = MaterialColor(
     _blueGreyPrimaryValue,
