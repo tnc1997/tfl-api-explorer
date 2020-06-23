@@ -7,8 +7,8 @@ jobs:
     if: contains(toJson(github.event.commits), '[skip ci]') == false
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: tnc1997/github-actions/setup-flutter@master
+      - uses: actions/checkout@v2
+      - uses: tnc1997/github-actions/actions/setup-flutter@v1
         with:
           channel: 'dev'
       - name: Run flutter test
