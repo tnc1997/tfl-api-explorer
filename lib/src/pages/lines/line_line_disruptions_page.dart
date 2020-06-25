@@ -4,7 +4,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:tfl_api_explorer/src/widgets/line_disruption_list_tile.dart';
 
-class LineLineDisruptionsPage extends StatelessWidget {
+class LineLineDisruptionsPage extends StatefulWidget {
   static const routeName = '/lines/:id/line_disruptions';
 
   LineLineDisruptionsPage({
@@ -17,18 +17,21 @@ class LineLineDisruptionsPage extends StatelessWidget {
   final Line line;
 
   @override
-  Widget build(BuildContext context) {
-    final lineDisruptionsFuture = Provider.of<TflApi>(
-      context,
-      listen: false,
-    ).lines.getLineDisruptions(line.id);
+  _LineLineDisruptionsPageState createState() =>
+      _LineLineDisruptionsPageState();
+}
 
+class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
+  Future<List<LineDisruption>> _lineDisruptionsFuture;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Line disruptions'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<LineDisruption>>(
-        future: lineDisruptionsFuture,
+        future: _lineDisruptionsFuture,
         builder: (context, data) {
           return ListView.builder(
             itemBuilder: (context, index) {
@@ -41,5 +44,13 @@ class LineLineDisruptionsPage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _lineDisruptionsFuture =
+        context.read<TflApi>().lines.getLineDisruptions(widget.line.id);
   }
 }

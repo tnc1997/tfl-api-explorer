@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/notifiers/stop_point_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
+import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 import 'package:tfl_api_explorer/src/widgets/stop_point_list_tile.dart';
 
@@ -74,6 +75,9 @@ class _StopPointsPageState extends State<StopPointsPage> {
 class _StopPointFiltersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final stopPointFiltersChangeNotifier =
+        context.watch<StopPointFiltersChangeNotifier>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Filters'),
@@ -81,34 +85,30 @@ class _StopPointFiltersPage extends StatelessWidget {
           IconButton(
             icon: Icon(Mdi.restore),
             onPressed: () {
-              context.read<StopPointFiltersChangeNotifier>().reset();
+              stopPointFiltersChangeNotifier.reset();
             },
           ),
         ],
       ),
-      body: Consumer<StopPointFiltersChangeNotifier>(
-        builder: (context, stopPointFiltersChangeNotifier, child) {
-          return ListView(
-            children: <Widget>[
-              ListTile(
-                title: Text('Modes'),
-                subtitle: Text(
-                  stopPointFiltersChangeNotifier.modes.join(', '),
-                  overflow: TextOverflow.ellipsis,
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            title: Text('Modes'),
+            subtitle: NullableText(
+              stopPointFiltersChangeNotifier.modes.join(', '),
+              overflow: TextOverflow.ellipsis,
+            ),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return _StopPointModesFilterPage();
+                  },
                 ),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return _StopPointModesFilterPage();
-                      },
-                    ),
-                  );
-                },
-              ),
-            ],
-          );
-        },
+              );
+            },
+          ),
+        ],
       ),
     );
   }
