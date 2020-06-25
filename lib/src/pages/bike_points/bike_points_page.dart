@@ -8,7 +8,7 @@ import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_
 import 'package:tfl_api_explorer/src/widgets/place_list_tile.dart';
 import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 
-class BikePointsPage extends StatelessWidget {
+class BikePointsPage extends StatefulWidget {
   static const routeName = '/bike_points';
 
   BikePointsPage({
@@ -18,50 +18,40 @@ class BikePointsPage extends StatelessWidget {
         );
 
   @override
-  Widget build(BuildContext context) {
-    final bikePointsFuture = Provider.of<TflApi>(
-      context,
-      listen: false,
-    ).bikePoints.get();
+  _BikePointsPageState createState() => _BikePointsPageState();
+}
 
+class _BikePointsPageState extends State<BikePointsPage> {
+  Future<List<Place>> _bikePointsFuture;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Bike points'),
         actions: <Widget>[
-          FutureBuilder<List<Place>>(
-            future: bikePointsFuture,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return IconButton(
-                  icon: Icon(Mdi.magnify),
-                  onPressed: () async {
-                    final bikePoint = await showSearch(
-                      context: context,
-                      delegate: BikePointSearchDelegate(
-                        bikePoints: snapshot.data,
-                      ),
-                    );
+          IconButton(
+            icon: Icon(Mdi.magnify),
+            onPressed: () async {
+              final bikePoint = await showSearch(
+                context: context,
+                delegate: BikePointSearchDelegate(
+                  bikePointsFuture: _bikePointsFuture,
+                ),
+              );
 
-                    if (bikePoint != null) {
-                      await Navigator.of(context).pushNamed(
-                        BikePointPage.routeName,
-                        arguments: bikePoint,
-                      );
-                    }
-                  },
+              if (bikePoint != null) {
+                await Navigator.of(context).pushNamed(
+                  BikePointPage.routeName,
+                  arguments: bikePoint,
                 );
               }
-
-              return IconButton(
-                icon: Icon(Mdi.magnify),
-                onPressed: null,
-              );
             },
           ),
         ],
       ),
       body: CircularProgressIndicatorFutureBuilder<List<Place>>(
-        future: bikePointsFuture,
+        future: _bikePointsFuture,
         builder: (context, data) {
           if (data != null && data.isNotEmpty) {
             return ListView.builder(
@@ -87,5 +77,12 @@ class BikePointsPage extends StatelessWidget {
       ),
       drawer: TflApiExplorerDrawer(),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    
+    _bikePointsFuture = context.read<TflApi>().bikePoints.get();
   }
 }
