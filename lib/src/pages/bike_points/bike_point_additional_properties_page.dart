@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
+import 'package:tfl_api_explorer/src/widgets/additional_properties_list_tile.dart';
 
 class BikePointAdditionalPropertiesPage extends StatelessWidget {
   static const routeName = '/bike_points/:id/additional_properties';
@@ -22,18 +22,11 @@ class BikePointAdditionalPropertiesPage extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return ListTile(
-            title: NullableText(
-              bikePoint.additionalProperties[index]?.key,
-              overflow: TextOverflow.ellipsis,
-            ),
-            subtitle: NullableText(
-              bikePoint.additionalProperties[index]?.value,
-              overflow: TextOverflow.ellipsis,
-            ),
+          return AdditionalPropertiesListTile(
+            additionalProperties: bikePoint.additionalProperties[index],
           );
         },
-        itemCount: bikePoint.additionalProperties?.length,
+        itemCount: bikePoint.additionalProperties.length,
       ),
     );
   }
