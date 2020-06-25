@@ -6,12 +6,6 @@ import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 class SettingsPage extends StatelessWidget {
   static const routeName = '/settings';
 
-  SettingsPage({
-    Key key,
-  }) : super(
-          key: key,
-        );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
