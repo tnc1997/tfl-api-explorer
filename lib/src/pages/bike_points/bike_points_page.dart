@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/delegates/bike_point_search_delegate.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_page.dart';
-import 'package:tfl_api_explorer/src/widgets/bike_point_list_tile.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
+import 'package:tfl_api_explorer/src/widgets/place_list_tile.dart';
 import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 
 class BikePointsPage extends StatelessWidget {
@@ -66,8 +66,14 @@ class BikePointsPage extends StatelessWidget {
           if (data != null && data.isNotEmpty) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                return BikePointListTile(
-                  bikePoint: data[index],
+                return PlaceListTile(
+                  place: data[index],
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      BikePointPage.routeName,
+                      arguments: data[index],
+                    );
+                  },
                 );
               },
               itemCount: data.length,

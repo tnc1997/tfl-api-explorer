@@ -3,6 +3,7 @@ import 'package:mdi/mdi.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/specifications/place_common_name_specification.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
+import 'package:tfl_api_explorer/src/widgets/place_list_tile.dart';
 
 class BikePointSearchDelegate extends SearchDelegate<Place> {
   BikePointSearchDelegate({
@@ -50,15 +51,8 @@ class BikePointSearchDelegate extends SearchDelegate<Place> {
 
     return ListView.builder(
       itemBuilder: (context, index) {
-        return ListTile(
-          title: NullableText(
-            bikePoints[index].id,
-            overflow: TextOverflow.ellipsis,
-          ),
-          subtitle: NullableText(
-            bikePoints[index].commonName,
-            overflow: TextOverflow.ellipsis,
-          ),
+        return PlaceListTile(
+          place: bikePoints[index],
           onTap: () {
             close(context, bikePoints[index]);
           },
