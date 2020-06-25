@@ -13,24 +13,7 @@ class BikePointSearchDelegate extends SearchDelegate<Place> {
 
   @override
   ThemeData appBarTheme(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return theme.copyWith(
-      inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TextStyle(
-          color: theme.primaryTextTheme.title.color,
-        ),
-      ),
-      primaryColor: theme.primaryColor,
-      primaryIconTheme: theme.primaryIconTheme,
-      primaryColorBrightness: theme.primaryColorBrightness,
-      primaryTextTheme: theme.primaryTextTheme,
-      textTheme: theme.textTheme.copyWith(
-        title: theme.textTheme.title.copyWith(
-          color: theme.primaryTextTheme.title.color,
-        ),
-      ),
-    );
+    return Theme.of(context);
   }
 
   @override
