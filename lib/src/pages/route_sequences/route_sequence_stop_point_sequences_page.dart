@@ -26,7 +26,7 @@ class RouteSequenceStopPointSequencesPage extends StatelessWidget {
             stopPointSequence: routeSequence.stopPointSequences[index],
           );
         },
-        itemCount: routeSequence.stopPointSequences?.length,
+        itemCount: routeSequence.stopPointSequences.length,
       ),
     );
   }

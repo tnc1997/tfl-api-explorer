@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
+import 'package:tfl_api_explorer/src/widgets/identifier_list_tile.dart';
 
 class StopPointLinesPage extends StatelessWidget {
   static const routeName = '/stop_points/:id/lines';
@@ -22,18 +22,11 @@ class StopPointLinesPage extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return ListTile(
-            title: NullableText(
-              stopPoint.lines[index]?.id,
-              overflow: TextOverflow.ellipsis,
-            ),
-            subtitle: NullableText(
-              stopPoint.lines[index]?.name,
-              overflow: TextOverflow.ellipsis,
-            ),
+          return IdentifierListTile(
+            identifier: stopPoint.lines[index],
           );
         },
-        itemCount: stopPoint.lines?.length,
+        itemCount: stopPoint.lines.length,
       ),
     );
   }

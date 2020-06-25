@@ -76,7 +76,9 @@ class StopPointPage extends StatelessWidget {
             ),
             onTap: stopPoint.url != null
                 ? () async {
-                    await launch(stopPoint.url);
+                    if (await canLaunch(stopPoint.url)) {
+                      await launch(stopPoint.url);
+                    }
                   }
                 : null,
           ),
