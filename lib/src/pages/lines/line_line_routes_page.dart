@@ -29,7 +29,7 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
   @override
   Widget build(BuildContext context) {
     final lineLineRouteFiltersChangeNotifier =
-        context.read<LineLineRouteFiltersChangeNotifier>();
+        context.watch<LineLineRouteFiltersChangeNotifier>();
 
     return Scaffold(
       appBar: AppBar(

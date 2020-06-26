@@ -32,7 +32,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
   @override
   Widget build(BuildContext context) {
     final linePredictionFiltersChangeNotifier =
-        context.read<LinePredictionFiltersChangeNotifier>();
+        context.watch<LinePredictionFiltersChangeNotifier>();
 
     return Scaffold(
       appBar: AppBar(
