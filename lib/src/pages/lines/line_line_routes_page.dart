@@ -78,7 +78,15 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
   }
 }
 
-class _LineLineRouteFiltersPage extends StatelessWidget {
+class _LineLineRouteFiltersPage extends StatefulWidget {
+  @override
+  _LineLineRouteFiltersPageState createState() =>
+      _LineLineRouteFiltersPageState();
+}
+
+class _LineLineRouteFiltersPageState extends State<_LineLineRouteFiltersPage> {
+  Future<List<String>> _lineServiceTypesFuture;
+
   @override
   Widget build(BuildContext context) {
     final lineLineRouteFiltersChangeNotifier =
@@ -96,67 +104,28 @@ class _LineLineRouteFiltersPage extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          ListTile(
-            title: Text('Service type'),
-            subtitle: NullableText(
-              lineLineRouteFiltersChangeNotifier.serviceType,
-              overflow: TextOverflow.ellipsis,
-            ),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return _LineLineRouteServiceTypeFilterPage();
-                  },
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _LineLineRouteServiceTypeFilterPage extends StatefulWidget {
-  @override
-  _LineLineRouteServiceTypeFilterPageState createState() =>
-      _LineLineRouteServiceTypeFilterPageState();
-}
-
-class _LineLineRouteServiceTypeFilterPageState
-    extends State<_LineLineRouteServiceTypeFilterPage> {
-  Future<List<String>> _lineServiceTypesFuture;
-
-  @override
-  Widget build(BuildContext context) {
-    final lineLineRouteFiltersChangeNotifier =
-        context.watch<LineLineRouteFiltersChangeNotifier>();
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Service type'),
-      ),
-      body: CircularProgressIndicatorFutureBuilder<List<String>>(
-        future: _lineServiceTypesFuture,
+      body: CircularProgressIndicatorFutureBuilder<List>(
+        future: Future.wait([_lineServiceTypesFuture]),
         builder: (context, data) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return RadioListTile<String>(
-                value: data[index],
-                groupValue: lineLineRouteFiltersChangeNotifier.serviceType,
-                onChanged: (value) {
-                  lineLineRouteFiltersChangeNotifier.serviceType = value;
-                },
-                title: NullableText(
-                  data[index],
-                  overflow: TextOverflow.ellipsis,
-                ),
-              );
-            },
-            itemCount: data.length,
+          return ListView(
+            children: <Widget>[
+              ExpansionTile(
+                title: Text('Service type'),
+                children: (data[0] as List<String>).map((serviceType) {
+                  return RadioListTile<String>(
+                    value: serviceType,
+                    groupValue: lineLineRouteFiltersChangeNotifier.serviceType,
+                    onChanged: (value) {
+                      lineLineRouteFiltersChangeNotifier.serviceType = value;
+                    },
+                    title: NullableText(
+                      serviceType,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
           );
         },
       ),
