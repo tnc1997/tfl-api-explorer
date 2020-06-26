@@ -13,6 +13,9 @@ import 'package:tfl_api_explorer/src/notifiers/stop_point_filters_change_notifie
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_additional_properties_page.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_page.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
+import 'package:tfl_api_explorer/src/pages/car_parks/car_park_additional_properties_page.dart';
+import 'package:tfl_api_explorer/src/pages/car_parks/car_park_page.dart';
+import 'package:tfl_api_explorer/src/pages/car_parks/car_parks_page.dart';
 import 'package:tfl_api_explorer/src/pages/home_page.dart';
 import 'package:tfl_api_explorer/src/pages/line_disruptions/line_disruption_page.dart';
 import 'package:tfl_api_explorer/src/pages/line_routes/line_route_page.dart';
@@ -136,6 +139,16 @@ class MyApp extends StatelessWidget {
             );
           case BikePointsPage.routeName:
             return BikePointsPage();
+          case CarParkAdditionalPropertiesPage.routeName:
+            return CarParkAdditionalPropertiesPage(
+              carPark: settings.arguments,
+            );
+          case CarParkPage.routeName:
+            return CarParkPage(
+              carPark: settings.arguments,
+            );
+          case CarParksPage.routeName:
+            return CarParksPage();
           case HomePage.routeName:
             return HomePage();
           case LineDisruptionPage.routeName:

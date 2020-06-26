@@ -6,12 +6,12 @@ import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 import 'package:tfl_api_explorer/src/widgets/place_list_tile.dart';
 
-class BikePointSearchDelegate extends SearchDelegate<Place> {
-  BikePointSearchDelegate({
-    @required this.bikePointsFuture,
+class PlaceSearchDelegate extends SearchDelegate<Place> {
+  PlaceSearchDelegate({
+    @required this.placesFuture,
   });
 
-  final Future<List<Place>> bikePointsFuture;
+  final Future<List<Place>> placesFuture;
 
   @override
   ThemeData appBarTheme(BuildContext context) {
@@ -44,25 +44,25 @@ class BikePointSearchDelegate extends SearchDelegate<Place> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return CircularProgressIndicatorFutureBuilder(
-      future: bikePointsFuture,
+    return CircularProgressIndicatorFutureBuilder<List<Place>>(
+      future: placesFuture,
       builder: (context, data) {
         final specification = PlaceCommonNameSpecification(
           commonName: query,
         );
 
-        final bikePoints = data.where(specification.isSatisfiedBy).toList();
+        final places = data.where(specification.isSatisfiedBy).toList();
 
         return ListView.builder(
           itemBuilder: (context, index) {
             return PlaceListTile(
-              place: bikePoints[index],
+              place: places[index],
               onTap: () {
-                close(context, bikePoints[index]);
+                close(context, places[index]);
               },
             );
           },
-          itemCount: bikePoints.length,
+          itemCount: places.length,
         );
       },
     );
@@ -70,30 +70,30 @@ class BikePointSearchDelegate extends SearchDelegate<Place> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return CircularProgressIndicatorFutureBuilder(
-      future: bikePointsFuture,
+    return CircularProgressIndicatorFutureBuilder<List<Place>>(
+      future: placesFuture,
       builder: (context, data) {
         final specification = PlaceCommonNameSpecification(
           commonName: query,
         );
 
-        final bikePoints = data.where(specification.isSatisfiedBy).toList();
+        final places = data.where(specification.isSatisfiedBy).toList();
 
         return ListView.builder(
           itemBuilder: (context, index) {
             return ListTile(
               title: NullableText(
-                bikePoints[index].commonName,
+                places[index].commonName,
                 overflow: TextOverflow.ellipsis,
               ),
               onTap: () {
-                query = bikePoints[index].commonName;
+                query = places[index].commonName;
 
                 showResults(context);
               },
             );
           },
-          itemCount: bikePoints.length,
+          itemCount: places.length,
         );
       },
     );

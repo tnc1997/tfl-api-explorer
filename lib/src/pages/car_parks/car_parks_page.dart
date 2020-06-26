@@ -3,20 +3,20 @@ import 'package:mdi/mdi.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/delegates/bike_point_search_delegate.dart';
-import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_page.dart';
+import 'package:tfl_api_explorer/src/pages/car_parks/car_park_page.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:tfl_api_explorer/src/widgets/place_list_tile.dart';
 import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 
-class BikePointsPage extends StatefulWidget {
-  static const routeName = '/bike_points';
+class CarParksPage extends StatefulWidget {
+  static const routeName = '/car_parks';
 
   @override
-  _BikePointsPageState createState() => _BikePointsPageState();
+  _CarParksPageState createState() => _CarParksPageState();
 }
 
-class _BikePointsPageState extends State<BikePointsPage> {
-  Future<List<Place>> _bikePointsFuture;
+class _CarParksPageState extends State<CarParksPage> {
+  Future<List<Place>> _carParksFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +27,17 @@ class _BikePointsPageState extends State<BikePointsPage> {
           IconButton(
             icon: Icon(Mdi.magnify),
             onPressed: () async {
-              final bikePoint = await showSearch(
+              final carPark = await showSearch(
                 context: context,
                 delegate: PlaceSearchDelegate(
-                  placesFuture: _bikePointsFuture,
+                  placesFuture: _carParksFuture,
                 ),
               );
 
-              if (bikePoint != null) {
+              if (carPark != null) {
                 await Navigator.of(context).pushNamed(
-                  BikePointPage.routeName,
-                  arguments: bikePoint,
+                  CarParkPage.routeName,
+                  arguments: carPark,
                 );
               }
             },
@@ -45,7 +45,7 @@ class _BikePointsPageState extends State<BikePointsPage> {
         ],
       ),
       body: CircularProgressIndicatorFutureBuilder<List<Place>>(
-        future: _bikePointsFuture,
+        future: _carParksFuture,
         builder: (context, data) {
           if (data != null && data.isNotEmpty) {
             return ListView.builder(
@@ -54,7 +54,7 @@ class _BikePointsPageState extends State<BikePointsPage> {
                   place: data[index],
                   onTap: () {
                     Navigator.of(context).pushNamed(
-                      BikePointPage.routeName,
+                      CarParkPage.routeName,
                       arguments: data[index],
                     );
                   },
@@ -76,7 +76,7 @@ class _BikePointsPageState extends State<BikePointsPage> {
   @override
   void initState() {
     super.initState();
-    
-    _bikePointsFuture = context.read<TflApi>().bikePoints.get();
+
+    _carParksFuture = context.read<TflApi>().carParks.get();
   }
 }
