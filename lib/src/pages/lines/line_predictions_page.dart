@@ -132,10 +132,7 @@ class _LinePredictionFiltersPage extends StatelessWidget {
           IconButton(
             icon: Icon(Mdi.restore),
             onPressed: () {
-              Provider.of<LinePredictionFiltersChangeNotifier>(
-                context,
-                listen: false,
-              ).reset();
+              linePredictionFiltersChangeNotifier.reset();
             },
           ),
         ],
