@@ -110,7 +110,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
   }
 }
 
-class _LinePredictionFiltersPage extends StatelessWidget {
+class _LinePredictionFiltersPage extends StatefulWidget {
   _LinePredictionFiltersPage({
     Key key,
     @required this.line,
@@ -121,9 +121,18 @@ class _LinePredictionFiltersPage extends StatelessWidget {
   final Line line;
 
   @override
+  _LinePredictionFiltersPageState createState() =>
+      _LinePredictionFiltersPageState();
+}
+
+class _LinePredictionFiltersPageState
+    extends State<_LinePredictionFiltersPage> {
+  Future<List<StopPoint>> _stopPointsFuture;
+
+  @override
   Widget build(BuildContext context) {
     final linePredictionFiltersChangeNotifier =
-        context.read<LinePredictionFiltersChangeNotifier>();
+        context.watch<LinePredictionFiltersChangeNotifier>();
 
     return Scaffold(
       appBar: AppBar(
@@ -137,157 +146,46 @@ class _LinePredictionFiltersPage extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          ListTile(
-            title: Text('Station name'),
-            subtitle: NullableText(
-              linePredictionFiltersChangeNotifier.stationName,
-              overflow: TextOverflow.ellipsis,
-            ),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return _LinePredictionStationNameFilterPage(
-                      line: line,
-                    );
-                  },
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Destination name'),
-            subtitle: NullableText(
-              linePredictionFiltersChangeNotifier.destinationName,
-              overflow: TextOverflow.ellipsis,
-            ),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return _LinePredictionDestinationNameFilterPage(
-                      line: line,
-                    );
-                  },
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _LinePredictionDestinationNameFilterPage extends StatefulWidget {
-  _LinePredictionDestinationNameFilterPage({
-    Key key,
-    @required this.line,
-  }) : super(
-          key: key,
-        );
-
-  final Line line;
-
-  @override
-  _LinePredictionDestinationNameFilterPageState createState() =>
-      _LinePredictionDestinationNameFilterPageState();
-}
-
-class _LinePredictionDestinationNameFilterPageState
-    extends State<_LinePredictionDestinationNameFilterPage> {
-  Future<List<StopPoint>> _stopPointsFuture;
-
-  @override
-  Widget build(BuildContext context) {
-    final linePredictionFiltersChangeNotifier =
-        context.read<LinePredictionFiltersChangeNotifier>();
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Destination name'),
-      ),
-      body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
-        future: _stopPointsFuture,
+      body: CircularProgressIndicatorFutureBuilder<List>(
+        future: Future.wait([_stopPointsFuture]),
         builder: (context, data) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return RadioListTile<String>(
-                value: data[index].commonName,
-                groupValue: linePredictionFiltersChangeNotifier.destinationName,
-                onChanged: (value) {
-                  linePredictionFiltersChangeNotifier.destinationName = value;
-                },
-                title: NullableText(
-                  data[index].commonName,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              );
-            },
-            itemCount: data.length,
-          );
-        },
-      ),
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    _stopPointsFuture =
-        context.read<TflApi>().lines.getStopPoints(widget.line.id);
-  }
-}
-
-class _LinePredictionStationNameFilterPage extends StatefulWidget {
-  _LinePredictionStationNameFilterPage({
-    Key key,
-    @required this.line,
-  }) : super(
-          key: key,
-        );
-
-  final Line line;
-
-  @override
-  _LinePredictionStationNameFilterPageState createState() =>
-      _LinePredictionStationNameFilterPageState();
-}
-
-class _LinePredictionStationNameFilterPageState
-    extends State<_LinePredictionStationNameFilterPage> {
-  Future<List<StopPoint>> _stopPointsFuture;
-
-  @override
-  Widget build(BuildContext context) {
-    final linePredictionFiltersChangeNotifier =
-        context.read<LinePredictionFiltersChangeNotifier>();
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Station name'),
-      ),
-      body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
-        future: _stopPointsFuture,
-        builder: (context, data) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return RadioListTile<String>(
-                value: data[index].commonName,
-                groupValue: linePredictionFiltersChangeNotifier.stationName,
-                onChanged: (value) {
-                  linePredictionFiltersChangeNotifier.stationName = value;
-                },
-                title: NullableText(
-                  data[index].commonName,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              );
-            },
-            itemCount: data.length,
+          return ListView(
+            children: <Widget>[
+              ExpansionTile(
+                title: Text('Station name'),
+                children: (data[0] as List<StopPoint>).map((stopPoint) {
+                  return RadioListTile<String>(
+                    value: stopPoint.commonName,
+                    groupValue: linePredictionFiltersChangeNotifier.stationName,
+                    onChanged: (value) {
+                      linePredictionFiltersChangeNotifier.stationName = value;
+                    },
+                    title: NullableText(
+                      stopPoint.commonName,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  );
+                }).toList(),
+              ),
+              ExpansionTile(
+                title: Text('Destination name'),
+                children: (data[0] as List<StopPoint>).map((stopPoint) {
+                  return RadioListTile<String>(
+                    value: stopPoint.commonName,
+                    groupValue:
+                        linePredictionFiltersChangeNotifier.destinationName,
+                    onChanged: (value) {
+                      linePredictionFiltersChangeNotifier.destinationName =
+                          value;
+                    },
+                    title: NullableText(
+                      stopPoint.commonName,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
           );
         },
       ),

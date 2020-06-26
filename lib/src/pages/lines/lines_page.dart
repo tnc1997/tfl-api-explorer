@@ -69,7 +69,14 @@ class _LinesPageState extends State<LinesPage> {
   }
 }
 
-class _LineFiltersPage extends StatelessWidget {
+class _LineFiltersPage extends StatefulWidget {
+  @override
+  _LineFiltersPageState createState() => _LineFiltersPageState();
+}
+
+class _LineFiltersPageState extends State<_LineFiltersPage> {
+  Future<List<Mode>> _lineModesFuture;
+
   @override
   Widget build(BuildContext context) {
     final lineFiltersChangeNotifier =
@@ -87,65 +94,28 @@ class _LineFiltersPage extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          ListTile(
-            title: Text('Mode name'),
-            subtitle: NullableText(
-              lineFiltersChangeNotifier.modeName,
-              overflow: TextOverflow.ellipsis,
-            ),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return _LineModeNameFilterPage();
-                  },
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _LineModeNameFilterPage extends StatefulWidget {
-  @override
-  _LineModeNameFilterPageState createState() => _LineModeNameFilterPageState();
-}
-
-class _LineModeNameFilterPageState extends State<_LineModeNameFilterPage> {
-  Future<List<Mode>> _lineModesFuture;
-
-  @override
-  Widget build(BuildContext context) {
-    final lineFiltersChangeNotifier =
-        context.watch<LineFiltersChangeNotifier>();
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Mode name'),
-      ),
-      body: CircularProgressIndicatorFutureBuilder<List<Mode>>(
-        future: _lineModesFuture,
+      body: CircularProgressIndicatorFutureBuilder<List>(
+        future: Future.wait([_lineModesFuture]),
         builder: (context, data) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return RadioListTile<String>(
-                value: data[index].modeName,
-                groupValue: lineFiltersChangeNotifier.modeName,
-                onChanged: (value) {
-                  lineFiltersChangeNotifier.modeName = value;
-                },
-                title: NullableText(
-                  data[index].modeName,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              );
-            },
-            itemCount: data.length,
+          return ListView(
+            children: <Widget>[
+              ExpansionTile(
+                title: Text('Mode name'),
+                children: (data[0] as List<Mode>).map((mode) {
+                  return RadioListTile<String>(
+                    value: mode.modeName,
+                    groupValue: lineFiltersChangeNotifier.modeName,
+                    onChanged: (value) {
+                      lineFiltersChangeNotifier.modeName = value;
+                    },
+                    title: NullableText(
+                      mode.modeName,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
           );
         },
       ),

@@ -72,7 +72,14 @@ class _StopPointsPageState extends State<StopPointsPage> {
   }
 }
 
-class _StopPointFiltersPage extends StatelessWidget {
+class _StopPointFiltersPage extends StatefulWidget {
+  @override
+  _StopPointFiltersPageState createState() => _StopPointFiltersPageState();
+}
+
+class _StopPointFiltersPageState extends State<_StopPointFiltersPage> {
+  Future<List<Mode>> _stopPointModesFuture;
+
   @override
   Widget build(BuildContext context) {
     final stopPointFiltersChangeNotifier =
@@ -90,71 +97,33 @@ class _StopPointFiltersPage extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          ListTile(
-            title: Text('Modes'),
-            subtitle: NullableText(
-              stopPointFiltersChangeNotifier.modes.join(', '),
-              overflow: TextOverflow.ellipsis,
-            ),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return _StopPointModesFilterPage();
-                  },
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _StopPointModesFilterPage extends StatefulWidget {
-  @override
-  _StopPointModesFilterPageState createState() =>
-      _StopPointModesFilterPageState();
-}
-
-class _StopPointModesFilterPageState extends State<_StopPointModesFilterPage> {
-  Future<List<Mode>> _stopPointModesFuture;
-
-  @override
-  Widget build(BuildContext context) {
-    final stopPointFiltersChangeNotifier =
-        context.watch<StopPointFiltersChangeNotifier>();
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Modes'),
-      ),
-      body: CircularProgressIndicatorFutureBuilder<List<Mode>>(
-        future: _stopPointModesFuture,
+      body: CircularProgressIndicatorFutureBuilder<List>(
+        future: Future.wait([_stopPointModesFuture]),
         builder: (context, data) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              final modeName = data[index].modeName;
-
-              return CheckboxListTile(
-                value: stopPointFiltersChangeNotifier.modes.contains(modeName),
-                onChanged: (value) {
-                  if (value) {
-                    stopPointFiltersChangeNotifier.addMode(modeName);
-                  } else {
-                    stopPointFiltersChangeNotifier.removeMode(modeName);
-                  }
-                },
-                title: Text(
-                  modeName,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              );
-            },
-            itemCount: data.length,
+          return ListView(
+            children: <Widget>[
+              ExpansionTile(
+                title: Text('Modes'),
+                children: (data[0] as List<Mode>).map((mode) {
+                  return CheckboxListTile(
+                    value: stopPointFiltersChangeNotifier.modes
+                        .contains(mode.modeName),
+                    onChanged: (value) {
+                      if (value) {
+                        stopPointFiltersChangeNotifier.addMode(mode.modeName);
+                      } else {
+                        stopPointFiltersChangeNotifier
+                            .removeMode(mode.modeName);
+                      }
+                    },
+                    title: NullableText(
+                      mode.modeName,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
           );
         },
       ),
