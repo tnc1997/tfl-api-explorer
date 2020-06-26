@@ -24,7 +24,7 @@ class AuthenticationChangeNotifier extends ChangeNotifier {
 
     _client?.close();
 
-    _client = clientViaAppKeyAppId(_appKey, _appId);
+    _client = clientViaAppIdAppKey(_appId, _appKey);
 
     notifyListeners();
   }

@@ -1,5 +1,0 @@
-Features
-* add settings page
-* add login page
-* add lines page
-* add branding for android

@@ -4,7 +4,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:tfl_api_explorer/src/widgets/route_sequence_list_tile.dart';
 
-class LineRouteSequencesPage extends StatelessWidget {
+class LineRouteSequencesPage extends StatefulWidget {
   static const routeName = '/lines/:id/route_sequences';
 
   LineRouteSequencesPage({
@@ -17,18 +17,20 @@ class LineRouteSequencesPage extends StatelessWidget {
   final Line line;
 
   @override
-  Widget build(BuildContext context) {
-    final routeSequencesFuture = Provider.of<TflApi>(
-      context,
-      listen: false,
-    ).lines.getRouteSequences(line.id);
+  _LineRouteSequencesPageState createState() => _LineRouteSequencesPageState();
+}
 
+class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
+  Future<List<RouteSequence>> _routeSequencesFuture;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Route sequences'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<RouteSequence>>(
-        future: routeSequencesFuture,
+        future: _routeSequencesFuture,
         builder: (context, data) {
           return ListView.builder(
             itemBuilder: (context, index) {
@@ -41,5 +43,13 @@ class LineRouteSequencesPage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _routeSequencesFuture =
+        context.read<TflApi>().lines.getRouteSequences(widget.line.id);
   }
 }

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/tfl-api-explorer.iml" filepath="$PROJECT_DIR$/tfl-api-explorer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/tfl-api-explorer-android.iml" filepath="$PROJECT_DIR$/android/tfl-api-explorer-android.iml" />
     </modules>
   </component>
 </project>

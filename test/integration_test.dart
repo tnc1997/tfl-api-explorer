@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mdi/mdi.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
@@ -62,7 +63,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    await tester.tap(find.byIcon(Icons.search));
+    await tester.tap(find.byIcon(Mdi.magnify));
     await tester.pumpAndSettle();
 
     _bikePoints.forEach((bikePoint) {

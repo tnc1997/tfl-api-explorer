@@ -4,7 +4,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:tfl_api_explorer/src/widgets/stop_point_list_tile.dart';
 
-class LineStopPointsPage extends StatelessWidget {
+class LineStopPointsPage extends StatefulWidget {
   static const routeName = '/lines/:id/stop_points';
 
   LineStopPointsPage({
@@ -17,18 +17,20 @@ class LineStopPointsPage extends StatelessWidget {
   final Line line;
 
   @override
-  Widget build(BuildContext context) {
-    final stopPointsFuture = Provider.of<TflApi>(
-      context,
-      listen: false,
-    ).lines.getStopPoints(line.id);
+  _LineStopPointsPageState createState() => _LineStopPointsPageState();
+}
 
+class _LineStopPointsPageState extends State<LineStopPointsPage> {
+  Future<List<StopPoint>> _stopPointsFuture;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Stop points'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
-        future: stopPointsFuture,
+        future: _stopPointsFuture,
         builder: (context, data) {
           return ListView.builder(
             itemBuilder: (context, index) {
@@ -41,5 +43,13 @@ class LineStopPointsPage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _stopPointsFuture =
+        context.read<TflApi>().lines.getStopPoints(widget.line.id);
   }
 }

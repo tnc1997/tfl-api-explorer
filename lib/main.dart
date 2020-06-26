@@ -1,12 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/errors/page_not_found_error.dart';
-import 'package:tfl_api_explorer/src/material/colors.dart';
+import 'package:tfl_api_explorer/src/colors/tfl_colors.dart';
 import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_line_route_filters_change_notifier.dart';
@@ -41,15 +39,11 @@ import 'package:tfl_api_explorer/src/pages/stop_point_sequences/stop_point_seque
 import 'package:tfl_api_explorer/src/pages/stop_points/stop_points_page.dart';
 
 Future<void> main() async {
-  await _configureIntl();
-
-  runApp(MyApp());
-}
-
-Future<void> _configureIntl() async {
   Intl.defaultLocale = 'en_GB';
 
-  await initializeDateFormatting('en_GB');
+  await initializeDateFormatting();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -89,210 +83,164 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        home: LoginPage(),
+        initialRoute: LoginPage.routeName,
         onGenerateRoute: _onGenerateRoute,
+        onUnknownRoute: _onUnknownRoute,
         title: 'TfL API Explorer',
         theme: ThemeData(
           brightness: Brightness.light,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
           primarySwatch: TflColors.blue,
-          accentColor: TflColors.blue,
-          toggleableActiveColor: TflColors.blue,
+          errorColor: TflColors.red,
+          inputDecorationTheme: const InputDecorationTheme(
+            filled: true,
+            border: UnderlineInputBorder(),
+          ),
         ),
         darkTheme: ThemeData(
           brightness: Brightness.dark,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
           primarySwatch: TflColors.blue,
+          primaryColor: TflColors.blueGrey,
           accentColor: TflColors.blue,
+          canvasColor: TflColors.blueGrey,
+          bottomAppBarColor: TflColors.blueGrey,
+          cardColor: TflColors.blueGrey,
+          textSelectionHandleColor: TflColors.blue,
+          errorColor: TflColors.red,
           toggleableActiveColor: TflColors.blue,
+          inputDecorationTheme: const InputDecorationTheme(
+            filled: true,
+            border: UnderlineInputBorder(),
+          ),
         ),
-        supportedLocales: const <Locale>[Locale('en', 'GB')],
+//        localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        supportedLocales: const <Locale>[
+          Locale('en', 'GB'),
+        ],
       ),
     );
   }
 
-  Route _onGenerateRoute(RouteSettings routeSettings) {
-    switch (routeSettings.name) {
-      case BikePointAdditionalPropertiesPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
+  Route<T> _onGenerateRoute<T>(RouteSettings settings) {
+    return MaterialPageRoute<T>(
+      builder: (context) {
+        switch (settings.name) {
+          case BikePointAdditionalPropertiesPage.routeName:
             return BikePointAdditionalPropertiesPage(
-              bikePoint: routeSettings.arguments,
+              bikePoint: settings.arguments,
             );
-          },
-        );
-      case BikePointPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
-            return BikePointPage(bikePoint: routeSettings.arguments);
-          },
-        );
-      case BikePointsPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
+          case BikePointPage.routeName:
+            return BikePointPage(
+              bikePoint: settings.arguments,
+            );
+          case BikePointsPage.routeName:
             return BikePointsPage();
-          },
-        );
-      case HomePage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
+          case HomePage.routeName:
             return HomePage();
-          },
-        );
-      case LineDisruptionPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
-            return LineDisruptionPage(lineDisruption: routeSettings.arguments);
-          },
-        );
-      case LineLineDisruptionsPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
-            return LineLineDisruptionsPage(line: routeSettings.arguments);
-          },
-        );
-      case LineLineRoutesPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
-            return LineLineRoutesPage(line: routeSettings.arguments);
-          },
-        );
-      case LineLineStatusesPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
-            return LineLineStatusesPage(line: routeSettings.arguments);
-          },
-        );
-      case LinePage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
-            return LinePage(line: routeSettings.arguments);
-          },
-        );
-      case LinePredictionsPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
-            return LinePredictionsPage(line: routeSettings.arguments);
-          },
-        );
-      case LineRoutePage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
-            return LineRoutePage(lineRoute: routeSettings.arguments);
-          },
-        );
-      case LineRouteSequencesPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
-            return LineRouteSequencesPage(line: routeSettings.arguments);
-          },
-        );
-      case LineStatusPage.route:
-        return MaterialPageRoute(
-          builder: (context) {
-            return LineStatusPage(lineStatus: routeSettings.arguments);
-          },
-        );
-      case LineStopPointsPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
-            return LineStopPointsPage(line: routeSettings.arguments);
-          },
-        );
-      case LinesPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
+          case LineDisruptionPage.routeName:
+            return LineDisruptionPage(
+              lineDisruption: settings.arguments,
+            );
+          case LineLineDisruptionsPage.routeName:
+            return LineLineDisruptionsPage(
+              line: settings.arguments,
+            );
+          case LineLineRoutesPage.routeName:
+            return LineLineRoutesPage(
+              line: settings.arguments,
+            );
+          case LineLineStatusesPage.routeName:
+            return LineLineStatusesPage(
+              line: settings.arguments,
+            );
+          case LinePage.routeName:
+            return LinePage(
+              line: settings.arguments,
+            );
+          case LinePredictionsPage.routeName:
+            return LinePredictionsPage(
+              line: settings.arguments,
+            );
+          case LineRoutePage.routeName:
+            return LineRoutePage(
+              lineRoute: settings.arguments,
+            );
+          case LineRouteSequencesPage.routeName:
+            return LineRouteSequencesPage(
+              line: settings.arguments,
+            );
+          case LineStatusPage.routeName:
+            return LineStatusPage(
+              lineStatus: settings.arguments,
+            );
+          case LineStopPointsPage.routeName:
+            return LineStopPointsPage(
+              line: settings.arguments,
+            );
+          case LinesPage.routeName:
             return LinesPage();
-          },
-        );
-      case LoginPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
+          case LoginPage.routeName:
             return LoginPage();
-          },
-        );
-      case PredictionPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
-            return PredictionPage(prediction: routeSettings.arguments);
-          },
-        );
-      case RouteSequencePage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
-            return RouteSequencePage(routeSequence: routeSettings.arguments);
-          },
-        );
-      case RouteSequenceStopPointSequencesPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
+          case PredictionPage.routeName:
+            return PredictionPage(
+              prediction: settings.arguments,
+            );
+          case RouteSequencePage.routeName:
+            return RouteSequencePage(
+              routeSequence: settings.arguments,
+            );
+          case RouteSequenceStopPointSequencesPage.routeName:
             return RouteSequenceStopPointSequencesPage(
-              routeSequence: routeSettings.arguments,
+              routeSequence: settings.arguments,
             );
-          },
-        );
-      case SettingsPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
+          case SettingsPage.routeName:
             return SettingsPage();
-          },
-        );
-      case StopPointAdditionalPropertiesPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
+          case StopPointAdditionalPropertiesPage.routeName:
             return StopPointAdditionalPropertiesPage(
-              stopPoint: routeSettings.arguments,
+              stopPoint: settings.arguments,
             );
-          },
-        );
-      case StopPointLinesPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
+          case StopPointLinesPage.routeName:
             return StopPointLinesPage(
-              stopPoint: routeSettings.arguments,
+              stopPoint: settings.arguments,
             );
-          },
-        );
-      case StopPointModesPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
+          case StopPointModesPage.routeName:
             return StopPointModesPage(
-              stopPoint: routeSettings.arguments,
+              stopPoint: settings.arguments,
             );
-          },
-        );
-      case StopPointPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
+          case StopPointPage.routeName:
             return StopPointPage(
-              stopPoint: routeSettings.arguments,
+              stopPoint: settings.arguments,
             );
-          },
-        );
-      case StopPointSequencePage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
+          case StopPointSequencePage.routeName:
             return StopPointSequencePage(
-              stopPointSequence: routeSettings.arguments,
+              stopPointSequence: settings.arguments,
             );
-          },
-        );
-      case StopPointSequenceStopPointsPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
+          case StopPointSequenceStopPointsPage.routeName:
             return StopPointSequenceStopPointsPage(
-              stopPointSequence: routeSettings.arguments,
+              stopPointSequence: settings.arguments,
             );
-          },
-        );
-      case StopPointsPage.routeName:
-        return MaterialPageRoute(
-          builder: (context) {
+          case StopPointsPage.routeName:
             return StopPointsPage();
-          },
+          default:
+            return null;
+        }
+      },
+      settings: settings,
+    );
+  }
+
+  Route<T> _onUnknownRoute<T>(RouteSettings settings) {
+    return MaterialPageRoute(
+      builder: (context) {
+        return Scaffold(
+          body: Center(
+            child: Text(
+                'A page matching the route "${settings.name}" could not be found.'),
+          ),
         );
-      default:
-        throw PageNotFoundError(
-          route: routeSettings.name,
-        );
-    }
+      },
+      settings: settings,
+    );
   }
 }

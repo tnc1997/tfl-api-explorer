@@ -1,2 +1,0 @@
-json_key_file("./fastlane/api-6938910936944731223-873461-45aa4511c5dc.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
-package_name("app.thomasclark.tflapiexplorer") # e.g. com.krausefx.app
