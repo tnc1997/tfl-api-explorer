@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/delegates/bike_point_search_delegate.dart';
+import 'package:tfl_api_explorer/src/delegates/place_search_delegate.dart';
 import 'package:tfl_api_explorer/src/pages/car_parks/car_park_page.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:tfl_api_explorer/src/widgets/place_list_tile.dart';
