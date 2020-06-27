@@ -22,6 +22,35 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final widget = Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 8.0,
+        horizontal: 16.0,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 8.0,
+              bottom: 16.0,
+            ),
+            child: Text(
+              'Sign in',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+          LoginForm(
+            formKey: _formKey,
+            appIdController: _appIdController,
+            appKeyController: _appKeyController,
+            onSubmitted: _login,
+          ),
+        ],
+      ),
+    );
+
     return Scaffold(
       body: SafeArea(
         child: CircularProgressIndicatorFutureBuilder<SharedPreferences>(
@@ -34,66 +63,12 @@ class _LoginPageState extends State<LoginPage> {
                     child: SizedBox(
                       width: constraints.maxWidth / 2,
                       child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 8.0,
-                            horizontal: 16.0,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 8.0,
-                                  bottom: 16.0,
-                                ),
-                                child: Text(
-                                  'Sign in',
-                                  style: Theme.of(context).textTheme.headline6,
-                                ),
-                              ),
-                              LoginForm(
-                                formKey: _formKey,
-                                appIdController: _appIdController,
-                                appKeyController: _appKeyController,
-                                onSubmitted: _login,
-                              ),
-                            ],
-                          ),
-                        ),
+                        child: widget,
                       ),
                     ),
                   );
                 } else {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8.0,
-                      horizontal: 16.0,
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: 8.0,
-                            bottom: 16.0,
-                          ),
-                          child: Text(
-                            'Sign in',
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                        ),
-                        LoginForm(
-                          formKey: _formKey,
-                          appIdController: _appIdController,
-                          appKeyController: _appKeyController,
-                          onSubmitted: _login,
-                        ),
-                      ],
-                    ),
-                  );
+                  return widget;
                 }
               },
             );
