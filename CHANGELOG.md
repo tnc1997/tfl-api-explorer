@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.1 (2020-06-27)
+
+
+### Continuous Integrations
+
+* update github actions ([d042a0c](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/d042a0c0703579f7e2db2cf49a046e9bf98521e2))
+
 ## [0.3.0](https://github.com/tnc1997/flutter-tfl-api-explorer/compare/v0.2.1...v0.3.0) (2020-02-16)
 
 
