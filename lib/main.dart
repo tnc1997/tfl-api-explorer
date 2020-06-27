@@ -13,6 +13,9 @@ import 'package:tfl_api_explorer/src/notifiers/stop_point_filters_change_notifie
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_additional_properties_page.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_page.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
+import 'package:tfl_api_explorer/src/pages/car_parks/car_park_bays_page.dart';
+import 'package:tfl_api_explorer/src/pages/car_parks/car_park_page.dart';
+import 'package:tfl_api_explorer/src/pages/car_parks/car_parks_page.dart';
 import 'package:tfl_api_explorer/src/pages/home_page.dart';
 import 'package:tfl_api_explorer/src/pages/line_disruptions/line_disruption_page.dart';
 import 'package:tfl_api_explorer/src/pages/line_routes/line_route_page.dart';
@@ -101,12 +104,14 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           primarySwatch: TflColors.blue,
-          primaryColor: TflColors.blueGrey,
+          primaryColor: TflColors.blueGrey[700],
           accentColor: TflColors.blue,
-          canvasColor: TflColors.blueGrey,
-          bottomAppBarColor: TflColors.blueGrey,
-          cardColor: TflColors.blueGrey,
+          canvasColor: TflColors.blueGrey[500],
+          bottomAppBarColor: TflColors.blueGrey[300],
+          cardColor: TflColors.blueGrey[300],
           textSelectionHandleColor: TflColors.blue,
+          backgroundColor: TflColors.blueGrey[300],
+          dialogBackgroundColor: TflColors.blueGrey[300],
           errorColor: TflColors.red,
           toggleableActiveColor: TflColors.blue,
           inputDecorationTheme: const InputDecorationTheme(
@@ -136,6 +141,16 @@ class MyApp extends StatelessWidget {
             );
           case BikePointsPage.routeName:
             return BikePointsPage();
+          case CarParkBaysPage.routeName:
+            return CarParkBaysPage(
+              carPark: settings.arguments,
+            );
+          case CarParkPage.routeName:
+            return CarParkPage(
+              carPark: settings.arguments,
+            );
+          case CarParksPage.routeName:
+            return CarParksPage();
           case HomePage.routeName:
             return HomePage();
           case LineDisruptionPage.routeName:

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
+import 'package:tfl_api_explorer/src/pages/car_parks/car_parks_page.dart';
 import 'package:tfl_api_explorer/src/pages/home_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/lines_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
@@ -40,6 +41,15 @@ class TflApiExplorerDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
                 BikePointsPage.routeName,
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Mdi.api),
+            title: Text('Car parks'),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed(
+                CarParksPage.routeName,
               );
             },
           ),
