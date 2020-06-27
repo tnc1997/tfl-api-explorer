@@ -12,6 +12,8 @@ import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_no
 import 'package:tfl_api_explorer/src/notifiers/stop_point_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_page.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
+import 'package:tfl_api_explorer/src/pages/car_parks/car_park_page.dart';
+import 'package:tfl_api_explorer/src/pages/car_parks/car_parks_page.dart';
 import 'package:tfl_api_explorer/src/pages/home_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_line_disruptions_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_line_routes_page.dart';
@@ -58,6 +60,40 @@ void main() {
   ];
 
   final _bikePointsResourceApi = BikePointsResourceApiMock();
+
+  final _carParkOccupancies = <CarParkOccupancy>[
+    CarParkOccupancy(
+      id: 'CarParks_800491',
+      name: 'Barkingside Stn (LUL)',
+    ),
+    CarParkOccupancy(
+      id: 'CarParks_800468',
+      name: 'Buckhurst Hill Stn (LUL)',
+    ),
+    CarParkOccupancy(
+      id: 'CarParks_800475',
+      name: 'Fairlop Stn (LUL)',
+    ),
+  ];
+
+  final _carParkOccupanciesResourceApiMock = CarParkOccupanciesResourceApiMock();
+
+  final _carParks = <Place>[
+    Place(
+      id: 'CarParks_800491',
+      commonName: 'Barkingside Stn (LUL)',
+    ),
+    Place(
+      id: 'CarParks_800468',
+      commonName: 'Buckhurst Hill Stn (LUL)',
+    ),
+    Place(
+      id: 'CarParks_800475',
+      commonName: 'Fairlop Stn (LUL)',
+    ),
+  ];
+
+  final _carParksResourceApi = CarParksResourceApiMock();
 
   final _lineDisruptions = <LineDisruption>[
     LineDisruption(
@@ -273,6 +309,58 @@ void main() {
             );
             expect(
               find.text(bikePoint.commonName),
+              findsWidgets,
+            );
+          });
+        });
+      });
+    });
+
+    group('car_parks', () {
+      group('CarParkPage', () {
+        final _carPark = _carParks[0];
+
+        testWidgets('Name', (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: CarParkPage(carPark: _carPark),
+            ),
+          );
+
+          expect(
+            find.text('Name'),
+            findsWidgets,
+          );
+          expect(
+            find.text(_carPark.commonName),
+            findsWidgets,
+          );
+        });
+      });
+
+      group('CarParksPage', () {
+        testWidgets('', (tester) async {
+          await tester.pumpWidget(
+            MultiProvider(
+              providers: [
+                Provider<TflApi>.value(
+                  value: _tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: CarParksPage(),
+              ),
+            ),
+          );
+          await tester.pumpAndSettle();
+
+          _carParks.forEach((carPark) {
+            expect(
+              find.text(carPark.id),
+              findsWidgets,
+            );
+            expect(
+              find.text(carPark.commonName),
               findsWidgets,
             );
           });
@@ -875,6 +963,20 @@ void main() {
       );
     });
 
+    when(_carParkOccupanciesResourceApiMock.get()).thenAnswer((answer) {
+      return Future.delayed(
+        Duration(seconds: 1),
+        () => _carParkOccupancies,
+      );
+    });
+
+    when(_carParksResourceApi.get()).thenAnswer((answer) {
+      return Future.delayed(
+        Duration(seconds: 1),
+        () => _carParks,
+      );
+    });
+
     when(_linesResourceApi.get(mode: anyNamed('mode'))).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
@@ -928,6 +1030,8 @@ void main() {
     });
 
     when(_tflApi.bikePoints).thenReturn(_bikePointsResourceApi);
+    when(_tflApi.carParkOccupancies).thenReturn(_carParkOccupanciesResourceApiMock);
+    when(_tflApi.carParks).thenReturn(_carParksResourceApi);
     when(_tflApi.lines).thenReturn(_linesResourceApi);
     when(_tflApi.stopPoints).thenReturn(_stopPointsResourceApi);
 

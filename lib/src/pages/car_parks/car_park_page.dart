@@ -30,27 +30,6 @@ class CarParkPage extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          ListTile(
-            title: Text('Place type'),
-            subtitle: NullableText(
-              carPark.placeType,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          ListTile(
-            title: Text('Lat'),
-            subtitle: NullableText(
-              carPark.lat?.toString(),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          ListTile(
-            title: Text('Lon'),
-            subtitle: NullableText(
-              carPark.lon?.toString(),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
           Divider(),
           ListTile(
             title: Text('Bays'),
