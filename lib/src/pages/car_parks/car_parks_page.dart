@@ -22,7 +22,7 @@ class _CarParksPageState extends State<CarParksPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bike points'),
+        title: Text('Car parks'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Mdi.magnify),
