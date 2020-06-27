@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/pages/car_parks/car_park_additional_properties_page.dart';
+import 'package:tfl_api_explorer/src/pages/car_parks/car_park_bays_page.dart';
 import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class CarParkPage extends StatelessWidget {
@@ -53,10 +53,10 @@ class CarParkPage extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-            title: Text('Additional properties'),
+            title: Text('Bays'),
             onTap: () {
               Navigator.of(context).pushNamed(
-                CarParkAdditionalPropertiesPage.routeName,
+                CarParkBaysPage.routeName,
                 arguments: carPark,
               );
             },
