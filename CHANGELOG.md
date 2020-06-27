@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/tnc1997/flutter-tfl-api-explorer/compare/v0.3.0...v0.3.1) (2020-06-27)
+
+
+### Features
+
+* add responsiveness to login page ([#18](https://github.com/tnc1997/flutter-tfl-api-explorer/issues/18)) ([257448b](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/257448b52a03a15d12d4507ff3bbbbce862db52f))
+
+
+### Reverts
+
+* **release:** 1.0.1 [skip ci] ([4953893](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/4953893b1a4a383c2aeedecea4647e03303e964e))
+
+
+### Builds
+
+* configure github actions ([b7ce3f9](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/b7ce3f9554870a6074e76bf28560089f38bd6294))
+* configure github actions ([9f821f0](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/9f821f0db4822c5d9cdbeda72c72ab58c49d128d))
+* configure github actions ([2810839](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/2810839bb4252ca989d1c4b7fbbbd95eebdfa1cd))
+* configure standard version [skip ci] ([2fe0757](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/2fe0757f4b0045024ae6616cf9c2fe271639df00))
+* upgrade flutter [skip ci] ([#16](https://github.com/tnc1997/flutter-tfl-api-explorer/issues/16)) ([f81bb18](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/f81bb183751829ff73c22f3097f0d52e8b5f6afc))
+
+
+### Code Refactoring
+
+* filters pages [skip ci] ([#17](https://github.com/tnc1997/flutter-tfl-api-explorer/issues/17)) ([6839773](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/68397737420a95f3f7b917f3ac22e68f3468edb9))
+
+
+### Chores
+
+* **release:** 1.0.1 [skip ci] ([3ff7b87](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/3ff7b87cbcff8c878c8ecbd3cdfb8c985b0fe3be))
+
+
+### Continuous Integrations
+
+* update github actions ([5109f86](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/5109f86293afedf888dab136ca32716c8b57c472))
+* update github actions ([d042a0c](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/d042a0c0703579f7e2db2cf49a046e9bf98521e2))
+
 ## [0.3.0](https://github.com/tnc1997/flutter-tfl-api-explorer/compare/v0.2.1...v0.3.0) (2020-02-16)
 
 
