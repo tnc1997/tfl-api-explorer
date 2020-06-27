@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.2](https://github.com/tnc1997/flutter-tfl-api-explorer/compare/v0.3.1...v0.3.2) (2020-06-27)
+
+
+### Features
+
+* add car parks page ([#19](https://github.com/tnc1997/flutter-tfl-api-explorer/issues/19)) ([280667f](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/280667fd403d0e9f1f8630e9c141d7b167367389))
+
 ### [0.3.1](https://github.com/tnc1997/flutter-tfl-api-explorer/compare/v0.3.0...v0.3.1) (2020-06-27)
 
 
