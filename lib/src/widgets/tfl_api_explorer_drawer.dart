@@ -4,6 +4,7 @@ import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
 import 'package:tfl_api_explorer/src/pages/car_parks/car_parks_page.dart';
 import 'package:tfl_api_explorer/src/pages/home_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/lines_page.dart';
+import 'package:tfl_api_explorer/src/pages/roads/roads_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
 import 'package:tfl_api_explorer/src/pages/stop_points/stop_points_page.dart';
 
@@ -59,6 +60,15 @@ class TflApiExplorerDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
                 LinesPage.routeName,
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Mdi.api),
+            title: Text('Roads'),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed(
+                RoadsPage.routeName,
               );
             },
           ),

@@ -5,6 +5,7 @@ import 'package:tfl_api_explorer/src/specifications/line_route_service_type_spec
 import 'package:tfl_api_explorer/src/specifications/place_common_name_specification.dart';
 import 'package:tfl_api_explorer/src/specifications/prediction_destination_name_specification.dart';
 import 'package:tfl_api_explorer/src/specifications/prediction_station_name_specification.dart';
+import 'package:tfl_api_explorer/src/specifications/road_display_name_specification.dart';
 import 'package:tfl_api_explorer/src/specifications/specification.dart';
 import 'package:tfl_api_explorer/src/specifications/stop_point_modes_specification.dart';
 
@@ -71,6 +72,17 @@ void main() {
     Prediction(
       stationName: 'Holborn',
       destinationName: 'Tottenham Court Road',
+    ),
+  ];
+
+  final _roads = <Road>[
+    Road(
+      id: 'a1',
+      displayName: 'A1',
+    ),
+    Road(
+      id: 'a2',
+      displayName: 'A2',
     ),
   ];
 
@@ -413,6 +425,44 @@ void main() {
         );
         expect(
           _predictions.where(specification.isSatisfiedBy).toList(),
+          isEmpty,
+        );
+      });
+    });
+
+    group('RoadDisplayNameSpecification', () {
+      test('isSatisfiedBy', () {
+        Specification<Road> specification;
+
+        specification = RoadDisplayNameSpecification(
+          displayName: 'A1',
+        );
+        expect(
+          specification.isSatisfiedBy(_roads[0]),
+          isTrue,
+        );
+        expect(
+          specification.isSatisfiedBy(_roads[1]),
+          isFalse,
+        );
+        expect(
+          _roads.where(specification.isSatisfiedBy).toList(),
+          hasLength(1),
+        );
+
+        specification = RoadDisplayNameSpecification(
+          displayName: 'A0',
+        );
+        expect(
+          specification.isSatisfiedBy(_roads[0]),
+          isFalse,
+        );
+        expect(
+          specification.isSatisfiedBy(_roads[1]),
+          isFalse,
+        );
+        expect(
+          _roads.where(specification.isSatisfiedBy).toList(),
           isEmpty,
         );
       });

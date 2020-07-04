@@ -30,6 +30,10 @@ import 'package:tfl_api_explorer/src/pages/lines/line_stop_points_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/lines_page.dart';
 import 'package:tfl_api_explorer/src/pages/login_page.dart';
 import 'package:tfl_api_explorer/src/pages/predictions/prediction_page.dart';
+import 'package:tfl_api_explorer/src/pages/road_disruptions/road_disruption_page.dart';
+import 'package:tfl_api_explorer/src/pages/roads/road_page.dart';
+import 'package:tfl_api_explorer/src/pages/roads/road_road_disruptions_page.dart';
+import 'package:tfl_api_explorer/src/pages/roads/roads_page.dart';
 import 'package:tfl_api_explorer/src/pages/route_sequences/route_sequence_page.dart';
 import 'package:tfl_api_explorer/src/pages/route_sequences/route_sequence_stop_point_sequences_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
@@ -201,6 +205,20 @@ class MyApp extends StatelessWidget {
             return PredictionPage(
               prediction: settings.arguments,
             );
+          case RoadDisruptionPage.routeName:
+            return RoadDisruptionPage(
+              roadDisruption: settings.arguments,
+            );
+          case RoadPage.routeName:
+            return RoadPage(
+              road: settings.arguments,
+            );
+          case RoadRoadDisruptionsPage.routeName:
+            return RoadRoadDisruptionsPage(
+              road: settings.arguments,
+            );
+          case RoadsPage.routeName:
+            return RoadsPage();
           case RouteSequencePage.routeName:
             return RouteSequencePage(
               routeSequence: settings.arguments,

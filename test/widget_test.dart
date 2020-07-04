@@ -23,6 +23,8 @@ import 'package:tfl_api_explorer/src/pages/lines/line_predictions_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_route_sequences_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_stop_points_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/lines_page.dart';
+import 'package:tfl_api_explorer/src/pages/roads/road_page.dart';
+import 'package:tfl_api_explorer/src/pages/roads/roads_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/about_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/account_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
@@ -76,7 +78,8 @@ void main() {
     ),
   ];
 
-  final _carParkOccupanciesResourceApiMock = CarParkOccupanciesResourceApiMock();
+  final _carParkOccupanciesResourceApiMock =
+      CarParkOccupanciesResourceApiMock();
 
   final _carParks = <Place>[
     Place(
@@ -155,6 +158,19 @@ void main() {
       expectedArrival: DateTime(2020, 1, 1, 12, 0),
     ),
   ];
+
+  final _roads = <Road>[
+    Road(
+      id: 'a1',
+      displayName: 'A1',
+    ),
+    Road(
+      id: 'a2',
+      displayName: 'A2',
+    ),
+  ];
+
+  final _roadsResourceApi = RoadsResourceApiMock();
 
   final _routeSequences = <RouteSequence>[
     RouteSequence(
@@ -763,6 +779,58 @@ void main() {
       });
     });
 
+    group('roads', () {
+      group('RoadPage', () {
+        final _road = _roads[0];
+
+        testWidgets('Name', (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: RoadPage(road: _road),
+            ),
+          );
+
+          expect(
+            find.text('Name'),
+            findsWidgets,
+          );
+          expect(
+            find.text(_road.displayName),
+            findsWidgets,
+          );
+        });
+      });
+
+      group('RoadsPage', () {
+        testWidgets('', (tester) async {
+          await tester.pumpWidget(
+            MultiProvider(
+              providers: [
+                Provider<TflApi>.value(
+                  value: _tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: RoadsPage(),
+              ),
+            ),
+          );
+          await tester.pumpAndSettle();
+
+          _roads.forEach((bikePoint) {
+            expect(
+              find.text(bikePoint.id),
+              findsWidgets,
+            );
+            expect(
+              find.text(bikePoint.displayName),
+              findsWidgets,
+            );
+          });
+        });
+      });
+    });
+
     group('stop_points', () {
       group('StopPointPage', () {
         final _stopPoint = _stopPoints[0];
@@ -1020,9 +1088,17 @@ void main() {
       );
     });
 
+    when(_roadsResourceApi.get()).thenAnswer((answer) {
+      return Future.delayed(
+        Duration(seconds: 1),
+        () => _roads,
+      );
+    });
+
     when(_stopPointsResourceApi.get(
-            type: anyNamed('type'), mode: anyNamed('mode')))
-        .thenAnswer((answer) {
+      type: anyNamed('type'),
+      mode: anyNamed('mode'),
+    )).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
         () => _stopPoints,
@@ -1030,9 +1106,11 @@ void main() {
     });
 
     when(_tflApi.bikePoints).thenReturn(_bikePointsResourceApi);
-    when(_tflApi.carParkOccupancies).thenReturn(_carParkOccupanciesResourceApiMock);
+    when(_tflApi.carParkOccupancies)
+        .thenReturn(_carParkOccupanciesResourceApiMock);
     when(_tflApi.carParks).thenReturn(_carParksResourceApi);
     when(_tflApi.lines).thenReturn(_linesResourceApi);
+    when(_tflApi.roads).thenReturn(_roadsResourceApi);
     when(_tflApi.stopPoints).thenReturn(_stopPointsResourceApi);
 
     when(_authenticationChangeNotifier.appId).thenReturn('123');
