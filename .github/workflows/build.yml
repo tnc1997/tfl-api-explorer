@@ -1,43 +1,27 @@
-name: Test
+name: Build
 on:
-  pull_request:
-    branches:
-      - main
+  push:
+    tags:
+      - 'v*'
 jobs:
-  test_integration:
-    name: Test integration
+  create_release:
+    name: Create release
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Install flutter
-        run: |
-          mkdir ~/Tools && cd $_
-          git clone https://github.com/flutter/flutter.git
-          ~/Tools/flutter/bin/flutter doctor
-      - name: Test integration
-        run: |
-          chromedriver --port=4444 &
-          sleep 10
-          ~/Tools/flutter/bin/flutter packages get
-          ~/Tools/flutter/bin/flutter drive --browser-name=chrome --device-id=web-server --release --target=test_driver/app.dart
-  test_widget:
-    name: Test widget
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Install flutter
-        run: |
-          mkdir ~/Tools && cd $_
-          git clone https://github.com/flutter/flutter.git
-          ~/Tools/flutter/bin/flutter doctor
-      - name: Test widget
-        run: |
-          ~/Tools/flutter/bin/flutter packages get
-          ~/Tools/flutter/bin/flutter test
+      - id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: Create release
+        uses: actions/create-release@v1
+        with:
+          release_name: ${{ github.ref }}
+          tag_name: ${{ github.ref }}
   build_android_apk:
     name: Build android apk
+    needs:
+      - create_release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -63,8 +47,19 @@ jobs:
         with:
           name: android
           path: build/app/outputs/flutter-apk/app-release.apk
+      - name: Upload release asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/upload-release-asset@v1
+        with:
+          asset_content_type: application/vnd.android.package-archive
+          asset_name: android.apk
+          asset_path: build/app/outputs/flutter-apk/app-release.apk
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
   build_android_appbundle:
     name: Build android appbundle
+    needs:
+      - create_release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -90,8 +85,26 @@ jobs:
         with:
           name: appbundle
           path: build/app/outputs/bundle/release/app-release.aab
+      - name: Upload release asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/upload-release-asset@v1
+        with:
+          asset_content_type: application/octet-stream
+          asset_name: android.aab
+          asset_path: build/app/outputs/bundle/release/app-release.aab
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+      - name: Upload google play
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJson: ./api-6938910936944731223-873461-5d98d1eb9a1e.json
+          packageName: app.thomasclark.tflapiexplorer
+          releaseFile: build/app/outputs/bundle/release/app-release.aab
+          track: internal
   build_web:
     name: Build web
+    needs:
+      - create_release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -111,8 +124,22 @@ jobs:
         with:
           name: web
           path: build/web
+      - name: Create archive
+        run: |
+          tar -cJf web.tar.xz build/web
+      - name: Upload release asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/upload-release-asset@v1
+        with:
+          asset_content_type: application/zip
+          asset_name: web.tar.xz
+          asset_path: web.tar.xz
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
   build_windows:
     name: Build windows
+    needs:
+      - create_release
     runs-on: windows-latest
     steps:
       - name: Checkout repository
@@ -134,3 +161,15 @@ jobs:
         with:
           name: windows
           path: build\windows\runner\Release
+      - name: Create archive
+        run: |
+          Compress-Archive -DestinationPath Release.zip -Path build\windows\runner\Release
+      - name: Upload release asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/upload-release-asset@v1
+        with:
+          asset_content_type: application/zip
+          asset_name: windows.zip
+          asset_path: Release.zip
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
