@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/route_sequences/route_sequence_page.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class RouteSequenceListTile extends StatelessWidget {
   RouteSequenceListTile({
-    Key key,
-    @required this.routeSequence,
+    Key? key,
+    required this.routeSequence,
   }) : super(
           key: key,
         );
@@ -16,12 +15,12 @@ class RouteSequenceListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: NullableText(
-        routeSequence.direction,
+      title: Text(
+        routeSequence.direction ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
-      subtitle: NullableText(
-        routeSequence.orderedLineRoutes?.first?.name,
+      subtitle: Text(
+        routeSequence.orderedLineRoutes?.first.name ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
       onTap: () {

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/stop_point_sequences/stop_point_sequence_page.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class StopPointSequenceListTile extends StatelessWidget {
   StopPointSequenceListTile({
-    Key key,
-    @required this.stopPointSequence,
+    Key? key,
+    required this.stopPointSequence,
   }) : super(
           key: key,
         );
@@ -16,12 +15,12 @@ class StopPointSequenceListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: NullableText(
-        stopPointSequence.branchId?.toString(),
+      title: Text(
+        stopPointSequence.branchId?.toString() ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
-      subtitle: NullableText(
-        stopPointSequence.serviceType,
+      subtitle: Text(
+        stopPointSequence.serviceType ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
       onTap: () {

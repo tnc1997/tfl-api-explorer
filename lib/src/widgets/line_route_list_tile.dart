@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/line_routes/line_route_page.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class LineRouteListTile extends StatelessWidget {
   LineRouteListTile({
-    Key key,
-    @required this.lineRoute,
+    Key? key,
+    required this.lineRoute,
   }) : super(
           key: key,
         );
 
-  final LineRoute lineRoute;
+  final MatchedRoute lineRoute;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: NullableText(
-        lineRoute.name,
+      title: Text(
+        lineRoute.name ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
-      subtitle: NullableText(
-        lineRoute.serviceType,
+      subtitle: Text(
+        lineRoute.serviceType ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
       onTap: () {

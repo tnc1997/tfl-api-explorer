@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_page.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class LineListTile extends StatelessWidget {
   LineListTile({
-    Key key,
-    @required this.line,
+    Key? key,
+    required this.line,
   }) : super(
           key: key,
         );
@@ -16,12 +15,12 @@ class LineListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: NullableText(
-        line.id,
+      title: Text(
+        line.id ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
-      subtitle: NullableText(
-        line.name,
+      subtitle: Text(
+        line.name ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
       onTap: () {

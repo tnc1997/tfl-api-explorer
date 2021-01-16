@@ -4,9 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/notifiers/stop_point_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
-import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 import 'package:tfl_api_explorer/src/widgets/stop_point_list_tile.dart';
+import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 
 class StopPointsPage extends StatefulWidget {
   static const routeName = '/stop_points';
@@ -16,7 +15,7 @@ class StopPointsPage extends StatefulWidget {
 }
 
 class _StopPointsPageState extends State<StopPointsPage> {
-  Future<List<StopPoint>> _stopPointsFuture;
+  late Future<List<StopPoint>> _stopPointsFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +44,21 @@ class _StopPointsPageState extends State<StopPointsPage> {
         future: _stopPointsFuture,
         builder: (context, data) {
           final stopPoints = data
-              .where(stopPointFiltersChangeNotifier.areSatisfiedBy)
+              ?.where(stopPointFiltersChangeNotifier.areSatisfiedBy)
               .toList();
 
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return StopPointListTile(
-                stopPoint: stopPoints[index],
-              );
-            },
-            itemCount: stopPoints.length,
-          );
+          if (stopPoints != null) {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return StopPointListTile(
+                  stopPoint: stopPoints[index],
+                );
+              },
+              itemCount: stopPoints.length,
+            );
+          } else {
+            return Container();
+          }
         },
       ),
       drawer: TflApiExplorerDrawer(),
@@ -66,9 +69,10 @@ class _StopPointsPageState extends State<StopPointsPage> {
   void initState() {
     super.initState();
 
-    _stopPointsFuture = context.read<TflApi>().stopPoints.get(
-          type: 'NaptanMetroStation',
-        );
+    _stopPointsFuture = context
+        .read<TflApiClient>()
+        .stopPoints
+        .getByTypeByPathTypes(['NaptanMetroStation']);
   }
 }
 
@@ -78,7 +82,7 @@ class _StopPointFiltersPage extends StatefulWidget {
 }
 
 class _StopPointFiltersPageState extends State<_StopPointFiltersPage> {
-  Future<List<Mode>> _stopPointModesFuture;
+  late Future<List<Mode>> _stopPointModesFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -100,31 +104,38 @@ class _StopPointFiltersPageState extends State<_StopPointFiltersPage> {
       body: CircularProgressIndicatorFutureBuilder<List>(
         future: Future.wait([_stopPointModesFuture]),
         builder: (context, data) {
-          return ListView(
-            children: <Widget>[
-              ExpansionTile(
-                title: Text('Modes'),
-                children: (data[0] as List<Mode>).map((mode) {
-                  return CheckboxListTile(
-                    value: stopPointFiltersChangeNotifier.modes
-                        .contains(mode.modeName),
-                    onChanged: (value) {
-                      if (value) {
-                        stopPointFiltersChangeNotifier.addMode(mode.modeName);
-                      } else {
-                        stopPointFiltersChangeNotifier
-                            .removeMode(mode.modeName);
-                      }
-                    },
-                    title: NullableText(
-                      mode.modeName,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  );
-                }).toList(),
-              ),
-            ],
-          );
+          if (data != null) {
+            return ListView(
+              children: <Widget>[
+                ExpansionTile(
+                  title: Text('Modes'),
+                  children: (data[0] as List<Mode>).map((mode) {
+                    return CheckboxListTile(
+                      value: stopPointFiltersChangeNotifier.modes
+                          .contains(mode.modeName),
+                      onChanged: (value) {
+                        if (value != null) {
+                          if (value) {
+                            stopPointFiltersChangeNotifier
+                                .addMode(mode.modeName!);
+                          } else {
+                            stopPointFiltersChangeNotifier
+                                .removeMode(mode.modeName!);
+                          }
+                        }
+                      },
+                      title: Text(
+                        mode.modeName ?? 'Unknown',
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ],
+            );
+          } else {
+            return Container();
+          }
         },
       ),
     );
@@ -134,6 +145,6 @@ class _StopPointFiltersPageState extends State<_StopPointFiltersPage> {
   void initState() {
     super.initState();
 
-    _stopPointModesFuture = context.read<TflApi>().stopPointModes.get();
+    _stopPointModesFuture = context.read<TflApiClient>().stopPoints.metaModes();
   }
 }

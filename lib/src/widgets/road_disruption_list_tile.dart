@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/road_disruptions/road_disruption_page.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class RoadDisruptionListTile extends StatelessWidget {
   RoadDisruptionListTile({
-    Key key,
-    @required this.roadDisruption,
+    Key? key,
+    required this.roadDisruption,
   }) : super(
           key: key,
         );
@@ -16,14 +15,18 @@ class RoadDisruptionListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lastModifiedTime = roadDisruption.lastModifiedTime;
+
     return ListTile(
-      title: NullableText(
-        roadDisruption.category,
+      title: Text(
+        roadDisruption.category ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
-      subtitle: Text(
-        DateFormat.Hm().format(roadDisruption.lastModifiedTime),
-      ),
+      subtitle: lastModifiedTime != null
+          ? Text(
+              DateFormat.Hm().format(lastModifiedTime),
+            )
+          : null,
       onTap: () {
         Navigator.of(context).pushNamed(
           RoadDisruptionPage.routeName,

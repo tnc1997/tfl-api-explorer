@@ -8,8 +8,8 @@ class LineLineStatusesPage extends StatefulWidget {
   static const routeName = '/lines/:id/line_statuses';
 
   LineLineStatusesPage({
-    Key key,
-    @required this.line,
+    Key? key,
+    required this.line,
   }) : super(
           key: key,
         );
@@ -21,7 +21,7 @@ class LineLineStatusesPage extends StatefulWidget {
 }
 
 class _LineLineStatusesPageState extends State<LineLineStatusesPage> {
-  Future<List<LineStatus>> _lineStatusesFuture;
+  late Future<List<LineStatus>> _lineStatusesFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +32,18 @@ class _LineLineStatusesPageState extends State<LineLineStatusesPage> {
       body: CircularProgressIndicatorFutureBuilder<List<LineStatus>>(
         future: _lineStatusesFuture,
         builder: (context, data) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return LineStatusListTile(
-                lineStatus: data[index],
-              );
-            },
-            itemCount: data.length,
-          );
+          if (data != null) {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return LineStatusListTile(
+                  lineStatus: data[index],
+                );
+              },
+              itemCount: data.length,
+            );
+          } else {
+            return Container();
+          }
         },
       ),
     );
@@ -49,7 +53,10 @@ class _LineLineStatusesPageState extends State<LineLineStatusesPage> {
   void initState() {
     super.initState();
 
-    _lineStatusesFuture =
-        context.read<TflApi>().lines.getLineStatuses(widget.line.id);
+    _lineStatusesFuture = context
+        .read<TflApiClient>()
+        .lines
+        .statusByIdsByPathIdsQueryDetail([widget.line.id!]).then(
+            (value) => value.first.lineStatus ?? []);
   }
 }

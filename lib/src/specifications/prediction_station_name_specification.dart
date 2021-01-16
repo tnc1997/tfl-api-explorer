@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/specifications/specification.dart';
 
 class PredictionStationNameSpecification extends Specification<Prediction> {
   PredictionStationNameSpecification({
-    @required this.stationName,
+    required this.stationName,
   });
 
   final String stationName;

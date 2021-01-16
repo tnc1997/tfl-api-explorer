@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class StopPointModesPage extends StatelessWidget {
   static const routeName = '/stop_points/:id/modes';
 
   StopPointModesPage({
-    Key key,
-    @required this.stopPoint,
+    Key? key,
+    required this.stopPoint,
   }) : super(
           key: key,
         );
@@ -16,21 +15,25 @@ class StopPointModesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final modes = stopPoint.modes;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Modes'),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: NullableText(
-              stopPoint.modes[index],
-              overflow: TextOverflow.ellipsis,
-            ),
-          );
-        },
-        itemCount: stopPoint.modes.length,
-      ),
+      body: modes != null
+          ? ListView.builder(
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(
+                    modes[index],
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                );
+              },
+              itemCount: modes.length,
+            )
+          : Container(),
     );
   }
 }

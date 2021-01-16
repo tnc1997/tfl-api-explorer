@@ -5,14 +5,13 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_line_route_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:tfl_api_explorer/src/widgets/line_route_list_tile.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class LineLineRoutesPage extends StatefulWidget {
   static const routeName = '/lines/:id/line_routes';
 
   LineLineRoutesPage({
-    Key key,
-    @required this.line,
+    Key? key,
+    required this.line,
   }) : super(
           key: key,
         );
@@ -24,7 +23,7 @@ class LineLineRoutesPage extends StatefulWidget {
 }
 
 class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
-  Future<List<LineRoute>> _lineRoutesFuture;
+  late Future<List<MatchedRoute>> _lineRoutesFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -49,21 +48,25 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
           ),
         ],
       ),
-      body: CircularProgressIndicatorFutureBuilder<List<LineRoute>>(
+      body: CircularProgressIndicatorFutureBuilder<List<MatchedRoute>>(
         future: _lineRoutesFuture,
         builder: (context, data) {
           final lineRoutes = data
-              .where(lineLineRouteFiltersChangeNotifier.areSatisfiedBy)
+              ?.where(lineLineRouteFiltersChangeNotifier.areSatisfiedBy)
               .toList();
 
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return LineRouteListTile(
-                lineRoute: lineRoutes[index],
-              );
-            },
-            itemCount: lineRoutes.length,
-          );
+          if (lineRoutes != null) {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return LineRouteListTile(
+                  lineRoute: lineRoutes[index],
+                );
+              },
+              itemCount: lineRoutes.length,
+            );
+          } else {
+            return Container();
+          }
         },
       ),
     );
@@ -73,8 +76,14 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
   void initState() {
     super.initState();
 
-    _lineRoutesFuture =
-        context.read<TflApi>().lines.getLineRoutes(widget.line.id);
+    _lineRoutesFuture = context
+        .read<TflApiClient>()
+        .lines
+        .lineRoutesByIdsByPathIdsQueryServiceTypes([widget.line.id!]).then(
+            (value) => value.fold<List<MatchedRoute>>(
+                [],
+                (previousValue, element) =>
+                    previousValue..addAll(element.routeSections ?? [])));
   }
 }
 
@@ -85,7 +94,7 @@ class _LineLineRouteFiltersPage extends StatefulWidget {
 }
 
 class _LineLineRouteFiltersPageState extends State<_LineLineRouteFiltersPage> {
-  Future<List<String>> _lineServiceTypesFuture;
+  late Future<List<String>> _lineServiceTypesFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -107,26 +116,31 @@ class _LineLineRouteFiltersPageState extends State<_LineLineRouteFiltersPage> {
       body: CircularProgressIndicatorFutureBuilder<List>(
         future: Future.wait([_lineServiceTypesFuture]),
         builder: (context, data) {
-          return ListView(
-            children: <Widget>[
-              ExpansionTile(
-                title: Text('Service type'),
-                children: (data[0] as List<String>).map((serviceType) {
-                  return RadioListTile<String>(
-                    value: serviceType,
-                    groupValue: lineLineRouteFiltersChangeNotifier.serviceType,
-                    onChanged: (value) {
-                      lineLineRouteFiltersChangeNotifier.serviceType = value;
-                    },
-                    title: NullableText(
-                      serviceType,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  );
-                }).toList(),
-              ),
-            ],
-          );
+          if (data != null) {
+            return ListView(
+              children: <Widget>[
+                ExpansionTile(
+                  title: Text('Service type'),
+                  children: (data[0] as List<String>).map((serviceType) {
+                    return RadioListTile<String>(
+                      value: serviceType,
+                      groupValue:
+                          lineLineRouteFiltersChangeNotifier.serviceType,
+                      onChanged: (value) {
+                        lineLineRouteFiltersChangeNotifier.serviceType = value;
+                      },
+                      title: Text(
+                        serviceType,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ],
+            );
+          } else {
+            return Container();
+          }
         },
       ),
     );
@@ -136,6 +150,7 @@ class _LineLineRouteFiltersPageState extends State<_LineLineRouteFiltersPage> {
   void initState() {
     super.initState();
 
-    _lineServiceTypesFuture = context.read<TflApi>().lineServiceTypes.get();
+    _lineServiceTypesFuture =
+        context.read<TflApiClient>().lines.metaServiceTypes();
   }
 }

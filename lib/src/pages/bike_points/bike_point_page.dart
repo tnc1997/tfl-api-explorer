@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_additional_properties_page.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class BikePointPage extends StatelessWidget {
   static const routeName = '/bike_points/:id';
 
   BikePointPage({
-    Key key,
-    @required this.bikePoint,
+    Key? key,
+    required this.bikePoint,
   }) : super(
           key: key,
         );
@@ -19,35 +18,35 @@ class BikePointPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(bikePoint.id),
+        title: Text(bikePoint.id ?? 'Unknown'),
       ),
       body: ListView(
         children: [
           ListTile(
             title: Text('Name'),
-            subtitle: NullableText(
-              bikePoint.commonName,
+            subtitle: Text(
+              bikePoint.commonName ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Place type'),
-            subtitle: NullableText(
-              bikePoint.placeType,
+            subtitle: Text(
+              bikePoint.placeType ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Lat'),
-            subtitle: NullableText(
-              bikePoint.lat?.toString(),
+            subtitle: Text(
+              bikePoint.lat?.toString() ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Lon'),
-            subtitle: NullableText(
-              bikePoint.lon?.toString(),
+            subtitle: Text(
+              bikePoint.lon?.toString() ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),

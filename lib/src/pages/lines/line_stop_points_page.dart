@@ -8,8 +8,8 @@ class LineStopPointsPage extends StatefulWidget {
   static const routeName = '/lines/:id/stop_points';
 
   LineStopPointsPage({
-    Key key,
-    @required this.line,
+    Key? key,
+    required this.line,
   }) : super(
           key: key,
         );
@@ -21,7 +21,7 @@ class LineStopPointsPage extends StatefulWidget {
 }
 
 class _LineStopPointsPageState extends State<LineStopPointsPage> {
-  Future<List<StopPoint>> _stopPointsFuture;
+  late Future<List<StopPoint>> _stopPointsFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +32,18 @@ class _LineStopPointsPageState extends State<LineStopPointsPage> {
       body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
         future: _stopPointsFuture,
         builder: (context, data) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return StopPointListTile(
-                stopPoint: data[index],
-              );
-            },
-            itemCount: data.length,
-          );
+          if (data != null) {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return StopPointListTile(
+                  stopPoint: data[index],
+                );
+              },
+              itemCount: data.length,
+            );
+          } else {
+            return Container();
+          }
         },
       ),
     );
@@ -49,7 +53,10 @@ class _LineStopPointsPageState extends State<LineStopPointsPage> {
   void initState() {
     super.initState();
 
-    _stopPointsFuture =
-        context.read<TflApi>().lines.getStopPoints(widget.line.id);
+    _stopPointsFuture = context
+        .read<TflApiClient>()
+        .lines
+        .stopPointsByPathIdQueryTflOperatedNationalRailStationsOnly(
+            widget.line.id!);
   }
 }

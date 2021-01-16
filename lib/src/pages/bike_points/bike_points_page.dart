@@ -16,7 +16,7 @@ class BikePointsPage extends StatefulWidget {
 }
 
 class _BikePointsPageState extends State<BikePointsPage> {
-  Future<List<Place>> _bikePointsFuture;
+  late Future<List<Place>> _bikePointsFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class _BikePointsPageState extends State<BikePointsPage> {
             );
           } else {
             return Center(
-              child: Text('N/A'),
+              child: Text('Unknown'),
             );
           }
         },
@@ -76,7 +76,7 @@ class _BikePointsPageState extends State<BikePointsPage> {
   @override
   void initState() {
     super.initState();
-    
-    _bikePointsFuture = context.read<TflApi>().bikePoints.get();
+
+    _bikePointsFuture = context.read<TflApiClient>().bikePoints.getAll();
   }
 }

@@ -16,7 +16,7 @@ class RoadsPage extends StatefulWidget {
 }
 
 class _RoadsPageState extends State<RoadsPage> {
-  Future<List<Road>> _roadsFuture;
+  late Future<List<RoadCorridor>> _roadsFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class _RoadsPageState extends State<RoadsPage> {
           ),
         ],
       ),
-      body: CircularProgressIndicatorFutureBuilder<List<Road>>(
+      body: CircularProgressIndicatorFutureBuilder<List<RoadCorridor>>(
         future: _roadsFuture,
         builder: (context, data) {
           if (data != null && data.isNotEmpty) {
@@ -64,7 +64,7 @@ class _RoadsPageState extends State<RoadsPage> {
             );
           } else {
             return Center(
-              child: Text('N/A'),
+              child: Text('Unknown'),
             );
           }
         },
@@ -77,6 +77,6 @@ class _RoadsPageState extends State<RoadsPage> {
   void initState() {
     super.initState();
 
-    _roadsFuture = context.read<TflApi>().roads.get();
+    _roadsFuture = context.read<TflApiClient>().roads.get();
   }
 }

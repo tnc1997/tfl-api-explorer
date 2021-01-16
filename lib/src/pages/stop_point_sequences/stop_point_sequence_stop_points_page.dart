@@ -6,8 +6,8 @@ class StopPointSequenceStopPointsPage extends StatelessWidget {
   static const routeName = '/stop_point_sequences/:id/stop_points';
 
   StopPointSequenceStopPointsPage({
-    Key key,
-    @required this.stopPointSequence,
+    Key? key,
+    required this.stopPointSequence,
   }) : super(
           key: key,
         );
@@ -16,7 +16,7 @@ class StopPointSequenceStopPointsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final stopPoints = stopPointSequence.stopPoint.map((matchedStop) {
+    final stopPoints = stopPointSequence.stopPoint?.map((matchedStop) {
       return StopPoint(
         id: matchedStop.id,
         url: matchedStop.url,
@@ -30,14 +30,16 @@ class StopPointSequenceStopPointsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Stop points'),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return StopPointListTile(
-            stopPoint: stopPoints[index],
-          );
-        },
-        itemCount: stopPoints.length,
-      ),
+      body: stopPoints != null
+          ? ListView.builder(
+              itemBuilder: (context, index) {
+                return StopPointListTile(
+                  stopPoint: stopPoints[index],
+                );
+              },
+              itemCount: stopPoints.length,
+            )
+          : Container(),
     );
   }
 }

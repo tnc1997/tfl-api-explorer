@@ -6,21 +6,21 @@ import 'package:tfl_api_explorer/src/specifications/specification.dart';
 
 class LinePredictionFiltersChangeNotifier
     extends FiltersChangeNotifier<Prediction> {
-  String _destinationName;
+  String? _destinationName;
 
-  String _stationName;
+  String? _stationName;
 
-  String get stationName => _stationName;
+  String? get stationName => _stationName;
 
-  set stationName(String value) {
+  set stationName(String? value) {
     _stationName = value;
 
     notifyListeners();
   }
 
-  String get destinationName => _destinationName;
+  String? get destinationName => _destinationName;
 
-  set destinationName(String value) {
+  set destinationName(String? value) {
     _destinationName = value;
 
     notifyListeners();
@@ -33,7 +33,7 @@ class LinePredictionFiltersChangeNotifier
     if (_destinationName != null) {
       specifications.add(
         PredictionDestinationNameSpecification(
-          destinationName: _destinationName,
+          destinationName: _destinationName!,
         ),
       );
     }
@@ -41,7 +41,7 @@ class LinePredictionFiltersChangeNotifier
     if (_stationName != null) {
       specifications.add(
         PredictionStationNameSpecification(
-          stationName: _stationName,
+          stationName: _stationName!,
         ),
       );
     }

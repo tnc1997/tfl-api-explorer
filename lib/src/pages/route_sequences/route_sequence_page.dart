@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/route_sequences/route_sequence_stop_point_sequences_page.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class RouteSequencePage extends StatelessWidget {
   static const routeName = '/route_sequences/:id';
 
   RouteSequencePage({
-    Key key,
-    @required this.routeSequence,
+    Key? key,
+    required this.routeSequence,
   }) : super(
           key: key,
         );
@@ -19,21 +18,21 @@ class RouteSequencePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(routeSequence.direction),
+        title: Text(routeSequence.direction ?? 'Unknown'),
       ),
       body: ListView(
         children: <Widget>[
           ListTile(
             title: Text('Line name'),
-            subtitle: NullableText(
-              routeSequence.lineName,
+            subtitle: Text(
+              routeSequence.lineName ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Mode'),
-            subtitle: NullableText(
-              routeSequence.mode,
+            subtitle: Text(
+              routeSequence.mode ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),
