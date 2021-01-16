@@ -27,7 +27,6 @@ import 'package:tfl_api_explorer/src/pages/lines/lines_page.dart';
 import 'package:tfl_api_explorer/src/pages/roads/road_page.dart';
 import 'package:tfl_api_explorer/src/pages/roads/roads_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/about_page.dart';
-import 'package:tfl_api_explorer/src/pages/settings/account_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
 import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_page.dart';
 import 'package:tfl_api_explorer/src/pages/stop_points/stop_points_page.dart';
@@ -582,16 +581,14 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          routeSequences.forEach((routeSequence) {
-            expect(
-              find.text(routeSequence.direction!),
-              findsWidgets,
-            );
-            expect(
-              find.text(routeSequence.orderedLineRoutes!.first.name!),
-              findsWidgets,
-            );
-          });
+          expect(
+            find.text(routeSequences.first.direction!),
+            findsWidgets,
+          );
+          expect(
+            find.text(routeSequences.first.orderedLineRoutes!.first.name!),
+            findsWidgets,
+          );
         });
       });
 
@@ -713,32 +710,6 @@ void main() {
           );
           expect(
             find.text('1.0.0'),
-            findsWidgets,
-          );
-        });
-      });
-
-      group('AccountPage', () {
-        testWidgets('App key', (tester) async {
-          await tester.pumpWidget(
-            MultiProvider(
-              providers: [
-                ChangeNotifierProvider<AuthenticationChangeNotifier>.value(
-                  value: authenticationChangeNotifier,
-                ),
-              ],
-              child: MaterialApp(
-                home: AccountPage(),
-              ),
-            ),
-          );
-
-          expect(
-            find.text('App key'),
-            findsWidgets,
-          );
-          expect(
-            find.text('abc'),
             findsWidgets,
           );
         });
