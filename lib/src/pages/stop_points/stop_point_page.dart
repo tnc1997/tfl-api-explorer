@@ -19,6 +19,8 @@ class StopPointPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final url = stopPoint.url;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(stopPoint.id ?? 'Unknown'),
@@ -70,13 +72,13 @@ class StopPointPage extends StatelessWidget {
           ListTile(
             title: Text('URL'),
             subtitle: Text(
-              stopPoint.url ?? 'Unknown',
+              url ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
-            onTap: stopPoint.url != null
+            onTap: url != null
                 ? () async {
-                    if (await canLaunch(stopPoint.url)) {
-                      await launch(stopPoint.url);
+                    if (await canLaunch(url)) {
+                      await launch(url);
                     }
                   }
                 : null,

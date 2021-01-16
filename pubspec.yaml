@@ -34,7 +34,7 @@ dependencies:
   provider: ^4.0.0
   shared_preferences: ^0.5.0
   tfl_api_client: ^1.0.0-nullsafety
-  url_launcher: ^5.0.0
+  url_launcher: ^6.0.0-nullsafety
 
 dev_dependencies:
   flutter_test:

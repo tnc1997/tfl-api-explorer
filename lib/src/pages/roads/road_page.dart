@@ -17,6 +17,8 @@ class RoadPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final url = road.url;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(road.id ?? 'Unknown'),
@@ -54,13 +56,13 @@ class RoadPage extends StatelessWidget {
           ListTile(
             title: Text('URL'),
             subtitle: Text(
-              road.url ?? 'Unknown',
+              url ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
-            onTap: road.url != null
+            onTap: url != null
                 ? () async {
-                    if (await canLaunch(road.url)) {
-                      await launch(road.url);
+                    if (await canLaunch(url)) {
+                      await launch(url);
                     }
                   }
                 : null,
