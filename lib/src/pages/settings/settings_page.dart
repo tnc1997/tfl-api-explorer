@@ -16,7 +16,7 @@ class SettingsPage extends StatelessWidget {
         children: <Widget>[
           ListTile(
             title: Text('Account'),
-            subtitle: Text('App ID, app key'),
+            subtitle: Text('App key'),
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(

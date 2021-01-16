@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class AdditionalPropertiesListTile extends StatelessWidget {
   AdditionalPropertiesListTile({
-    Key key,
-    @required this.additionalProperties,
+    Key? key,
+    required this.additionalProperties,
   }) : super(
           key: key,
         );
@@ -15,12 +14,12 @@ class AdditionalPropertiesListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: NullableText(
-        additionalProperties.key,
+      title: Text(
+        additionalProperties.key ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
-      subtitle: NullableText(
-        additionalProperties.value,
+      subtitle: Text(
+        additionalProperties.value ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
     );

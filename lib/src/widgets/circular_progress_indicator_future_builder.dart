@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 class CircularProgressIndicatorFutureBuilder<T> extends StatelessWidget {
   CircularProgressIndicatorFutureBuilder({
-    Key key,
+    Key? key,
     this.future,
-    @required this.builder,
+    required this.builder,
   }) : super(
           key: key,
         );
 
-  final Future<T> future;
+  final Future<T>? future;
 
-  final Widget Function(BuildContext context, T data) builder;
+  final Widget Function(BuildContext context, T? data) builder;
 
   @override
   Widget build(BuildContext context) {

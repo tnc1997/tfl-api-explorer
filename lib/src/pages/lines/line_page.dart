@@ -6,14 +6,13 @@ import 'package:tfl_api_explorer/src/pages/lines/line_line_statuses_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_predictions_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_route_sequences_page.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_stop_points_page.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class LinePage extends StatelessWidget {
   static const routeName = '/lines/:id';
 
   LinePage({
-    Key key,
-    @required this.line,
+    Key? key,
+    required this.line,
   }) : super(
           key: key,
         );
@@ -24,21 +23,21 @@ class LinePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(line.id),
+        title: Text(line.id ?? 'Unknown'),
       ),
       body: ListView(
         children: <Widget>[
           ListTile(
             title: Text('Name'),
-            subtitle: NullableText(
-              line.name,
+            subtitle: Text(
+              line.name ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Mode name'),
-            subtitle: NullableText(
-              line.modeName,
+            subtitle: Text(
+              line.modeName ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),

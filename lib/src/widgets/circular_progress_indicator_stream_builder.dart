@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 class CircularProgressIndicatorStreamBuilder<T> extends StatelessWidget {
   CircularProgressIndicatorStreamBuilder({
-    Key key,
+    Key? key,
     this.stream,
-    @required this.builder,
+    required this.builder,
   }) : super(
           key: key,
         );
 
-  final Stream<T> stream;
+  final Stream<T>? stream;
 
-  final Widget Function(BuildContext context, T data) builder;
+  final Widget Function(BuildContext context, T? data) builder;
 
   @override
   Widget build(BuildContext context) {

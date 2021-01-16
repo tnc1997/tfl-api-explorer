@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mdi/mdi.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
 
-import 'mocks/tfl_api_mock.dart';
+import 'integration_test.mocks.dart';
 
+@GenerateMocks([
+  BikePointService,
+  TflApiClient,
+])
 void main() {
-  final _bikePoints = <Place>[
+  final bikePoints = <Place>[
     Place(
       id: 'BikePoints_1',
       commonName: 'River Street, Clerkenwell',
@@ -33,27 +38,27 @@ void main() {
     ),
   ];
 
-  final _bikePointsResourceApi = BikePointsResourceApiMock();
+  final bikePointService = MockBikePointService();
 
-  final _tflApi = TflApiMock();
+  final tflApi = MockTflApiClient();
 
   setUpAll(() {
-    when(_bikePointsResourceApi.get()).thenAnswer((answer) {
+    when(bikePointService.getAll()).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
-        () => _bikePoints,
+        () => bikePoints,
       );
     });
 
-    when(_tflApi.bikePoints).thenReturn(_bikePointsResourceApi);
+    when(tflApi.bikePoints).thenReturn(bikePointService);
   });
 
   testWidgets('Bike point search', (tester) async {
     await tester.pumpWidget(
       MultiProvider(
         providers: [
-          Provider<TflApi>.value(
-            value: _tflApi,
+          Provider<TflApiClient>.value(
+            value: tflApi,
           ),
         ],
         child: MaterialApp(
@@ -66,9 +71,9 @@ void main() {
     await tester.tap(find.byIcon(Mdi.magnify));
     await tester.pumpAndSettle();
 
-    _bikePoints.forEach((bikePoint) {
+    bikePoints.forEach((bikePoint) {
       expect(
-        find.text(bikePoint.commonName),
+        find.text(bikePoint.commonName!),
         findsWidgets,
       );
     });
@@ -77,19 +82,19 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(
-      find.text(_bikePoints[0].commonName),
+      find.text(bikePoints[0].commonName!),
       findsWidgets,
     );
 
-    await tester.tap(find.text(_bikePoints[0].commonName));
+    await tester.tap(find.text(bikePoints[0].commonName!));
     await tester.pumpAndSettle();
 
     expect(
-      find.text(_bikePoints[0].id),
+      find.text(bikePoints[0].id!),
       findsWidgets,
     );
     expect(
-      find.text(_bikePoints[0].commonName),
+      find.text(bikePoints[0].commonName!),
       findsWidgets,
     );
   });

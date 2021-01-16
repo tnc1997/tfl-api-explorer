@@ -16,7 +16,7 @@ class CarParksPage extends StatefulWidget {
 }
 
 class _CarParksPageState extends State<CarParksPage> {
-  Future<List<Place>> _carParksFuture;
+  late Future<List<Place>> _carParksFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class _CarParksPageState extends State<CarParksPage> {
             );
           } else {
             return Center(
-              child: Text('N/A'),
+              child: Text('Unknown'),
             );
           }
         },
@@ -77,6 +77,9 @@ class _CarParksPageState extends State<CarParksPage> {
   void initState() {
     super.initState();
 
-    _carParksFuture = context.read<TflApi>().carParks.get();
+    _carParksFuture = context
+        .read<TflApiClient>()
+        .places
+        .getByTypeByPathTypesQueryActiveOnly(['CarPark']);
   }
 }

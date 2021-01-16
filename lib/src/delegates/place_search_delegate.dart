@@ -3,12 +3,11 @@ import 'package:mdi/mdi.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/specifications/place_common_name_specification.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 import 'package:tfl_api_explorer/src/widgets/place_list_tile.dart';
 
 class PlaceSearchDelegate extends SearchDelegate<Place> {
   PlaceSearchDelegate({
-    @required this.placesFuture,
+    required this.placesFuture,
   });
 
   final Future<List<Place>> placesFuture;
@@ -37,7 +36,7 @@ class PlaceSearchDelegate extends SearchDelegate<Place> {
     return IconButton(
       icon: Icon(Mdi.arrowLeft),
       onPressed: () {
-        close(context, null);
+        close(context, null as Place);
       },
     );
   }
@@ -51,19 +50,23 @@ class PlaceSearchDelegate extends SearchDelegate<Place> {
           commonName: query,
         );
 
-        final places = data.where(specification.isSatisfiedBy).toList();
+        final places = data?.where(specification.isSatisfiedBy).toList();
 
-        return ListView.builder(
-          itemBuilder: (context, index) {
-            return PlaceListTile(
-              place: places[index],
-              onTap: () {
-                close(context, places[index]);
-              },
-            );
-          },
-          itemCount: places.length,
-        );
+        if (places != null) {
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              return PlaceListTile(
+                place: places[index],
+                onTap: () {
+                  close(context, places[index]);
+                },
+              );
+            },
+            itemCount: places.length,
+          );
+        } else {
+          return Container();
+        }
       },
     );
   }
@@ -77,24 +80,28 @@ class PlaceSearchDelegate extends SearchDelegate<Place> {
           commonName: query,
         );
 
-        final places = data.where(specification.isSatisfiedBy).toList();
+        final places = data?.where(specification.isSatisfiedBy).toList();
 
-        return ListView.builder(
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: NullableText(
-                places[index].commonName,
-                overflow: TextOverflow.ellipsis,
-              ),
-              onTap: () {
-                query = places[index].commonName;
+        if (places != null) {
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(
+                  places[index].commonName ?? 'Unknown',
+                  overflow: TextOverflow.ellipsis,
+                ),
+                onTap: () {
+                  query = places[index].commonName ?? '';
 
-                showResults(context);
-              },
-            );
-          },
-          itemCount: places.length,
-        );
+                  showResults(context);
+                },
+              );
+            },
+            itemCount: places.length,
+          );
+        } else {
+          return Container();
+        }
       },
     );
   }

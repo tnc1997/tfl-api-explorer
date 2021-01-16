@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/intl.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
@@ -26,18 +27,28 @@ import 'package:tfl_api_explorer/src/pages/lines/lines_page.dart';
 import 'package:tfl_api_explorer/src/pages/roads/road_page.dart';
 import 'package:tfl_api_explorer/src/pages/roads/roads_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/about_page.dart';
-import 'package:tfl_api_explorer/src/pages/settings/account_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
 import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_page.dart';
 import 'package:tfl_api_explorer/src/pages/stop_points/stop_points_page.dart';
 
-import 'mocks/authentication_change_notifier_mock.dart';
-import 'mocks/tfl_api_mock.dart';
+import 'widget_test.mocks.dart';
 
+@GenerateMocks([
+  AuthenticationChangeNotifier,
+  BikePointService,
+  LineService,
+  OccupancyService,
+  PlaceService,
+  RoadService,
+  StopPointService,
+  TflApiClient,
+])
 void main() {
-  final _authenticationChangeNotifier = AuthenticationChangeNotifierMock();
+  final authenticationChangeNotifier = MockAuthenticationChangeNotifier();
 
-  final _bikePoints = <Place>[
+  final bikePointService = MockBikePointService();
+
+  final bikePoints = <Place>[
     Place(
       id: 'BikePoints_1',
       commonName: 'River Street, Clerkenwell',
@@ -61,9 +72,7 @@ void main() {
     ),
   ];
 
-  final _bikePointsResourceApi = BikePointsResourceApiMock();
-
-  final _carParkOccupancies = <CarParkOccupancy>[
+  final carParkOccupancies = <CarParkOccupancy>[
     CarParkOccupancy(
       id: 'CarParks_800491',
       name: 'Barkingside Stn (LUL)',
@@ -78,10 +87,7 @@ void main() {
     ),
   ];
 
-  final _carParkOccupanciesResourceApiMock =
-      CarParkOccupanciesResourceApiMock();
-
-  final _carParks = <Place>[
+  final carParks = <Place>[
     Place(
       id: 'CarParks_800491',
       commonName: 'Barkingside Stn (LUL)',
@@ -96,33 +102,22 @@ void main() {
     ),
   ];
 
-  final _carParksResourceApi = CarParksResourceApiMock();
-
-  final _lineDisruptions = <LineDisruption>[
-    LineDisruption(
+  final disruptions = <Disruption>[
+    Disruption(
       categoryDescription: 'PlannedWork',
-      description: 'This is a planned work line disruption.',
+      description: 'This is a planned work disruption.',
       created: DateTime(2020, 1, 1, 0, 0),
     ),
-    LineDisruption(
+    Disruption(
       categoryDescription: 'RealTime',
-      description: 'This is a real time line disruption.',
+      description: 'This is a real time disruption.',
       created: DateTime(2020, 1, 1, 12, 0),
     ),
   ];
 
-  final _lineRoutes = <LineRoute>[
-    LineRoute(
-      name: 'Canada Water - Tottenham Court Road',
-      serviceType: 'Regular',
-    ),
-    LineRoute(
-      name: 'Tottenham Court Road - Canada Water',
-      serviceType: 'Regular',
-    ),
-  ];
+  final lineService = MockLineService();
 
-  final _lineStatuses = <LineStatus>[
+  final lineStatuses = <LineStatus>[
     LineStatus(
       statusSeverityDescription: 'Good Service',
     ),
@@ -131,7 +126,7 @@ void main() {
     ),
   ];
 
-  final _lines = <Line>[
+  final lines = <Line>[
     Line(
       id: '1',
       name: '1',
@@ -144,9 +139,22 @@ void main() {
     ),
   ];
 
-  final _linesResourceApi = LinesResourceApiMock();
+  final matchedRoutes = <MatchedRoute>[
+    MatchedRoute(
+      name: 'Canada Water - Tottenham Court Road',
+      serviceType: 'Regular',
+    ),
+    MatchedRoute(
+      name: 'Tottenham Court Road - Canada Water',
+      serviceType: 'Regular',
+    ),
+  ];
 
-  final _predictions = <Prediction>[
+  final occupancyService = MockOccupancyService();
+
+  final placeService = MockPlaceService();
+
+  final predictions = <Prediction>[
     Prediction(
       id: '1',
       destinationName: 'Canada Water',
@@ -159,20 +167,20 @@ void main() {
     ),
   ];
 
-  final _roads = <Road>[
-    Road(
+  final roadCorridors = <RoadCorridor>[
+    RoadCorridor(
       id: 'a1',
       displayName: 'A1',
     ),
-    Road(
+    RoadCorridor(
       id: 'a2',
       displayName: 'A2',
     ),
   ];
 
-  final _roadsResourceApi = RoadsResourceApiMock();
+  final roadService = MockRoadService();
 
-  final _routeSequences = <RouteSequence>[
+  final routeSequences = <RouteSequence>[
     RouteSequence(
       direction: 'Inbound',
       orderedLineRoutes: <OrderedRoute>[
@@ -191,17 +199,19 @@ void main() {
     ),
   ];
 
-  final _stopPoints = <StopPoint>[
+  final stopPointService = MockStopPointService();
+
+  final stopPoints = <StopPoint>[
     StopPoint(
       naptanId: 'HUBZCW',
       modes: ['bus', 'overground', 'tube'],
       icsCode: '1000037',
-      smsCode: '48366',
+      sMSCode: '48366',
       stopType: 'TransportInterchange',
-      accessibilitySummary: 'N/A',
+      accessibilitySummary: 'Unknown',
       hubNaptanCode: 'HUBZCW',
       id: '490004733C',
-      url: 'N/A',
+      url: 'Unknown',
       commonName: 'Canada Water',
       placeType: 'StopPoint',
       lat: 51.498053,
@@ -211,12 +221,12 @@ void main() {
       naptanId: '940GZZLUTCR',
       modes: ['bus', 'tube'],
       icsCode: '1000235',
-      smsCode: '47657',
+      sMSCode: '47657',
       stopType: 'NaptanMetroStation',
-      accessibilitySummary: 'N/A',
-      hubNaptanCode: 'N/A',
+      accessibilitySummary: 'Unknown',
+      hubNaptanCode: 'Unknown',
       id: '490000235N',
-      url: 'N/A',
+      url: 'Unknown',
       commonName: 'Tottenham Court Road',
       placeType: 'StopPoint',
       lat: 51.516426,
@@ -224,19 +234,17 @@ void main() {
     ),
   ];
 
-  final _stopPointsResourceApi = StopPointsResourceApiMock();
-
-  final _tflApi = TflApiMock();
+  final tflApi = MockTflApiClient();
 
   group('pages', () {
     group('bike_points', () {
       group('BikePointPage', () {
-        final _bikePoint = _bikePoints[0];
+        final bikePoint = bikePoints[0];
 
         testWidgets('Name', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: BikePointPage(bikePoint: _bikePoint),
+              home: BikePointPage(bikePoint: bikePoint),
             ),
           );
 
@@ -245,7 +253,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_bikePoint.commonName),
+            find.text(bikePoint.commonName!),
             findsWidgets,
           );
         });
@@ -253,7 +261,7 @@ void main() {
         testWidgets('Place type', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: BikePointPage(bikePoint: _bikePoint),
+              home: BikePointPage(bikePoint: bikePoint),
             ),
           );
 
@@ -262,7 +270,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_bikePoint.placeType),
+            find.text(bikePoint.placeType!),
             findsWidgets,
           );
         });
@@ -270,7 +278,7 @@ void main() {
         testWidgets('Lat', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: BikePointPage(bikePoint: _bikePoint),
+              home: BikePointPage(bikePoint: bikePoint),
             ),
           );
 
@@ -279,7 +287,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text('${_bikePoint.lat}'),
+            find.text('${bikePoint.lat}'),
             findsWidgets,
           );
         });
@@ -287,7 +295,7 @@ void main() {
         testWidgets('Lon', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: BikePointPage(bikePoint: _bikePoint),
+              home: BikePointPage(bikePoint: bikePoint),
             ),
           );
 
@@ -296,7 +304,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text('${_bikePoint.lon}'),
+            find.text('${bikePoint.lon}'),
             findsWidgets,
           );
         });
@@ -307,8 +315,8 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider<TflApi>.value(
-                  value: _tflApi,
+                Provider<TflApiClient>.value(
+                  value: tflApi,
                 ),
               ],
               child: MaterialApp(
@@ -318,13 +326,13 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          _bikePoints.forEach((bikePoint) {
+          bikePoints.forEach((bikePoint) {
             expect(
-              find.text(bikePoint.id),
+              find.text(bikePoint.id!),
               findsWidgets,
             );
             expect(
-              find.text(bikePoint.commonName),
+              find.text(bikePoint.commonName!),
               findsWidgets,
             );
           });
@@ -334,12 +342,12 @@ void main() {
 
     group('car_parks', () {
       group('CarParkPage', () {
-        final _carPark = _carParks[0];
+        final carPark = carParks[0];
 
         testWidgets('Name', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: CarParkPage(carPark: _carPark),
+              home: CarParkPage(carPark: carPark),
             ),
           );
 
@@ -348,7 +356,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_carPark.commonName),
+            find.text(carPark.commonName!),
             findsWidgets,
           );
         });
@@ -359,8 +367,8 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider<TflApi>.value(
-                  value: _tflApi,
+                Provider<TflApiClient>.value(
+                  value: tflApi,
                 ),
               ],
               child: MaterialApp(
@@ -370,13 +378,13 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          _carParks.forEach((carPark) {
+          carParks.forEach((carPark) {
             expect(
-              find.text(carPark.id),
+              find.text(carPark.id!),
               findsWidgets,
             );
             expect(
-              find.text(carPark.commonName),
+              find.text(carPark.commonName!),
               findsWidgets,
             );
           });
@@ -386,30 +394,30 @@ void main() {
 
     group('lines', () {
       group('LineLineDisruptionsPage', () {
-        final _line = _lines[0];
+        final line = lines[0];
 
         testWidgets('', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider<TflApi>.value(
-                  value: _tflApi,
+                Provider<TflApiClient>.value(
+                  value: tflApi,
                 ),
               ],
               child: MaterialApp(
-                home: LineLineDisruptionsPage(line: _line),
+                home: LineLineDisruptionsPage(line: line),
               ),
             ),
           );
           await tester.pumpAndSettle();
 
-          _lineDisruptions.forEach((lineDisruption) {
+          disruptions.forEach((lineDisruption) {
             expect(
-              find.text(lineDisruption.categoryDescription),
+              find.text(lineDisruption.categoryDescription!),
               findsWidgets,
             );
             expect(
-              find.text(DateFormat.Hm().format(lineDisruption.created)),
+              find.text(DateFormat.Hm().format(lineDisruption.created!)),
               findsWidgets,
             );
           });
@@ -417,7 +425,7 @@ void main() {
       });
 
       group('LineLineRoutesPage', () {
-        final _line = _lines[0];
+        final line = lines[0];
 
         testWidgets('', (tester) async {
           await tester.pumpWidget(
@@ -428,24 +436,24 @@ void main() {
                     return LineLineRouteFiltersChangeNotifier();
                   },
                 ),
-                Provider<TflApi>.value(
-                  value: _tflApi,
+                Provider<TflApiClient>.value(
+                  value: tflApi,
                 ),
               ],
               child: MaterialApp(
-                home: LineLineRoutesPage(line: _line),
+                home: LineLineRoutesPage(line: line),
               ),
             ),
           );
           await tester.pumpAndSettle();
 
-          _lineRoutes.forEach((lineRoute) {
+          matchedRoutes.forEach((lineRoute) {
             expect(
-              find.text(lineRoute.name),
+              find.text(lineRoute.name!),
               findsWidgets,
             );
             expect(
-              find.text(lineRoute.serviceType),
+              find.text(lineRoute.serviceType!),
               findsWidgets,
             );
           });
@@ -453,26 +461,26 @@ void main() {
       });
 
       group('LineLineStatusesPage', () {
-        final _line = _lines[0];
+        final line = lines[0];
 
         testWidgets('', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider<TflApi>.value(
-                  value: _tflApi,
+                Provider<TflApiClient>.value(
+                  value: tflApi,
                 ),
               ],
               child: MaterialApp(
-                home: LineLineStatusesPage(line: _line),
+                home: LineLineStatusesPage(line: line),
               ),
             ),
           );
           await tester.pumpAndSettle();
 
-          _lineStatuses.forEach((lineStatus) {
+          lineStatuses.forEach((lineStatus) {
             expect(
-              find.text(lineStatus.statusSeverityDescription),
+              find.text(lineStatus.statusSeverityDescription!),
               findsWidgets,
             );
           });
@@ -480,12 +488,12 @@ void main() {
       });
 
       group('LinePage', () {
-        final _line = _lines[0];
+        final line = lines[0];
 
         testWidgets('Mode name', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: LinePage(line: _line),
+              home: LinePage(line: line),
             ),
           );
 
@@ -494,7 +502,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_line.modeName),
+            find.text(line.modeName!),
             findsWidgets,
           );
         });
@@ -502,7 +510,7 @@ void main() {
         testWidgets('Name', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: LinePage(line: _line),
+              home: LinePage(line: line),
             ),
           );
 
@@ -511,14 +519,14 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_line.name),
+            find.text(line.name!),
             findsWidgets,
           );
         });
       });
 
       group('LinePredictionsPage', () {
-        final _line = _lines[0];
+        final line = lines[0];
 
         testWidgets('', (tester) async {
           await tester.pumpWidget(
@@ -529,25 +537,25 @@ void main() {
                     return LinePredictionFiltersChangeNotifier();
                   },
                 ),
-                Provider<TflApi>.value(
-                  value: _tflApi,
+                Provider<TflApiClient>.value(
+                  value: tflApi,
                 ),
               ],
               child: MaterialApp(
-                home: LinePredictionsPage(line: _line),
+                home: LinePredictionsPage(line: line),
               ),
             ),
           );
           await tester.pumpAndSettle();
 
-          _predictions.forEach((prediction) {
+          predictions.forEach((prediction) {
             expect(
-              find.text(prediction.id),
+              find.text(prediction.id!),
               findsWidgets,
             );
             expect(
               find.text(
-                '${DateFormat.Hm().format(prediction.expectedArrival)} - ${prediction.destinationName}',
+                '${DateFormat.Hm().format(prediction.expectedArrival!)} - ${prediction.destinationName}',
               ),
               findsWidgets,
             );
@@ -556,61 +564,59 @@ void main() {
       });
 
       group('LineRouteSequencesPage', () {
-        final _line = _lines[0];
+        final line = lines[0];
 
         testWidgets('', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider<TflApi>.value(
-                  value: _tflApi,
+                Provider<TflApiClient>.value(
+                  value: tflApi,
                 ),
               ],
               child: MaterialApp(
-                home: LineRouteSequencesPage(line: _line),
+                home: LineRouteSequencesPage(line: line),
               ),
             ),
           );
           await tester.pumpAndSettle();
 
-          _routeSequences.forEach((routeSequence) {
-            expect(
-              find.text(routeSequence.direction),
-              findsWidgets,
-            );
-            expect(
-              find.text(routeSequence.orderedLineRoutes.first.name),
-              findsWidgets,
-            );
-          });
+          expect(
+            find.text(routeSequences.first.direction!),
+            findsWidgets,
+          );
+          expect(
+            find.text(routeSequences.first.orderedLineRoutes!.first.name!),
+            findsWidgets,
+          );
         });
       });
 
       group('LineStopPointsPage', () {
-        final _line = _lines[0];
+        final line = lines[0];
 
         testWidgets('', (tester) async {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider<TflApi>.value(
-                  value: _tflApi,
+                Provider<TflApiClient>.value(
+                  value: tflApi,
                 ),
               ],
               child: MaterialApp(
-                home: LineStopPointsPage(line: _line),
+                home: LineStopPointsPage(line: line),
               ),
             ),
           );
           await tester.pumpAndSettle();
 
-          _stopPoints.forEach((stopPoint) {
+          stopPoints.forEach((stopPoint) {
             expect(
-              find.text(stopPoint.id),
+              find.text(stopPoint.id!),
               findsWidgets,
             );
             expect(
-              find.text(stopPoint.commonName),
+              find.text(stopPoint.commonName!),
               findsWidgets,
             );
           });
@@ -627,8 +633,8 @@ void main() {
                     return LineFiltersChangeNotifier();
                   },
                 ),
-                Provider<TflApi>.value(
-                  value: _tflApi,
+                Provider<TflApiClient>.value(
+                  value: tflApi,
                 ),
               ],
               child: MaterialApp(
@@ -638,13 +644,13 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          _lines.forEach((line) {
+          lines.forEach((line) {
             expect(
-              find.text(line.id),
+              find.text(line.id!),
               findsWidgets,
             );
             expect(
-              find.text(line.name),
+              find.text(line.name!),
               findsWidgets,
             );
           });
@@ -709,56 +715,6 @@ void main() {
         });
       });
 
-      group('AccountPage', () {
-        testWidgets('App ID', (tester) async {
-          await tester.pumpWidget(
-            MultiProvider(
-              providers: [
-                ChangeNotifierProvider<AuthenticationChangeNotifier>.value(
-                  value: _authenticationChangeNotifier,
-                ),
-              ],
-              child: MaterialApp(
-                home: AccountPage(),
-              ),
-            ),
-          );
-
-          expect(
-            find.text('App ID'),
-            findsWidgets,
-          );
-          expect(
-            find.text('123'),
-            findsWidgets,
-          );
-        });
-
-        testWidgets('App key', (tester) async {
-          await tester.pumpWidget(
-            MultiProvider(
-              providers: [
-                ChangeNotifierProvider<AuthenticationChangeNotifier>.value(
-                  value: _authenticationChangeNotifier,
-                ),
-              ],
-              child: MaterialApp(
-                home: AccountPage(),
-              ),
-            ),
-          );
-
-          expect(
-            find.text('App key'),
-            findsWidgets,
-          );
-          expect(
-            find.text('abc'),
-            findsWidgets,
-          );
-        });
-      });
-
       group('SettingsPage', () {
         testWidgets('', (tester) async {
           await tester.pumpWidget(
@@ -781,7 +737,7 @@ void main() {
 
     group('roads', () {
       group('RoadPage', () {
-        final _road = _roads[0];
+        final _road = roadCorridors[0];
 
         testWidgets('Name', (tester) async {
           await tester.pumpWidget(
@@ -795,7 +751,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_road.displayName),
+            find.text(_road.displayName!),
             findsWidgets,
           );
         });
@@ -806,8 +762,8 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                Provider<TflApi>.value(
-                  value: _tflApi,
+                Provider<TflApiClient>.value(
+                  value: tflApi,
                 ),
               ],
               child: MaterialApp(
@@ -817,13 +773,13 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          _roads.forEach((bikePoint) {
+          roadCorridors.forEach((bikePoint) {
             expect(
-              find.text(bikePoint.id),
+              find.text(bikePoint.id!),
               findsWidgets,
             );
             expect(
-              find.text(bikePoint.displayName),
+              find.text(bikePoint.displayName!),
               findsWidgets,
             );
           });
@@ -833,7 +789,7 @@ void main() {
 
     group('stop_points', () {
       group('StopPointPage', () {
-        final _stopPoint = _stopPoints[0];
+        final _stopPoint = stopPoints[0];
 
         testWidgets('Name', (tester) async {
           await tester.pumpWidget(
@@ -847,7 +803,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.commonName),
+            find.text(_stopPoint.commonName!),
             findsWidgets,
           );
         });
@@ -864,7 +820,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.icsCode),
+            find.text(_stopPoint.icsCode!),
             findsWidgets,
           );
         });
@@ -881,7 +837,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.smsCode),
+            find.text(_stopPoint.sMSCode!),
             findsWidgets,
           );
         });
@@ -898,7 +854,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.stopType),
+            find.text(_stopPoint.stopType!),
             findsWidgets,
           );
         });
@@ -915,7 +871,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.accessibilitySummary),
+            find.text(_stopPoint.accessibilitySummary!),
             findsWidgets,
           );
         });
@@ -932,7 +888,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.hubNaptanCode),
+            find.text(_stopPoint.hubNaptanCode!),
             findsWidgets,
           );
         });
@@ -949,7 +905,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.url),
+            find.text(_stopPoint.url!),
             findsWidgets,
           );
         });
@@ -966,7 +922,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.placeType),
+            find.text(_stopPoint.placeType!),
             findsWidgets,
           );
         });
@@ -982,8 +938,8 @@ void main() {
                     return StopPointFiltersChangeNotifier();
                   },
                 ),
-                Provider<TflApi>.value(
-                  value: _tflApi,
+                Provider<TflApiClient>.value(
+                  value: tflApi,
                 ),
               ],
               child: MaterialApp(
@@ -993,13 +949,13 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          _stopPoints.forEach((stopPoint) {
+          stopPoints.forEach((stopPoint) {
             expect(
-              find.text(stopPoint.id),
+              find.text(stopPoint.id!),
               findsWidgets,
             );
             expect(
-              find.text(stopPoint.commonName),
+              find.text(stopPoint.commonName!),
               findsWidgets,
             );
           });
@@ -1024,96 +980,99 @@ void main() {
   });
 
   setUpAll(() {
-    when(_bikePointsResourceApi.get()).thenAnswer((answer) {
+    when(bikePointService.getAll()).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
-        () => _bikePoints,
+        () => bikePoints,
       );
     });
 
-    when(_carParkOccupanciesResourceApiMock.get()).thenAnswer((answer) {
+    when(occupancyService.get()).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
-        () => _carParkOccupancies,
+        () => carParkOccupancies,
       );
     });
 
-    when(_carParksResourceApi.get()).thenAnswer((answer) {
+    when(placeService.getByTypeByPathTypesQueryActiveOnly(['CarPark']))
+        .thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
-        () => _carParks,
+        () => carParks,
       );
     });
 
-    when(_linesResourceApi.get(mode: anyNamed('mode'))).thenAnswer((answer) {
+    when(lineService.getByModeByPathModes(['bus', 'tube']))
+        .thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
-        () => _lines,
+        () => lines,
       );
     });
-    when(_linesResourceApi.getLineDisruptions(any)).thenAnswer((answer) {
+    when(lineService.disruptionByPathIds(any)).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
-        () => _lineDisruptions,
+        () => disruptions,
       );
     });
-    when(_linesResourceApi.getLineRoutes(any)).thenAnswer((answer) {
+    when(lineService.lineRoutesByIdsByPathIdsQueryServiceTypes(any))
+        .thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
-        () => _lineRoutes,
+        () => [Line(routeSections: matchedRoutes)],
       );
     });
-    when(_linesResourceApi.getLineStatuses(any)).thenAnswer((answer) {
+    when(lineService.statusByIdsByPathIdsQueryDetail(any)).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
-        () => _lineStatuses,
+        () => [Line(lineStatus: lineStatuses)],
       );
     });
-    when(_linesResourceApi.getPredictions(any)).thenAnswer((answer) {
+    when(lineService.arrivalsByPathIds(any)).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
-        () => _predictions,
+        () => predictions,
       );
     });
-    when(_linesResourceApi.getRouteSequences(any)).thenAnswer((answer) {
+    when(lineService
+            .routeSequenceByPathIdPathDirectionQueryServiceTypesQueryExcludeCrowding(
+                any, any))
+        .thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
-        () => _routeSequences,
+        () => routeSequences.first,
       );
     });
-    when(_linesResourceApi.getStopPoints(any)).thenAnswer((answer) {
+    when(lineService
+            .stopPointsByPathIdQueryTflOperatedNationalRailStationsOnly(any))
+        .thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
-        () => _stopPoints,
-      );
-    });
-
-    when(_roadsResourceApi.get()).thenAnswer((answer) {
-      return Future.delayed(
-        Duration(seconds: 1),
-        () => _roads,
-      );
-    });
-
-    when(_stopPointsResourceApi.get(
-      type: anyNamed('type'),
-      mode: anyNamed('mode'),
-    )).thenAnswer((answer) {
-      return Future.delayed(
-        Duration(seconds: 1),
-        () => _stopPoints,
+        () => stopPoints,
       );
     });
 
-    when(_tflApi.bikePoints).thenReturn(_bikePointsResourceApi);
-    when(_tflApi.carParkOccupancies)
-        .thenReturn(_carParkOccupanciesResourceApiMock);
-    when(_tflApi.carParks).thenReturn(_carParksResourceApi);
-    when(_tflApi.lines).thenReturn(_linesResourceApi);
-    when(_tflApi.roads).thenReturn(_roadsResourceApi);
-    when(_tflApi.stopPoints).thenReturn(_stopPointsResourceApi);
+    when(roadService.get()).thenAnswer((answer) {
+      return Future.delayed(
+        Duration(seconds: 1),
+        () => roadCorridors,
+      );
+    });
 
-    when(_authenticationChangeNotifier.appId).thenReturn('123');
-    when(_authenticationChangeNotifier.appKey).thenReturn('abc');
+    when(stopPointService.getByTypeByPathTypes(any)).thenAnswer((answer) {
+      return Future.delayed(
+        Duration(seconds: 1),
+        () => stopPoints,
+      );
+    });
+
+    when(tflApi.bikePoints).thenReturn(bikePointService);
+    when(tflApi.occupancies).thenReturn(occupancyService);
+    when(tflApi.places).thenReturn(placeService);
+    when(tflApi.lines).thenReturn(lineService);
+    when(tflApi.roads).thenReturn(roadService);
+    when(tflApi.stopPoints).thenReturn(stopPointService);
+
+    when(authenticationChangeNotifier.appKey).thenReturn('abc');
   });
 }

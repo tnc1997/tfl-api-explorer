@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class PredictionPage extends StatelessWidget {
   static const routeName = '/predictions/:id';
 
   PredictionPage({
-    Key key,
-    @required this.prediction,
+    Key? key,
+    required this.prediction,
   }) : super(
           key: key,
         );
@@ -17,73 +16,74 @@ class PredictionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final expectedArrival = prediction.expectedArrival;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(prediction.id),
+        title: Text(prediction.id ?? 'Unknown'),
       ),
       body: ListView(
         children: <Widget>[
           ListTile(
             title: Text('Vehicle'),
-            subtitle: NullableText(
-              prediction.vehicleId,
+            subtitle: Text(
+              prediction.vehicleId ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Station name'),
-            subtitle: NullableText(
-              prediction.stationName,
+            subtitle: Text(
+              prediction.stationName ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Line name'),
-            subtitle: NullableText(
-              prediction.lineName,
+            subtitle: Text(
+              prediction.lineName ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Platform name'),
-            subtitle: NullableText(
-              prediction.platformName,
+            subtitle: Text(
+              prediction.platformName ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Destination name'),
-            subtitle: NullableText(
-              prediction.destinationName,
+            subtitle: Text(
+              prediction.destinationName ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Current location'),
-            subtitle: NullableText(
-              prediction.currentLocation,
+            subtitle: Text(
+              prediction.currentLocation ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),
           ListTile(
             title: Text('Towards'),
-            subtitle: NullableText(
-              prediction.towards,
+            subtitle: Text(
+              prediction.towards ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          ListTile(
-            title: Text('Expected arrival'),
-            subtitle: Text(
-              DateFormat.Hm().format(
-                prediction.expectedArrival,
+          if (expectedArrival != null)
+            ListTile(
+              title: Text('Expected arrival'),
+              subtitle: Text(
+                DateFormat.Hm().format(expectedArrival),
               ),
             ),
-          ),
           ListTile(
             title: Text('Mode name'),
-            subtitle: NullableText(
-              prediction.modeName,
+            subtitle: Text(
+              prediction.modeName ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),

@@ -6,8 +6,8 @@ class StopPointAdditionalPropertiesPage extends StatelessWidget {
   static const routeName = '/stop_points/:id/additional_properties';
 
   StopPointAdditionalPropertiesPage({
-    Key key,
-    @required this.stopPoint,
+    Key? key,
+    required this.stopPoint,
   }) : super(
           key: key,
         );
@@ -16,18 +16,22 @@ class StopPointAdditionalPropertiesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final additionalProperties = stopPoint.additionalProperties;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Additional properties'),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return AdditionalPropertiesListTile(
-            additionalProperties: stopPoint.additionalProperties[index],
-          );
-        },
-        itemCount: stopPoint.additionalProperties.length,
-      ),
+      body: additionalProperties != null
+          ? ListView.builder(
+              itemBuilder: (context, index) {
+                return AdditionalPropertiesListTile(
+                  additionalProperties: additionalProperties[index],
+                );
+              },
+              itemCount: additionalProperties.length,
+            )
+          : Container(),
     );
   }
 }

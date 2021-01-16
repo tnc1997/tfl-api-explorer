@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class IdentifierListTile extends StatelessWidget {
   IdentifierListTile({
-    Key key,
-    @required this.identifier,
+    Key? key,
+    required this.identifier,
   }) : super(
           key: key,
         );
@@ -15,12 +14,12 @@ class IdentifierListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: NullableText(
-        identifier.id,
+      title: Text(
+        identifier.id ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
-      subtitle: NullableText(
-        identifier.name,
+      subtitle: Text(
+        identifier.name ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
     );

@@ -10,7 +10,7 @@ import 'package:tfl_api_explorer/src/specifications/specification.dart';
 import 'package:tfl_api_explorer/src/specifications/stop_point_modes_specification.dart';
 
 void main() {
-  final _bikePoints = <Place>[
+  final bikePoints = <Place>[
     Place(
       id: 'BikePoints_1',
       commonName: 'River Street, Clerkenwell',
@@ -34,16 +34,7 @@ void main() {
     ),
   ];
 
-  final _lineRoutes = <LineRoute>[
-    LineRoute(
-      serviceType: 'Night',
-    ),
-    LineRoute(
-      serviceType: 'Regular',
-    ),
-  ];
-
-  final _lines = <Line>[
+  final lines = <Line>[
     Line(
       id: '1',
       name: '1',
@@ -56,7 +47,16 @@ void main() {
     ),
   ];
 
-  final _predictions = <Prediction>[
+  final matchedRoutes = <MatchedRoute>[
+    MatchedRoute(
+      serviceType: 'Night',
+    ),
+    MatchedRoute(
+      serviceType: 'Regular',
+    ),
+  ];
+
+  final predictions = <Prediction>[
     Prediction(
       stationName: 'Elephant & Castle',
       destinationName: 'Canada Water',
@@ -75,28 +75,28 @@ void main() {
     ),
   ];
 
-  final _roads = <Road>[
-    Road(
+  final roadCorridors = <RoadCorridor>[
+    RoadCorridor(
       id: 'a1',
       displayName: 'A1',
     ),
-    Road(
+    RoadCorridor(
       id: 'a2',
       displayName: 'A2',
     ),
   ];
 
-  final _stopPoints = <StopPoint>[
+  final stopPoints = <StopPoint>[
     StopPoint(
       naptanId: 'HUBZCW',
       modes: ['bus', 'overground', 'tube'],
       icsCode: '1000037',
-      smsCode: '48366',
+      sMSCode: '48366',
       stopType: 'TransportInterchange',
-      accessibilitySummary: 'N/A',
+      accessibilitySummary: 'Unknown',
       hubNaptanCode: 'HUBZCW',
       id: '490004733C',
-      url: 'N/A',
+      url: 'Unknown',
       commonName: 'Canada Water',
       placeType: 'StopPoint',
       lat: 51.498053,
@@ -106,12 +106,12 @@ void main() {
       naptanId: '940GZZLUTCR',
       modes: ['bus', 'tube'],
       icsCode: '1000235',
-      smsCode: '47657',
+      sMSCode: '47657',
       stopType: 'NaptanMetroStation',
-      accessibilitySummary: 'N/A',
-      hubNaptanCode: 'N/A',
+      accessibilitySummary: 'Unknown',
+      hubNaptanCode: 'Unknown',
       id: '490000235N',
-      url: 'N/A',
+      url: 'Unknown',
       commonName: 'Tottenham Court Road',
       placeType: 'StopPoint',
       lat: 51.516426,
@@ -128,15 +128,15 @@ void main() {
           modeName: 'bus',
         );
         expect(
-          specification.isSatisfiedBy(_lines[0]),
+          specification.isSatisfiedBy(lines[0]),
           isTrue,
         );
         expect(
-          specification.isSatisfiedBy(_lines[1]),
+          specification.isSatisfiedBy(lines[1]),
           isFalse,
         );
         expect(
-          _lines.where(specification.isSatisfiedBy).toList(),
+          lines.where(specification.isSatisfiedBy).toList(),
           hasLength(1),
         );
 
@@ -144,15 +144,15 @@ void main() {
           modeName: 'overground',
         );
         expect(
-          specification.isSatisfiedBy(_lines[0]),
+          specification.isSatisfiedBy(lines[0]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_lines[1]),
+          specification.isSatisfiedBy(lines[1]),
           isFalse,
         );
         expect(
-          _lines.where(specification.isSatisfiedBy).toList(),
+          lines.where(specification.isSatisfiedBy).toList(),
           isEmpty,
         );
 
@@ -160,15 +160,15 @@ void main() {
           modeName: 'tube',
         );
         expect(
-          specification.isSatisfiedBy(_lines[0]),
+          specification.isSatisfiedBy(lines[0]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_lines[1]),
+          specification.isSatisfiedBy(lines[1]),
           isTrue,
         );
         expect(
-          _lines.where(specification.isSatisfiedBy).toList(),
+          lines.where(specification.isSatisfiedBy).toList(),
           hasLength(1),
         );
       });
@@ -176,21 +176,21 @@ void main() {
 
     group('LineRouteServiceTypeSpecification', () {
       test('isSatisfiedBy', () {
-        Specification<LineRoute> specification;
+        Specification<MatchedRoute> specification;
 
         specification = LineRouteServiceTypeSpecification(
           serviceType: 'Day',
         );
         expect(
-          specification.isSatisfiedBy(_lineRoutes[0]),
+          specification.isSatisfiedBy(matchedRoutes[0]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_lineRoutes[1]),
+          specification.isSatisfiedBy(matchedRoutes[1]),
           isFalse,
         );
         expect(
-          _lineRoutes.where(specification.isSatisfiedBy).toList(),
+          matchedRoutes.where(specification.isSatisfiedBy).toList(),
           isEmpty,
         );
 
@@ -198,15 +198,15 @@ void main() {
           serviceType: 'Night',
         );
         expect(
-          specification.isSatisfiedBy(_lineRoutes[0]),
+          specification.isSatisfiedBy(matchedRoutes[0]),
           isTrue,
         );
         expect(
-          specification.isSatisfiedBy(_lineRoutes[1]),
+          specification.isSatisfiedBy(matchedRoutes[1]),
           isFalse,
         );
         expect(
-          _lineRoutes.where(specification.isSatisfiedBy).toList(),
+          matchedRoutes.where(specification.isSatisfiedBy).toList(),
           hasLength(1),
         );
 
@@ -214,15 +214,15 @@ void main() {
           serviceType: 'Regular',
         );
         expect(
-          specification.isSatisfiedBy(_lineRoutes[0]),
+          specification.isSatisfiedBy(matchedRoutes[0]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_lineRoutes[1]),
+          specification.isSatisfiedBy(matchedRoutes[1]),
           isTrue,
         );
         expect(
-          _lineRoutes.where(specification.isSatisfiedBy).toList(),
+          matchedRoutes.where(specification.isSatisfiedBy).toList(),
           hasLength(1),
         );
       });
@@ -236,19 +236,19 @@ void main() {
           commonName: 'Christopher Street',
         );
         expect(
-          specification.isSatisfiedBy(_bikePoints[0]),
+          specification.isSatisfiedBy(bikePoints[0]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_bikePoints[1]),
+          specification.isSatisfiedBy(bikePoints[1]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_bikePoints[2]),
+          specification.isSatisfiedBy(bikePoints[2]),
           isTrue,
         );
         expect(
-          _bikePoints.where(specification.isSatisfiedBy).toList(),
+          bikePoints.where(specification.isSatisfiedBy).toList(),
           hasLength(1),
         );
 
@@ -256,19 +256,19 @@ void main() {
           commonName: 'Russell Street',
         );
         expect(
-          specification.isSatisfiedBy(_bikePoints[0]),
+          specification.isSatisfiedBy(bikePoints[0]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_bikePoints[1]),
+          specification.isSatisfiedBy(bikePoints[1]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_bikePoints[2]),
+          specification.isSatisfiedBy(bikePoints[2]),
           isFalse,
         );
         expect(
-          _bikePoints.where(specification.isSatisfiedBy).toList(),
+          bikePoints.where(specification.isSatisfiedBy).toList(),
           isEmpty,
         );
       });
@@ -282,23 +282,23 @@ void main() {
           destinationName: 'Canada Water',
         );
         expect(
-          specification.isSatisfiedBy(_predictions[0]),
+          specification.isSatisfiedBy(predictions[0]),
           isTrue,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[1]),
+          specification.isSatisfiedBy(predictions[1]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[2]),
+          specification.isSatisfiedBy(predictions[2]),
           isTrue,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[3]),
+          specification.isSatisfiedBy(predictions[3]),
           isFalse,
         );
         expect(
-          _predictions.where(specification.isSatisfiedBy).toList(),
+          predictions.where(specification.isSatisfiedBy).toList(),
           hasLength(2),
         );
 
@@ -306,23 +306,23 @@ void main() {
           destinationName: 'Surrey Quays',
         );
         expect(
-          specification.isSatisfiedBy(_predictions[0]),
+          specification.isSatisfiedBy(predictions[0]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[1]),
+          specification.isSatisfiedBy(predictions[1]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[2]),
+          specification.isSatisfiedBy(predictions[2]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[3]),
+          specification.isSatisfiedBy(predictions[3]),
           isFalse,
         );
         expect(
-          _predictions.where(specification.isSatisfiedBy).toList(),
+          predictions.where(specification.isSatisfiedBy).toList(),
           isEmpty,
         );
 
@@ -330,23 +330,23 @@ void main() {
           destinationName: 'Tottenham Court Road',
         );
         expect(
-          specification.isSatisfiedBy(_predictions[0]),
+          specification.isSatisfiedBy(predictions[0]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[1]),
+          specification.isSatisfiedBy(predictions[1]),
           isTrue,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[2]),
+          specification.isSatisfiedBy(predictions[2]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[3]),
+          specification.isSatisfiedBy(predictions[3]),
           isTrue,
         );
         expect(
-          _predictions.where(specification.isSatisfiedBy).toList(),
+          predictions.where(specification.isSatisfiedBy).toList(),
           hasLength(2),
         );
       });
@@ -360,23 +360,23 @@ void main() {
           stationName: 'Elephant & Castle',
         );
         expect(
-          specification.isSatisfiedBy(_predictions[0]),
+          specification.isSatisfiedBy(predictions[0]),
           isTrue,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[1]),
+          specification.isSatisfiedBy(predictions[1]),
           isTrue,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[2]),
+          specification.isSatisfiedBy(predictions[2]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[3]),
+          specification.isSatisfiedBy(predictions[3]),
           isFalse,
         );
         expect(
-          _predictions.where(specification.isSatisfiedBy).toList(),
+          predictions.where(specification.isSatisfiedBy).toList(),
           hasLength(2),
         );
 
@@ -384,23 +384,23 @@ void main() {
           stationName: 'Holborn',
         );
         expect(
-          specification.isSatisfiedBy(_predictions[0]),
+          specification.isSatisfiedBy(predictions[0]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[1]),
+          specification.isSatisfiedBy(predictions[1]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[2]),
+          specification.isSatisfiedBy(predictions[2]),
           isTrue,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[3]),
+          specification.isSatisfiedBy(predictions[3]),
           isTrue,
         );
         expect(
-          _predictions.where(specification.isSatisfiedBy).toList(),
+          predictions.where(specification.isSatisfiedBy).toList(),
           hasLength(2),
         );
 
@@ -408,23 +408,23 @@ void main() {
           stationName: 'Waterloo',
         );
         expect(
-          specification.isSatisfiedBy(_predictions[0]),
+          specification.isSatisfiedBy(predictions[0]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[1]),
+          specification.isSatisfiedBy(predictions[1]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[2]),
+          specification.isSatisfiedBy(predictions[2]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_predictions[3]),
+          specification.isSatisfiedBy(predictions[3]),
           isFalse,
         );
         expect(
-          _predictions.where(specification.isSatisfiedBy).toList(),
+          predictions.where(specification.isSatisfiedBy).toList(),
           isEmpty,
         );
       });
@@ -432,21 +432,21 @@ void main() {
 
     group('RoadDisplayNameSpecification', () {
       test('isSatisfiedBy', () {
-        Specification<Road> specification;
+        Specification<RoadCorridor> specification;
 
         specification = RoadDisplayNameSpecification(
           displayName: 'A1',
         );
         expect(
-          specification.isSatisfiedBy(_roads[0]),
+          specification.isSatisfiedBy(roadCorridors[0]),
           isTrue,
         );
         expect(
-          specification.isSatisfiedBy(_roads[1]),
+          specification.isSatisfiedBy(roadCorridors[1]),
           isFalse,
         );
         expect(
-          _roads.where(specification.isSatisfiedBy).toList(),
+          roadCorridors.where(specification.isSatisfiedBy).toList(),
           hasLength(1),
         );
 
@@ -454,15 +454,15 @@ void main() {
           displayName: 'A0',
         );
         expect(
-          specification.isSatisfiedBy(_roads[0]),
+          specification.isSatisfiedBy(roadCorridors[0]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_roads[1]),
+          specification.isSatisfiedBy(roadCorridors[1]),
           isFalse,
         );
         expect(
-          _roads.where(specification.isSatisfiedBy).toList(),
+          roadCorridors.where(specification.isSatisfiedBy).toList(),
           isEmpty,
         );
       });
@@ -473,34 +473,34 @@ void main() {
         Specification<StopPoint> specification;
 
         specification = StopPointModesSpecification(
-          modes: new Set.from(['bus', 'overground', 'tube']),
+          modes: {'bus', 'overground', 'tube'},
         );
         expect(
-          specification.isSatisfiedBy(_stopPoints[0]),
+          specification.isSatisfiedBy(stopPoints[0]),
           isTrue,
         );
         expect(
-          specification.isSatisfiedBy(_stopPoints[1]),
+          specification.isSatisfiedBy(stopPoints[1]),
           isFalse,
         );
         expect(
-          _stopPoints.where(specification.isSatisfiedBy).toList(),
+          stopPoints.where(specification.isSatisfiedBy).toList(),
           hasLength(1),
         );
 
         specification = StopPointModesSpecification(
-          modes: new Set.from(['dlr']),
+          modes: {'dlr'},
         );
         expect(
-          specification.isSatisfiedBy(_stopPoints[0]),
+          specification.isSatisfiedBy(stopPoints[0]),
           isFalse,
         );
         expect(
-          specification.isSatisfiedBy(_stopPoints[1]),
+          specification.isSatisfiedBy(stopPoints[1]),
           isFalse,
         );
         expect(
-          _stopPoints.where(specification.isSatisfiedBy).toList(),
+          stopPoints.where(specification.isSatisfiedBy).toList(),
           isEmpty,
         );
       });

@@ -8,8 +8,8 @@ class CarParkBaysPage extends StatefulWidget {
   static const routeName = '/car_parks/:id/bays';
 
   CarParkBaysPage({
-    Key key,
-    @required this.carPark,
+    Key? key,
+    required this.carPark,
   }) : super(
           key: key,
         );
@@ -21,7 +21,7 @@ class CarParkBaysPage extends StatefulWidget {
 }
 
 class _CarParkBaysPageState extends State<CarParkBaysPage> {
-  Future<List<Bay>> _baysFuture;
+  late Future<List<Bay>> _baysFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +30,21 @@ class _CarParkBaysPageState extends State<CarParkBaysPage> {
         title: Text('Bays'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<Bay>>(
-        future: _baysFuture,
-        builder: (context, data) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return BayListTile(
-                bay: data[index],
+          future: _baysFuture,
+          builder: (context, data) {
+            if (data != null) {
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  return BayListTile(
+                    bay: data[index],
+                  );
+                },
+                itemCount: data.length,
               );
-            },
-            itemCount: data.length,
-          );
-        }
-      ),
+            } else {
+              return Container();
+            }
+          }),
     );
   }
 
@@ -49,6 +52,10 @@ class _CarParkBaysPageState extends State<CarParkBaysPage> {
   void initState() {
     super.initState();
 
-    _baysFuture = context.read<TflApi>().carParks.getBays(widget.carPark.id);
+    _baysFuture = context
+        .read<TflApiClient>()
+        .occupancies
+        .getByPathId(widget.carPark.id!)
+        .then((value) => value.bays!);
   }
 }

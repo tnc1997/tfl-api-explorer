@@ -8,13 +8,13 @@ class RoadRoadDisruptionsPage extends StatefulWidget {
   static const routeName = '/roads/:id/road_disruptions';
 
   RoadRoadDisruptionsPage({
-    Key key,
-    @required this.road,
+    Key? key,
+    required this.road,
   }) : super(
           key: key,
         );
 
-  final Road road;
+  final RoadCorridor road;
 
   @override
   _RoadRoadDisruptionsPageState createState() =>
@@ -22,7 +22,7 @@ class RoadRoadDisruptionsPage extends StatefulWidget {
 }
 
 class _RoadRoadDisruptionsPageState extends State<RoadRoadDisruptionsPage> {
-  Future<List<RoadDisruption>> _roadDisruptionsFuture;
+  late Future<List<RoadDisruption>> _roadDisruptionsFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +31,9 @@ class _RoadRoadDisruptionsPageState extends State<RoadRoadDisruptionsPage> {
         title: Text('Road disruptions'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<RoadDisruption>>(
-          future: _roadDisruptionsFuture,
-          builder: (context, data) {
+        future: _roadDisruptionsFuture,
+        builder: (context, data) {
+          if (data != null) {
             return ListView.builder(
               itemBuilder: (context, index) {
                 return RoadDisruptionListTile(
@@ -41,7 +42,11 @@ class _RoadRoadDisruptionsPageState extends State<RoadRoadDisruptionsPage> {
               },
               itemCount: data.length,
             );
-          }),
+          } else {
+            return Container();
+          }
+        },
+      ),
     );
   }
 
@@ -49,7 +54,10 @@ class _RoadRoadDisruptionsPageState extends State<RoadRoadDisruptionsPage> {
   void initState() {
     super.initState();
 
-    _roadDisruptionsFuture =
-        context.read<TflApi>().roads.getRoadDisruptions(widget.road.id);
+    _roadDisruptionsFuture = context
+        .read<TflApiClient>()
+        .roads
+        .disruptionByPathIdsQueryStripContentQuerySeveritiesQueryCategoriesQuery(
+            [widget.road.id!]);
   }
 }

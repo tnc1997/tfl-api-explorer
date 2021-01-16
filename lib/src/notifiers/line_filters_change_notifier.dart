@@ -4,11 +4,11 @@ import 'package:tfl_api_explorer/src/specifications/line_mode_name_specification
 import 'package:tfl_api_explorer/src/specifications/specification.dart';
 
 class LineFiltersChangeNotifier extends FiltersChangeNotifier<Line> {
-  String _modeName;
+  String? _modeName;
 
-  String get modeName => _modeName;
+  String? get modeName => _modeName;
 
-  set modeName(String value) {
+  set modeName(String? value) {
     _modeName = value;
 
     notifyListeners();
@@ -21,7 +21,7 @@ class LineFiltersChangeNotifier extends FiltersChangeNotifier<Line> {
     if (_modeName != null) {
       specifications.add(
         LineModeNameSpecification(
-          modeName: _modeName,
+          modeName: _modeName!,
         ),
       );
     }

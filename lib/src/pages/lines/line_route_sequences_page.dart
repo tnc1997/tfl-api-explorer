@@ -8,8 +8,8 @@ class LineRouteSequencesPage extends StatefulWidget {
   static const routeName = '/lines/:id/route_sequences';
 
   LineRouteSequencesPage({
-    Key key,
-    @required this.line,
+    Key? key,
+    required this.line,
   }) : super(
           key: key,
         );
@@ -21,7 +21,7 @@ class LineRouteSequencesPage extends StatefulWidget {
 }
 
 class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
-  Future<List<RouteSequence>> _routeSequencesFuture;
+  late Future<List<RouteSequence>> _routeSequencesFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +32,18 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
       body: CircularProgressIndicatorFutureBuilder<List<RouteSequence>>(
         future: _routeSequencesFuture,
         builder: (context, data) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return RouteSequenceListTile(
-                routeSequence: data[index],
-              );
-            },
-            itemCount: data.length,
-          );
+          if (data != null) {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return RouteSequenceListTile(
+                  routeSequence: data[index],
+                );
+              },
+              itemCount: data.length,
+            );
+          } else {
+            return Container();
+          }
         },
       ),
     );
@@ -49,7 +53,11 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
   void initState() {
     super.initState();
 
-    _routeSequencesFuture =
-        context.read<TflApi>().lines.getRouteSequences(widget.line.id);
+    _routeSequencesFuture = context
+        .read<TflApiClient>()
+        .lines
+        .routeSequenceByPathIdPathDirectionQueryServiceTypesQueryExcludeCrowding(
+            widget.line.id!, 'inbound')
+        .then((value) => [value]);
   }
 }

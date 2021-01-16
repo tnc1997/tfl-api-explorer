@@ -6,8 +6,8 @@ class BikePointAdditionalPropertiesPage extends StatelessWidget {
   static const routeName = '/bike_points/:id/additional_properties';
 
   BikePointAdditionalPropertiesPage({
-    Key key,
-    @required this.bikePoint,
+    Key? key,
+    required this.bikePoint,
   }) : super(
           key: key,
         );
@@ -16,18 +16,22 @@ class BikePointAdditionalPropertiesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final additionalProperties = bikePoint.additionalProperties;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Additional properties'),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return AdditionalPropertiesListTile(
-            additionalProperties: bikePoint.additionalProperties[index],
-          );
-        },
-        itemCount: bikePoint.additionalProperties.length,
-      ),
+      body: additionalProperties != null
+          ? ListView.builder(
+              itemBuilder: (context, index) {
+                return AdditionalPropertiesListTile(
+                  additionalProperties: additionalProperties[index],
+                );
+              },
+              itemCount: additionalProperties.length,
+            )
+          : Container(),
     );
   }
 }

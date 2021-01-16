@@ -2,12 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/line_statuses/line_status_page.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class LineStatusListTile extends StatelessWidget {
   LineStatusListTile({
-    Key key,
-    @required this.lineStatus,
+    Key? key,
+    required this.lineStatus,
   }) : super(
           key: key,
         );
@@ -17,12 +16,12 @@ class LineStatusListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: NullableText(
-        lineStatus.statusSeverityDescription,
+      title: Text(
+        lineStatus.statusSeverityDescription ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
-      subtitle: NullableText(
-        lineStatus.disruption?.categoryDescription,
+      subtitle: Text(
+        lineStatus.disruption?.categoryDescription ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
       onTap: () {

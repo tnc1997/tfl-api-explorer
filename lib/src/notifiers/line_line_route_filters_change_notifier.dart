@@ -4,31 +4,31 @@ import 'package:tfl_api_explorer/src/specifications/line_route_service_type_spec
 import 'package:tfl_api_explorer/src/specifications/specification.dart';
 
 class LineLineRouteFiltersChangeNotifier
-    extends FiltersChangeNotifier<LineRoute> {
-  String _serviceType;
+    extends FiltersChangeNotifier<MatchedRoute> {
+  String? _serviceType;
 
-  String get serviceType => _serviceType;
+  String? get serviceType => _serviceType;
 
-  set serviceType(String value) {
+  set serviceType(String? value) {
     _serviceType = value;
 
     notifyListeners();
   }
 
   @override
-  bool areSatisfiedBy(LineRoute value) {
-    final specifications = <Specification<LineRoute>>[];
+  bool areSatisfiedBy(MatchedRoute value) {
+    final specifications = <Specification<MatchedRoute>>[];
 
     if (_serviceType != null) {
       specifications.add(
         LineRouteServiceTypeSpecification(
-          serviceType: _serviceType,
+          serviceType: _serviceType!,
         ),
       );
     }
 
     if (specifications.isNotEmpty) {
-      final specification = specifications.fold<Specification<LineRoute>>(
+      final specification = specifications.fold<Specification<MatchedRoute>>(
         specifications.first,
         (previousValue, element) => previousValue.and(element),
       );

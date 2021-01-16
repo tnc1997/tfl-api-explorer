@@ -7,15 +7,14 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_stream_builder.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 import 'package:tfl_api_explorer/src/widgets/prediction_list_tile.dart';
 
 class LinePredictionsPage extends StatefulWidget {
   static const routeName = '/lines/:id/predictions';
 
   LinePredictionsPage({
-    Key key,
-    @required this.line,
+    Key? key,
+    required this.line,
   }) : super(
           key: key,
         );
@@ -58,20 +57,24 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
         stream: _predictionsStreamController.stream,
         builder: (context, data) {
           final predictions = data
-              .where(linePredictionFiltersChangeNotifier.areSatisfiedBy)
+              ?.where(linePredictionFiltersChangeNotifier.areSatisfiedBy)
               .toList();
 
-          return RefreshIndicator(
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                return PredictionListTile(
-                  prediction: predictions[index],
-                );
-              },
-              itemCount: predictions.length,
-            ),
-            onRefresh: _refreshPredictions,
-          );
+          if (predictions != null) {
+            return RefreshIndicator(
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return PredictionListTile(
+                    prediction: predictions[index],
+                  );
+                },
+                itemCount: predictions.length,
+              ),
+              onRefresh: _refreshPredictions,
+            );
+          } else {
+            return Container();
+          }
         },
       ),
     );
@@ -93,8 +96,10 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
 
   Future<void> _refreshPredictions() async {
     try {
-      var predictions =
-          await context.read<TflApi>().lines.getPredictions(widget.line.id);
+      var predictions = await context
+          .read<TflApiClient>()
+          .lines
+          .arrivalsByPathIds([widget.line.id!]);
 
       final linePredictionFiltersChangeNotifier =
           context.read<LinePredictionFiltersChangeNotifier>();
@@ -112,8 +117,8 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
 
 class _LinePredictionFiltersPage extends StatefulWidget {
   _LinePredictionFiltersPage({
-    Key key,
-    @required this.line,
+    Key? key,
+    required this.line,
   }) : super(
           key: key,
         );
@@ -127,7 +132,7 @@ class _LinePredictionFiltersPage extends StatefulWidget {
 
 class _LinePredictionFiltersPageState
     extends State<_LinePredictionFiltersPage> {
-  Future<List<StopPoint>> _stopPointsFuture;
+  late Future<List<StopPoint>> _stopPointsFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -149,44 +154,49 @@ class _LinePredictionFiltersPageState
       body: CircularProgressIndicatorFutureBuilder<List>(
         future: Future.wait([_stopPointsFuture]),
         builder: (context, data) {
-          return ListView(
-            children: <Widget>[
-              ExpansionTile(
-                title: Text('Station name'),
-                children: (data[0] as List<StopPoint>).map((stopPoint) {
-                  return RadioListTile<String>(
-                    value: stopPoint.commonName,
-                    groupValue: linePredictionFiltersChangeNotifier.stationName,
-                    onChanged: (value) {
-                      linePredictionFiltersChangeNotifier.stationName = value;
-                    },
-                    title: NullableText(
-                      stopPoint.commonName,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  );
-                }).toList(),
-              ),
-              ExpansionTile(
-                title: Text('Destination name'),
-                children: (data[0] as List<StopPoint>).map((stopPoint) {
-                  return RadioListTile<String>(
-                    value: stopPoint.commonName,
-                    groupValue:
-                        linePredictionFiltersChangeNotifier.destinationName,
-                    onChanged: (value) {
-                      linePredictionFiltersChangeNotifier.destinationName =
-                          value;
-                    },
-                    title: NullableText(
-                      stopPoint.commonName,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  );
-                }).toList(),
-              ),
-            ],
-          );
+          if (data != null) {
+            return ListView(
+              children: <Widget>[
+                ExpansionTile(
+                  title: Text('Station name'),
+                  children: (data[0] as List<StopPoint>).map((stopPoint) {
+                    return RadioListTile<String>(
+                      value: stopPoint.commonName!,
+                      groupValue:
+                          linePredictionFiltersChangeNotifier.stationName,
+                      onChanged: (value) {
+                        linePredictionFiltersChangeNotifier.stationName = value;
+                      },
+                      title: Text(
+                        stopPoint.commonName ?? 'Unknown',
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    );
+                  }).toList(),
+                ),
+                ExpansionTile(
+                  title: Text('Destination name'),
+                  children: (data[0] as List<StopPoint>).map((stopPoint) {
+                    return RadioListTile<String>(
+                      value: stopPoint.commonName!,
+                      groupValue:
+                          linePredictionFiltersChangeNotifier.destinationName,
+                      onChanged: (value) {
+                        linePredictionFiltersChangeNotifier.destinationName =
+                            value;
+                      },
+                      title: Text(
+                        stopPoint.commonName ?? 'Unknown',
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ],
+            );
+          } else {
+            return Container();
+          }
         },
       ),
     );
@@ -196,7 +206,10 @@ class _LinePredictionFiltersPageState
   void initState() {
     super.initState();
 
-    _stopPointsFuture =
-        context.read<TflApi>().lines.getStopPoints(widget.line.id);
+    _stopPointsFuture = context
+        .read<TflApiClient>()
+        .lines
+        .stopPointsByPathIdQueryTflOperatedNationalRailStationsOnly(
+            widget.line.id!);
   }
 }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:tfl_api_client/tfl_api_client.dart';
+import 'package:tfl_api_client/tfl_api_client.dart' hide Route;
 import 'package:tfl_api_explorer/src/colors/tfl_colors.dart';
 import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_filters_change_notifier.dart';
@@ -37,18 +36,16 @@ import 'package:tfl_api_explorer/src/pages/roads/roads_page.dart';
 import 'package:tfl_api_explorer/src/pages/route_sequences/route_sequence_page.dart';
 import 'package:tfl_api_explorer/src/pages/route_sequences/route_sequence_stop_point_sequences_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
+import 'package:tfl_api_explorer/src/pages/stop_point_sequences/stop_point_sequence_page.dart';
+import 'package:tfl_api_explorer/src/pages/stop_point_sequences/stop_point_sequence_stop_points_page.dart';
 import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_additional_properties_page.dart';
 import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_lines_page.dart';
 import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_modes_page.dart';
 import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_page.dart';
-import 'package:tfl_api_explorer/src/pages/stop_point_sequences/stop_point_sequence_page.dart';
-import 'package:tfl_api_explorer/src/pages/stop_point_sequences/stop_point_sequence_stop_points_page.dart';
 import 'package:tfl_api_explorer/src/pages/stop_points/stop_points_page.dart';
 
 Future<void> main() async {
   Intl.defaultLocale = 'en_GB';
-
-  await initializeDateFormatting();
 
   runApp(MyApp());
 }
@@ -83,9 +80,9 @@ class MyApp extends StatelessWidget {
             return StopPointFiltersChangeNotifier();
           },
         ),
-        ProxyProvider<AuthenticationChangeNotifier, TflApi>(
+        ProxyProvider<AuthenticationChangeNotifier, TflApiClient>(
           update: (context, authenticationChangeNotifier, tflApi) {
-            return TflApi(authenticationChangeNotifier.client);
+            return TflApiClient(client: authenticationChangeNotifier.client!);
           },
         ),
       ],
@@ -123,7 +120,7 @@ class MyApp extends StatelessWidget {
             border: UnderlineInputBorder(),
           ),
         ),
-//        localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
         supportedLocales: const <Locale>[
           Locale('en', 'GB'),
         ],
@@ -137,21 +134,21 @@ class MyApp extends StatelessWidget {
         switch (settings.name) {
           case BikePointAdditionalPropertiesPage.routeName:
             return BikePointAdditionalPropertiesPage(
-              bikePoint: settings.arguments,
+              bikePoint: settings.arguments as Place,
             );
           case BikePointPage.routeName:
             return BikePointPage(
-              bikePoint: settings.arguments,
+              bikePoint: settings.arguments as Place,
             );
           case BikePointsPage.routeName:
             return BikePointsPage();
           case CarParkBaysPage.routeName:
             return CarParkBaysPage(
-              carPark: settings.arguments,
+              carPark: settings.arguments as Place,
             );
           case CarParkPage.routeName:
             return CarParkPage(
-              carPark: settings.arguments,
+              carPark: settings.arguments as Place,
             );
           case CarParksPage.routeName:
             return CarParksPage();
@@ -159,43 +156,43 @@ class MyApp extends StatelessWidget {
             return HomePage();
           case LineDisruptionPage.routeName:
             return LineDisruptionPage(
-              lineDisruption: settings.arguments,
+              lineDisruption: settings.arguments as Disruption,
             );
           case LineLineDisruptionsPage.routeName:
             return LineLineDisruptionsPage(
-              line: settings.arguments,
+              line: settings.arguments as Line,
             );
           case LineLineRoutesPage.routeName:
             return LineLineRoutesPage(
-              line: settings.arguments,
+              line: settings.arguments as Line,
             );
           case LineLineStatusesPage.routeName:
             return LineLineStatusesPage(
-              line: settings.arguments,
+              line: settings.arguments as Line,
             );
           case LinePage.routeName:
             return LinePage(
-              line: settings.arguments,
+              line: settings.arguments as Line,
             );
           case LinePredictionsPage.routeName:
             return LinePredictionsPage(
-              line: settings.arguments,
+              line: settings.arguments as Line,
             );
           case LineRoutePage.routeName:
             return LineRoutePage(
-              lineRoute: settings.arguments,
+              lineRoute: settings.arguments as MatchedRoute,
             );
           case LineRouteSequencesPage.routeName:
             return LineRouteSequencesPage(
-              line: settings.arguments,
+              line: settings.arguments as Line,
             );
           case LineStatusPage.routeName:
             return LineStatusPage(
-              lineStatus: settings.arguments,
+              lineStatus: settings.arguments as LineStatus,
             );
           case LineStopPointsPage.routeName:
             return LineStopPointsPage(
-              line: settings.arguments,
+              line: settings.arguments as Line,
             );
           case LinesPage.routeName:
             return LinesPage();
@@ -203,60 +200,60 @@ class MyApp extends StatelessWidget {
             return LoginPage();
           case PredictionPage.routeName:
             return PredictionPage(
-              prediction: settings.arguments,
+              prediction: settings.arguments as Prediction,
             );
           case RoadDisruptionPage.routeName:
             return RoadDisruptionPage(
-              roadDisruption: settings.arguments,
+              roadDisruption: settings.arguments as RoadDisruption,
             );
           case RoadPage.routeName:
             return RoadPage(
-              road: settings.arguments,
+              road: settings.arguments as RoadCorridor,
             );
           case RoadRoadDisruptionsPage.routeName:
             return RoadRoadDisruptionsPage(
-              road: settings.arguments,
+              road: settings.arguments as RoadCorridor,
             );
           case RoadsPage.routeName:
             return RoadsPage();
           case RouteSequencePage.routeName:
             return RouteSequencePage(
-              routeSequence: settings.arguments,
+              routeSequence: settings.arguments as RouteSequence,
             );
           case RouteSequenceStopPointSequencesPage.routeName:
             return RouteSequenceStopPointSequencesPage(
-              routeSequence: settings.arguments,
+              routeSequence: settings.arguments as RouteSequence,
             );
           case SettingsPage.routeName:
             return SettingsPage();
           case StopPointAdditionalPropertiesPage.routeName:
             return StopPointAdditionalPropertiesPage(
-              stopPoint: settings.arguments,
+              stopPoint: settings.arguments as StopPoint,
             );
           case StopPointLinesPage.routeName:
             return StopPointLinesPage(
-              stopPoint: settings.arguments,
+              stopPoint: settings.arguments as StopPoint,
             );
           case StopPointModesPage.routeName:
             return StopPointModesPage(
-              stopPoint: settings.arguments,
+              stopPoint: settings.arguments as StopPoint,
             );
           case StopPointPage.routeName:
             return StopPointPage(
-              stopPoint: settings.arguments,
+              stopPoint: settings.arguments as StopPoint,
             );
           case StopPointSequencePage.routeName:
             return StopPointSequencePage(
-              stopPointSequence: settings.arguments,
+              stopPointSequence: settings.arguments as StopPointSequence,
             );
           case StopPointSequenceStopPointsPage.routeName:
             return StopPointSequenceStopPointsPage(
-              stopPointSequence: settings.arguments,
+              stopPointSequence: settings.arguments as StopPointSequence,
             );
           case StopPointsPage.routeName:
             return StopPointsPage();
           default:
-            return null;
+            return Scaffold();
         }
       },
       settings: settings,
@@ -269,7 +266,8 @@ class MyApp extends StatelessWidget {
         return Scaffold(
           body: Center(
             child: Text(
-                'A page matching the route "${settings.name}" could not be found.'),
+              'A page matching the route "${settings.name}" could not be found.',
+            ),
           ),
         );
       },

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
-import 'package:tfl_api_explorer/src/widgets/nullable_text.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -9,7 +8,7 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutPageState extends State<AboutPage> {
-  Future<PackageInfo> _packageInfoFuture;
+  late Future<PackageInfo> _packageInfoFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +19,22 @@ class _AboutPageState extends State<AboutPage> {
       body: CircularProgressIndicatorFutureBuilder<PackageInfo>(
         future: _packageInfoFuture,
         builder: (context, data) {
-          return ListView(
-            children: <Widget>[
-              ListTile(
-                title: Text('Package name'),
-                subtitle: NullableText(data.packageName),
-              ),
-              ListTile(
-                title: Text('Version'),
-                subtitle: NullableText(data.version),
-              ),
-            ],
-          );
+          if (data != null) {
+            return ListView(
+              children: <Widget>[
+                ListTile(
+                  title: Text('Package name'),
+                  subtitle: Text(data.packageName),
+                ),
+                ListTile(
+                  title: Text('Version'),
+                  subtitle: Text(data.version),
+                ),
+              ],
+            );
+          } else {
+            return Container();
+          }
         },
       ),
     );

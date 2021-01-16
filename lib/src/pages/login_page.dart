@@ -14,9 +14,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _appIdController;
-  TextEditingController _appKeyController;
-  Future<SharedPreferences> _preferencesFuture;
+  late TextEditingController _appKeyController;
+  late Future<SharedPreferences> _preferencesFuture;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -43,7 +42,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
           LoginForm(
             formKey: _formKey,
-            appIdController: _appIdController,
             appKeyController: _appKeyController,
             onSubmitted: _login,
           ),
@@ -80,7 +78,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    _appIdController.dispose();
     _appKeyController.dispose();
 
     super.dispose();
@@ -90,16 +87,11 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
 
-    _appIdController = TextEditingController();
     _appKeyController = TextEditingController();
 
     _preferencesFuture = SharedPreferences.getInstance().then((preferences) {
-      if (preferences.containsKey('APP_ID')) {
-        _appIdController.text = preferences.getString('APP_ID');
-      }
-
-      if (preferences.containsKey('APP_KEY')) {
-        _appKeyController.text = preferences.getString('APP_KEY');
+      if (preferences.containsKey('appKey')) {
+        _appKeyController.text = preferences.getString('appKey');
       }
 
       return preferences;
@@ -107,16 +99,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _login() async {
-    if (_formKey.currentState.validate()) {
+    if (_formKey.currentState?.validate() ?? false) {
       final preferences = await SharedPreferences.getInstance();
 
-      final appId = _appIdController.text;
       final appKey = _appKeyController.text;
 
-      await preferences.setString('APP_ID', appId);
-      await preferences.setString('APP_KEY', appKey);
+      await preferences.setString('appKey', appKey);
 
-      context.read<AuthenticationChangeNotifier>().login(appId, appKey);
+      context.read<AuthenticationChangeNotifier>().login(appKey);
 
       await Navigator.of(context).pushReplacementNamed(HomePage.routeName);
     }

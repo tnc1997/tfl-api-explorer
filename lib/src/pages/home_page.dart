@@ -5,7 +5,7 @@ class HomePage extends StatelessWidget {
   static const routeName = Navigator.defaultRouteName;
 
   HomePage({
-    Key key,
+    Key? key,
   }) : super(
           key: key,
         );

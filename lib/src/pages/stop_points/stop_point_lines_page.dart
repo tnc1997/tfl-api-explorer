@@ -6,8 +6,8 @@ class StopPointLinesPage extends StatelessWidget {
   static const routeName = '/stop_points/:id/lines';
 
   StopPointLinesPage({
-    Key key,
-    @required this.stopPoint,
+    Key? key,
+    required this.stopPoint,
   }) : super(
           key: key,
         );
@@ -16,18 +16,22 @@ class StopPointLinesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lines = stopPoint.lines;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Lines'),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return IdentifierListTile(
-            identifier: stopPoint.lines[index],
-          );
-        },
-        itemCount: stopPoint.lines.length,
-      ),
+      body: lines != null
+          ? ListView.builder(
+              itemBuilder: (context, index) {
+                return IdentifierListTile(
+                  identifier: lines[index],
+                );
+              },
+              itemCount: lines.length,
+            )
+          : Container(),
     );
   }
 }

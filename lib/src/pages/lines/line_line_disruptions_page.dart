@@ -8,8 +8,8 @@ class LineLineDisruptionsPage extends StatefulWidget {
   static const routeName = '/lines/:id/line_disruptions';
 
   LineLineDisruptionsPage({
-    Key key,
-    @required this.line,
+    Key? key,
+    required this.line,
   }) : super(
           key: key,
         );
@@ -22,7 +22,7 @@ class LineLineDisruptionsPage extends StatefulWidget {
 }
 
 class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
-  Future<List<LineDisruption>> _lineDisruptionsFuture;
+  late Future<List<Disruption>> _lineDisruptionsFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +30,21 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
       appBar: AppBar(
         title: Text('Line disruptions'),
       ),
-      body: CircularProgressIndicatorFutureBuilder<List<LineDisruption>>(
+      body: CircularProgressIndicatorFutureBuilder<List<Disruption>>(
         future: _lineDisruptionsFuture,
         builder: (context, data) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return LineDisruptionListTile(
-                lineDisruption: data[index],
-              );
-            },
-            itemCount: data.length,
-          );
+          if (data != null) {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return LineDisruptionListTile(
+                  lineDisruption: data[index],
+                );
+              },
+              itemCount: data.length,
+            );
+          } else {
+            return Container();
+          }
         },
       ),
     );
@@ -50,7 +54,9 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
   void initState() {
     super.initState();
 
-    _lineDisruptionsFuture =
-        context.read<TflApi>().lines.getLineDisruptions(widget.line.id);
+    _lineDisruptionsFuture = context
+        .read<TflApiClient>()
+        .lines
+        .disruptionByPathIds([widget.line.id!]);
   }
 }
