@@ -44,7 +44,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: android
+          name: android-apk
           path: build/app/outputs/flutter-apk/app-release.apk
   build_android_appbundle:
     name: Build android appbundle
@@ -71,7 +71,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: appbundle
+          name: android-appbundle
           path: build/app/outputs/bundle/release/app-release.aab
   build_web:
     name: Build web
