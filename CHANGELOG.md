@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/tnc1997/flutter-tfl-api-explorer/compare/v0.3.3...v0.4.0) (2021-01-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* add null safety (#23)
+
+### Continuous Integrations
+
+* update github actions ([#21](https://github.com/tnc1997/flutter-tfl-api-explorer/issues/21)) ([9f89912](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/9f899123d8eda2300b9326967d45f9bc3c6143c1))
+
+
+### Styles
+
+* update icons ([#22](https://github.com/tnc1997/flutter-tfl-api-explorer/issues/22)) ([6018e43](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/6018e435b12a51f1b954f32b412a205c0577f474))
+
+
+### Code Refactoring
+
+* add null safety ([#23](https://github.com/tnc1997/flutter-tfl-api-explorer/issues/23)) ([939eaa7](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/939eaa70929f1173406a1161adae4a1e5a3ccaef))
+
+
+### Documentation
+
+* update readme ([01855ce](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/01855ce7d3b56e78884ecb18c7d30d34708051d5))
+
+
+### Chores
+
+* update .github directory ([95da56c](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/95da56c089e702af124cd9e490149233acf597d0))
+* update license ([5407af2](https://github.com/tnc1997/flutter-tfl-api-explorer/commit/5407af2f495bd0e4962250f89218d4c16b1ee01f))
+
 ### [0.3.3](https://github.com/tnc1997/flutter-tfl-api-explorer/compare/v0.3.2...v0.3.3) (2020-07-04)
 
 
