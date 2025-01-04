@@ -3,6 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.dart';
 
 class AccountPage extends StatelessWidget {
+  const AccountPage({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     final authenticationChangeNotifier =

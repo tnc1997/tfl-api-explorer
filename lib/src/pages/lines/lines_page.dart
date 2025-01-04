@@ -9,6 +9,10 @@ import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 class LinesPage extends StatefulWidget {
   static const routeName = '/lines';
 
+  const LinesPage({
+    super.key,
+  });
+
   @override
   _LinesPageState createState() => _LinesPageState();
 }

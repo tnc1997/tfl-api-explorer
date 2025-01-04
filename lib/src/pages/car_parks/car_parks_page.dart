@@ -10,6 +10,10 @@ import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 class CarParksPage extends StatefulWidget {
   static const routeName = '/car_parks';
 
+  const CarParksPage({
+    super.key,
+  });
+
   @override
   _CarParksPageState createState() => _CarParksPageState();
 }

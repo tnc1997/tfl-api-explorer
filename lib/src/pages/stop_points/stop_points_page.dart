@@ -9,6 +9,10 @@ import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 class StopPointsPage extends StatefulWidget {
   static const routeName = '/stop_points';
 
+  const StopPointsPage({
+    super.key,
+  });
+
   @override
   _StopPointsPageState createState() => _StopPointsPageState();
 }

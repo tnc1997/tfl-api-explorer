@@ -10,6 +10,10 @@ import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 class BikePointsPage extends StatefulWidget {
   static const routeName = '/bike_points';
 
+  const BikePointsPage({
+    super.key,
+  });
+
   @override
   _BikePointsPageState createState() => _BikePointsPageState();
 }

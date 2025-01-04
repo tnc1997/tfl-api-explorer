@@ -3,6 +3,10 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 
 class AboutPage extends StatefulWidget {
+  const AboutPage({
+    super.key,
+  });
+
   @override
   _AboutPageState createState() => _AboutPageState();
 }

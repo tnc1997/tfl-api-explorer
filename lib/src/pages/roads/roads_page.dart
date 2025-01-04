@@ -10,6 +10,10 @@ import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
 class RoadsPage extends StatefulWidget {
   static const routeName = '/roads';
 
+  const RoadsPage({
+    super.key,
+  });
+
   @override
   _RoadsPageState createState() => _RoadsPageState();
 }

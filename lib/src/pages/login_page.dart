@@ -9,6 +9,10 @@ import 'package:tfl_api_explorer/src/widgets/login_form.dart';
 class LoginPage extends StatefulWidget {
   static const routeName = 'login';
 
+  const LoginPage({
+    super.key,
+  });
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
