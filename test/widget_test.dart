@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/intl.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.dart';
@@ -661,21 +661,13 @@ void main() {
     group('settings', () {
       group('AboutPage', () {
         setUpAll(() {
-          MethodChannel(
-            'plugins.flutter.io/package_info',
-          ).setMockMethodCallHandler((methodCall) async {
-            switch (methodCall.method) {
-              case 'getAll':
-                return <String, dynamic>{
-                  'appName': 'TfL API Explorer',
-                  'packageName': 'app.thomasclark.tflapiexplorer',
-                  'version': '1.0.0',
-                  'buildNumber': '10000'
-                };
-              default:
-                return null;
-            }
-          });
+          PackageInfo.setMockInitialValues(
+            appName: 'TfL API Explorer',
+            packageName: 'app.thomasclark.tflapiexplorer',
+            version: '1.0.0',
+            buildNumber: '10000',
+            buildSignature: '',
+          );
         });
 
         testWidgets('Package name', (tester) async {
