@@ -15,7 +15,9 @@ class LineRouteSequencesPage extends StatefulWidget {
   final Line line;
 
   @override
-  _LineRouteSequencesPageState createState() => _LineRouteSequencesPageState();
+  State<LineRouteSequencesPage> createState() {
+    return _LineRouteSequencesPageState();
+  }
 }
 
 class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {

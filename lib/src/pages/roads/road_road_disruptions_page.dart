@@ -15,8 +15,9 @@ class RoadRoadDisruptionsPage extends StatefulWidget {
   final RoadCorridor road;
 
   @override
-  _RoadRoadDisruptionsPageState createState() =>
-      _RoadRoadDisruptionsPageState();
+  State<RoadRoadDisruptionsPage> createState() {
+    return _RoadRoadDisruptionsPageState();
+  }
 }
 
 class _RoadRoadDisruptionsPageState extends State<RoadRoadDisruptionsPage> {

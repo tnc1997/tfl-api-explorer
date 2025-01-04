@@ -16,7 +16,9 @@ class LineLineRoutesPage extends StatefulWidget {
   final Line line;
 
   @override
-  _LineLineRoutesPageState createState() => _LineLineRoutesPageState();
+  State<LineLineRoutesPage> createState() {
+    return _LineLineRoutesPageState();
+  }
 }
 
 class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
@@ -86,8 +88,9 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
 
 class _LineLineRouteFiltersPage extends StatefulWidget {
   @override
-  _LineLineRouteFiltersPageState createState() =>
-      _LineLineRouteFiltersPageState();
+  State<_LineLineRouteFiltersPage> createState() {
+    return _LineLineRouteFiltersPageState();
+  }
 }
 
 class _LineLineRouteFiltersPageState extends State<_LineLineRouteFiltersPage> {

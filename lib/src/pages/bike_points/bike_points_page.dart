@@ -15,7 +15,9 @@ class BikePointsPage extends StatefulWidget {
   });
 
   @override
-  _BikePointsPageState createState() => _BikePointsPageState();
+  State<BikePointsPage> createState() {
+    return _BikePointsPageState();
+  }
 }
 
 class _BikePointsPageState extends State<BikePointsPage> {

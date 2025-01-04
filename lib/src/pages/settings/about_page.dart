@@ -8,7 +8,9 @@ class AboutPage extends StatefulWidget {
   });
 
   @override
-  _AboutPageState createState() => _AboutPageState();
+  State<AboutPage> createState() {
+    return _AboutPageState();
+  }
 }
 
 class _AboutPageState extends State<AboutPage> {

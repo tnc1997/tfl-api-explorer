@@ -14,7 +14,9 @@ class LinesPage extends StatefulWidget {
   });
 
   @override
-  _LinesPageState createState() => _LinesPageState();
+  State<LinesPage> createState() {
+    return _LinesPageState();
+  }
 }
 
 class _LinesPageState extends State<LinesPage> {
@@ -77,7 +79,9 @@ class _LinesPageState extends State<LinesPage> {
 
 class _LineFiltersPage extends StatefulWidget {
   @override
-  _LineFiltersPageState createState() => _LineFiltersPageState();
+  State<_LineFiltersPage> createState() {
+    return _LineFiltersPageState();
+  }
 }
 
 class _LineFiltersPageState extends State<_LineFiltersPage> {

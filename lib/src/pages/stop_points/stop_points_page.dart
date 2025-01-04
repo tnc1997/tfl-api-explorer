@@ -14,7 +14,9 @@ class StopPointsPage extends StatefulWidget {
   });
 
   @override
-  _StopPointsPageState createState() => _StopPointsPageState();
+  State<StopPointsPage> createState() {
+    return _StopPointsPageState();
+  }
 }
 
 class _StopPointsPageState extends State<StopPointsPage> {
@@ -81,7 +83,9 @@ class _StopPointsPageState extends State<StopPointsPage> {
 
 class _StopPointFiltersPage extends StatefulWidget {
   @override
-  _StopPointFiltersPageState createState() => _StopPointFiltersPageState();
+  State<_StopPointFiltersPage> createState() {
+    return _StopPointFiltersPageState();
+  }
 }
 
 class _StopPointFiltersPageState extends State<_StopPointFiltersPage> {

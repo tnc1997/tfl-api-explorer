@@ -15,7 +15,9 @@ class LineLineStatusesPage extends StatefulWidget {
   final Line line;
 
   @override
-  _LineLineStatusesPageState createState() => _LineLineStatusesPageState();
+  State<LineLineStatusesPage> createState() {
+    return _LineLineStatusesPageState();
+  }
 }
 
 class _LineLineStatusesPageState extends State<LineLineStatusesPage> {

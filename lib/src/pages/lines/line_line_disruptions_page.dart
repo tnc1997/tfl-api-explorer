@@ -15,8 +15,9 @@ class LineLineDisruptionsPage extends StatefulWidget {
   final Line line;
 
   @override
-  _LineLineDisruptionsPageState createState() =>
-      _LineLineDisruptionsPageState();
+  State<LineLineDisruptionsPage> createState() {
+    return _LineLineDisruptionsPageState();
+  }
 }
 
 class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {

@@ -15,7 +15,9 @@ class LineStopPointsPage extends StatefulWidget {
   final Line line;
 
   @override
-  _LineStopPointsPageState createState() => _LineStopPointsPageState();
+  State<LineStopPointsPage> createState() {
+    return _LineStopPointsPageState();
+  }
 }
 
 class _LineStopPointsPageState extends State<LineStopPointsPage> {

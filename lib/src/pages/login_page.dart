@@ -14,7 +14,9 @@ class LoginPage extends StatefulWidget {
   });
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  State<LoginPage> createState() {
+    return _LoginPageState();
+  }
 }
 
 class _LoginPageState extends State<LoginPage> {

@@ -19,7 +19,9 @@ class LinePredictionsPage extends StatefulWidget {
   final Line line;
 
   @override
-  _LinePredictionsPageState createState() => _LinePredictionsPageState();
+  State<LinePredictionsPage> createState() {
+    return _LinePredictionsPageState();
+  }
 }
 
 class _LinePredictionsPageState extends State<LinePredictionsPage> {
@@ -118,8 +120,9 @@ class _LinePredictionFiltersPage extends StatefulWidget {
   final Line line;
 
   @override
-  _LinePredictionFiltersPageState createState() =>
-      _LinePredictionFiltersPageState();
+  State<_LinePredictionFiltersPage> createState() {
+    return _LinePredictionFiltersPageState();
+  }
 }
 
 class _LinePredictionFiltersPageState

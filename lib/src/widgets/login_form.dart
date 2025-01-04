@@ -16,7 +16,9 @@ class LoginForm extends StatefulWidget {
   final void Function()? onSubmitted;
 
   @override
-  _LoginFormState createState() => _LoginFormState();
+  State<LoginForm> createState() {
+    return _LoginFormState();
+  }
 }
 
 class _LoginFormState extends State<LoginForm> {

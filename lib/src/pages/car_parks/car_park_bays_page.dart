@@ -15,7 +15,9 @@ class CarParkBaysPage extends StatefulWidget {
   final Place carPark;
 
   @override
-  _CarParkBaysPageState createState() => _CarParkBaysPageState();
+  State<CarParkBaysPage> createState() {
+    return _CarParkBaysPageState();
+  }
 }
 
 class _CarParkBaysPageState extends State<CarParkBaysPage> {
