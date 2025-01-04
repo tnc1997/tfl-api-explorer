@@ -61,6 +61,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
 
           if (predictions != null) {
             return RefreshIndicator(
+              onRefresh: _refreshPredictions,
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   return PredictionListTile(
@@ -69,7 +70,6 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
                 },
                 itemCount: predictions.length,
               ),
-              onRefresh: _refreshPredictions,
             );
           } else {
             return Container();
