@@ -30,7 +30,7 @@ class BayListTile extends StatelessWidget {
       trailing: occupied != null && bayCount != null
           ? CircularProgressIndicator(
               value: occupied / bayCount,
-              backgroundColor: Theme.of(context).backgroundColor,
+              backgroundColor: Theme.of(context).colorScheme.surface,
             )
           : null,
     );
