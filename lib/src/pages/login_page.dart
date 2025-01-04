@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             child: Text(
               'Sign in',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
           LoginForm(
