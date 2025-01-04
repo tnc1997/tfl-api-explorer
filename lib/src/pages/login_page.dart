@@ -15,7 +15,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   late TextEditingController _appKeyController;
-  late Future<SharedPreferences> _preferencesFuture;
+  late Future<void> _future;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -51,8 +51,8 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       body: SafeArea(
-        child: CircularProgressIndicatorFutureBuilder<SharedPreferences>(
-          future: _preferencesFuture,
+        child: CircularProgressIndicatorFutureBuilder<void>(
+          future: _future,
           builder: (context, preferences) {
             return LayoutBuilder(
               builder: (context, constraints) {
@@ -89,22 +89,20 @@ class _LoginPageState extends State<LoginPage> {
 
     _appKeyController = TextEditingController();
 
-    _preferencesFuture = SharedPreferences.getInstance().then((preferences) {
-      if (preferences.containsKey('appKey')) {
-        _appKeyController.text = preferences.getString('appKey');
-      }
-
-      return preferences;
-    });
+    _future = SharedPreferencesAsync().getString('appKey').then(
+      (appKey) {
+        if (appKey != null) {
+          _appKeyController.text = appKey;
+        }
+      },
+    );
   }
 
   Future<void> _login() async {
     if (_formKey.currentState?.validate() ?? false) {
-      final preferences = await SharedPreferences.getInstance();
-
       final appKey = _appKeyController.text;
 
-      await preferences.setString('appKey', appKey);
+      await SharedPreferencesAsync().setString('appKey', appKey);
 
       context.read<AuthenticationChangeNotifier>().login(appKey);
 

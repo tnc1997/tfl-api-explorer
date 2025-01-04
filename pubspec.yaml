@@ -31,7 +31,7 @@ dependencies:
   intl: any
   package_info_plus: ^8.1.2
   provider: ^6.1.2
-  shared_preferences: ^0.5.0
+  shared_preferences: ^2.3.5
   tfl_api_client: ^1.0.0-nullsafety
   url_launcher: ^6.3.1
 
