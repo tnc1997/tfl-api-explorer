@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mdi/mdi.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/specifications/road_display_name_specification.dart';
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
@@ -21,7 +20,7 @@ class RoadSearchDelegate extends SearchDelegate<RoadCorridor> {
   List<Widget> buildActions(BuildContext context) {
     return <Widget>[
       IconButton(
-        icon: Icon(Mdi.close),
+        icon: Icon(Icons.close),
         onPressed: () {
           query = '';
 
@@ -34,7 +33,7 @@ class RoadSearchDelegate extends SearchDelegate<RoadCorridor> {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Mdi.arrowLeft),
+      icon: Icon(Icons.arrow_back),
       onPressed: () {
         close(context, null as RoadCorridor);
       },

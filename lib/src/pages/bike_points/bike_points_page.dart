@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mdi/mdi.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/delegates/place_search_delegate.dart';
@@ -25,7 +24,7 @@ class _BikePointsPageState extends State<BikePointsPage> {
         title: Text('Bike points'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Mdi.magnify),
+            icon: Icon(Icons.search),
             onPressed: () async {
               final bikePoint = await showSearch(
                 context: context,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mdi/mdi.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_line_route_filters_change_notifier.dart';
@@ -35,7 +34,7 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
         title: Text('Line routes'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Mdi.filter),
+            icon: Icon(Icons.filter_alt),
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
@@ -106,7 +105,7 @@ class _LineLineRouteFiltersPageState extends State<_LineLineRouteFiltersPage> {
         title: Text('Filters'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Mdi.restore),
+            icon: Icon(Icons.restore),
             onPressed: () {
               lineLineRouteFiltersChangeNotifier.reset();
             },

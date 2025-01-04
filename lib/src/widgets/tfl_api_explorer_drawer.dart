@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mdi/mdi.dart';
 import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
 import 'package:tfl_api_explorer/src/pages/car_parks/car_parks_page.dart';
 import 'package:tfl_api_explorer/src/pages/home_page.dart';
@@ -28,7 +27,7 @@ class TflApiExplorerDrawer extends StatelessWidget {
             child: Text('TfL API Explorer'),
           ),
           ListTile(
-            leading: Icon(Mdi.home),
+            leading: Icon(Icons.home),
             title: Text('Home'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
@@ -37,7 +36,7 @@ class TflApiExplorerDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Mdi.api),
+            leading: Icon(Icons.api),
             title: Text('Bike points'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
@@ -46,7 +45,7 @@ class TflApiExplorerDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Mdi.api),
+            leading: Icon(Icons.api),
             title: Text('Car parks'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
@@ -55,7 +54,7 @@ class TflApiExplorerDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Mdi.api),
+            leading: Icon(Icons.api),
             title: Text('Lines'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
@@ -64,7 +63,7 @@ class TflApiExplorerDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Mdi.api),
+            leading: Icon(Icons.api),
             title: Text('Roads'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
@@ -73,7 +72,7 @@ class TflApiExplorerDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Mdi.api),
+            leading: Icon(Icons.api),
             title: Text('Stop points'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
@@ -82,7 +81,7 @@ class TflApiExplorerDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Mdi.cog),
+            leading: Icon(Icons.settings),
             title: Text('Settings'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(

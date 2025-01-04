@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mdi/mdi.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/notifiers/stop_point_filters_change_notifier.dart';
@@ -27,7 +26,7 @@ class _StopPointsPageState extends State<StopPointsPage> {
         title: Text('Stop Points'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Mdi.filter),
+            icon: Icon(Icons.filter_alt),
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
@@ -94,7 +93,7 @@ class _StopPointFiltersPageState extends State<_StopPointFiltersPage> {
         title: Text('Filters'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Mdi.restore),
+            icon: Icon(Icons.restore),
             onPressed: () {
               stopPointFiltersChangeNotifier.reset();
             },
