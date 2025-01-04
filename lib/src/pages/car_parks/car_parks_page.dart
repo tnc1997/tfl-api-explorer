@@ -30,6 +30,8 @@ class _CarParksPageState extends State<CarParksPage> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () async {
+              final navigator = Navigator.of(context);
+
               final carPark = await showSearch(
                 context: context,
                 delegate: PlaceSearchDelegate(
@@ -38,7 +40,7 @@ class _CarParksPageState extends State<CarParksPage> {
               );
 
               if (carPark != null) {
-                await Navigator.of(context).pushNamed(
+                await navigator.pushNamed(
                   CarParkPage.routeName,
                   arguments: carPark,
                 );

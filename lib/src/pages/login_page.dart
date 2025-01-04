@@ -104,13 +104,18 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> _login() async {
     if (_formKey.currentState?.validate() ?? false) {
+      final authenticationChangeNotifier =
+          context.read<AuthenticationChangeNotifier>();
+
+      final navigator = Navigator.of(context);
+
       final appKey = _appKeyController.text;
 
       await SharedPreferencesAsync().setString('appKey', appKey);
 
-      context.read<AuthenticationChangeNotifier>().login(appKey);
+      authenticationChangeNotifier.login(appKey);
 
-      await Navigator.of(context).pushReplacementNamed(HomePage.routeName);
+      await navigator.pushReplacementNamed(HomePage.routeName);
     }
   }
 }

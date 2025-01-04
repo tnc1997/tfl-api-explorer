@@ -30,6 +30,8 @@ class _BikePointsPageState extends State<BikePointsPage> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () async {
+              final navigator = Navigator.of(context);
+
               final bikePoint = await showSearch(
                 context: context,
                 delegate: PlaceSearchDelegate(
@@ -38,7 +40,7 @@ class _BikePointsPageState extends State<BikePointsPage> {
               );
 
               if (bikePoint != null) {
-                await Navigator.of(context).pushNamed(
+                await navigator.pushNamed(
                   BikePointPage.routeName,
                   arguments: bikePoint,
                 );

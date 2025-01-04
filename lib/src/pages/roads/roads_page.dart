@@ -30,6 +30,8 @@ class _RoadsPageState extends State<RoadsPage> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () async {
+              final navigator = Navigator.of(context);
+
               final road = await showSearch(
                 context: context,
                 delegate: RoadSearchDelegate(
@@ -38,7 +40,7 @@ class _RoadsPageState extends State<RoadsPage> {
               );
 
               if (road != null) {
-                await Navigator.of(context).pushNamed(
+                await navigator.pushNamed(
                   RoadPage.routeName,
                   arguments: road,
                 );

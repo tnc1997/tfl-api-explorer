@@ -93,11 +93,11 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
 
   Future<void> _refreshPredictions() async {
     try {
-      var predictions =
-          await context.read<TflApiClient>().line.arrivals([widget.line.id!]);
-
       final linePredictionFiltersChangeNotifier =
           context.read<LinePredictionFiltersChangeNotifier>();
+
+      var predictions =
+          await context.read<TflApiClient>().line.arrivals([widget.line.id!]);
 
       predictions = predictions
           .where(linePredictionFiltersChangeNotifier.areSatisfiedBy)
