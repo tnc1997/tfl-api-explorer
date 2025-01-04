@@ -39,6 +39,7 @@ class _LoginFormState extends State<LoginForm> {
               focusNode: _appKeyFocusNode,
               decoration: InputDecoration(
                 labelText: 'App key',
+                border: const OutlineInputBorder(),
               ),
               onFieldSubmitted: (value) {
                 _appKeyFocusNode.unfocus();
