@@ -32,7 +32,7 @@ dependencies:
   package_info_plus: ^8.1.2
   provider: ^6.1.2
   shared_preferences: ^2.3.5
-  tfl_api_client: ^1.0.0-nullsafety
+  tfl_api_client: ^1.0.0
   url_launcher: ^6.3.1
 
 dev_dependencies:

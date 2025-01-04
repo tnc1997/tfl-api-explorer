@@ -55,9 +55,8 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
 
     _routeSequencesFuture = context
         .read<TflApiClient>()
-        .lines
-        .routeSequenceByPathIdPathDirectionQueryServiceTypesQueryExcludeCrowding(
-            widget.line.id!, 'inbound')
+        .line
+        .routeSequence(widget.line.id!, 'inbound')
         .then((value) => [value]);
   }
 }

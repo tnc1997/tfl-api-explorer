@@ -77,9 +77,9 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
 
     _lineRoutesFuture = context
         .read<TflApiClient>()
-        .lines
-        .lineRoutesByIdsByPathIdsQueryServiceTypes([widget.line.id!]).then(
-            (value) => value.fold<List<MatchedRoute>>(
+        .line
+        .lineRoutesByIds([widget.line.id!]).then((value) => value
+            .fold<List<MatchedRoute>>(
                 [],
                 (previousValue, element) =>
                     previousValue..addAll(element.routeSections ?? [])));
@@ -150,6 +150,6 @@ class _LineLineRouteFiltersPageState extends State<_LineLineRouteFiltersPage> {
     super.initState();
 
     _lineServiceTypesFuture =
-        context.read<TflApiClient>().lines.metaServiceTypes();
+        context.read<TflApiClient>().line.metaServiceTypes();
   }
 }

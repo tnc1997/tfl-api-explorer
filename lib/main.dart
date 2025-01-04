@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:tfl_api_client/tfl_api_client.dart' hide Route;
+import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/colors/tfl_colors.dart';
 import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_filters_change_notifier.dart';

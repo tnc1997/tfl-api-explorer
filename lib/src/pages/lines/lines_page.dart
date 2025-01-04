@@ -67,10 +67,7 @@ class _LinesPageState extends State<LinesPage> {
   void initState() {
     super.initState();
 
-    _linesFuture = context
-        .read<TflApiClient>()
-        .lines
-        .getByModeByPathModes(['bus', 'tube']);
+    _linesFuture = context.read<TflApiClient>().line.getByMode(['bus', 'tube']);
   }
 }
 
@@ -135,6 +132,6 @@ class _LineFiltersPageState extends State<_LineFiltersPage> {
   void initState() {
     super.initState();
 
-    _lineModesFuture = context.read<TflApiClient>().lines.metaModes();
+    _lineModesFuture = context.read<TflApiClient>().line.metaModes();
   }
 }

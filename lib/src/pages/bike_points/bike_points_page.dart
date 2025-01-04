@@ -76,6 +76,6 @@ class _BikePointsPageState extends State<BikePointsPage> {
   void initState() {
     super.initState();
 
-    _bikePointsFuture = context.read<TflApiClient>().bikePoints.getAll();
+    _bikePointsFuture = context.read<TflApiClient>().bikePoint.getAll();
   }
 }

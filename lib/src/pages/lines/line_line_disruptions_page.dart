@@ -54,9 +54,7 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
   void initState() {
     super.initState();
 
-    _lineDisruptionsFuture = context
-        .read<TflApiClient>()
-        .lines
-        .disruptionByPathIds([widget.line.id!]);
+    _lineDisruptionsFuture =
+        context.read<TflApiClient>().line.disruption([widget.line.id!]);
   }
 }

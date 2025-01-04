@@ -76,9 +76,6 @@ class _CarParksPageState extends State<CarParksPage> {
   void initState() {
     super.initState();
 
-    _carParksFuture = context
-        .read<TflApiClient>()
-        .places
-        .getByTypeByPathTypesQueryActiveOnly(['CarPark']);
+    _carParksFuture = context.read<TflApiClient>().place.getByType(['CarPark']);
   }
 }

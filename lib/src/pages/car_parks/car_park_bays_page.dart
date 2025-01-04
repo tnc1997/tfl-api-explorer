@@ -54,8 +54,8 @@ class _CarParkBaysPageState extends State<CarParkBaysPage> {
 
     _baysFuture = context
         .read<TflApiClient>()
-        .occupancies
-        .getByPathId(widget.carPark.id!)
+        .occupancy
+        .get(widget.carPark.id!)
         .then((value) => value.bays!);
   }
 }

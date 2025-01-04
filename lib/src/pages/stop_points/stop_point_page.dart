@@ -44,7 +44,7 @@ class StopPointPage extends StatelessWidget {
           ListTile(
             title: Text('SMS code'),
             subtitle: Text(
-              stopPoint.sMSCode ?? 'Unknown',
+              stopPoint.smsCode ?? 'Unknown',
               overflow: TextOverflow.ellipsis,
             ),
           ),

@@ -49,7 +49,7 @@ void main() {
       );
     });
 
-    when(tflApi.bikePoints).thenReturn(bikePointService);
+    when(tflApi.bikePoint).thenReturn(bikePointService);
   });
 
   testWidgets('Bike point search', (tester) async {

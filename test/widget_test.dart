@@ -206,7 +206,7 @@ void main() {
       naptanId: 'HUBZCW',
       modes: ['bus', 'overground', 'tube'],
       icsCode: '1000037',
-      sMSCode: '48366',
+      smsCode: '48366',
       stopType: 'TransportInterchange',
       accessibilitySummary: 'Unknown',
       hubNaptanCode: 'HUBZCW',
@@ -221,7 +221,7 @@ void main() {
       naptanId: '940GZZLUTCR',
       modes: ['bus', 'tube'],
       icsCode: '1000235',
-      sMSCode: '47657',
+      smsCode: '47657',
       stopType: 'NaptanMetroStation',
       accessibilitySummary: 'Unknown',
       hubNaptanCode: 'Unknown',
@@ -837,7 +837,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.sMSCode!),
+            find.text(_stopPoint.smsCode!),
             findsWidgets,
           );
         });
@@ -987,91 +987,83 @@ void main() {
       );
     });
 
-    when(occupancyService.get()).thenAnswer((answer) {
+    when(occupancyService.getAll()).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
         () => carParkOccupancies,
       );
     });
 
-    when(placeService.getByTypeByPathTypesQueryActiveOnly(['CarPark']))
-        .thenAnswer((answer) {
+    when(placeService.getByType(['CarPark'])).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
         () => carParks,
       );
     });
 
-    when(lineService.getByModeByPathModes(['bus', 'tube']))
-        .thenAnswer((answer) {
+    when(lineService.getByMode(['bus', 'tube'])).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
         () => lines,
       );
     });
-    when(lineService.disruptionByPathIds(any)).thenAnswer((answer) {
+    when(lineService.disruption(any)).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
         () => disruptions,
       );
     });
-    when(lineService.lineRoutesByIdsByPathIdsQueryServiceTypes(any))
-        .thenAnswer((answer) {
+    when(lineService.lineRoutesByIds(any)).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
         () => [Line(routeSections: matchedRoutes)],
       );
     });
-    when(lineService.statusByIdsByPathIdsQueryDetail(any)).thenAnswer((answer) {
+    when(lineService.statusByIds(any)).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
-        () => [Line(lineStatus: lineStatuses)],
+        () => [Line(lineStatuses: lineStatuses)],
       );
     });
-    when(lineService.arrivalsByPathIds(any)).thenAnswer((answer) {
+    when(lineService.arrivals(any)).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
         () => predictions,
       );
     });
-    when(lineService
-            .routeSequenceByPathIdPathDirectionQueryServiceTypesQueryExcludeCrowding(
-                any, any))
-        .thenAnswer((answer) {
+    when(lineService.routeSequence(any, any)).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
         () => routeSequences.first,
       );
     });
-    when(lineService
-            .stopPointsByPathIdQueryTflOperatedNationalRailStationsOnly(any))
-        .thenAnswer((answer) {
+    when(lineService.stopPoints(any)).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
         () => stopPoints,
       );
     });
 
-    when(roadService.get()).thenAnswer((answer) {
+    when(roadService.getAll()).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
         () => roadCorridors,
       );
     });
 
-    when(stopPointService.getByTypeByPathTypes(any)).thenAnswer((answer) {
+    when(stopPointService.getByType(any)).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),
         () => stopPoints,
       );
     });
 
-    when(tflApi.bikePoints).thenReturn(bikePointService);
-    when(tflApi.occupancies).thenReturn(occupancyService);
-    when(tflApi.places).thenReturn(placeService);
-    when(tflApi.lines).thenReturn(lineService);
-    when(tflApi.roads).thenReturn(roadService);
-    when(tflApi.stopPoints).thenReturn(stopPointService);
+    when(tflApi.bikePoint).thenReturn(bikePointService);
+    when(tflApi.occupancy).thenReturn(occupancyService);
+    when(tflApi.place).thenReturn(placeService);
+    when(tflApi.line).thenReturn(lineService);
+    when(tflApi.road).thenReturn(roadService);
+    when(tflApi.stopPoint).thenReturn(stopPointService);
 
     when(authenticationChangeNotifier.appKey).thenReturn('abc');
   });

@@ -54,10 +54,7 @@ class _RoadRoadDisruptionsPageState extends State<RoadRoadDisruptionsPage> {
   void initState() {
     super.initState();
 
-    _roadDisruptionsFuture = context
-        .read<TflApiClient>()
-        .roads
-        .disruptionByPathIdsQueryStripContentQuerySeveritiesQueryCategoriesQuery(
-            [widget.road.id!]);
+    _roadDisruptionsFuture =
+        context.read<TflApiClient>().road.disruption([widget.road.id!]);
   }
 }

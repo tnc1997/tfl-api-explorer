@@ -70,8 +70,8 @@ class _StopPointsPageState extends State<StopPointsPage> {
 
     _stopPointsFuture = context
         .read<TflApiClient>()
-        .stopPoints
-        .getByTypeByPathTypes(['NaptanMetroStation']);
+        .stopPoint
+        .getByType(['NaptanMetroStation']);
   }
 }
 
@@ -144,6 +144,6 @@ class _StopPointFiltersPageState extends State<_StopPointFiltersPage> {
   void initState() {
     super.initState();
 
-    _stopPointModesFuture = context.read<TflApiClient>().stopPoints.metaModes();
+    _stopPointModesFuture = context.read<TflApiClient>().stopPoint.metaModes();
   }
 }

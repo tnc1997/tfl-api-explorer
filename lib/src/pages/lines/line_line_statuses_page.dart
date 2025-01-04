@@ -53,10 +53,7 @@ class _LineLineStatusesPageState extends State<LineLineStatusesPage> {
   void initState() {
     super.initState();
 
-    _lineStatusesFuture = context
-        .read<TflApiClient>()
-        .lines
-        .statusByIdsByPathIdsQueryDetail([widget.line.id!]).then(
-            (value) => value.first.lineStatus ?? []);
+    _lineStatusesFuture = context.read<TflApiClient>().line.statusByIds(
+        [widget.line.id!]).then((value) => value.first.lineStatuses ?? []);
   }
 }

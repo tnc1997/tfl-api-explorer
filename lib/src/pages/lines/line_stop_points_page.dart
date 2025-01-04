@@ -53,10 +53,7 @@ class _LineStopPointsPageState extends State<LineStopPointsPage> {
   void initState() {
     super.initState();
 
-    _stopPointsFuture = context
-        .read<TflApiClient>()
-        .lines
-        .stopPointsByPathIdQueryTflOperatedNationalRailStationsOnly(
-            widget.line.id!);
+    _stopPointsFuture =
+        context.read<TflApiClient>().line.stopPoints(widget.line.id!);
   }
 }

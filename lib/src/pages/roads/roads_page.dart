@@ -76,6 +76,6 @@ class _RoadsPageState extends State<RoadsPage> {
   void initState() {
     super.initState();
 
-    _roadsFuture = context.read<TflApiClient>().roads.get();
+    _roadsFuture = context.read<TflApiClient>().road.getAll();
   }
 }

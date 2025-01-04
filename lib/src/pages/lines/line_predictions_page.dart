@@ -95,10 +95,8 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
 
   Future<void> _refreshPredictions() async {
     try {
-      var predictions = await context
-          .read<TflApiClient>()
-          .lines
-          .arrivalsByPathIds([widget.line.id!]);
+      var predictions =
+          await context.read<TflApiClient>().line.arrivals([widget.line.id!]);
 
       final linePredictionFiltersChangeNotifier =
           context.read<LinePredictionFiltersChangeNotifier>();
@@ -205,10 +203,7 @@ class _LinePredictionFiltersPageState
   void initState() {
     super.initState();
 
-    _stopPointsFuture = context
-        .read<TflApiClient>()
-        .lines
-        .stopPointsByPathIdQueryTflOperatedNationalRailStationsOnly(
-            widget.line.id!);
+    _stopPointsFuture =
+        context.read<TflApiClient>().line.stopPoints(widget.line.id!);
   }
 }
