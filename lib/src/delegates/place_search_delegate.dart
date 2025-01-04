@@ -4,7 +4,7 @@ import 'package:tfl_api_explorer/src/specifications/place_common_name_specificat
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:tfl_api_explorer/src/widgets/place_list_tile.dart';
 
-class PlaceSearchDelegate extends SearchDelegate<Place> {
+class PlaceSearchDelegate extends SearchDelegate<Place?> {
   PlaceSearchDelegate({
     required this.placesFuture,
   });
@@ -35,7 +35,7 @@ class PlaceSearchDelegate extends SearchDelegate<Place> {
     return IconButton(
       icon: Icon(Icons.arrow_back),
       onPressed: () {
-        close(context, null as Place);
+        close(context, null);
       },
     );
   }

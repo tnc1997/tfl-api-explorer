@@ -4,7 +4,7 @@ import 'package:tfl_api_explorer/src/specifications/road_display_name_specificat
 import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
 import 'package:tfl_api_explorer/src/widgets/road_list_tile.dart';
 
-class RoadSearchDelegate extends SearchDelegate<RoadCorridor> {
+class RoadSearchDelegate extends SearchDelegate<RoadCorridor?> {
   RoadSearchDelegate({
     required this.roadsFuture,
   });
@@ -35,7 +35,7 @@ class RoadSearchDelegate extends SearchDelegate<RoadCorridor> {
     return IconButton(
       icon: Icon(Icons.arrow_back),
       onPressed: () {
-        close(context, null as RoadCorridor);
+        close(context, null);
       },
     );
   }
