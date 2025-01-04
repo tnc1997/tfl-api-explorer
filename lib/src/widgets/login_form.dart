@@ -51,24 +51,29 @@ class _LoginFormState extends State<LoginForm> {
               validator: _validator,
             ),
           ),
-          ButtonBar(
-            children: <Widget>[
-              FilledButton(
-                onPressed: () async {
-                  await launchUrl(
-                    Uri.https(
-                      'api-portal.tfl.gov.uk',
-                      '/signup',
-                    ),
-                  );
-                },
-                child: Text('Sign up'),
-              ),
-              FilledButton(
-                onPressed: widget.onSubmitted,
-                child: Text('Sign in'),
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: OverflowBar(
+              spacing: 8.0,
+              alignment: MainAxisAlignment.end,
+              children: <Widget>[
+                FilledButton(
+                  onPressed: () async {
+                    await launchUrl(
+                      Uri.https(
+                        'api-portal.tfl.gov.uk',
+                        '/signup',
+                      ),
+                    );
+                  },
+                  child: Text('Sign up'),
+                ),
+                FilledButton(
+                  onPressed: widget.onSubmitted,
+                  child: Text('Sign in'),
+                ),
+              ],
+            ),
           ),
         ],
       ),
