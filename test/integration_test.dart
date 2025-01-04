@@ -70,12 +70,12 @@ void main() {
     await tester.tap(find.byIcon(Icons.search));
     await tester.pumpAndSettle();
 
-    bikePoints.forEach((bikePoint) {
+    for (final bikePoint in bikePoints) {
       expect(
         find.text(bikePoint.commonName!),
         findsWidgets,
       );
-    });
+    }
 
     await tester.enterText(find.byType(TextField), 'clerkenwell');
     await tester.pumpAndSettle();

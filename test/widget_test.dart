@@ -326,7 +326,7 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          bikePoints.forEach((bikePoint) {
+          for (final bikePoint in bikePoints) {
             expect(
               find.text(bikePoint.id!),
               findsWidgets,
@@ -335,7 +335,7 @@ void main() {
               find.text(bikePoint.commonName!),
               findsWidgets,
             );
-          });
+          }
         });
       });
     });
@@ -378,7 +378,7 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          carParks.forEach((carPark) {
+          for (final carPark in carParks) {
             expect(
               find.text(carPark.id!),
               findsWidgets,
@@ -387,7 +387,7 @@ void main() {
               find.text(carPark.commonName!),
               findsWidgets,
             );
-          });
+          }
         });
       });
     });
@@ -411,7 +411,7 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          disruptions.forEach((lineDisruption) {
+          for (final lineDisruption in disruptions) {
             expect(
               find.text(lineDisruption.categoryDescription!),
               findsWidgets,
@@ -420,7 +420,7 @@ void main() {
               find.text(DateFormat.Hm().format(lineDisruption.created!)),
               findsWidgets,
             );
-          });
+          }
         });
       });
 
@@ -447,7 +447,7 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          matchedRoutes.forEach((lineRoute) {
+          for (final lineRoute in matchedRoutes) {
             expect(
               find.text(lineRoute.name!),
               findsWidgets,
@@ -456,7 +456,7 @@ void main() {
               find.text(lineRoute.serviceType!),
               findsWidgets,
             );
-          });
+          }
         });
       });
 
@@ -478,12 +478,12 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          lineStatuses.forEach((lineStatus) {
+          for (final lineStatus in lineStatuses) {
             expect(
               find.text(lineStatus.statusSeverityDescription!),
               findsWidgets,
             );
-          });
+          }
         });
       });
 
@@ -548,7 +548,7 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          predictions.forEach((prediction) {
+          for (final prediction in predictions) {
             expect(
               find.text(prediction.id!),
               findsWidgets,
@@ -559,7 +559,7 @@ void main() {
               ),
               findsWidgets,
             );
-          });
+          }
         });
       });
 
@@ -610,7 +610,7 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          stopPoints.forEach((stopPoint) {
+          for (final stopPoint in stopPoints) {
             expect(
               find.text(stopPoint.id!),
               findsWidgets,
@@ -619,7 +619,7 @@ void main() {
               find.text(stopPoint.commonName!),
               findsWidgets,
             );
-          });
+          }
         });
       });
 
@@ -644,7 +644,7 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          lines.forEach((line) {
+          for (final line in lines) {
             expect(
               find.text(line.id!),
               findsWidgets,
@@ -653,7 +653,7 @@ void main() {
               find.text(line.name!),
               findsWidgets,
             );
-          });
+          }
         });
       });
     });
@@ -773,7 +773,7 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          roadCorridors.forEach((bikePoint) {
+          for (final bikePoint in roadCorridors) {
             expect(
               find.text(bikePoint.id!),
               findsWidgets,
@@ -782,7 +782,7 @@ void main() {
               find.text(bikePoint.displayName!),
               findsWidgets,
             );
-          });
+          }
         });
       });
     });
@@ -949,7 +949,7 @@ void main() {
           );
           await tester.pumpAndSettle();
 
-          stopPoints.forEach((stopPoint) {
+          for (final stopPoint in stopPoints) {
             expect(
               find.text(stopPoint.id!),
               findsWidgets,
@@ -958,7 +958,7 @@ void main() {
               find.text(stopPoint.commonName!),
               findsWidgets,
             );
-          });
+          }
         });
       });
     });
