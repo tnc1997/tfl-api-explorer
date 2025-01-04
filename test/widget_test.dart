@@ -737,12 +737,12 @@ void main() {
 
     group('roads', () {
       group('RoadPage', () {
-        final _road = roadCorridors[0];
+        final road = roadCorridors[0];
 
         testWidgets('Name', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: RoadPage(road: _road),
+              home: RoadPage(road: road),
             ),
           );
 
@@ -751,7 +751,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_road.displayName!),
+            find.text(road.displayName!),
             findsWidgets,
           );
         });
@@ -789,12 +789,12 @@ void main() {
 
     group('stop_points', () {
       group('StopPointPage', () {
-        final _stopPoint = stopPoints[0];
+        final stopPoint = stopPoints[0];
 
         testWidgets('Name', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: StopPointPage(stopPoint: _stopPoint),
+              home: StopPointPage(stopPoint: stopPoint),
             ),
           );
 
@@ -803,7 +803,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.commonName!),
+            find.text(stopPoint.commonName!),
             findsWidgets,
           );
         });
@@ -811,7 +811,7 @@ void main() {
         testWidgets('ICS code', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: StopPointPage(stopPoint: _stopPoint),
+              home: StopPointPage(stopPoint: stopPoint),
             ),
           );
 
@@ -820,7 +820,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.icsCode!),
+            find.text(stopPoint.icsCode!),
             findsWidgets,
           );
         });
@@ -828,7 +828,7 @@ void main() {
         testWidgets('SMS code', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: StopPointPage(stopPoint: _stopPoint),
+              home: StopPointPage(stopPoint: stopPoint),
             ),
           );
 
@@ -837,7 +837,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.smsCode!),
+            find.text(stopPoint.smsCode!),
             findsWidgets,
           );
         });
@@ -845,7 +845,7 @@ void main() {
         testWidgets('Stop type', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: StopPointPage(stopPoint: _stopPoint),
+              home: StopPointPage(stopPoint: stopPoint),
             ),
           );
 
@@ -854,7 +854,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.stopType!),
+            find.text(stopPoint.stopType!),
             findsWidgets,
           );
         });
@@ -862,7 +862,7 @@ void main() {
         testWidgets('Accessibility', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: StopPointPage(stopPoint: _stopPoint),
+              home: StopPointPage(stopPoint: stopPoint),
             ),
           );
 
@@ -871,7 +871,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.accessibilitySummary!),
+            find.text(stopPoint.accessibilitySummary!),
             findsWidgets,
           );
         });
@@ -879,7 +879,7 @@ void main() {
         testWidgets('Hub NaPTAN code', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: StopPointPage(stopPoint: _stopPoint),
+              home: StopPointPage(stopPoint: stopPoint),
             ),
           );
 
@@ -888,7 +888,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.hubNaptanCode!),
+            find.text(stopPoint.hubNaptanCode!),
             findsWidgets,
           );
         });
@@ -896,7 +896,7 @@ void main() {
         testWidgets('URL', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: StopPointPage(stopPoint: _stopPoint),
+              home: StopPointPage(stopPoint: stopPoint),
             ),
           );
 
@@ -905,7 +905,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.url!),
+            find.text(stopPoint.url!),
             findsWidgets,
           );
         });
@@ -913,7 +913,7 @@ void main() {
         testWidgets('Place type', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: StopPointPage(stopPoint: _stopPoint),
+              home: StopPointPage(stopPoint: stopPoint),
             ),
           );
 
@@ -922,7 +922,7 @@ void main() {
             findsWidgets,
           );
           expect(
-            find.text(_stopPoint.placeType!),
+            find.text(stopPoint.placeType!),
             findsWidgets,
           );
         });
