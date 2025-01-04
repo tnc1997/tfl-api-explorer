@@ -55,7 +55,12 @@ class _LoginFormState extends State<LoginForm> {
             children: <Widget>[
               RaisedButton(
                 onPressed: () async {
-                  await launch('https://api-portal.tfl.gov.uk/signup');
+                  await launchUrl(
+                    Uri.https(
+                      'api-portal.tfl.gov.uk',
+                      '/signup',
+                    ),
+                  );
                 },
                 child: Text('Sign up'),
               ),

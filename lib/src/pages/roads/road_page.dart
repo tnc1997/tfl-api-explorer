@@ -61,8 +61,8 @@ class RoadPage extends StatelessWidget {
             ),
             onTap: url != null
                 ? () async {
-                    if (await canLaunch(url)) {
-                      await launch(url);
+                    if (await canLaunchUrl(Uri.parse(url))) {
+                      await launchUrl(Uri.parse(url));
                     }
                   }
                 : null,
