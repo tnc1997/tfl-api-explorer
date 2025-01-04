@@ -53,7 +53,7 @@ class _LoginFormState extends State<LoginForm> {
           ),
           ButtonBar(
             children: <Widget>[
-              RaisedButton(
+              FilledButton(
                 onPressed: () async {
                   await launchUrl(
                     Uri.https(
@@ -64,7 +64,7 @@ class _LoginFormState extends State<LoginForm> {
                 },
                 child: Text('Sign up'),
               ),
-              RaisedButton(
+              FilledButton(
                 onPressed: widget.onSubmitted,
                 child: Text('Sign in'),
               ),
