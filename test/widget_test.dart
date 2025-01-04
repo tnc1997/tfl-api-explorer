@@ -662,7 +662,7 @@ void main() {
       group('AboutPage', () {
         setUpAll(() {
           PackageInfo.setMockInitialValues(
-            appName: 'TfL API Explorer',
+            appName: 'Explorer for TfL API',
             packageName: 'app.thomasclark.tflapiexplorer',
             version: '1.0.0',
             buildNumber: '10000',
@@ -956,7 +956,7 @@ void main() {
     });
 
     group('HomePage', () {
-      testWidgets('Welcome to the TfL API Explorer', (tester) async {
+      testWidgets('Welcome to Explorer for TfL API', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: HomePage(),
@@ -964,7 +964,7 @@ void main() {
         );
 
         expect(
-          find.text('Welcome to the TfL API Explorer'),
+          find.text('Welcome to Explorer for TfL API'),
           findsWidgets,
         );
       });

@@ -1,5 +1,5 @@
 name: tfl_api_explorer
-description: The TfL API Explorer allows you to explore the TfL API. Please note that the TfL API Explorer is unofficial and not endorsed by TfL.
+description: Explorer for TfL API allows you to explore the TfL API. Please note that Explorer for TfL API is unofficial and not endorsed by TfL.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.

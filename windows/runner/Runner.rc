@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "Thomas Clark" "\0"
-            VALUE "FileDescription", "The TfL API Explorer allows you to explore the TfL API." "\0"
+            VALUE "FileDescription", "Explorer for TfL API allows you to explore the TfL API." "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "TfL API Explorer" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2021 Thomas Clark. All rights reserved." "\0"
+            VALUE "InternalName", "Explorer for TfL API" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 Thomas Clark. All rights reserved." "\0"
             VALUE "OriginalFilename", "tflapiexplorer.exe" "\0"
-            VALUE "ProductName", "TfL API Explorer" "\0"
+            VALUE "ProductName", "Explorer for TfL API" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

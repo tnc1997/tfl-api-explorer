@@ -1,10 +1,10 @@
-# TfL API Explorer
+# Explorer for TfL API
 
 ![Build](https://github.com/tnc1997/flutter-tfl-api-explorer/workflows/Build/badge.svg)
 
-The TfL API Explorer allows you to explore the TfL API.
+Explorer for TfL API allows you to explore the TfL API.
 
-Please note that the TfL API Explorer is unofficial and not endorsed by TfL.
+Please note that Explorer for TfL API is unofficial and not endorsed by TfL.
 
 ## Getting Started
 

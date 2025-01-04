@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
         title: Text('Home'),
       ),
       body: Center(
-        child: Text('Welcome to the TfL API Explorer'),
+        child: Text('Welcome to Explorer for TfL API'),
       ),
       drawer: TflApiExplorerDrawer(),
     );

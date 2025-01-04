@@ -1,7 +1,7 @@
 {
-    "name": "TfL API Explorer",
-    "short_name": "TfL API Explorer",
-    "description": "The TfL API Explorer allows you to explore the TfL API.",
+    "name": "Explorer for TfL API",
+    "short_name": "Explorer for TfL API",
+    "description": "Explorer for TfL API allows you to explore the TfL API.",
     "icons": [
         {
             "src": "/android-chrome-36x36.png",

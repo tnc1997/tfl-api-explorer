@@ -94,7 +94,7 @@ class MyApp extends StatelessWidget {
         initialRoute: LoginPage.routeName,
         onGenerateRoute: _onGenerateRoute,
         onUnknownRoute: _onUnknownRoute,
-        title: 'TfL API Explorer',
+        title: 'Explorer for TfL API',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
             seedColor: TflColors.corporateBlue,

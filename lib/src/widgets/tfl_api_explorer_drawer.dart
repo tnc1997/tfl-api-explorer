@@ -22,7 +22,7 @@ class TflApiExplorerDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
             ),
-            child: Text('TfL API Explorer'),
+            child: Text('Explorer for TfL API'),
           ),
           ListTile(
             leading: Icon(Icons.home),
