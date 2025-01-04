@@ -30,7 +30,7 @@ dependencies:
   http: ^1.2.2
   intl: any
   package_info_plus: ^8.1.2
-  provider: ^5.0.0-nullsafety
+  provider: ^6.1.2
   shared_preferences: ^0.5.0
   tfl_api_client: ^1.0.0-nullsafety
   url_launcher: ^6.3.1
