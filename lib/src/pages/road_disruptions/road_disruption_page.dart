@@ -5,11 +5,9 @@ class RoadDisruptionPage extends StatelessWidget {
   static const routeName = '/road_disruptions/:id';
 
   RoadDisruptionPage({
-    Key? key,
+    super.key,
     required this.roadDisruption,
-  }) : super(
-          key: key,
-        );
+  });
 
   final RoadDisruption roadDisruption;
 

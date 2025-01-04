@@ -3,13 +3,11 @@ import 'package:url_launcher/url_launcher.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
-    Key? key,
+    super.key,
     this.formKey,
     this.appKeyController,
     this.onSubmitted,
-  }) : super(
-          key: key,
-        );
+  });
 
   final GlobalKey<FormState>? formKey;
 

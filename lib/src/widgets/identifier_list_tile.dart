@@ -3,11 +3,9 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 
 class IdentifierListTile extends StatelessWidget {
   IdentifierListTile({
-    Key? key,
+    super.key,
     required this.identifier,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Identifier identifier;
 

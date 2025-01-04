@@ -1,15 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/line_statuses/line_status_page.dart';
 
 class LineStatusListTile extends StatelessWidget {
   LineStatusListTile({
-    Key? key,
+    super.key,
     required this.lineStatus,
-  }) : super(
-          key: key,
-        );
+  });
 
   final LineStatus lineStatus;
 

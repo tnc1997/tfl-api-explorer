@@ -11,11 +11,9 @@ class LinePage extends StatelessWidget {
   static const routeName = '/lines/:id';
 
   LinePage({
-    Key? key,
+    super.key,
     required this.line,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Line line;
 

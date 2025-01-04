@@ -12,11 +12,9 @@ class LinePredictionsPage extends StatefulWidget {
   static const routeName = '/lines/:id/predictions';
 
   LinePredictionsPage({
-    Key? key,
+    super.key,
     required this.line,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Line line;
 
@@ -114,11 +112,8 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
 
 class _LinePredictionFiltersPage extends StatefulWidget {
   _LinePredictionFiltersPage({
-    Key? key,
     required this.line,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Line line;
 

@@ -6,11 +6,9 @@ class PredictionPage extends StatelessWidget {
   static const routeName = '/predictions/:id';
 
   PredictionPage({
-    Key? key,
+    super.key,
     required this.prediction,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Prediction prediction;
 

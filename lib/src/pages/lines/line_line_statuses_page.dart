@@ -8,11 +8,9 @@ class LineLineStatusesPage extends StatefulWidget {
   static const routeName = '/lines/:id/line_statuses';
 
   LineLineStatusesPage({
-    Key? key,
+    super.key,
     required this.line,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Line line;
 

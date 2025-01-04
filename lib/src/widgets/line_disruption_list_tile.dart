@@ -5,11 +5,9 @@ import 'package:tfl_api_explorer/src/pages/line_disruptions/line_disruption_page
 
 class LineDisruptionListTile extends StatelessWidget {
   LineDisruptionListTile({
-    Key? key,
+    super.key,
     required this.lineDisruption,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Disruption lineDisruption;
 

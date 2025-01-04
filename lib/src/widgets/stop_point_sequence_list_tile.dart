@@ -4,11 +4,9 @@ import 'package:tfl_api_explorer/src/pages/stop_point_sequences/stop_point_seque
 
 class StopPointSequenceListTile extends StatelessWidget {
   StopPointSequenceListTile({
-    Key? key,
+    super.key,
     required this.stopPointSequence,
-  }) : super(
-          key: key,
-        );
+  });
 
   final StopPointSequence stopPointSequence;
 

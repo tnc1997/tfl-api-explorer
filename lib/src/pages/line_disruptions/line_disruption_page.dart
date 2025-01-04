@@ -5,11 +5,9 @@ class LineDisruptionPage extends StatelessWidget {
   static const routeName = '/line_disruptions/:id';
 
   LineDisruptionPage({
-    Key? key,
+    super.key,
     required this.lineDisruption,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Disruption lineDisruption;
 

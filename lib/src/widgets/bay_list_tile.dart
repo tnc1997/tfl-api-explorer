@@ -3,11 +3,9 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 
 class BayListTile extends StatelessWidget {
   BayListTile({
-    Key? key,
+    super.key,
     required this.bay,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Bay bay;
 

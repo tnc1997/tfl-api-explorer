@@ -7,11 +7,9 @@ class RoadPage extends StatelessWidget {
   static const routeName = '/roads/:id';
 
   RoadPage({
-    Key? key,
+    super.key,
     required this.road,
-  }) : super(
-          key: key,
-        );
+  });
 
   final RoadCorridor road;
 

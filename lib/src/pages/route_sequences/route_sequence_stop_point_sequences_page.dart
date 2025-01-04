@@ -6,11 +6,9 @@ class RouteSequenceStopPointSequencesPage extends StatelessWidget {
   static const routeName = '/route_sequences/:id/stop_point_sequences';
 
   RouteSequenceStopPointSequencesPage({
-    Key? key,
+    super.key,
     required this.routeSequence,
-  }) : super(
-          key: key,
-        );
+  });
 
   final RouteSequence routeSequence;
 

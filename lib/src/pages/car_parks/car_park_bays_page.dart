@@ -8,11 +8,9 @@ class CarParkBaysPage extends StatefulWidget {
   static const routeName = '/car_parks/:id/bays';
 
   CarParkBaysPage({
-    Key? key,
+    super.key,
     required this.carPark,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Place carPark;
 

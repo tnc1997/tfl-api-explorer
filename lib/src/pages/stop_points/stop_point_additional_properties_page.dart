@@ -6,11 +6,9 @@ class StopPointAdditionalPropertiesPage extends StatelessWidget {
   static const routeName = '/stop_points/:id/additional_properties';
 
   StopPointAdditionalPropertiesPage({
-    Key? key,
+    super.key,
     required this.stopPoint,
-  }) : super(
-          key: key,
-        );
+  });
 
   final StopPoint stopPoint;
 

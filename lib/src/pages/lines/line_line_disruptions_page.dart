@@ -8,11 +8,9 @@ class LineLineDisruptionsPage extends StatefulWidget {
   static const routeName = '/lines/:id/line_disruptions';
 
   LineLineDisruptionsPage({
-    Key? key,
+    super.key,
     required this.line,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Line line;
 

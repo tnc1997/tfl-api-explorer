@@ -8,11 +8,9 @@ class RoadRoadDisruptionsPage extends StatefulWidget {
   static const routeName = '/roads/:id/road_disruptions';
 
   RoadRoadDisruptionsPage({
-    Key? key,
+    super.key,
     required this.road,
-  }) : super(
-          key: key,
-        );
+  });
 
   final RoadCorridor road;
 

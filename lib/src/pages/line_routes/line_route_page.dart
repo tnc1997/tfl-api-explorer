@@ -6,11 +6,9 @@ class LineRoutePage extends StatelessWidget {
   static const routeName = '/line_routes/:id';
 
   LineRoutePage({
-    Key? key,
+    super.key,
     required this.lineRoute,
-  }) : super(
-          key: key,
-        );
+  });
 
   final MatchedRoute lineRoute;
 

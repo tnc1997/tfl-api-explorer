@@ -6,11 +6,9 @@ class CarParkPage extends StatelessWidget {
   static const routeName = '/car_parks/:id';
 
   CarParkPage({
-    Key? key,
+    super.key,
     required this.carPark,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Place carPark;
 

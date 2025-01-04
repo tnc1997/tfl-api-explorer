@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 
 class CircularProgressIndicatorFutureBuilder<T> extends StatelessWidget {
   CircularProgressIndicatorFutureBuilder({
-    Key? key,
+    super.key,
     this.future,
     required this.builder,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Future<T>? future;
 

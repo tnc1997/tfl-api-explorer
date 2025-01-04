@@ -4,11 +4,9 @@ import 'package:tfl_api_explorer/src/pages/route_sequences/route_sequence_page.d
 
 class RouteSequenceListTile extends StatelessWidget {
   RouteSequenceListTile({
-    Key? key,
+    super.key,
     required this.routeSequence,
-  }) : super(
-          key: key,
-        );
+  });
 
   final RouteSequence routeSequence;
 

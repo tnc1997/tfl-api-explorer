@@ -8,11 +8,9 @@ class LineRouteSequencesPage extends StatefulWidget {
   static const routeName = '/lines/:id/route_sequences';
 
   LineRouteSequencesPage({
-    Key? key,
+    super.key,
     required this.line,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Line line;
 

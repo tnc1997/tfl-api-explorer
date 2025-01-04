@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 
 class CircularProgressIndicatorStreamBuilder<T> extends StatelessWidget {
   CircularProgressIndicatorStreamBuilder({
-    Key? key,
+    super.key,
     this.stream,
     required this.builder,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Stream<T>? stream;
 

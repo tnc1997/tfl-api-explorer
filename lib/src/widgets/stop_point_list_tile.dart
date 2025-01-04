@@ -4,11 +4,9 @@ import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_page.dart';
 
 class StopPointListTile extends StatelessWidget {
   StopPointListTile({
-    Key? key,
+    super.key,
     required this.stopPoint,
-  }) : super(
-          key: key,
-        );
+  });
 
   final StopPoint stopPoint;
 

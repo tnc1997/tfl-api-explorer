@@ -3,12 +3,10 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 
 class RoadListTile extends StatelessWidget {
   RoadListTile({
-    Key? key,
+    super.key,
     required this.road,
     this.onTap,
-  }) : super(
-          key: key,
-        );
+  });
 
   final RoadCorridor road;
 

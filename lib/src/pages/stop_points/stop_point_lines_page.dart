@@ -6,11 +6,9 @@ class StopPointLinesPage extends StatelessWidget {
   static const routeName = '/stop_points/:id/lines';
 
   StopPointLinesPage({
-    Key? key,
+    super.key,
     required this.stopPoint,
-  }) : super(
-          key: key,
-        );
+  });
 
   final StopPoint stopPoint;
 

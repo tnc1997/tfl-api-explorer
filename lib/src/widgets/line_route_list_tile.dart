@@ -4,11 +4,9 @@ import 'package:tfl_api_explorer/src/pages/line_routes/line_route_page.dart';
 
 class LineRouteListTile extends StatelessWidget {
   LineRouteListTile({
-    Key? key,
+    super.key,
     required this.lineRoute,
-  }) : super(
-          key: key,
-        );
+  });
 
   final MatchedRoute lineRoute;
 

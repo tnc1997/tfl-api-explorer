@@ -5,11 +5,9 @@ import 'package:tfl_api_explorer/src/pages/road_disruptions/road_disruption_page
 
 class RoadDisruptionListTile extends StatelessWidget {
   RoadDisruptionListTile({
-    Key? key,
+    super.key,
     required this.roadDisruption,
-  }) : super(
-          key: key,
-        );
+  });
 
   final RoadDisruption roadDisruption;
 

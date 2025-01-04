@@ -9,11 +9,9 @@ class LineLineRoutesPage extends StatefulWidget {
   static const routeName = '/lines/:id/line_routes';
 
   LineLineRoutesPage({
-    Key? key,
+    super.key,
     required this.line,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Line line;
 

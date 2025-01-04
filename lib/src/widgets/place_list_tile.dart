@@ -3,12 +3,10 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 
 class PlaceListTile extends StatelessWidget {
   PlaceListTile({
-    Key? key,
+    super.key,
     required this.place,
     this.onTap,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Place place;
 

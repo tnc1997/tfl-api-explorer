@@ -8,11 +8,9 @@ class LineStopPointsPage extends StatefulWidget {
   static const routeName = '/lines/:id/stop_points';
 
   LineStopPointsPage({
-    Key? key,
+    super.key,
     required this.line,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Line line;
 

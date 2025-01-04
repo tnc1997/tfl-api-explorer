@@ -6,11 +6,9 @@ class BikePointPage extends StatelessWidget {
   static const routeName = '/bike_points/:id';
 
   BikePointPage({
-    Key? key,
+    super.key,
     required this.bikePoint,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Place bikePoint;
 

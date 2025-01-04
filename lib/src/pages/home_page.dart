@@ -5,10 +5,8 @@ class HomePage extends StatelessWidget {
   static const routeName = Navigator.defaultRouteName;
 
   HomePage({
-    Key? key,
-  }) : super(
-          key: key,
-        );
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

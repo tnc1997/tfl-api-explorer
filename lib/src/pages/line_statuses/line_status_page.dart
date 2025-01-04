@@ -5,11 +5,9 @@ class LineStatusPage extends StatelessWidget {
   static const routeName = '/line_statuses/:id';
 
   LineStatusPage({
-    Key? key,
+    super.key,
     required this.lineStatus,
-  }) : super(
-          key: key,
-        );
+  });
 
   final LineStatus lineStatus;
 
