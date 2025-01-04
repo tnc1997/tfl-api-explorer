@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 class RoadListTile extends StatelessWidget {
-  RoadListTile({
+  const RoadListTile({
     super.key,
     required this.road,
     this.onTap,

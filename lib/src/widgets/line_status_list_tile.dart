@@ -3,7 +3,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/line_statuses/line_status_page.dart';
 
 class LineStatusListTile extends StatelessWidget {
-  LineStatusListTile({
+  const LineStatusListTile({
     super.key,
     required this.lineStatus,
   });

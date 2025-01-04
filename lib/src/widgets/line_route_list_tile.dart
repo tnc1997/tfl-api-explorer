@@ -3,7 +3,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/line_routes/line_route_page.dart';
 
 class LineRouteListTile extends StatelessWidget {
-  LineRouteListTile({
+  const LineRouteListTile({
     super.key,
     required this.lineRoute,
   });

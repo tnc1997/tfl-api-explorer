@@ -7,7 +7,7 @@ import 'package:tfl_api_explorer/src/widgets/route_sequence_list_tile.dart';
 class LineRouteSequencesPage extends StatefulWidget {
   static const routeName = '/lines/:id/route_sequences';
 
-  LineRouteSequencesPage({
+  const LineRouteSequencesPage({
     super.key,
     required this.line,
   });

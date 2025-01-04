@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CircularProgressIndicatorFutureBuilder<T> extends StatelessWidget {
-  CircularProgressIndicatorFutureBuilder({
+  const CircularProgressIndicatorFutureBuilder({
     super.key,
     this.future,
     required this.builder,

@@ -10,7 +10,7 @@ import 'package:tfl_api_explorer/src/pages/lines/line_stop_points_page.dart';
 class LinePage extends StatelessWidget {
   static const routeName = '/lines/:id';
 
-  LinePage({
+  const LinePage({
     super.key,
     required this.line,
   });

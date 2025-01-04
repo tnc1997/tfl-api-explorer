@@ -5,7 +5,7 @@ import 'package:tfl_api_explorer/src/pages/stop_point_sequences/stop_point_seque
 class StopPointSequencePage extends StatelessWidget {
   static const routeName = '/stop_point_sequences/:id';
 
-  StopPointSequencePage({
+  const StopPointSequencePage({
     super.key,
     required this.stopPointSequence,
   });

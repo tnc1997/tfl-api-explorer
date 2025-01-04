@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 class AdditionalPropertiesListTile extends StatelessWidget {
-  AdditionalPropertiesListTile({
+  const AdditionalPropertiesListTile({
     super.key,
     required this.additionalProperties,
   });

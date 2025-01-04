@@ -5,7 +5,7 @@ import 'package:tfl_api_explorer/src/pages/car_parks/car_park_bays_page.dart';
 class CarParkPage extends StatelessWidget {
   static const routeName = '/car_parks/:id';
 
-  CarParkPage({
+  const CarParkPage({
     super.key,
     required this.carPark,
   });

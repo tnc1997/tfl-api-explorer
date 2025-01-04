@@ -4,7 +4,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/line_disruptions/line_disruption_page.dart';
 
 class LineDisruptionListTile extends StatelessWidget {
-  LineDisruptionListTile({
+  const LineDisruptionListTile({
     super.key,
     required this.lineDisruption,
   });

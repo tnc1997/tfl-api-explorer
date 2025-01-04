@@ -7,7 +7,7 @@ import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_
 class CarParkBaysPage extends StatefulWidget {
   static const routeName = '/car_parks/:id/bays';
 
-  CarParkBaysPage({
+  const CarParkBaysPage({
     super.key,
     required this.carPark,
   });

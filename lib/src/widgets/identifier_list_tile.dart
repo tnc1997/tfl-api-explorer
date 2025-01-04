@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 class IdentifierListTile extends StatelessWidget {
-  IdentifierListTile({
+  const IdentifierListTile({
     super.key,
     required this.identifier,
   });

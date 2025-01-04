@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 class BayListTile extends StatelessWidget {
-  BayListTile({
+  const BayListTile({
     super.key,
     required this.bay,
   });

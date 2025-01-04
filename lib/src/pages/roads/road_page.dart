@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 class RoadPage extends StatelessWidget {
   static const routeName = '/roads/:id';
 
-  RoadPage({
+  const RoadPage({
     super.key,
     required this.road,
   });

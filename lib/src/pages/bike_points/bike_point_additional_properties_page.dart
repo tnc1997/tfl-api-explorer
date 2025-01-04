@@ -5,7 +5,7 @@ import 'package:tfl_api_explorer/src/widgets/additional_properties_list_tile.dar
 class BikePointAdditionalPropertiesPage extends StatelessWidget {
   static const routeName = '/bike_points/:id/additional_properties';
 
-  BikePointAdditionalPropertiesPage({
+  const BikePointAdditionalPropertiesPage({
     super.key,
     required this.bikePoint,
   });

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 class PlaceListTile extends StatelessWidget {
-  PlaceListTile({
+  const PlaceListTile({
     super.key,
     required this.place,
     this.onTap,

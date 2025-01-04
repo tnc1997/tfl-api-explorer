@@ -4,7 +4,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 class StopPointModesPage extends StatelessWidget {
   static const routeName = '/stop_points/:id/modes';
 
-  StopPointModesPage({
+  const StopPointModesPage({
     super.key,
     required this.stopPoint,
   });

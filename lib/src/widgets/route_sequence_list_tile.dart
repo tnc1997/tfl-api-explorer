@@ -3,7 +3,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/route_sequences/route_sequence_page.dart';
 
 class RouteSequenceListTile extends StatelessWidget {
-  RouteSequenceListTile({
+  const RouteSequenceListTile({
     super.key,
     required this.routeSequence,
   });

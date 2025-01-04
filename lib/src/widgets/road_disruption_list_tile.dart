@@ -4,7 +4,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/road_disruptions/road_disruption_page.dart';
 
 class RoadDisruptionListTile extends StatelessWidget {
-  RoadDisruptionListTile({
+  const RoadDisruptionListTile({
     super.key,
     required this.roadDisruption,
   });

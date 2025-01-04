@@ -11,7 +11,7 @@ import 'package:tfl_api_explorer/src/widgets/prediction_list_tile.dart';
 class LinePredictionsPage extends StatefulWidget {
   static const routeName = '/lines/:id/predictions';
 
-  LinePredictionsPage({
+  const LinePredictionsPage({
     super.key,
     required this.line,
   });
@@ -111,7 +111,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
 }
 
 class _LinePredictionFiltersPage extends StatefulWidget {
-  _LinePredictionFiltersPage({
+  const _LinePredictionFiltersPage({
     required this.line,
   });
 

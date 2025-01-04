@@ -7,7 +7,7 @@ import 'package:tfl_api_explorer/src/widgets/stop_point_list_tile.dart';
 class LineStopPointsPage extends StatefulWidget {
   static const routeName = '/lines/:id/stop_points';
 
-  LineStopPointsPage({
+  const LineStopPointsPage({
     super.key,
     required this.line,
   });

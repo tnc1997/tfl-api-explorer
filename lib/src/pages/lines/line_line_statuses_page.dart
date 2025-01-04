@@ -7,7 +7,7 @@ import 'package:tfl_api_explorer/src/widgets/line_status_list_tile.dart';
 class LineLineStatusesPage extends StatefulWidget {
   static const routeName = '/lines/:id/line_statuses';
 
-  LineLineStatusesPage({
+  const LineLineStatusesPage({
     super.key,
     required this.line,
   });

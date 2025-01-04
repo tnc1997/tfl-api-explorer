@@ -8,7 +8,7 @@ import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
 import 'package:tfl_api_explorer/src/pages/stop_points/stop_points_page.dart';
 
 class TflApiExplorerDrawer extends StatelessWidget {
-  TflApiExplorerDrawer({
+  const TflApiExplorerDrawer({
     super.key,
   });
 

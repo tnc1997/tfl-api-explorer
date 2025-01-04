@@ -3,7 +3,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/lines/line_page.dart';
 
 class LineListTile extends StatelessWidget {
-  LineListTile({
+  const LineListTile({
     super.key,
     required this.line,
   });

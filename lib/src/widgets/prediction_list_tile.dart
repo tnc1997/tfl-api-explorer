@@ -4,7 +4,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/src/pages/predictions/prediction_page.dart';
 
 class PredictionListTile extends StatelessWidget {
-  PredictionListTile({
+  const PredictionListTile({
     super.key,
     required this.prediction,
   });

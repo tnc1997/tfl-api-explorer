@@ -5,7 +5,7 @@ import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_additional_pro
 class BikePointPage extends StatelessWidget {
   static const routeName = '/bike_points/:id';
 
-  BikePointPage({
+  const BikePointPage({
     super.key,
     required this.bikePoint,
   });

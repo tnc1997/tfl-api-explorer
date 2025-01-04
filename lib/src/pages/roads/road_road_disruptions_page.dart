@@ -7,7 +7,7 @@ import 'package:tfl_api_explorer/src/widgets/road_disruption_list_tile.dart';
 class RoadRoadDisruptionsPage extends StatefulWidget {
   static const routeName = '/roads/:id/road_disruptions';
 
-  RoadRoadDisruptionsPage({
+  const RoadRoadDisruptionsPage({
     super.key,
     required this.road,
   });

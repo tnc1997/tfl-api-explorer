@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 class StopPointPage extends StatelessWidget {
   static const routeName = '/stop_points/:id';
 
-  StopPointPage({
+  const StopPointPage({
     super.key,
     required this.stopPoint,
   });

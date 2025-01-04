@@ -5,7 +5,7 @@ import 'package:tfl_api_explorer/src/widgets/additional_properties_list_tile.dar
 class StopPointAdditionalPropertiesPage extends StatelessWidget {
   static const routeName = '/stop_points/:id/additional_properties';
 
-  StopPointAdditionalPropertiesPage({
+  const StopPointAdditionalPropertiesPage({
     super.key,
     required this.stopPoint,
   });

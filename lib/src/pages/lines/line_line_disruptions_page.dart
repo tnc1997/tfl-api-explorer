@@ -7,7 +7,7 @@ import 'package:tfl_api_explorer/src/widgets/line_disruption_list_tile.dart';
 class LineLineDisruptionsPage extends StatefulWidget {
   static const routeName = '/lines/:id/line_disruptions';
 
-  LineLineDisruptionsPage({
+  const LineLineDisruptionsPage({
     super.key,
     required this.line,
   });
