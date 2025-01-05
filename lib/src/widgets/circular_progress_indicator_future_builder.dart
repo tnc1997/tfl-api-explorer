@@ -16,14 +16,16 @@ class CircularProgressIndicatorFutureBuilder<T> extends StatelessWidget {
     return FutureBuilder<T>(
       future: future,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return builder(context, snapshot.data);
-        }
+        if (snapshot.connectionState == ConnectionState.done) {
+          final error = snapshot.error?.toString();
 
-        if (snapshot.hasError) {
-          return Center(
-            child: Text(snapshot.error.toString()),
-          );
+          if (error != null) {
+            return Center(
+              child: Text(error),
+            );
+          }
+
+          return builder(context, snapshot.data);
         }
 
         return Center(
