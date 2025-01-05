@@ -24,6 +24,9 @@ migration:
     - platform: linux
       create_revision: 3e493a3e4d0a5c99fa7da51faae354e95a9a1abe
       base_revision: 3e493a3e4d0a5c99fa7da51faae354e95a9a1abe
+    - platform: macos
+      create_revision: 3e493a3e4d0a5c99fa7da51faae354e95a9a1abe
+      base_revision: 3e493a3e4d0a5c99fa7da51faae354e95a9a1abe
 
   # User provided section
 
