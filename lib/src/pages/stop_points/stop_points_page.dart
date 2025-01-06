@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/notifiers/stop_point_filters_change_notifier.dart';
-import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
-import 'package:tfl_api_explorer/src/widgets/stop_point_list_tile.dart';
-import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
+
+import '../../notifiers/stop_point_filters_change_notifier.dart';
+import '../../widgets/circular_progress_indicator_future_builder.dart';
+import '../../widgets/stop_point_list_tile.dart';
+import '../../widgets/tfl_api_explorer_drawer.dart';
 
 class StopPointsPage extends StatefulWidget {
   static const routeName = '/stop_points';

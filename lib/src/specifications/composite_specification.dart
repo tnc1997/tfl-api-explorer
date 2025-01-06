@@ -1,4 +1,4 @@
-import 'package:tfl_api_explorer/src/specifications/specification.dart';
+import 'specification.dart';
 
 abstract class CompositeSpecification<T> extends Specification<T> {
   CompositeSpecification({

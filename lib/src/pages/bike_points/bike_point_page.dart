@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_additional_properties_page.dart';
+
+import 'bike_point_additional_properties_page.dart';
 
 class BikePointPage extends StatelessWidget {
   static const routeName = '/bike_points/:id';

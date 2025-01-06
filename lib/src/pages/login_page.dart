@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.dart';
-import 'package:tfl_api_explorer/src/pages/home_page.dart';
-import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
-import 'package:tfl_api_explorer/src/widgets/login_form.dart';
+
+import '../notifiers/authentication_change_notifier.dart';
+import '../widgets/circular_progress_indicator_future_builder.dart';
+import '../widgets/login_form.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = 'login';

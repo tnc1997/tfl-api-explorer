@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/pages/line_disruptions/line_disruption_page.dart';
+
+import '../pages/line_disruptions/line_disruption_page.dart';
 
 class LineDisruptionListTile extends StatelessWidget {
   const LineDisruptionListTile({

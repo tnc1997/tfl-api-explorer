@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/pages/stop_point_sequences/stop_point_sequence_stop_points_page.dart';
+
+import 'stop_point_sequence_stop_points_page.dart';
 
 class StopPointSequencePage extends StatelessWidget {
   static const routeName = '/stop_point_sequences/:id';

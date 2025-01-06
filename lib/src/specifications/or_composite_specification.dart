@@ -1,4 +1,4 @@
-import 'package:tfl_api_explorer/src/specifications/composite_specification.dart';
+import 'composite_specification.dart';
 
 class OrCompositeSpecification<T> extends CompositeSpecification<T> {
   OrCompositeSpecification({

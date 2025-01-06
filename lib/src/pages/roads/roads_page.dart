@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/delegates/road_search_delegate.dart';
-import 'package:tfl_api_explorer/src/pages/roads/road_page.dart';
-import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
-import 'package:tfl_api_explorer/src/widgets/road_list_tile.dart';
-import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
+
+import '../../delegates/road_search_delegate.dart';
+import '../../widgets/circular_progress_indicator_future_builder.dart';
+import '../../widgets/road_list_tile.dart';
+import '../../widgets/tfl_api_explorer_drawer.dart';
+import 'road_page.dart';
 
 class RoadsPage extends StatefulWidget {
   static const routeName = '/roads';

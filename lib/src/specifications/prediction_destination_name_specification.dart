@@ -1,5 +1,6 @@
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/specifications/specification.dart';
+
+import 'specification.dart';
 
 class PredictionDestinationNameSpecification extends Specification<Prediction> {
   PredictionDestinationNameSpecification({

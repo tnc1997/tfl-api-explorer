@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.dart';
+
+import '../../notifiers/authentication_change_notifier.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/widgets/identifier_list_tile.dart';
+
+import '../../widgets/identifier_list_tile.dart';
 
 class StopPointLinesPage extends StatelessWidget {
   static const routeName = '/stop_points/:id/lines';

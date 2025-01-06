@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/delegates/place_search_delegate.dart';
-import 'package:tfl_api_explorer/src/pages/bike_points/bike_point_page.dart';
-import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
-import 'package:tfl_api_explorer/src/widgets/place_list_tile.dart';
-import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
+
+import '../../delegates/place_search_delegate.dart';
+import '../../widgets/circular_progress_indicator_future_builder.dart';
+import '../../widgets/place_list_tile.dart';
+import '../../widgets/tfl_api_explorer_drawer.dart';
+import 'bike_point_page.dart';
 
 class BikePointsPage extends StatefulWidget {
   static const routeName = '/bike_points';

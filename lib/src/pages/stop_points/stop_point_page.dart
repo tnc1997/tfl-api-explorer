@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_additional_properties_page.dart';
-import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_lines_page.dart';
-import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_modes_page.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'stop_point_additional_properties_page.dart';
+import 'stop_point_lines_page.dart';
+import 'stop_point_modes_page.dart';
 
 class StopPointPage extends StatelessWidget {
   static const routeName = '/stop_points/:id';

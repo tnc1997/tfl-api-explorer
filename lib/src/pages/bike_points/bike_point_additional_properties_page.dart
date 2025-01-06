@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/widgets/additional_properties_list_tile.dart';
+
+import '../../widgets/additional_properties_list_tile.dart';
 
 class BikePointAdditionalPropertiesPage extends StatelessWidget {
   static const routeName = '/bike_points/:id/additional_properties';

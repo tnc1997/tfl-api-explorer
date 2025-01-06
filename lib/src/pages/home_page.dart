@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
+
+import '../widgets/tfl_api_explorer_drawer.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = Navigator.defaultRouteName;

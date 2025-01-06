@@ -1,4 +1,4 @@
-import 'package:tfl_api_explorer/src/specifications/composite_specification.dart';
+import 'composite_specification.dart';
 
 class AndCompositeSpecification<T> extends CompositeSpecification<T> {
   AndCompositeSpecification({

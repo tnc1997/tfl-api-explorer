@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tfl_api_explorer/src/pages/bike_points/bike_points_page.dart';
-import 'package:tfl_api_explorer/src/pages/car_parks/car_parks_page.dart';
-import 'package:tfl_api_explorer/src/pages/home_page.dart';
-import 'package:tfl_api_explorer/src/pages/lines/lines_page.dart';
-import 'package:tfl_api_explorer/src/pages/roads/roads_page.dart';
-import 'package:tfl_api_explorer/src/pages/settings/settings_page.dart';
-import 'package:tfl_api_explorer/src/pages/stop_points/stop_points_page.dart';
+
+import '../pages/bike_points/bike_points_page.dart';
+import '../pages/car_parks/car_parks_page.dart';
+import '../pages/home_page.dart';
+import '../pages/lines/lines_page.dart';
+import '../pages/roads/roads_page.dart';
+import '../pages/settings/settings_page.dart';
+import '../pages/stop_points/stop_points_page.dart';
 
 class TflApiExplorerDrawer extends StatelessWidget {
   const TflApiExplorerDrawer({

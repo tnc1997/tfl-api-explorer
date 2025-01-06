@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
-import 'package:tfl_api_explorer/src/widgets/road_disruption_list_tile.dart';
+
+import '../../widgets/circular_progress_indicator_future_builder.dart';
+import '../../widgets/road_disruption_list_tile.dart';
 
 class RoadRoadDisruptionsPage extends StatefulWidget {
   static const routeName = '/roads/:id/road_disruptions';

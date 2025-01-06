@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
-import 'package:tfl_api_explorer/src/widgets/route_sequence_list_tile.dart';
+
+import '../../widgets/circular_progress_indicator_future_builder.dart';
+import '../../widgets/route_sequence_list_tile.dart';
 
 class LineRouteSequencesPage extends StatefulWidget {
   static const routeName = '/lines/:id/route_sequences';

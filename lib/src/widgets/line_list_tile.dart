@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/pages/lines/line_page.dart';
+
+import '../pages/lines/line_page.dart';
 
 class LineListTile extends StatelessWidget {
   const LineListTile({

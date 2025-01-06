@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
-import 'package:tfl_api_explorer/src/widgets/stop_point_list_tile.dart';
+
+import '../../widgets/circular_progress_indicator_future_builder.dart';
+import '../../widgets/stop_point_list_tile.dart';
 
 class LineStopPointsPage extends StatefulWidget {
   static const routeName = '/lines/:id/stop_points';

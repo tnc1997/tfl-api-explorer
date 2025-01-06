@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tfl_api_explorer/src/pages/settings/about_page.dart';
-import 'package:tfl_api_explorer/src/pages/settings/account_page.dart';
-import 'package:tfl_api_explorer/src/widgets/tfl_api_explorer_drawer.dart';
+
+import '../../widgets/tfl_api_explorer_drawer.dart';
+import 'about_page.dart';
+import 'account_page.dart';
 
 class SettingsPage extends StatelessWidget {
   static const routeName = '/settings';

@@ -1,7 +1,8 @@
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/notifiers/filters_change_notifier.dart';
-import 'package:tfl_api_explorer/src/specifications/line_route_service_type_specification.dart';
-import 'package:tfl_api_explorer/src/specifications/specification.dart';
+
+import '../specifications/line_route_service_type_specification.dart';
+import '../specifications/specification.dart';
+import 'filters_change_notifier.dart';
 
 class LineLineRouteFiltersChangeNotifier
     extends FiltersChangeNotifier<MatchedRoute> {

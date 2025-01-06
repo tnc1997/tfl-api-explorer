@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/widgets/bay_list_tile.dart';
-import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
+
+import '../../widgets/bay_list_tile.dart';
+import '../../widgets/circular_progress_indicator_future_builder.dart';
 
 class CarParkBaysPage extends StatefulWidget {
   static const routeName = '/car_parks/:id/bays';

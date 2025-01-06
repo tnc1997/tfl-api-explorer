@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/specifications/place_common_name_specification.dart';
-import 'package:tfl_api_explorer/src/widgets/circular_progress_indicator_future_builder.dart';
-import 'package:tfl_api_explorer/src/widgets/place_list_tile.dart';
+
+import '../specifications/place_common_name_specification.dart';
+import '../widgets/circular_progress_indicator_future_builder.dart';
+import '../widgets/place_list_tile.dart';
 
 class PlaceSearchDelegate extends SearchDelegate<Place?> {
   PlaceSearchDelegate({
