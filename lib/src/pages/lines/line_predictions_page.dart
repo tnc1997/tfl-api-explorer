@@ -14,10 +14,10 @@ class LinePredictionsPage extends StatefulWidget {
 
   const LinePredictionsPage({
     super.key,
-    required this.line,
+    required this.id,
   });
 
-  final Line line;
+  final String id;
 
   @override
   State<LinePredictionsPage> createState() {
@@ -44,7 +44,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
                 MaterialPageRoute(
                   builder: (context) {
                     return _LinePredictionFiltersPage(
-                      line: widget.line,
+                      id: widget.id,
                     );
                   },
                 ),
@@ -100,7 +100,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
           context.read<LinePredictionFiltersChangeNotifier>();
 
       var predictions =
-          await context.read<TflApiClient>().line.arrivals([widget.line.id!]);
+          await context.read<TflApiClient>().line.arrivals([widget.id]);
 
       predictions = predictions
           .where(linePredictionFiltersChangeNotifier.areSatisfiedBy)
@@ -115,10 +115,10 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
 
 class _LinePredictionFiltersPage extends StatefulWidget {
   const _LinePredictionFiltersPage({
-    required this.line,
+    required this.id,
   });
 
-  final Line line;
+  final String id;
 
   @override
   State<_LinePredictionFiltersPage> createState() {
@@ -202,7 +202,6 @@ class _LinePredictionFiltersPageState
   void initState() {
     super.initState();
 
-    _stopPointsFuture =
-        context.read<TflApiClient>().line.stopPoints(widget.line.id!);
+    _stopPointsFuture = context.read<TflApiClient>().line.stopPoints(widget.id);
   }
 }

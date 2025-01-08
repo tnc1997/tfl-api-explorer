@@ -10,10 +10,10 @@ class LineRouteSequencesPage extends StatefulWidget {
 
   const LineRouteSequencesPage({
     super.key,
-    required this.line,
+    required this.id,
   });
 
-  final Line line;
+  final String id;
 
   @override
   State<LineRouteSequencesPage> createState() {
@@ -22,7 +22,7 @@ class LineRouteSequencesPage extends StatefulWidget {
 }
 
 class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
-  late Future<List<RouteSequence>> _routeSequencesFuture;
+  late final Future<RouteSequence> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +30,17 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
       appBar: AppBar(
         title: Text('Route sequences'),
       ),
-      body: CircularProgressIndicatorFutureBuilder<List<RouteSequence>>(
-        future: _routeSequencesFuture,
+      body: CircularProgressIndicatorFutureBuilder<RouteSequence>(
+        future: _future,
         builder: (context, data) {
           if (data != null) {
             return ListView.builder(
               itemBuilder: (context, index) {
                 return RouteSequenceListTile(
-                  routeSequence: data[index],
+                  routeSequence: data,
                 );
               },
-              itemCount: data.length,
+              itemCount: 1,
             );
           } else {
             return Container();
@@ -54,10 +54,7 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
   void initState() {
     super.initState();
 
-    _routeSequencesFuture = context
-        .read<TflApiClient>()
-        .line
-        .routeSequence(widget.line.id!, 'inbound')
-        .then((value) => [value]);
+    _future =
+        context.read<TflApiClient>().line.routeSequence(widget.id, 'inbound');
   }
 }

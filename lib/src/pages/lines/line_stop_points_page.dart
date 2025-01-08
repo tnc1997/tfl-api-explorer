@@ -10,10 +10,10 @@ class LineStopPointsPage extends StatefulWidget {
 
   const LineStopPointsPage({
     super.key,
-    required this.line,
+    required this.id,
   });
 
-  final Line line;
+  final String id;
 
   @override
   State<LineStopPointsPage> createState() {
@@ -22,7 +22,7 @@ class LineStopPointsPage extends StatefulWidget {
 }
 
 class _LineStopPointsPageState extends State<LineStopPointsPage> {
-  late Future<List<StopPoint>> _stopPointsFuture;
+  late final Future<List<StopPoint>> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _LineStopPointsPageState extends State<LineStopPointsPage> {
         title: Text('Stop points'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
-        future: _stopPointsFuture,
+        future: _future,
         builder: (context, data) {
           if (data != null) {
             return ListView.builder(
@@ -54,7 +54,6 @@ class _LineStopPointsPageState extends State<LineStopPointsPage> {
   void initState() {
     super.initState();
 
-    _stopPointsFuture =
-        context.read<TflApiClient>().line.stopPoints(widget.line.id!);
+    _future = context.read<TflApiClient>().line.stopPoints(widget.id);
   }
 }

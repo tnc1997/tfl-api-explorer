@@ -10,10 +10,10 @@ class LineLineDisruptionsPage extends StatefulWidget {
 
   const LineLineDisruptionsPage({
     super.key,
-    required this.line,
+    required this.id,
   });
 
-  final Line line;
+  final String id;
 
   @override
   State<LineLineDisruptionsPage> createState() {
@@ -22,7 +22,7 @@ class LineLineDisruptionsPage extends StatefulWidget {
 }
 
 class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
-  late Future<List<Disruption>> _lineDisruptionsFuture;
+  late final Future<List<Disruption>> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
         title: Text('Line disruptions'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<Disruption>>(
-        future: _lineDisruptionsFuture,
+        future: _future,
         builder: (context, data) {
           if (data != null) {
             return ListView.builder(
@@ -54,7 +54,6 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
   void initState() {
     super.initState();
 
-    _lineDisruptionsFuture =
-        context.read<TflApiClient>().line.disruption([widget.line.id!]);
+    _future = context.read<TflApiClient>().line.disruption([widget.id]);
   }
 }

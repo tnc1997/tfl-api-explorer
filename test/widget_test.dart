@@ -445,7 +445,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LineLineDisruptionsPage(line: line),
+                home: LineLineDisruptionsPage(id: line.id!),
               ),
             ),
           );
@@ -481,7 +481,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LineLineRoutesPage(line: line),
+                home: LineLineRoutesPage(id: line.id!),
               ),
             ),
           );
@@ -512,7 +512,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LineLineStatusesPage(line: line),
+                home: LineLineStatusesPage(id: line.id!),
               ),
             ),
           );
@@ -532,10 +532,18 @@ void main() {
 
         testWidgets('Mode name', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: LinePage(line: line),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: LinePage(id: line.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('Mode name'),
@@ -549,10 +557,18 @@ void main() {
 
         testWidgets('Name', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: LinePage(line: line),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: LinePage(id: line.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('Name'),
@@ -582,7 +598,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LinePredictionsPage(line: line),
+                home: LinePredictionsPage(id: line.id!),
               ),
             ),
           );
@@ -615,7 +631,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LineRouteSequencesPage(line: line),
+                home: LineRouteSequencesPage(id: line.id!),
               ),
             ),
           );
@@ -644,7 +660,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LineStopPointsPage(line: line),
+                home: LineStopPointsPage(id: line.id!),
               ),
             ),
           );
@@ -1045,6 +1061,12 @@ void main() {
       );
     });
 
+    when(lineService.get([lines[0].id!])).thenAnswer((answer) {
+      return Future.delayed(
+        Duration(seconds: 1),
+        () => [lines[0]],
+      );
+    });
     when(lineService.getByMode(['bus', 'tube'])).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),

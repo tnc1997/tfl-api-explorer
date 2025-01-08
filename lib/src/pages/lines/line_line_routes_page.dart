@@ -11,10 +11,10 @@ class LineLineRoutesPage extends StatefulWidget {
 
   const LineLineRoutesPage({
     super.key,
-    required this.line,
+    required this.id,
   });
 
-  final Line line;
+  final String id;
 
   @override
   State<LineLineRoutesPage> createState() {
@@ -23,7 +23,7 @@ class LineLineRoutesPage extends StatefulWidget {
 }
 
 class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
-  late Future<List<MatchedRoute>> _lineRoutesFuture;
+  late final Future<List<Line>> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -48,11 +48,17 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
           ),
         ],
       ),
-      body: CircularProgressIndicatorFutureBuilder<List<MatchedRoute>>(
-        future: _lineRoutesFuture,
+      body: CircularProgressIndicatorFutureBuilder<List<Line>>(
+        future: _future,
         builder: (context, data) {
           final lineRoutes = data
-              ?.where(lineLineRouteFiltersChangeNotifier.areSatisfiedBy)
+              ?.fold(
+                <MatchedRoute>[],
+                (previousValue, element) {
+                  return previousValue..addAll(element.routeSections ?? []);
+                },
+              )
+              .where(lineLineRouteFiltersChangeNotifier.areSatisfiedBy)
               .toList();
 
           if (lineRoutes != null) {
@@ -76,14 +82,7 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
   void initState() {
     super.initState();
 
-    _lineRoutesFuture = context
-        .read<TflApiClient>()
-        .line
-        .lineRoutesByIds([widget.line.id!]).then((value) => value
-            .fold<List<MatchedRoute>>(
-                [],
-                (previousValue, element) =>
-                    previousValue..addAll(element.routeSections ?? [])));
+    _future = context.read<TflApiClient>().line.lineRoutesByIds([widget.id]);
   }
 }
 

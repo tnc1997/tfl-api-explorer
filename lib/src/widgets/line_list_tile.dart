@@ -25,7 +25,7 @@ class LineListTile extends StatelessWidget {
       onTap: () {
         Navigator.of(context).pushNamed(
           LinePage.routeName,
-          arguments: line,
+          arguments: line.id,
         );
       },
     );

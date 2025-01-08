@@ -150,23 +150,23 @@ class MyApp extends StatelessWidget {
             );
           case LineLineDisruptionsPage.routeName:
             return LineLineDisruptionsPage(
-              line: settings.arguments as Line,
+              id: settings.arguments as String,
             );
           case LineLineRoutesPage.routeName:
             return LineLineRoutesPage(
-              line: settings.arguments as Line,
+              id: settings.arguments as String,
             );
           case LineLineStatusesPage.routeName:
             return LineLineStatusesPage(
-              line: settings.arguments as Line,
+              id: settings.arguments as String,
             );
           case LinePage.routeName:
             return LinePage(
-              line: settings.arguments as Line,
+              id: settings.arguments as String,
             );
           case LinePredictionsPage.routeName:
             return LinePredictionsPage(
-              line: settings.arguments as Line,
+              id: settings.arguments as String,
             );
           case LineRoutePage.routeName:
             return LineRoutePage(
@@ -174,7 +174,7 @@ class MyApp extends StatelessWidget {
             );
           case LineRouteSequencesPage.routeName:
             return LineRouteSequencesPage(
-              line: settings.arguments as Line,
+              id: settings.arguments as String,
             );
           case LineStatusPage.routeName:
             return LineStatusPage(
@@ -182,7 +182,7 @@ class MyApp extends StatelessWidget {
             );
           case LineStopPointsPage.routeName:
             return LineStopPointsPage(
-              line: settings.arguments as Line,
+              id: settings.arguments as String,
             );
           case LinesPage.routeName:
             return LinesPage();
