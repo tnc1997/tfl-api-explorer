@@ -789,10 +789,18 @@ void main() {
 
         testWidgets('Name', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: RoadPage(road: road),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: RoadPage(id: road.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('Name'),
@@ -1114,6 +1122,12 @@ void main() {
       return Future.delayed(
         Duration(seconds: 1),
         () => roadCorridors,
+      );
+    });
+    when(roadService.get([roadCorridors[0].id!])).thenAnswer((answer) {
+      return Future.delayed(
+        Duration(seconds: 1),
+        () => [roadCorridors[0]],
       );
     });
 

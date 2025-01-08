@@ -198,11 +198,11 @@ class MyApp extends StatelessWidget {
             );
           case RoadPage.routeName:
             return RoadPage(
-              road: settings.arguments as RoadCorridor,
+              id: settings.arguments as String,
             );
           case RoadRoadDisruptionsPage.routeName:
             return RoadRoadDisruptionsPage(
-              road: settings.arguments as RoadCorridor,
+              id: settings.arguments as String,
             );
           case RoadsPage.routeName:
             return RoadsPage();

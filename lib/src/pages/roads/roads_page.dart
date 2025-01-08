@@ -45,7 +45,7 @@ class _RoadsPageState extends State<RoadsPage> {
               if (road != null) {
                 await navigator.pushNamed(
                   RoadPage.routeName,
-                  arguments: road,
+                  arguments: road.id,
                 );
               }
             },
@@ -63,7 +63,7 @@ class _RoadsPageState extends State<RoadsPage> {
                   onTap: () {
                     Navigator.of(context).pushNamed(
                       RoadPage.routeName,
-                      arguments: data[index],
+                      arguments: data[index].id,
                     );
                   },
                 );
