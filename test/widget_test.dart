@@ -849,10 +849,18 @@ void main() {
 
         testWidgets('Name', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: StopPointPage(stopPoint: stopPoint),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: StopPointPage(id: stopPoint.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('Name'),
@@ -866,10 +874,18 @@ void main() {
 
         testWidgets('ICS code', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: StopPointPage(stopPoint: stopPoint),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: StopPointPage(id: stopPoint.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('ICS code'),
@@ -883,10 +899,18 @@ void main() {
 
         testWidgets('SMS code', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: StopPointPage(stopPoint: stopPoint),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: StopPointPage(id: stopPoint.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('SMS code'),
@@ -900,10 +924,18 @@ void main() {
 
         testWidgets('Stop type', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: StopPointPage(stopPoint: stopPoint),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: StopPointPage(id: stopPoint.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('Stop type'),
@@ -917,10 +949,18 @@ void main() {
 
         testWidgets('Accessibility', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: StopPointPage(stopPoint: stopPoint),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: StopPointPage(id: stopPoint.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('Accessibility'),
@@ -934,10 +974,18 @@ void main() {
 
         testWidgets('Hub NaPTAN code', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: StopPointPage(stopPoint: stopPoint),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: StopPointPage(id: stopPoint.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('Hub NaPTAN code'),
@@ -951,10 +999,18 @@ void main() {
 
         testWidgets('URL', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: StopPointPage(stopPoint: stopPoint),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: StopPointPage(id: stopPoint.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('URL'),
@@ -968,10 +1024,18 @@ void main() {
 
         testWidgets('Place type', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: StopPointPage(stopPoint: stopPoint),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: StopPointPage(id: stopPoint.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('Place type'),
@@ -1131,6 +1195,12 @@ void main() {
       );
     });
 
+    when(stopPointService.get([stopPoints[0].id!])).thenAnswer((answer) {
+      return Future.delayed(
+        Duration(seconds: 1),
+        () => [stopPoints[0]],
+      );
+    });
     when(stopPointService.getByType(any)).thenAnswer((answer) {
       return Future.delayed(
         Duration(seconds: 1),

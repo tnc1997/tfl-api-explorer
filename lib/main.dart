@@ -218,19 +218,19 @@ class MyApp extends StatelessWidget {
             return SettingsPage();
           case StopPointAdditionalPropertiesPage.routeName:
             return StopPointAdditionalPropertiesPage(
-              stopPoint: settings.arguments as StopPoint,
+              id: settings.arguments as String,
             );
           case StopPointLinesPage.routeName:
             return StopPointLinesPage(
-              stopPoint: settings.arguments as StopPoint,
+              id: settings.arguments as String,
             );
           case StopPointModesPage.routeName:
             return StopPointModesPage(
-              stopPoint: settings.arguments as StopPoint,
+              id: settings.arguments as String,
             );
           case StopPointPage.routeName:
             return StopPointPage(
-              stopPoint: settings.arguments as StopPoint,
+              id: settings.arguments as String,
             );
           case StopPointSequencePage.routeName:
             return StopPointSequencePage(
