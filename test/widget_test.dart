@@ -243,10 +243,18 @@ void main() {
 
         testWidgets('Name', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: BikePointPage(bikePoint: bikePoint),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: BikePointPage(id: bikePoint.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('Name'),
@@ -260,10 +268,18 @@ void main() {
 
         testWidgets('Place type', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: BikePointPage(bikePoint: bikePoint),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: BikePointPage(id: bikePoint.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('Place type'),
@@ -277,10 +293,18 @@ void main() {
 
         testWidgets('Lat', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: BikePointPage(bikePoint: bikePoint),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: BikePointPage(id: bikePoint.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('Lat'),
@@ -294,10 +318,18 @@ void main() {
 
         testWidgets('Lon', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: BikePointPage(bikePoint: bikePoint),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: BikePointPage(id: bikePoint.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('Lon'),
@@ -976,6 +1008,12 @@ void main() {
       return Future.delayed(
         Duration(seconds: 1),
         () => bikePoints,
+      );
+    });
+    when(bikePointService.get(bikePoints[0].id)).thenAnswer((answer) {
+      return Future.delayed(
+        Duration(seconds: 1),
+        () => bikePoints[0],
       );
     });
 

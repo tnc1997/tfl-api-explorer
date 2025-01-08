@@ -124,11 +124,11 @@ class MyApp extends StatelessWidget {
         switch (settings.name) {
           case BikePointAdditionalPropertiesPage.routeName:
             return BikePointAdditionalPropertiesPage(
-              bikePoint: settings.arguments as Place,
+              id: settings.arguments as String,
             );
           case BikePointPage.routeName:
             return BikePointPage(
-              bikePoint: settings.arguments as Place,
+              id: settings.arguments as String,
             );
           case BikePointsPage.routeName:
             return BikePointsPage();

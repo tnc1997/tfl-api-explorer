@@ -45,7 +45,7 @@ class _BikePointsPageState extends State<BikePointsPage> {
               if (bikePoint != null) {
                 await navigator.pushNamed(
                   BikePointPage.routeName,
-                  arguments: bikePoint,
+                  arguments: bikePoint.id,
                 );
               }
             },
@@ -63,7 +63,7 @@ class _BikePointsPageState extends State<BikePointsPage> {
                   onTap: () {
                     Navigator.of(context).pushNamed(
                       BikePointPage.routeName,
-                      arguments: data[index],
+                      arguments: data[index].id,
                     );
                   },
                 );
