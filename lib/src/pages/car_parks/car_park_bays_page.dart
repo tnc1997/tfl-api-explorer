@@ -10,10 +10,10 @@ class CarParkBaysPage extends StatefulWidget {
 
   const CarParkBaysPage({
     super.key,
-    required this.carPark,
+    required this.id,
   });
 
-  final Place carPark;
+  final String id;
 
   @override
   State<CarParkBaysPage> createState() {
@@ -22,7 +22,7 @@ class CarParkBaysPage extends StatefulWidget {
 }
 
 class _CarParkBaysPageState extends State<CarParkBaysPage> {
-  late Future<List<Bay>> _baysFuture;
+  late final Future<CarParkOccupancy> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +30,23 @@ class _CarParkBaysPageState extends State<CarParkBaysPage> {
       appBar: AppBar(
         title: Text('Bays'),
       ),
-      body: CircularProgressIndicatorFutureBuilder<List<Bay>>(
-          future: _baysFuture,
-          builder: (context, data) {
-            if (data != null) {
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  return BayListTile(
-                    bay: data[index],
-                  );
-                },
-                itemCount: data.length,
-              );
-            } else {
-              return Container();
-            }
-          }),
+      body: CircularProgressIndicatorFutureBuilder<CarParkOccupancy>(
+        future: _future,
+        builder: (context, data) {
+          if (data?.bays case final bays?) {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return BayListTile(
+                  bay: bays[index],
+                );
+              },
+              itemCount: bays.length,
+            );
+          } else {
+            return Container();
+          }
+        },
+      ),
     );
   }
 
@@ -53,10 +54,6 @@ class _CarParkBaysPageState extends State<CarParkBaysPage> {
   void initState() {
     super.initState();
 
-    _baysFuture = context
-        .read<TflApiClient>()
-        .occupancy
-        .get(widget.carPark.id!)
-        .then((value) => value.bays!);
+    _future = context.read<TflApiClient>().occupancy.get(widget.id);
   }
 }

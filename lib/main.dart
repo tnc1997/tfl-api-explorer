@@ -134,11 +134,11 @@ class MyApp extends StatelessWidget {
             return BikePointsPage();
           case CarParkBaysPage.routeName:
             return CarParkBaysPage(
-              carPark: settings.arguments as Place,
+              id: settings.arguments as String,
             );
           case CarParkPage.routeName:
             return CarParkPage(
-              carPark: settings.arguments as Place,
+              id: settings.arguments as String,
             );
           case CarParksPage.routeName:
             return CarParksPage();

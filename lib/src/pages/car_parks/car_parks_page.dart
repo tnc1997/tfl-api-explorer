@@ -45,7 +45,7 @@ class _CarParksPageState extends State<CarParksPage> {
               if (carPark != null) {
                 await navigator.pushNamed(
                   CarParkPage.routeName,
-                  arguments: carPark,
+                  arguments: carPark.id,
                 );
               }
             },
@@ -63,7 +63,7 @@ class _CarParksPageState extends State<CarParksPage> {
                   onTap: () {
                     Navigator.of(context).pushNamed(
                       CarParkPage.routeName,
-                      arguments: data[index],
+                      arguments: data[index].id,
                     );
                   },
                 );

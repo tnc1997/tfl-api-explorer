@@ -378,10 +378,18 @@ void main() {
 
         testWidgets('Name', (tester) async {
           await tester.pumpWidget(
-            MaterialApp(
-              home: CarParkPage(carPark: carPark),
+            MultiProvider(
+              providers: [
+                Provider<TflApiClient>.value(
+                  value: tflApi,
+                ),
+              ],
+              child: MaterialApp(
+                home: CarParkPage(id: carPark.id!),
+              ),
             ),
           );
+          await tester.pumpAndSettle();
 
           expect(
             find.text('Name'),
@@ -1028,6 +1036,12 @@ void main() {
       return Future.delayed(
         Duration(seconds: 1),
         () => carParks,
+      );
+    });
+    when(placeService.get(carParks[0].id)).thenAnswer((answer) {
+      return Future.delayed(
+        Duration(seconds: 1),
+        () => carParks[0],
       );
     });
 
