@@ -6,8 +6,6 @@ import '../../widgets/circular_progress_indicator_future_builder.dart';
 import '../../widgets/line_status_list_tile.dart';
 
 class LineLineStatusesPage extends StatefulWidget {
-  static const routeName = '/lines/:id/line_statuses';
-
   const LineLineStatusesPage({
     super.key,
     required this.id,

@@ -3,8 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 class PredictionPage extends StatelessWidget {
-  static const routeName = '/predictions/:id';
-
   const PredictionPage({
     super.key,
     required this.prediction,

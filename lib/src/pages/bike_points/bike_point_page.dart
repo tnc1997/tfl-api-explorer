@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../widgets/circular_progress_indicator_future_builder.dart';
-import 'bike_point_additional_properties_page.dart';
 
 class BikePointPage extends StatefulWidget {
-  static const routeName = '/bike_points/:id';
-
   const BikePointPage({
     super.key,
     required this.id,
@@ -68,10 +66,8 @@ class _BikePointPageState extends State<BikePointPage> {
                 ListTile(
                   title: Text('Additional properties'),
                   onTap: () {
-                    Navigator.of(context).pushNamed(
-                      BikePointAdditionalPropertiesPage.routeName,
-                      arguments: widget.id,
-                    );
+                    context
+                        .go('/bike_points/${widget.id}/additional_properties');
                   },
                 ),
               ],

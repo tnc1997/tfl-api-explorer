@@ -24,10 +24,15 @@ class LineDisruptionListTile extends StatelessWidget {
           lineDisruption.lastUpdate ?? lineDisruption.created ?? DateTime.now(),
         ),
       ),
-      onTap: () {
-        Navigator.of(context).pushNamed(
-          LineDisruptionPage.routeName,
-          arguments: lineDisruption,
+      onTap: () async {
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return LineDisruptionPage(
+                lineDisruption: lineDisruption,
+              );
+            },
+          ),
         );
       },
     );

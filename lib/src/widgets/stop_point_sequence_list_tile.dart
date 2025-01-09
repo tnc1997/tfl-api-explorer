@@ -22,10 +22,15 @@ class StopPointSequenceListTile extends StatelessWidget {
         stopPointSequence.serviceType ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
-      onTap: () {
-        Navigator.of(context).pushNamed(
-          StopPointSequencePage.routeName,
-          arguments: stopPointSequence,
+      onTap: () async {
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return StopPointSequencePage(
+                stopPointSequence: stopPointSequence,
+              );
+            },
+          ),
         );
       },
     );

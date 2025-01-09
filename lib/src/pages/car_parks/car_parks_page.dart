@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
@@ -6,11 +7,8 @@ import '../../delegates/place_search_delegate.dart';
 import '../../widgets/circular_progress_indicator_future_builder.dart';
 import '../../widgets/place_list_tile.dart';
 import '../../widgets/tfl_api_explorer_drawer.dart';
-import 'car_park_page.dart';
 
 class CarParksPage extends StatefulWidget {
-  static const routeName = '/car_parks';
-
   const CarParksPage({
     super.key,
   });
@@ -33,7 +31,7 @@ class _CarParksPageState extends State<CarParksPage> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () async {
-              final navigator = Navigator.of(context);
+              final router = GoRouter.of(context);
 
               final carPark = await showSearch(
                 context: context,
@@ -43,10 +41,7 @@ class _CarParksPageState extends State<CarParksPage> {
               );
 
               if (carPark != null) {
-                await navigator.pushNamed(
-                  CarParkPage.routeName,
-                  arguments: carPark.id,
-                );
+                router.go('/car_parks/${carPark.id}');
               }
             },
           ),
@@ -61,10 +56,7 @@ class _CarParksPageState extends State<CarParksPage> {
                 return PlaceListTile(
                   place: data[index],
                   onTap: () {
-                    Navigator.of(context).pushNamed(
-                      CarParkPage.routeName,
-                      arguments: data[index].id,
-                    );
+                    context.go('/car_parks/${data[index].id}');
                   },
                 );
               },

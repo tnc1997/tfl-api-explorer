@@ -26,10 +26,15 @@ class RoadDisruptionListTile extends StatelessWidget {
               DateFormat.Hm().format(lastModifiedTime),
             )
           : null,
-      onTap: () {
-        Navigator.of(context).pushNamed(
-          RoadDisruptionPage.routeName,
-          arguments: roadDisruption,
+      onTap: () async {
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return RoadDisruptionPage(
+                roadDisruption: roadDisruption,
+              );
+            },
+          ),
         );
       },
     );

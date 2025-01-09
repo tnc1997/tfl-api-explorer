@@ -6,8 +6,6 @@ import '../../widgets/circular_progress_indicator_future_builder.dart';
 import '../../widgets/road_disruption_list_tile.dart';
 
 class RoadRoadDisruptionsPage extends StatefulWidget {
-  static const routeName = '/roads/:id/road_disruptions';
-
   const RoadRoadDisruptionsPage({
     super.key,
     required this.id,

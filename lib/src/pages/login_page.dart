@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../notifiers/authentication_change_notifier.dart';
 import '../widgets/circular_progress_indicator_future_builder.dart';
 import '../widgets/login_form.dart';
-import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
-  static const routeName = 'login';
-
   const LoginPage({
     super.key,
   });
@@ -110,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
       final authenticationChangeNotifier =
           context.read<AuthenticationChangeNotifier>();
 
-      final navigator = Navigator.of(context);
+      final router = GoRouter.of(context);
 
       final appKey = _appKeyController.text;
 
@@ -118,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
 
       authenticationChangeNotifier.login(appKey);
 
-      await navigator.pushReplacementNamed(HomePage.routeName);
+      router.go('/');
     }
   }
 }

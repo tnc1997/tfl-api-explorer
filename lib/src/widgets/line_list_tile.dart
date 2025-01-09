@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-
-import '../pages/lines/line_page.dart';
 
 class LineListTile extends StatelessWidget {
   const LineListTile({
@@ -23,10 +22,7 @@ class LineListTile extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
       ),
       onTap: () {
-        Navigator.of(context).pushNamed(
-          LinePage.routeName,
-          arguments: line.id,
-        );
+        context.go('/lines/${line.id}');
       },
     );
   }

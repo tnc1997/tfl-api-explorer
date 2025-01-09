@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 class RoadDisruptionPage extends StatelessWidget {
-  static const routeName = '/road_disruptions/:id';
-
   const RoadDisruptionPage({
     super.key,
     required this.roadDisruption,

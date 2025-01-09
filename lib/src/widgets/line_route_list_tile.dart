@@ -22,10 +22,15 @@ class LineRouteListTile extends StatelessWidget {
         lineRoute.serviceType ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
-      onTap: () {
-        Navigator.of(context).pushNamed(
-          LineRoutePage.routeName,
-          arguments: lineRoute,
+      onTap: () async {
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return LineRoutePage(
+                lineRoute: lineRoute,
+              );
+            },
+          ),
         );
       },
     );

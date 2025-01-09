@@ -22,10 +22,15 @@ class RouteSequenceListTile extends StatelessWidget {
         routeSequence.orderedLineRoutes?.first.name ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
-      onTap: () {
-        Navigator.of(context).pushNamed(
-          RouteSequencePage.routeName,
-          arguments: routeSequence,
+      onTap: () async {
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return RouteSequencePage(
+                routeSequence: routeSequence,
+              );
+            },
+          ),
         );
       },
     );

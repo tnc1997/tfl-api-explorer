@@ -6,8 +6,6 @@ import '../../widgets/circular_progress_indicator_future_builder.dart';
 import '../../widgets/route_sequence_list_tile.dart';
 
 class LineRouteSequencesPage extends StatefulWidget {
-  static const routeName = '/lines/:id/route_sequences';
-
   const LineRouteSequencesPage({
     super.key,
     required this.id,

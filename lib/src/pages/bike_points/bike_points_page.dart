@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
@@ -6,11 +7,8 @@ import '../../delegates/place_search_delegate.dart';
 import '../../widgets/circular_progress_indicator_future_builder.dart';
 import '../../widgets/place_list_tile.dart';
 import '../../widgets/tfl_api_explorer_drawer.dart';
-import 'bike_point_page.dart';
 
 class BikePointsPage extends StatefulWidget {
-  static const routeName = '/bike_points';
-
   const BikePointsPage({
     super.key,
   });
@@ -33,7 +31,7 @@ class _BikePointsPageState extends State<BikePointsPage> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () async {
-              final navigator = Navigator.of(context);
+              final router = GoRouter.of(context);
 
               final bikePoint = await showSearch(
                 context: context,
@@ -43,10 +41,7 @@ class _BikePointsPageState extends State<BikePointsPage> {
               );
 
               if (bikePoint != null) {
-                await navigator.pushNamed(
-                  BikePointPage.routeName,
-                  arguments: bikePoint.id,
-                );
+                router.go('/bike_points/${bikePoint.id}');
               }
             },
           ),
@@ -61,10 +56,7 @@ class _BikePointsPageState extends State<BikePointsPage> {
                 return PlaceListTile(
                   place: data[index],
                   onTap: () {
-                    Navigator.of(context).pushNamed(
-                      BikePointPage.routeName,
-                      arguments: data[index].id,
-                    );
+                    context.go('/bike_points/${data[index].id}');
                   },
                 );
               },

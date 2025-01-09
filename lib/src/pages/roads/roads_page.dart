@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
@@ -6,11 +7,8 @@ import '../../delegates/road_search_delegate.dart';
 import '../../widgets/circular_progress_indicator_future_builder.dart';
 import '../../widgets/road_list_tile.dart';
 import '../../widgets/tfl_api_explorer_drawer.dart';
-import 'road_page.dart';
 
 class RoadsPage extends StatefulWidget {
-  static const routeName = '/roads';
-
   const RoadsPage({
     super.key,
   });
@@ -33,7 +31,7 @@ class _RoadsPageState extends State<RoadsPage> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () async {
-              final navigator = Navigator.of(context);
+              final router = GoRouter.of(context);
 
               final road = await showSearch(
                 context: context,
@@ -43,10 +41,7 @@ class _RoadsPageState extends State<RoadsPage> {
               );
 
               if (road != null) {
-                await navigator.pushNamed(
-                  RoadPage.routeName,
-                  arguments: road.id,
-                );
+                router.go('/roads/${road.id}');
               }
             },
           ),
@@ -61,10 +56,7 @@ class _RoadsPageState extends State<RoadsPage> {
                 return RoadListTile(
                   road: data[index],
                   onTap: () {
-                    Navigator.of(context).pushNamed(
-                      RoadPage.routeName,
-                      arguments: data[index].id,
-                    );
+                    context.go('/roads/${data[index].id}');
                   },
                 );
               },

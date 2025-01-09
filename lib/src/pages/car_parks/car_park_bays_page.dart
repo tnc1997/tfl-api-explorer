@@ -6,8 +6,6 @@ import '../../widgets/bay_list_tile.dart';
 import '../../widgets/circular_progress_indicator_future_builder.dart';
 
 class CarParkBaysPage extends StatefulWidget {
-  static const routeName = '/car_parks/:id/bays';
-
   const CarParkBaysPage({
     super.key,
     required this.id,

@@ -10,8 +10,6 @@ import '../../widgets/circular_progress_indicator_stream_builder.dart';
 import '../../widgets/prediction_list_tile.dart';
 
 class LinePredictionsPage extends StatefulWidget {
-  static const routeName = '/lines/:id/predictions';
-
   const LinePredictionsPage({
     super.key,
     required this.id,
@@ -39,8 +37,8 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.filter_alt),
-            onPressed: () {
-              Navigator.of(context).push(
+            onPressed: () async {
+              await Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
                     return _LinePredictionFiltersPage(

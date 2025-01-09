@@ -8,8 +8,6 @@ import '../../widgets/stop_point_list_tile.dart';
 import '../../widgets/tfl_api_explorer_drawer.dart';
 
 class StopPointsPage extends StatefulWidget {
-  static const routeName = '/stop_points';
-
   const StopPointsPage({
     super.key,
   });
@@ -34,8 +32,8 @@ class _StopPointsPageState extends State<StopPointsPage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.filter_alt),
-            onPressed: () {
-              Navigator.of(context).push(
+            onPressed: () async {
+              await Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
                     return _StopPointFiltersPage();

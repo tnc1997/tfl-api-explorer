@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
@@ -17,9 +18,6 @@ import 'src/pages/car_parks/car_park_bays_page.dart';
 import 'src/pages/car_parks/car_park_page.dart';
 import 'src/pages/car_parks/car_parks_page.dart';
 import 'src/pages/home_page.dart';
-import 'src/pages/line_disruptions/line_disruption_page.dart';
-import 'src/pages/line_routes/line_route_page.dart';
-import 'src/pages/line_statuses/line_status_page.dart';
 import 'src/pages/lines/line_line_disruptions_page.dart';
 import 'src/pages/lines/line_line_routes_page.dart';
 import 'src/pages/lines/line_line_statuses_page.dart';
@@ -29,16 +27,10 @@ import 'src/pages/lines/line_route_sequences_page.dart';
 import 'src/pages/lines/line_stop_points_page.dart';
 import 'src/pages/lines/lines_page.dart';
 import 'src/pages/login_page.dart';
-import 'src/pages/predictions/prediction_page.dart';
-import 'src/pages/road_disruptions/road_disruption_page.dart';
 import 'src/pages/roads/road_page.dart';
 import 'src/pages/roads/road_road_disruptions_page.dart';
 import 'src/pages/roads/roads_page.dart';
-import 'src/pages/route_sequences/route_sequence_page.dart';
-import 'src/pages/route_sequences/route_sequence_stop_point_sequences_page.dart';
 import 'src/pages/settings/settings_page.dart';
-import 'src/pages/stop_point_sequences/stop_point_sequence_page.dart';
-import 'src/pages/stop_point_sequences/stop_point_sequence_stop_points_page.dart';
 import 'src/pages/stop_points/stop_point_additional_properties_page.dart';
 import 'src/pages/stop_points/stop_point_lines_page.dart';
 import 'src/pages/stop_points/stop_point_modes_page.dart';
@@ -91,10 +83,222 @@ class MyApp extends StatelessWidget {
           },
         ),
       ],
-      child: MaterialApp(
-        initialRoute: LoginPage.routeName,
-        onGenerateRoute: _onGenerateRoute,
-        onUnknownRoute: _onUnknownRoute,
+      child: MaterialApp.router(
+        routerConfig: GoRouter(
+          routes: [
+            GoRoute(
+              path: '/',
+              builder: (context, state) {
+                return HomePage();
+              },
+            ),
+            GoRoute(
+              path: '/bike_points',
+              builder: (context, state) {
+                return BikePointsPage();
+              },
+              routes: [
+                GoRoute(
+                  path: ':id',
+                  builder: (context, state) {
+                    return BikePointPage(
+                      id: state.pathParameters['id']!,
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      path: 'additional_properties',
+                      builder: (context, state) {
+                        return BikePointAdditionalPropertiesPage(
+                          id: state.pathParameters['id']!,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            GoRoute(
+              path: '/car_parks',
+              builder: (context, state) {
+                return CarParksPage();
+              },
+              routes: [
+                GoRoute(
+                  path: ':id',
+                  builder: (context, state) {
+                    return CarParkPage(
+                      id: state.pathParameters['id']!,
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      path: 'bays',
+                      builder: (context, state) {
+                        return CarParkBaysPage(
+                          id: state.pathParameters['id']!,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            GoRoute(
+              path: '/lines',
+              builder: (context, state) {
+                return LinesPage();
+              },
+              routes: [
+                GoRoute(
+                  path: ':id',
+                  builder: (context, state) {
+                    return LinePage(
+                      id: state.pathParameters['id']!,
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      path: 'line_disruptions',
+                      builder: (context, state) {
+                        return LineLineDisruptionsPage(
+                          id: state.pathParameters['id']!,
+                        );
+                      },
+                    ),
+                    GoRoute(
+                      path: 'line_routes',
+                      builder: (context, state) {
+                        return LineLineRoutesPage(
+                          id: state.pathParameters['id']!,
+                        );
+                      },
+                    ),
+                    GoRoute(
+                      path: 'line_statuses',
+                      builder: (context, state) {
+                        return LineLineStatusesPage(
+                          id: state.pathParameters['id']!,
+                        );
+                      },
+                    ),
+                    GoRoute(
+                      path: 'predictions',
+                      builder: (context, state) {
+                        return LinePredictionsPage(
+                          id: state.pathParameters['id']!,
+                        );
+                      },
+                    ),
+                    GoRoute(
+                      path: 'route_sequences',
+                      builder: (context, state) {
+                        return LineRouteSequencesPage(
+                          id: state.pathParameters['id']!,
+                        );
+                      },
+                    ),
+                    GoRoute(
+                      path: 'stop_points',
+                      builder: (context, state) {
+                        return LineStopPointsPage(
+                          id: state.pathParameters['id']!,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            GoRoute(
+              path: '/login',
+              builder: (context, state) {
+                return LoginPage();
+              },
+            ),
+            GoRoute(
+              path: '/roads',
+              builder: (context, state) {
+                return RoadsPage();
+              },
+              routes: [
+                GoRoute(
+                  path: ':id',
+                  builder: (context, state) {
+                    return RoadPage(
+                      id: state.pathParameters['id']!,
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      path: 'road_disruptions',
+                      builder: (context, state) {
+                        return RoadRoadDisruptionsPage(
+                          id: state.pathParameters['id']!,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            GoRoute(
+              path: '/settings',
+              builder: (context, state) {
+                return SettingsPage();
+              },
+            ),
+            GoRoute(
+              path: '/stop_points',
+              builder: (context, state) {
+                return StopPointsPage();
+              },
+              routes: [
+                GoRoute(
+                  path: ':id',
+                  builder: (context, state) {
+                    return StopPointPage(
+                      id: state.pathParameters['id']!,
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      path: 'additional_properties',
+                      builder: (context, state) {
+                        return StopPointAdditionalPropertiesPage(
+                          id: state.pathParameters['id']!,
+                        );
+                      },
+                    ),
+                    GoRoute(
+                      path: 'lines',
+                      builder: (context, state) {
+                        return StopPointLinesPage(
+                          id: state.pathParameters['id']!,
+                        );
+                      },
+                    ),
+                    GoRoute(
+                      path: 'modes',
+                      builder: (context, state) {
+                        return StopPointModesPage(
+                          id: state.pathParameters['id']!,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+          redirect: (context, state) {
+            if (context.read<AuthenticationChangeNotifier>().client != null) {
+              return null;
+            } else {
+              return '/login';
+            }
+          },
+        ),
         title: 'Explorer for TfL API',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
@@ -115,153 +319,6 @@ class MyApp extends StatelessWidget {
           Locale('en', 'GB'),
         ],
       ),
-    );
-  }
-
-  Route<T> _onGenerateRoute<T>(RouteSettings settings) {
-    return MaterialPageRoute<T>(
-      builder: (context) {
-        switch (settings.name) {
-          case BikePointAdditionalPropertiesPage.routeName:
-            return BikePointAdditionalPropertiesPage(
-              id: settings.arguments as String,
-            );
-          case BikePointPage.routeName:
-            return BikePointPage(
-              id: settings.arguments as String,
-            );
-          case BikePointsPage.routeName:
-            return BikePointsPage();
-          case CarParkBaysPage.routeName:
-            return CarParkBaysPage(
-              id: settings.arguments as String,
-            );
-          case CarParkPage.routeName:
-            return CarParkPage(
-              id: settings.arguments as String,
-            );
-          case CarParksPage.routeName:
-            return CarParksPage();
-          case HomePage.routeName:
-            return HomePage();
-          case LineDisruptionPage.routeName:
-            return LineDisruptionPage(
-              lineDisruption: settings.arguments as Disruption,
-            );
-          case LineLineDisruptionsPage.routeName:
-            return LineLineDisruptionsPage(
-              id: settings.arguments as String,
-            );
-          case LineLineRoutesPage.routeName:
-            return LineLineRoutesPage(
-              id: settings.arguments as String,
-            );
-          case LineLineStatusesPage.routeName:
-            return LineLineStatusesPage(
-              id: settings.arguments as String,
-            );
-          case LinePage.routeName:
-            return LinePage(
-              id: settings.arguments as String,
-            );
-          case LinePredictionsPage.routeName:
-            return LinePredictionsPage(
-              id: settings.arguments as String,
-            );
-          case LineRoutePage.routeName:
-            return LineRoutePage(
-              lineRoute: settings.arguments as MatchedRoute,
-            );
-          case LineRouteSequencesPage.routeName:
-            return LineRouteSequencesPage(
-              id: settings.arguments as String,
-            );
-          case LineStatusPage.routeName:
-            return LineStatusPage(
-              lineStatus: settings.arguments as LineStatus,
-            );
-          case LineStopPointsPage.routeName:
-            return LineStopPointsPage(
-              id: settings.arguments as String,
-            );
-          case LinesPage.routeName:
-            return LinesPage();
-          case LoginPage.routeName:
-            return LoginPage();
-          case PredictionPage.routeName:
-            return PredictionPage(
-              prediction: settings.arguments as Prediction,
-            );
-          case RoadDisruptionPage.routeName:
-            return RoadDisruptionPage(
-              roadDisruption: settings.arguments as RoadDisruption,
-            );
-          case RoadPage.routeName:
-            return RoadPage(
-              id: settings.arguments as String,
-            );
-          case RoadRoadDisruptionsPage.routeName:
-            return RoadRoadDisruptionsPage(
-              id: settings.arguments as String,
-            );
-          case RoadsPage.routeName:
-            return RoadsPage();
-          case RouteSequencePage.routeName:
-            return RouteSequencePage(
-              routeSequence: settings.arguments as RouteSequence,
-            );
-          case RouteSequenceStopPointSequencesPage.routeName:
-            return RouteSequenceStopPointSequencesPage(
-              routeSequence: settings.arguments as RouteSequence,
-            );
-          case SettingsPage.routeName:
-            return SettingsPage();
-          case StopPointAdditionalPropertiesPage.routeName:
-            return StopPointAdditionalPropertiesPage(
-              id: settings.arguments as String,
-            );
-          case StopPointLinesPage.routeName:
-            return StopPointLinesPage(
-              id: settings.arguments as String,
-            );
-          case StopPointModesPage.routeName:
-            return StopPointModesPage(
-              id: settings.arguments as String,
-            );
-          case StopPointPage.routeName:
-            return StopPointPage(
-              id: settings.arguments as String,
-            );
-          case StopPointSequencePage.routeName:
-            return StopPointSequencePage(
-              stopPointSequence: settings.arguments as StopPointSequence,
-            );
-          case StopPointSequenceStopPointsPage.routeName:
-            return StopPointSequenceStopPointsPage(
-              stopPointSequence: settings.arguments as StopPointSequence,
-            );
-          case StopPointsPage.routeName:
-            return StopPointsPage();
-          default:
-            return Scaffold();
-        }
-      },
-      settings: settings,
-    );
-  }
-
-  Route<T> _onUnknownRoute<T>(RouteSettings settings) {
-    return MaterialPageRoute(
-      builder: (context) {
-        return Scaffold(
-          body: Center(
-            child: Text(
-              'A page matching the route "${settings.name}" could not be found.',
-            ),
-          ),
-        );
-      },
-      settings: settings,
     );
   }
 }

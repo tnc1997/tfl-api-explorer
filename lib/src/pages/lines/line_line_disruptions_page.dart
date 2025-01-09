@@ -6,8 +6,6 @@ import '../../widgets/circular_progress_indicator_future_builder.dart';
 import '../../widgets/line_disruption_list_tile.dart';
 
 class LineLineDisruptionsPage extends StatefulWidget {
-  static const routeName = '/lines/:id/line_disruptions';
-
   const LineLineDisruptionsPage({
     super.key,
     required this.id,

@@ -3,8 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 class LineRoutePage extends StatelessWidget {
-  static const routeName = '/line_routes/:id';
-
   const LineRoutePage({
     super.key,
     required this.lineRoute,

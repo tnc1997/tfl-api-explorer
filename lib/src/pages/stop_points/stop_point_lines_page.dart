@@ -6,8 +6,6 @@ import '../../widgets/circular_progress_indicator_future_builder.dart';
 import '../../widgets/identifier_list_tile.dart';
 
 class StopPointLinesPage extends StatefulWidget {
-  static const routeName = '/stop_points/:id/lines';
-
   const StopPointLinesPage({
     super.key,
     required this.id,

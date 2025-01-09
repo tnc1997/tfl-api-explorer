@@ -5,8 +5,6 @@ import 'about_page.dart';
 import 'account_page.dart';
 
 class SettingsPage extends StatelessWidget {
-  static const routeName = '/settings';
-
   const SettingsPage({
     super.key,
   });
@@ -22,8 +20,8 @@ class SettingsPage extends StatelessWidget {
           ListTile(
             title: Text('Account'),
             subtitle: Text('App key'),
-            onTap: () {
-              Navigator.of(context).push(
+            onTap: () async {
+              await Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
                     return AccountPage();
@@ -35,8 +33,8 @@ class SettingsPage extends StatelessWidget {
           ListTile(
             title: Text('About'),
             subtitle: Text('Package name, version'),
-            onTap: () {
-              Navigator.of(context).push(
+            onTap: () async {
+              await Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
                     return AboutPage();

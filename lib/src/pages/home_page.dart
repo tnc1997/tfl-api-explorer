@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import '../widgets/tfl_api_explorer_drawer.dart';
 
 class HomePage extends StatelessWidget {
-  static const routeName = Navigator.defaultRouteName;
-
   const HomePage({
     super.key,
   });

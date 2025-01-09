@@ -22,10 +22,15 @@ class LineStatusListTile extends StatelessWidget {
         lineStatus.disruption?.categoryDescription ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
-      onTap: () {
-        Navigator.of(context).pushNamed(
-          LineStatusPage.routeName,
-          arguments: lineStatus,
+      onTap: () async {
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return LineStatusPage(
+                lineStatus: lineStatus,
+              );
+            },
+          ),
         );
       },
     );

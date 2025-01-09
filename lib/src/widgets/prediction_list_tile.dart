@@ -28,10 +28,15 @@ class PredictionListTile extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             )
           : null,
-      onTap: () {
-        Navigator.of(context).pushNamed(
-          PredictionPage.routeName,
-          arguments: prediction,
+      onTap: () async {
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return PredictionPage(
+                prediction: prediction,
+              );
+            },
+          ),
         );
       },
     );

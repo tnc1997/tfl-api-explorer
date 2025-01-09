@@ -4,8 +4,6 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'route_sequence_stop_point_sequences_page.dart';
 
 class RouteSequencePage extends StatelessWidget {
-  static const routeName = '/route_sequences/:id';
-
   const RouteSequencePage({
     super.key,
     required this.routeSequence,
@@ -38,10 +36,15 @@ class RouteSequencePage extends StatelessWidget {
           Divider(),
           ListTile(
             title: Text('Stop point sequences'),
-            onTap: () {
-              Navigator.of(context).pushNamed(
-                RouteSequenceStopPointSequencesPage.routeName,
-                arguments: routeSequence,
+            onTap: () async {
+              await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return RouteSequenceStopPointSequencesPage(
+                      routeSequence: routeSequence,
+                    );
+                  },
+                ),
               );
             },
           ),

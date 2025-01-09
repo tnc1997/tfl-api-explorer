@@ -5,8 +5,6 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import '../../widgets/circular_progress_indicator_future_builder.dart';
 
 class StopPointModesPage extends StatefulWidget {
-  static const routeName = '/stop_points/:id/modes';
-
   const StopPointModesPage({
     super.key,
     required this.id,

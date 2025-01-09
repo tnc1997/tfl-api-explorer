@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../widgets/circular_progress_indicator_future_builder.dart';
-import 'line_line_disruptions_page.dart';
-import 'line_line_routes_page.dart';
-import 'line_line_statuses_page.dart';
-import 'line_predictions_page.dart';
-import 'line_route_sequences_page.dart';
-import 'line_stop_points_page.dart';
 
 class LinePage extends StatefulWidget {
-  static const routeName = '/lines/:id';
-
   const LinePage({
     super.key,
     required this.id,
@@ -59,55 +52,37 @@ class _LinePageState extends State<LinePage> {
                 ListTile(
                   title: Text('Line disruptions'),
                   onTap: () {
-                    Navigator.of(context).pushNamed(
-                      LineLineDisruptionsPage.routeName,
-                      arguments: widget.id,
-                    );
+                    context.go('/lines/${widget.id}/line_disruptions');
                   },
                 ),
                 ListTile(
                   title: Text('Line routes'),
                   onTap: () {
-                    Navigator.of(context).pushNamed(
-                      LineLineRoutesPage.routeName,
-                      arguments: widget.id,
-                    );
+                    context.go('/lines/${widget.id}/line_routes');
                   },
                 ),
                 ListTile(
                   title: Text('Line statuses'),
                   onTap: () {
-                    Navigator.of(context).pushNamed(
-                      LineLineStatusesPage.routeName,
-                      arguments: widget.id,
-                    );
+                    context.go('/lines/${widget.id}/line_statuses');
                   },
                 ),
                 ListTile(
                   title: Text('Predictions'),
                   onTap: () {
-                    Navigator.of(context).pushNamed(
-                      LinePredictionsPage.routeName,
-                      arguments: widget.id,
-                    );
+                    context.go('/lines/${widget.id}/predictions');
                   },
                 ),
                 ListTile(
                   title: Text('Route sequences'),
                   onTap: () {
-                    Navigator.of(context).pushNamed(
-                      LineRouteSequencesPage.routeName,
-                      arguments: widget.id,
-                    );
+                    context.go('/lines/${widget.id}/route_sequences');
                   },
                 ),
                 ListTile(
                   title: Text('Stop points'),
                   onTap: () {
-                    Navigator.of(context).pushNamed(
-                      LineStopPointsPage.routeName,
-                      arguments: widget.id,
-                    );
+                    context.go('/lines/${widget.id}/stop_points');
                   },
                 ),
               ],

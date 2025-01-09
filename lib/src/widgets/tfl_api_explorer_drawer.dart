@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../pages/bike_points/bike_points_page.dart';
-import '../pages/car_parks/car_parks_page.dart';
-import '../pages/home_page.dart';
-import '../pages/lines/lines_page.dart';
-import '../pages/roads/roads_page.dart';
-import '../pages/settings/settings_page.dart';
-import '../pages/stop_points/stop_points_page.dart';
+import 'package:go_router/go_router.dart';
 
 class TflApiExplorerDrawer extends StatelessWidget {
   const TflApiExplorerDrawer({
@@ -34,63 +27,49 @@ class TflApiExplorerDrawer extends StatelessWidget {
             leading: Icon(Icons.home),
             title: Text('Home'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(
-                HomePage.routeName,
-              );
+              context.go('/');
             },
           ),
           ListTile(
             leading: Icon(Icons.api),
             title: Text('Bike points'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(
-                BikePointsPage.routeName,
-              );
+              context.go('/bike_points');
             },
           ),
           ListTile(
             leading: Icon(Icons.api),
             title: Text('Car parks'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(
-                CarParksPage.routeName,
-              );
+              context.go('/car_parks');
             },
           ),
           ListTile(
             leading: Icon(Icons.api),
             title: Text('Lines'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(
-                LinesPage.routeName,
-              );
+              context.go('/lines');
             },
           ),
           ListTile(
             leading: Icon(Icons.api),
             title: Text('Roads'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(
-                RoadsPage.routeName,
-              );
+              context.go('/roads');
             },
           ),
           ListTile(
             leading: Icon(Icons.api),
             title: Text('Stop points'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(
-                StopPointsPage.routeName,
-              );
+              context.go('/stop_points');
             },
           ),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(
-                SettingsPage.routeName,
-              );
+              context.go('/settings');
             },
           ),
         ],

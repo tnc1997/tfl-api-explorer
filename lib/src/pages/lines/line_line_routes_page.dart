@@ -7,8 +7,6 @@ import '../../widgets/circular_progress_indicator_future_builder.dart';
 import '../../widgets/line_route_list_tile.dart';
 
 class LineLineRoutesPage extends StatefulWidget {
-  static const routeName = '/lines/:id/line_routes';
-
   const LineLineRoutesPage({
     super.key,
     required this.id,
@@ -36,8 +34,8 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.filter_alt),
-            onPressed: () {
-              Navigator.of(context).push(
+            onPressed: () async {
+              await Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
                     return _LineLineRouteFiltersPage();

@@ -8,8 +8,6 @@ import '../../widgets/line_list_tile.dart';
 import '../../widgets/tfl_api_explorer_drawer.dart';
 
 class LinesPage extends StatefulWidget {
-  static const routeName = '/lines';
-
   const LinesPage({
     super.key,
   });
@@ -34,8 +32,8 @@ class _LinesPageState extends State<LinesPage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.filter_alt),
-            onPressed: () {
-              Navigator.of(context).push(
+            onPressed: () async {
+              await Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
                     return _LineFiltersPage();

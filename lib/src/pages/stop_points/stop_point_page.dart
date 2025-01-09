@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../widgets/circular_progress_indicator_future_builder.dart';
-import 'stop_point_additional_properties_page.dart';
-import 'stop_point_lines_page.dart';
-import 'stop_point_modes_page.dart';
 
 class StopPointPage extends StatefulWidget {
-  static const routeName = '/stop_points/:id';
-
   const StopPointPage({
     super.key,
     required this.id,
@@ -119,28 +115,20 @@ class _StopPointPageState extends State<StopPointPage> {
                 ListTile(
                   title: Text('Additional properties'),
                   onTap: () {
-                    Navigator.of(context).pushNamed(
-                      StopPointAdditionalPropertiesPage.routeName,
-                      arguments: widget.id,
-                    );
+                    context
+                        .go('/stop_points/${widget.id}/additional_properties');
                   },
                 ),
                 ListTile(
                   title: Text('Modes'),
                   onTap: () {
-                    Navigator.of(context).pushNamed(
-                      StopPointModesPage.routeName,
-                      arguments: widget.id,
-                    );
+                    context.go('/stop_points/${widget.id}/modes');
                   },
                 ),
                 ListTile(
                   title: Text('Lines'),
                   onTap: () {
-                    Navigator.of(context).pushNamed(
-                      StopPointLinesPage.routeName,
-                      arguments: widget.id,
-                    );
+                    context.go('/stop_points/${widget.id}/lines');
                   },
                 ),
               ],

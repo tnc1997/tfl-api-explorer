@@ -6,8 +6,6 @@ import '../../widgets/additional_properties_list_tile.dart';
 import '../../widgets/circular_progress_indicator_future_builder.dart';
 
 class BikePointAdditionalPropertiesPage extends StatefulWidget {
-  static const routeName = '/bike_points/:id/additional_properties';
-
   const BikePointAdditionalPropertiesPage({
     super.key,
     required this.id,
