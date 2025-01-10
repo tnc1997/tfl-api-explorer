@@ -45,7 +45,7 @@ class _CarParkPageState extends State<CarParkPage> {
                 ListTile(
                   title: Text('Bays'),
                   onTap: () {
-                    context.go('/car_parks/${widget.id}/bays');
+                    context.go('/car-parks/${widget.id}/bays');
                   },
                 ),
               ],

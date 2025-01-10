@@ -80,7 +80,7 @@ class _RoadPageState extends State<RoadPage> {
                 ListTile(
                   title: Text('Road disruptions'),
                   onTap: () {
-                    context.go('/roads/${widget.id}/road_disruptions');
+                    context.go('/roads/${widget.id}/road-disruptions');
                   },
                 ),
               ],

@@ -67,7 +67,7 @@ class _BikePointPageState extends State<BikePointPage> {
                   title: Text('Additional properties'),
                   onTap: () {
                     context
-                        .go('/bike_points/${widget.id}/additional_properties');
+                        .go('/bike-points/${widget.id}/additional-properties');
                   },
                 ),
               ],

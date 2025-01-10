@@ -41,7 +41,7 @@ class _CarParksPageState extends State<CarParksPage> {
               );
 
               if (carPark != null) {
-                router.go('/car_parks/${carPark.id}');
+                router.go('/car-parks/${carPark.id}');
               }
             },
           ),
@@ -56,7 +56,7 @@ class _CarParksPageState extends State<CarParksPage> {
                 return PlaceListTile(
                   place: data[index],
                   onTap: () {
-                    context.go('/car_parks/${data[index].id}');
+                    context.go('/car-parks/${data[index].id}');
                   },
                 );
               },

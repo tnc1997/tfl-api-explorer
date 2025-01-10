@@ -93,7 +93,7 @@ class MyApp extends StatelessWidget {
               },
             ),
             GoRoute(
-              path: '/bike_points',
+              path: '/bike-points',
               builder: (context, state) {
                 return BikePointsPage();
               },
@@ -107,7 +107,7 @@ class MyApp extends StatelessWidget {
                   },
                   routes: [
                     GoRoute(
-                      path: 'additional_properties',
+                      path: 'additional-properties',
                       builder: (context, state) {
                         return BikePointAdditionalPropertiesPage(
                           id: state.pathParameters['id']!,
@@ -119,7 +119,7 @@ class MyApp extends StatelessWidget {
               ],
             ),
             GoRoute(
-              path: '/car_parks',
+              path: '/car-parks',
               builder: (context, state) {
                 return CarParksPage();
               },
@@ -159,7 +159,7 @@ class MyApp extends StatelessWidget {
                   },
                   routes: [
                     GoRoute(
-                      path: 'line_disruptions',
+                      path: 'line-disruptions',
                       builder: (context, state) {
                         return LineLineDisruptionsPage(
                           id: state.pathParameters['id']!,
@@ -167,7 +167,7 @@ class MyApp extends StatelessWidget {
                       },
                     ),
                     GoRoute(
-                      path: 'line_routes',
+                      path: 'line-routes',
                       builder: (context, state) {
                         return LineLineRoutesPage(
                           id: state.pathParameters['id']!,
@@ -175,7 +175,7 @@ class MyApp extends StatelessWidget {
                       },
                     ),
                     GoRoute(
-                      path: 'line_statuses',
+                      path: 'line-statuses',
                       builder: (context, state) {
                         return LineLineStatusesPage(
                           id: state.pathParameters['id']!,
@@ -191,7 +191,7 @@ class MyApp extends StatelessWidget {
                       },
                     ),
                     GoRoute(
-                      path: 'route_sequences',
+                      path: 'route-sequences',
                       builder: (context, state) {
                         return LineRouteSequencesPage(
                           id: state.pathParameters['id']!,
@@ -199,7 +199,7 @@ class MyApp extends StatelessWidget {
                       },
                     ),
                     GoRoute(
-                      path: 'stop_points',
+                      path: 'stop-points',
                       builder: (context, state) {
                         return LineStopPointsPage(
                           id: state.pathParameters['id']!,
@@ -231,7 +231,7 @@ class MyApp extends StatelessWidget {
                   },
                   routes: [
                     GoRoute(
-                      path: 'road_disruptions',
+                      path: 'road-disruptions',
                       builder: (context, state) {
                         return RoadRoadDisruptionsPage(
                           id: state.pathParameters['id']!,
@@ -249,7 +249,7 @@ class MyApp extends StatelessWidget {
               },
             ),
             GoRoute(
-              path: '/stop_points',
+              path: '/stop-points',
               builder: (context, state) {
                 return StopPointsPage();
               },
@@ -263,7 +263,7 @@ class MyApp extends StatelessWidget {
                   },
                   routes: [
                     GoRoute(
-                      path: 'additional_properties',
+                      path: 'additional-properties',
                       builder: (context, state) {
                         return StopPointAdditionalPropertiesPage(
                           id: state.pathParameters['id']!,

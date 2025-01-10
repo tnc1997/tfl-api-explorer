@@ -22,7 +22,7 @@ class StopPointListTile extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
       ),
       onTap: () {
-        context.go('/stop_points/${stopPoint.id}');
+        context.go('/stop-points/${stopPoint.id}');
       },
     );
   }

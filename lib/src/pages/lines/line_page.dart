@@ -52,19 +52,19 @@ class _LinePageState extends State<LinePage> {
                 ListTile(
                   title: Text('Line disruptions'),
                   onTap: () {
-                    context.go('/lines/${widget.id}/line_disruptions');
+                    context.go('/lines/${widget.id}/line-disruptions');
                   },
                 ),
                 ListTile(
                   title: Text('Line routes'),
                   onTap: () {
-                    context.go('/lines/${widget.id}/line_routes');
+                    context.go('/lines/${widget.id}/line-routes');
                   },
                 ),
                 ListTile(
                   title: Text('Line statuses'),
                   onTap: () {
-                    context.go('/lines/${widget.id}/line_statuses');
+                    context.go('/lines/${widget.id}/line-statuses');
                   },
                 ),
                 ListTile(
@@ -76,13 +76,13 @@ class _LinePageState extends State<LinePage> {
                 ListTile(
                   title: Text('Route sequences'),
                   onTap: () {
-                    context.go('/lines/${widget.id}/route_sequences');
+                    context.go('/lines/${widget.id}/route-sequences');
                   },
                 ),
                 ListTile(
                   title: Text('Stop points'),
                   onTap: () {
-                    context.go('/lines/${widget.id}/stop_points');
+                    context.go('/lines/${widget.id}/stop-points');
                   },
                 ),
               ],

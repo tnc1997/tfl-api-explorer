@@ -116,19 +116,19 @@ class _StopPointPageState extends State<StopPointPage> {
                   title: Text('Additional properties'),
                   onTap: () {
                     context
-                        .go('/stop_points/${widget.id}/additional_properties');
+                        .go('/stop-points/${widget.id}/additional-properties');
                   },
                 ),
                 ListTile(
                   title: Text('Modes'),
                   onTap: () {
-                    context.go('/stop_points/${widget.id}/modes');
+                    context.go('/stop-points/${widget.id}/modes');
                   },
                 ),
                 ListTile(
                   title: Text('Lines'),
                   onTap: () {
-                    context.go('/stop_points/${widget.id}/lines');
+                    context.go('/stop-points/${widget.id}/lines');
                   },
                 ),
               ],

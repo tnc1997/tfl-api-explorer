@@ -41,7 +41,7 @@ class _BikePointsPageState extends State<BikePointsPage> {
               );
 
               if (bikePoint != null) {
-                router.go('/bike_points/${bikePoint.id}');
+                router.go('/bike-points/${bikePoint.id}');
               }
             },
           ),
@@ -56,7 +56,7 @@ class _BikePointsPageState extends State<BikePointsPage> {
                 return PlaceListTile(
                   place: data[index],
                   onTap: () {
-                    context.go('/bike_points/${data[index].id}');
+                    context.go('/bike-points/${data[index].id}');
                   },
                 );
               },

@@ -34,14 +34,14 @@ class TflApiExplorerDrawer extends StatelessWidget {
             leading: Icon(Icons.api),
             title: Text('Bike points'),
             onTap: () {
-              context.go('/bike_points');
+              context.go('/bike-points');
             },
           ),
           ListTile(
             leading: Icon(Icons.api),
             title: Text('Car parks'),
             onTap: () {
-              context.go('/car_parks');
+              context.go('/car-parks');
             },
           ),
           ListTile(
@@ -62,7 +62,7 @@ class TflApiExplorerDrawer extends StatelessWidget {
             leading: Icon(Icons.api),
             title: Text('Stop points'),
             onTap: () {
-              context.go('/stop_points');
+              context.go('/stop-points');
             },
           ),
           ListTile(
