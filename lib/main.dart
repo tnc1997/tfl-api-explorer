@@ -26,11 +26,11 @@ import 'src/pages/lines/line_predictions_page.dart';
 import 'src/pages/lines/line_route_sequences_page.dart';
 import 'src/pages/lines/line_stop_points_page.dart';
 import 'src/pages/lines/lines_page.dart';
-import 'src/pages/login_page.dart';
 import 'src/pages/roads/road_page.dart';
 import 'src/pages/roads/road_road_disruptions_page.dart';
 import 'src/pages/roads/roads_page.dart';
 import 'src/pages/settings/settings_page.dart';
+import 'src/pages/sign_in_page.dart';
 import 'src/pages/stop_points/stop_point_additional_properties_page.dart';
 import 'src/pages/stop_points/stop_point_lines_page.dart';
 import 'src/pages/stop_points/stop_point_modes_page.dart';
@@ -211,12 +211,6 @@ class MyApp extends StatelessWidget {
               ],
             ),
             GoRoute(
-              path: '/login',
-              builder: (context, state) {
-                return LoginPage();
-              },
-            ),
-            GoRoute(
               path: '/roads',
               builder: (context, state) {
                 return RoadsPage();
@@ -246,6 +240,12 @@ class MyApp extends StatelessWidget {
               path: '/settings',
               builder: (context, state) {
                 return SettingsPage();
+              },
+            ),
+            GoRoute(
+              path: '/signin',
+              builder: (context, state) {
+                return SignInPage();
               },
             ),
             GoRoute(
@@ -295,7 +295,7 @@ class MyApp extends StatelessWidget {
             if (context.read<AuthenticationChangeNotifier>().client != null) {
               return null;
             } else {
-              return '/login';
+              return '/signin';
             }
           },
         ),

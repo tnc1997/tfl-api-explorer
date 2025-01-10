@@ -7,18 +7,18 @@ import '../notifiers/authentication_change_notifier.dart';
 import '../widgets/circular_progress_indicator_future_builder.dart';
 import '../widgets/login_form.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({
+class SignInPage extends StatefulWidget {
+  const SignInPage({
     super.key,
   });
 
   @override
-  State<LoginPage> createState() {
-    return _LoginPageState();
+  State<SignInPage> createState() {
+    return _SignInPageState();
   }
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignInPageState extends State<SignInPage> {
   late TextEditingController _appKeyController;
   late Future<void> _future;
 
