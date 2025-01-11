@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../../routes/lines/line_line_disruptions_route.dart';
+import '../../routes/lines/line_line_routes_route.dart';
+import '../../routes/lines/line_line_statuses_route.dart';
+import '../../routes/lines/line_predictions_route.dart';
+import '../../routes/lines/line_route_sequences_route.dart';
+import '../../routes/lines/line_stop_points_route.dart';
+import '../../routes/lines/lines_route.dart';
 import '../../widgets/circular_progress_indicator_future_builder.dart';
 
 class LinePage extends StatefulWidget {
@@ -52,37 +58,49 @@ class _LinePageState extends State<LinePage> {
                 ListTile(
                   title: Text('Line disruptions'),
                   onTap: () {
-                    context.go('/lines/${widget.id}/line-disruptions');
+                    LineLineDisruptionsRoute(
+                      id: widget.id,
+                    ).go(context);
                   },
                 ),
                 ListTile(
                   title: Text('Line routes'),
                   onTap: () {
-                    context.go('/lines/${widget.id}/line-routes');
+                    LineLineRoutesRoute(
+                      id: widget.id,
+                    ).go(context);
                   },
                 ),
                 ListTile(
                   title: Text('Line statuses'),
                   onTap: () {
-                    context.go('/lines/${widget.id}/line-statuses');
+                    LineLineStatusesRoute(
+                      id: widget.id,
+                    ).go(context);
                   },
                 ),
                 ListTile(
                   title: Text('Predictions'),
                   onTap: () {
-                    context.go('/lines/${widget.id}/predictions');
+                    LinePredictionsRoute(
+                      id: widget.id,
+                    ).go(context);
                   },
                 ),
                 ListTile(
                   title: Text('Route sequences'),
                   onTap: () {
-                    context.go('/lines/${widget.id}/route-sequences');
+                    LineRouteSequencesRoute(
+                      id: widget.id,
+                    ).go(context);
                   },
                 ),
                 ListTile(
                   title: Text('Stop points'),
                   onTap: () {
-                    context.go('/lines/${widget.id}/stop-points');
+                    LineStopPointsRoute(
+                      id: widget.id,
+                    ).go(context);
                   },
                 ),
               ],

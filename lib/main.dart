@@ -11,14 +11,6 @@ import 'src/notifiers/line_filters_change_notifier.dart';
 import 'src/notifiers/line_line_route_filters_change_notifier.dart';
 import 'src/notifiers/line_prediction_filters_change_notifier.dart';
 import 'src/notifiers/stop_point_filters_change_notifier.dart';
-import 'src/pages/lines/line_line_disruptions_page.dart';
-import 'src/pages/lines/line_line_routes_page.dart';
-import 'src/pages/lines/line_line_statuses_page.dart';
-import 'src/pages/lines/line_page.dart';
-import 'src/pages/lines/line_predictions_page.dart';
-import 'src/pages/lines/line_route_sequences_page.dart';
-import 'src/pages/lines/line_stop_points_page.dart';
-import 'src/pages/lines/lines_page.dart';
 import 'src/pages/roads/road_page.dart';
 import 'src/pages/roads/road_road_disruptions_page.dart';
 import 'src/pages/roads/roads_page.dart';
@@ -31,6 +23,7 @@ import 'src/pages/stop_points/stop_points_page.dart';
 import 'src/routes/bike_points/bike_points_route.dart';
 import 'src/routes/car_parks/car_parks_route.dart';
 import 'src/routes/home_route.dart';
+import 'src/routes/lines/lines_route.dart';
 import 'src/routes/sign_in_route.dart';
 
 Future<void> main() async {
@@ -85,72 +78,7 @@ class MyApp extends StatelessWidget {
             $homeRoute,
             $bikePointsRoute,
             $carParksRoute,
-            GoRoute(
-              path: '/lines',
-              builder: (context, state) {
-                return LinesPage();
-              },
-              routes: [
-                GoRoute(
-                  path: ':id',
-                  builder: (context, state) {
-                    return LinePage(
-                      id: state.pathParameters['id']!,
-                    );
-                  },
-                  routes: [
-                    GoRoute(
-                      path: 'line-disruptions',
-                      builder: (context, state) {
-                        return LineLineDisruptionsPage(
-                          id: state.pathParameters['id']!,
-                        );
-                      },
-                    ),
-                    GoRoute(
-                      path: 'line-routes',
-                      builder: (context, state) {
-                        return LineLineRoutesPage(
-                          id: state.pathParameters['id']!,
-                        );
-                      },
-                    ),
-                    GoRoute(
-                      path: 'line-statuses',
-                      builder: (context, state) {
-                        return LineLineStatusesPage(
-                          id: state.pathParameters['id']!,
-                        );
-                      },
-                    ),
-                    GoRoute(
-                      path: 'predictions',
-                      builder: (context, state) {
-                        return LinePredictionsPage(
-                          id: state.pathParameters['id']!,
-                        );
-                      },
-                    ),
-                    GoRoute(
-                      path: 'route-sequences',
-                      builder: (context, state) {
-                        return LineRouteSequencesPage(
-                          id: state.pathParameters['id']!,
-                        );
-                      },
-                    ),
-                    GoRoute(
-                      path: 'stop-points',
-                      builder: (context, state) {
-                        return LineStopPointsPage(
-                          id: state.pathParameters['id']!,
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            $linesRoute,
             GoRoute(
               path: '/roads',
               builder: (context, state) {
