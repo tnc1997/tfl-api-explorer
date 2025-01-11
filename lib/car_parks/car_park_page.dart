@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../../routes/car_parks/car_park_bays_route.dart';
-import '../../routes/car_parks/car_parks_route.dart';
-import '../../widgets/circular_progress_indicator_future_builder.dart';
+import '../src/widgets/circular_progress_indicator_future_builder.dart';
+import 'car_park_bays_route.dart';
+import 'car_parks_route.dart';
 
 class CarParkPage extends StatefulWidget {
   const CarParkPage({
