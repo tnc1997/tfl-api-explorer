@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/drawer.dart';
+import '../common/drawer.dart';
 import 'about_page.dart';
 import 'account_page.dart';
 

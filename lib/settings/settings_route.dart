@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../pages/settings/settings_page.dart';
+import 'settings_page.dart';
 
 part 'settings_route.g.dart';
 
