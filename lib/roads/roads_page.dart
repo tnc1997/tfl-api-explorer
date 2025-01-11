@@ -22,7 +22,7 @@ class RoadsPage extends StatefulWidget {
 }
 
 class _RoadsPageState extends State<RoadsPage> {
-  late Future<List<RoadCorridor>> _roadsFuture;
+  late final Future<List<RoadCorridor>> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class _RoadsPageState extends State<RoadsPage> {
               final road = await showSearch(
                 context: context,
                 delegate: RoadSearchDelegate(
-                  roadsFuture: _roadsFuture,
+                  roadsFuture: _future,
                 ),
               );
 
@@ -54,7 +54,7 @@ class _RoadsPageState extends State<RoadsPage> {
         ],
       ),
       body: CircularProgressIndicatorFutureBuilder<List<RoadCorridor>>(
-        future: _roadsFuture,
+        future: _future,
         builder: (context, data) {
           if (data != null && data.isNotEmpty) {
             return ListView.builder(
@@ -85,6 +85,6 @@ class _RoadsPageState extends State<RoadsPage> {
   void initState() {
     super.initState();
 
-    _roadsFuture = context.read<TflApiClient>().road.getAll();
+    _future = context.read<TflApiClient>().road.getAll();
   }
 }

@@ -19,7 +19,7 @@ class LinesPage extends StatefulWidget {
 }
 
 class _LinesPageState extends State<LinesPage> {
-  late Future<List<Line>> _linesFuture;
+  late final Future<List<Line>> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class _LinesPageState extends State<LinesPage> {
         ],
       ),
       body: CircularProgressIndicatorFutureBuilder<List<Line>>(
-        future: _linesFuture,
+        future: _future,
         builder: (context, data) {
           final lines = data?.where(notifier.areSatisfiedBy).toList();
 
@@ -70,7 +70,7 @@ class _LinesPageState extends State<LinesPage> {
   void initState() {
     super.initState();
 
-    _linesFuture = context.read<TflApiClient>().line.getByMode(['bus', 'tube']);
+    _future = context.read<TflApiClient>().line.getByMode(['bus', 'tube']);
   }
 }
 
@@ -82,7 +82,7 @@ class _LineFiltersPage extends StatefulWidget {
 }
 
 class _LineFiltersPageState extends State<_LineFiltersPage> {
-  late Future<List<Mode>> _lineModesFuture;
+  late final Future<List<Mode>> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +101,7 @@ class _LineFiltersPageState extends State<_LineFiltersPage> {
         ],
       ),
       body: CircularProgressIndicatorFutureBuilder<List>(
-        future: Future.wait([_lineModesFuture]),
+        future: Future.wait([_future]),
         builder: (context, data) {
           if (data != null) {
             return ListView(
@@ -136,6 +136,6 @@ class _LineFiltersPageState extends State<_LineFiltersPage> {
   void initState() {
     super.initState();
 
-    _lineModesFuture = context.read<TflApiClient>().line.metaModes();
+    _future = context.read<TflApiClient>().line.metaModes();
   }
 }

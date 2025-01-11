@@ -15,7 +15,7 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutPageState extends State<AboutPage> {
-  late Future<PackageInfo> _packageInfoFuture;
+  late final Future<PackageInfo> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class _AboutPageState extends State<AboutPage> {
         title: Text('About'),
       ),
       body: CircularProgressIndicatorFutureBuilder<PackageInfo>(
-        future: _packageInfoFuture,
+        future: _future,
         builder: (context, data) {
           if (data != null) {
             return ListView(
@@ -51,6 +51,6 @@ class _AboutPageState extends State<AboutPage> {
   void initState() {
     super.initState();
 
-    _packageInfoFuture = PackageInfo.fromPlatform();
+    _future = PackageInfo.fromPlatform();
   }
 }

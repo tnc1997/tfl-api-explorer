@@ -91,7 +91,7 @@ class _LineLineRouteFiltersPage extends StatefulWidget {
 }
 
 class _LineLineRouteFiltersPageState extends State<_LineLineRouteFiltersPage> {
-  late Future<List<String>> _lineServiceTypesFuture;
+  late final Future<List<String>> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +110,7 @@ class _LineLineRouteFiltersPageState extends State<_LineLineRouteFiltersPage> {
         ],
       ),
       body: CircularProgressIndicatorFutureBuilder<List>(
-        future: Future.wait([_lineServiceTypesFuture]),
+        future: Future.wait([_future]),
         builder: (context, data) {
           if (data != null) {
             return ListView(
@@ -145,7 +145,6 @@ class _LineLineRouteFiltersPageState extends State<_LineLineRouteFiltersPage> {
   void initState() {
     super.initState();
 
-    _lineServiceTypesFuture =
-        context.read<TflApiClient>().line.metaServiceTypes();
+    _future = context.read<TflApiClient>().line.metaServiceTypes();
   }
 }

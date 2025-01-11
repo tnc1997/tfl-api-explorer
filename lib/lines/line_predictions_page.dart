@@ -120,7 +120,7 @@ class _LinePredictionFiltersPage extends StatefulWidget {
 
 class _LinePredictionFiltersPageState
     extends State<_LinePredictionFiltersPage> {
-  late Future<List<StopPoint>> _stopPointsFuture;
+  late final Future<List<StopPoint>> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +139,7 @@ class _LinePredictionFiltersPageState
         ],
       ),
       body: CircularProgressIndicatorFutureBuilder<List>(
-        future: Future.wait([_stopPointsFuture]),
+        future: Future.wait([_future]),
         builder: (context, data) {
           if (data != null) {
             return ListView(
@@ -190,6 +190,6 @@ class _LinePredictionFiltersPageState
   void initState() {
     super.initState();
 
-    _stopPointsFuture = context.read<TflApiClient>().line.stopPoints(widget.id);
+    _future = context.read<TflApiClient>().line.stopPoints(widget.id);
   }
 }

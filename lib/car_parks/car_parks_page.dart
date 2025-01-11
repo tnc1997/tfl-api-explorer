@@ -22,7 +22,7 @@ class CarParksPage extends StatefulWidget {
 }
 
 class _CarParksPageState extends State<CarParksPage> {
-  late Future<List<Place>> _carParksFuture;
+  late final Future<List<Place>> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class _CarParksPageState extends State<CarParksPage> {
               final carPark = await showSearch(
                 context: context,
                 delegate: PlaceSearchDelegate(
-                  placesFuture: _carParksFuture,
+                  placesFuture: _future,
                 ),
               );
 
@@ -54,7 +54,7 @@ class _CarParksPageState extends State<CarParksPage> {
         ],
       ),
       body: CircularProgressIndicatorFutureBuilder<List<Place>>(
-        future: _carParksFuture,
+        future: _future,
         builder: (context, data) {
           if (data != null && data.isNotEmpty) {
             return ListView.builder(
@@ -85,6 +85,6 @@ class _CarParksPageState extends State<CarParksPage> {
   void initState() {
     super.initState();
 
-    _carParksFuture = context.read<TflApiClient>().place.getByType(['CarPark']);
+    _future = context.read<TflApiClient>().place.getByType(['CarPark']);
   }
 }

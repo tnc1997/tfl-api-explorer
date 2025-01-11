@@ -19,7 +19,7 @@ class StopPointsPage extends StatefulWidget {
 }
 
 class _StopPointsPageState extends State<StopPointsPage> {
-  late Future<List<StopPoint>> _stopPointsFuture;
+  late final Future<List<StopPoint>> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _StopPointsPageState extends State<StopPointsPage> {
         ],
       ),
       body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
-        future: _stopPointsFuture,
+        future: _future,
         builder: (context, data) {
           final stopPoints = data
               ?.where(stopPointFiltersChangeNotifier.areSatisfiedBy)
@@ -73,7 +73,7 @@ class _StopPointsPageState extends State<StopPointsPage> {
   void initState() {
     super.initState();
 
-    _stopPointsFuture = context
+    _future = context
         .read<TflApiClient>()
         .stopPoint
         .getByType(['NaptanMetroStation']);
@@ -88,7 +88,7 @@ class _StopPointFiltersPage extends StatefulWidget {
 }
 
 class _StopPointFiltersPageState extends State<_StopPointFiltersPage> {
-  late Future<List<Mode>> _stopPointModesFuture;
+  late final Future<List<Mode>> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +108,7 @@ class _StopPointFiltersPageState extends State<_StopPointFiltersPage> {
         ],
       ),
       body: CircularProgressIndicatorFutureBuilder<List>(
-        future: Future.wait([_stopPointModesFuture]),
+        future: Future.wait([_future]),
         builder: (context, data) {
           if (data != null) {
             return ListView(
@@ -151,6 +151,6 @@ class _StopPointFiltersPageState extends State<_StopPointFiltersPage> {
   void initState() {
     super.initState();
 
-    _stopPointModesFuture = context.read<TflApiClient>().stopPoint.metaModes();
+    _future = context.read<TflApiClient>().stopPoint.metaModes();
   }
 }
