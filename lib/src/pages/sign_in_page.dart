@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../notifiers/authentication_change_notifier.dart';
+import '../routes/home_route.dart';
 import '../widgets/circular_progress_indicator_future_builder.dart';
 import '../widgets/login_form.dart';
 
@@ -116,7 +117,7 @@ class _SignInPageState extends State<SignInPage> {
 
       authenticationChangeNotifier.login(appKey);
 
-      router.go('/');
+      router.go(const HomeRoute().location);
     }
   }
 }

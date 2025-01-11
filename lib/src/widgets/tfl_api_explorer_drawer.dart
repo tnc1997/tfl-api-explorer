@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../routes/home_route.dart';
+
 class TflApiExplorerDrawer extends StatelessWidget {
   const TflApiExplorerDrawer({
     super.key,
@@ -27,7 +29,7 @@ class TflApiExplorerDrawer extends StatelessWidget {
             leading: Icon(Icons.home),
             title: Text('Home'),
             onTap: () {
-              context.go('/');
+              const HomeRoute().go(context);
             },
           ),
           ListTile(

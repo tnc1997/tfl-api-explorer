@@ -17,7 +17,6 @@ import 'src/pages/bike_points/bike_points_page.dart';
 import 'src/pages/car_parks/car_park_bays_page.dart';
 import 'src/pages/car_parks/car_park_page.dart';
 import 'src/pages/car_parks/car_parks_page.dart';
-import 'src/pages/home_page.dart';
 import 'src/pages/lines/line_line_disruptions_page.dart';
 import 'src/pages/lines/line_line_routes_page.dart';
 import 'src/pages/lines/line_line_statuses_page.dart';
@@ -30,12 +29,13 @@ import 'src/pages/roads/road_page.dart';
 import 'src/pages/roads/road_road_disruptions_page.dart';
 import 'src/pages/roads/roads_page.dart';
 import 'src/pages/settings/settings_page.dart';
-import 'src/pages/sign_in_page.dart';
 import 'src/pages/stop_points/stop_point_additional_properties_page.dart';
 import 'src/pages/stop_points/stop_point_lines_page.dart';
 import 'src/pages/stop_points/stop_point_modes_page.dart';
 import 'src/pages/stop_points/stop_point_page.dart';
 import 'src/pages/stop_points/stop_points_page.dart';
+import 'src/routes/home_route.dart';
+import 'src/routes/sign_in_route.dart';
 
 Future<void> main() async {
   Intl.defaultLocale = 'en_GB';
@@ -86,12 +86,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         routerConfig: GoRouter(
           routes: [
-            GoRoute(
-              path: '/',
-              builder: (context, state) {
-                return HomePage();
-              },
-            ),
+            $homeRoute,
             GoRoute(
               path: '/bike-points',
               builder: (context, state) {
@@ -242,12 +237,7 @@ class MyApp extends StatelessWidget {
                 return SettingsPage();
               },
             ),
-            GoRoute(
-              path: '/signin',
-              builder: (context, state) {
-                return SignInPage();
-              },
-            ),
+            $signInRoute,
             GoRoute(
               path: '/stop-points',
               builder: (context, state) {
@@ -292,11 +282,11 @@ class MyApp extends StatelessWidget {
             ),
           ],
           redirect: (context, state) {
-            if (context.read<AuthenticationChangeNotifier>().client != null) {
-              return null;
-            } else {
-              return '/signin';
+            if (context.read<AuthenticationChangeNotifier>().client == null) {
+              return const SignInRoute().location;
             }
+
+            return null;
           },
         ),
         title: 'Explorer for TfL API',
