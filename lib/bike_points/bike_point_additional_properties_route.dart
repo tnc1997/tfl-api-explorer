@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../pages/bike_points/bike_point_additional_properties_page.dart';
+import 'bike_point_additional_properties_page.dart';
 
 class BikePointAdditionalPropertiesRoute extends GoRouteData {
   const BikePointAdditionalPropertiesRoute({

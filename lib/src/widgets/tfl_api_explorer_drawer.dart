@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../routes/bike_points/bike_points_route.dart';
+import '../../bike_points/bike_points_route.dart';
 import '../routes/car_parks/car_parks_route.dart';
 import '../routes/home_route.dart';
 import '../routes/lines/lines_route.dart';

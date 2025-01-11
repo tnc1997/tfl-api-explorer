@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../pages/bike_points/bike_points_page.dart';
 import 'bike_point_additional_properties_route.dart';
 import 'bike_point_route.dart';
+import 'bike_points_page.dart';
 
 part 'bike_points_route.g.dart';
 

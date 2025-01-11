@@ -3,12 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../../delegates/place_search_delegate.dart';
-import '../../routes/bike_points/bike_point_route.dart';
-import '../../routes/bike_points/bike_points_route.dart';
-import '../../widgets/circular_progress_indicator_future_builder.dart';
-import '../../widgets/place_list_tile.dart';
-import '../../widgets/tfl_api_explorer_drawer.dart';
+import '../src/delegates/place_search_delegate.dart';
+import '../src/widgets/circular_progress_indicator_future_builder.dart';
+import '../src/widgets/place_list_tile.dart';
+import '../src/widgets/tfl_api_explorer_drawer.dart';
+import 'bike_point_route.dart';
+import 'bike_points_route.dart';
 
 class BikePointsPage extends StatefulWidget {
   const BikePointsPage({
