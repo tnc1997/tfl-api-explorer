@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../delegates/place_search_delegate.dart';
+import '../../routes/bike_points/bike_point_route.dart';
+import '../../routes/bike_points/bike_points_route.dart';
 import '../../widgets/circular_progress_indicator_future_builder.dart';
 import '../../widgets/place_list_tile.dart';
 import '../../widgets/tfl_api_explorer_drawer.dart';
@@ -41,7 +43,11 @@ class _BikePointsPageState extends State<BikePointsPage> {
               );
 
               if (bikePoint != null) {
-                router.go('/bike-points/${bikePoint.id}');
+                router.go(
+                  BikePointRoute(
+                    id: bikePoint.id!,
+                  ).location,
+                );
               }
             },
           ),
@@ -56,7 +62,9 @@ class _BikePointsPageState extends State<BikePointsPage> {
                 return PlaceListTile(
                   place: data[index],
                   onTap: () {
-                    context.go('/bike-points/${data[index].id}');
+                    BikePointRoute(
+                      id: data[index].id!,
+                    ).go(context);
                   },
                 );
               },

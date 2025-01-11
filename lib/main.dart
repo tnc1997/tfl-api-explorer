@@ -11,9 +11,6 @@ import 'src/notifiers/line_filters_change_notifier.dart';
 import 'src/notifiers/line_line_route_filters_change_notifier.dart';
 import 'src/notifiers/line_prediction_filters_change_notifier.dart';
 import 'src/notifiers/stop_point_filters_change_notifier.dart';
-import 'src/pages/bike_points/bike_point_additional_properties_page.dart';
-import 'src/pages/bike_points/bike_point_page.dart';
-import 'src/pages/bike_points/bike_points_page.dart';
 import 'src/pages/car_parks/car_park_bays_page.dart';
 import 'src/pages/car_parks/car_park_page.dart';
 import 'src/pages/car_parks/car_parks_page.dart';
@@ -34,6 +31,7 @@ import 'src/pages/stop_points/stop_point_lines_page.dart';
 import 'src/pages/stop_points/stop_point_modes_page.dart';
 import 'src/pages/stop_points/stop_point_page.dart';
 import 'src/pages/stop_points/stop_points_page.dart';
+import 'src/routes/bike_points/bike_points_route.dart';
 import 'src/routes/home_route.dart';
 import 'src/routes/sign_in_route.dart';
 
@@ -87,32 +85,7 @@ class MyApp extends StatelessWidget {
         routerConfig: GoRouter(
           routes: [
             $homeRoute,
-            GoRoute(
-              path: '/bike-points',
-              builder: (context, state) {
-                return BikePointsPage();
-              },
-              routes: [
-                GoRoute(
-                  path: ':id',
-                  builder: (context, state) {
-                    return BikePointPage(
-                      id: state.pathParameters['id']!,
-                    );
-                  },
-                  routes: [
-                    GoRoute(
-                      path: 'additional-properties',
-                      builder: (context, state) {
-                        return BikePointAdditionalPropertiesPage(
-                          id: state.pathParameters['id']!,
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            $bikePointsRoute,
             GoRoute(
               path: '/car-parks',
               builder: (context, state) {
