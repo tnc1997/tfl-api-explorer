@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({
+class SignInForm extends StatefulWidget {
+  const SignInForm({
     super.key,
     this.formKey,
     this.appKeyController,
@@ -16,12 +16,12 @@ class LoginForm extends StatefulWidget {
   final void Function()? onSubmitted;
 
   @override
-  State<LoginForm> createState() {
-    return _LoginFormState();
+  State<SignInForm> createState() {
+    return _SignInFormState();
   }
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _SignInFormState extends State<SignInForm> {
   late FocusNode _appKeyFocusNode;
 
   @override

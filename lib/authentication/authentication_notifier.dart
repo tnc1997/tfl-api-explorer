@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-class AuthenticationChangeNotifier extends ChangeNotifier {
+class AuthenticationNotifier extends ChangeNotifier {
   String? _appKey;
 
   http.Client? _client;

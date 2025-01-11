@@ -5,8 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import 'authentication/authentication_notifier.dart';
+import 'authentication/sign_in_route.dart';
 import 'src/colors/tfl_colors.dart';
-import 'src/notifiers/authentication_change_notifier.dart';
 import 'src/notifiers/line_filters_change_notifier.dart';
 import 'src/notifiers/line_line_route_filters_change_notifier.dart';
 import 'src/notifiers/line_prediction_filters_change_notifier.dart';
@@ -17,7 +18,6 @@ import 'src/routes/home_route.dart';
 import 'src/routes/lines/lines_route.dart';
 import 'src/routes/roads/roads_route.dart';
 import 'src/routes/settings/settings_route.dart';
-import 'src/routes/sign_in_route.dart';
 import 'src/routes/stop_points/stop_points_route.dart';
 
 Future<void> main() async {
@@ -35,9 +35,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<AuthenticationChangeNotifier>(
+        ChangeNotifierProvider<AuthenticationNotifier>(
           create: (context) {
-            return AuthenticationChangeNotifier();
+            return AuthenticationNotifier();
           },
         ),
         ChangeNotifierProvider<LineFiltersChangeNotifier>(
@@ -60,9 +60,9 @@ class MyApp extends StatelessWidget {
             return StopPointFiltersChangeNotifier();
           },
         ),
-        ProxyProvider<AuthenticationChangeNotifier, TflApiClient>(
-          update: (context, authenticationChangeNotifier, tflApi) {
-            return TflApiClient(client: authenticationChangeNotifier.client!);
+        ProxyProvider<AuthenticationNotifier, TflApiClient>(
+          update: (context, notifier, api) {
+            return TflApiClient(client: notifier.client!);
           },
         ),
       ],
@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
             $stopPointsRoute,
           ],
           redirect: (context, state) {
-            if (context.read<AuthenticationChangeNotifier>().client == null) {
+            if (context.read<AuthenticationNotifier>().client == null) {
               return const SignInRoute().location;
             }
 

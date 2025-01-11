@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../notifiers/authentication_change_notifier.dart';
+import '../../../authentication/authentication_notifier.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({
@@ -10,8 +10,7 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authenticationChangeNotifier =
-        context.watch<AuthenticationChangeNotifier>();
+    final notifier = context.watch<AuthenticationNotifier>();
 
     return Scaffold(
       appBar: AppBar(
@@ -21,7 +20,7 @@ class AccountPage extends StatelessWidget {
         children: <Widget>[
           ListTile(
             title: Text('App key'),
-            subtitle: Text(authenticationChangeNotifier.appKey ?? 'Unknown'),
+            subtitle: Text(notifier.appKey ?? 'Unknown'),
           ),
         ],
       ),

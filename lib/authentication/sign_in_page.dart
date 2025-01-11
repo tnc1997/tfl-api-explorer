@@ -3,10 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../notifiers/authentication_change_notifier.dart';
-import '../routes/home_route.dart';
-import '../widgets/circular_progress_indicator_future_builder.dart';
-import '../widgets/login_form.dart';
+import '../src/routes/home_route.dart';
+import '../src/widgets/circular_progress_indicator_future_builder.dart';
+import 'authentication_notifier.dart';
+import 'sign_in_form.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({
@@ -46,7 +46,7 @@ class _SignInPageState extends State<SignInPage> {
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
-          LoginForm(
+          SignInForm(
             formKey: _formKey,
             appKeyController: _appKeyController,
             onSubmitted: _login,
@@ -106,8 +106,7 @@ class _SignInPageState extends State<SignInPage> {
 
   Future<void> _login() async {
     if (_formKey.currentState?.validate() ?? false) {
-      final authenticationChangeNotifier =
-          context.read<AuthenticationChangeNotifier>();
+      final notifier = context.read<AuthenticationNotifier>();
 
       final router = GoRouter.of(context);
 
@@ -115,7 +114,7 @@ class _SignInPageState extends State<SignInPage> {
 
       await SharedPreferencesAsync().setString('appKey', appKey);
 
-      authenticationChangeNotifier.login(appKey);
+      notifier.login(appKey);
 
       router.go(const HomeRoute().location);
     }

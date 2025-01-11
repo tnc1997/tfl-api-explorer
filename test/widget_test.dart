@@ -6,7 +6,7 @@ import 'package:mockito/mockito.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.dart';
+import 'package:tfl_api_explorer/authentication/authentication_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_line_route_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_notifier.dart';
@@ -34,7 +34,7 @@ import 'package:tfl_api_explorer/src/pages/stop_points/stop_points_page.dart';
 import 'widget_test.mocks.dart';
 
 @GenerateMocks([
-  AuthenticationChangeNotifier,
+  AuthenticationNotifier,
   BikePointService,
   LineService,
   OccupancyService,

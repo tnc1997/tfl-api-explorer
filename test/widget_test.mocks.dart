@@ -9,7 +9,7 @@ import 'dart:ui' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i6;
 import 'package:tfl_api_client/tfl_api_client.dart' as _i2;
-import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.dart'
+import 'package:tfl_api_explorer/authentication/authentication_notifier.dart'
     as _i3;
 
 // ignore_for_file: type=lint
@@ -28,145 +28,145 @@ import 'package:tfl_api_explorer/src/notifiers/authentication_change_notifier.da
 
 class _FakePlace_0 extends _i1.SmartFake implements _i2.Place {
   _FakePlace_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeRouteSequence_1 extends _i1.SmartFake implements _i2.RouteSequence {
   _FakeRouteSequence_1(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeRouteSearchResponse_2 extends _i1.SmartFake
     implements _i2.RouteSearchResponse {
   _FakeRouteSearchResponse_2(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeTimetableResponse_3 extends _i1.SmartFake
     implements _i2.TimetableResponse {
   _FakeTimetableResponse_3(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeCarParkOccupancy_4 extends _i1.SmartFake
     implements _i2.CarParkOccupancy {
   _FakeCarParkOccupancy_4(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakePlacesResponse_5 extends _i1.SmartFake
     implements _i2.PlacesResponse {
   _FakePlacesResponse_5(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeStopPoint_6 extends _i1.SmartFake implements _i2.StopPoint {
   _FakeStopPoint_6(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeStopPointsResponse_7 extends _i1.SmartFake
     implements _i2.StopPointsResponse {
   _FakeStopPointsResponse_7(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeSearchResponse_8 extends _i1.SmartFake
     implements _i2.SearchResponse {
   _FakeSearchResponse_8(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeAccidentStatsService_9 extends _i1.SmartFake
     implements _i2.AccidentStatsService {
   _FakeAccidentStatsService_9(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeAirQualityService_10 extends _i1.SmartFake
     implements _i2.AirQualityService {
   _FakeAirQualityService_10(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeBikePointService_11 extends _i1.SmartFake
     implements _i2.BikePointService {
   _FakeBikePointService_11(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeCabwiseService_12 extends _i1.SmartFake
     implements _i2.CabwiseService {
   _FakeCabwiseService_12(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeCycleSuperhighwayService_13 extends _i1.SmartFake
     implements _i2.CycleSuperhighwayService {
   _FakeCycleSuperhighwayService_13(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeJourneyService_14 extends _i1.SmartFake
     implements _i2.JourneyService {
   _FakeJourneyService_14(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeLineService_15 extends _i1.SmartFake implements _i2.LineService {
   _FakeLineService_15(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeModeService_16 extends _i1.SmartFake implements _i2.ModeService {
   _FakeModeService_16(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeNetworkStatusService_17 extends _i1.SmartFake
     implements _i2.NetworkStatusService {
   _FakeNetworkStatusService_17(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeOccupancyService_18 extends _i1.SmartFake
     implements _i2.OccupancyService {
   _FakeOccupancyService_18(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakePlaceService_19 extends _i1.SmartFake implements _i2.PlaceService {
   _FakePlaceService_19(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeRoadService_20 extends _i1.SmartFake implements _i2.RoadService {
   _FakeRoadService_20(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeSearchService_21 extends _i1.SmartFake implements _i2.SearchService {
   _FakeSearchService_21(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeStopPointService_22 extends _i1.SmartFake
     implements _i2.StopPointService {
   _FakeStopPointService_22(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeVehicleService_23 extends _i1.SmartFake
     implements _i2.VehicleService {
   _FakeVehicleService_23(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 /// A class which mocks [AuthenticationChangeNotifier].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthenticationChangeNotifier extends _i1.Mock
-    implements _i3.AuthenticationChangeNotifier {
+    implements _i3.AuthenticationNotifier {
   MockAuthenticationChangeNotifier() {
     _i1.throwOnMissingStub(this);
   }
@@ -178,39 +178,39 @@ class MockAuthenticationChangeNotifier extends _i1.Mock
 
   @override
   void login(String? appKey) => super.noSuchMethod(
-    Invocation.method(#login, [appKey]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#login, [appKey]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void logout() => super.noSuchMethod(
-    Invocation.method(#logout, []),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#logout, []),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void addListener(_i4.VoidCallback? listener) => super.noSuchMethod(
-    Invocation.method(#addListener, [listener]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#addListener, [listener]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void removeListener(_i4.VoidCallback? listener) => super.noSuchMethod(
-    Invocation.method(#removeListener, [listener]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#removeListener, [listener]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void dispose() => super.noSuchMethod(
-    Invocation.method(#dispose, []),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#dispose, []),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void notifyListeners() => super.noSuchMethod(
-    Invocation.method(#notifyListeners, []),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#notifyListeners, []),
+        returnValueForMissingStub: null,
+      );
 }
 
 /// A class which mocks [BikePointService].
@@ -222,30 +222,24 @@ class MockBikePointService extends _i1.Mock implements _i2.BikePointService {
   }
 
   @override
-  _i5.Future<List<_i2.Place>> getAll() =>
-      (super.noSuchMethod(
-            Invocation.method(#getAll, []),
-            returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
-          )
-          as _i5.Future<List<_i2.Place>>);
+  _i5.Future<List<_i2.Place>> getAll() => (super.noSuchMethod(
+        Invocation.method(#getAll, []),
+        returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
+      ) as _i5.Future<List<_i2.Place>>);
 
   @override
-  _i5.Future<_i2.Place> get(String? id) =>
-      (super.noSuchMethod(
-            Invocation.method(#get, [id]),
-            returnValue: _i5.Future<_i2.Place>.value(
-              _FakePlace_0(this, Invocation.method(#get, [id])),
-            ),
-          )
-          as _i5.Future<_i2.Place>);
+  _i5.Future<_i2.Place> get(String? id) => (super.noSuchMethod(
+        Invocation.method(#get, [id]),
+        returnValue: _i5.Future<_i2.Place>.value(
+          _FakePlace_0(this, Invocation.method(#get, [id])),
+        ),
+      ) as _i5.Future<_i2.Place>);
 
   @override
-  _i5.Future<List<_i2.Place>> search(String? query) =>
-      (super.noSuchMethod(
-            Invocation.method(#search, [query]),
-            returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
-          )
-          as _i5.Future<List<_i2.Place>>);
+  _i5.Future<List<_i2.Place>> search(String? query) => (super.noSuchMethod(
+        Invocation.method(#search, [query]),
+        returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
+      ) as _i5.Future<List<_i2.Place>>);
 }
 
 /// A class which mocks [LineService].
@@ -257,62 +251,50 @@ class MockLineService extends _i1.Mock implements _i2.LineService {
   }
 
   @override
-  _i5.Future<List<_i2.Mode>> metaModes() =>
-      (super.noSuchMethod(
-            Invocation.method(#metaModes, []),
-            returnValue: _i5.Future<List<_i2.Mode>>.value(<_i2.Mode>[]),
-          )
-          as _i5.Future<List<_i2.Mode>>);
+  _i5.Future<List<_i2.Mode>> metaModes() => (super.noSuchMethod(
+        Invocation.method(#metaModes, []),
+        returnValue: _i5.Future<List<_i2.Mode>>.value(<_i2.Mode>[]),
+      ) as _i5.Future<List<_i2.Mode>>);
 
   @override
-  _i5.Future<List<_i2.StatusSeverity>> metaSeverity() =>
-      (super.noSuchMethod(
-            Invocation.method(#metaSeverity, []),
-            returnValue: _i5.Future<List<_i2.StatusSeverity>>.value(
-              <_i2.StatusSeverity>[],
-            ),
-          )
-          as _i5.Future<List<_i2.StatusSeverity>>);
+  _i5.Future<List<_i2.StatusSeverity>> metaSeverity() => (super.noSuchMethod(
+        Invocation.method(#metaSeverity, []),
+        returnValue: _i5.Future<List<_i2.StatusSeverity>>.value(
+          <_i2.StatusSeverity>[],
+        ),
+      ) as _i5.Future<List<_i2.StatusSeverity>>);
 
   @override
-  _i5.Future<List<String>> metaDisruptionCategories() =>
-      (super.noSuchMethod(
-            Invocation.method(#metaDisruptionCategories, []),
-            returnValue: _i5.Future<List<String>>.value(<String>[]),
-          )
-          as _i5.Future<List<String>>);
+  _i5.Future<List<String>> metaDisruptionCategories() => (super.noSuchMethod(
+        Invocation.method(#metaDisruptionCategories, []),
+        returnValue: _i5.Future<List<String>>.value(<String>[]),
+      ) as _i5.Future<List<String>>);
 
   @override
-  _i5.Future<List<String>> metaServiceTypes() =>
-      (super.noSuchMethod(
-            Invocation.method(#metaServiceTypes, []),
-            returnValue: _i5.Future<List<String>>.value(<String>[]),
-          )
-          as _i5.Future<List<String>>);
+  _i5.Future<List<String>> metaServiceTypes() => (super.noSuchMethod(
+        Invocation.method(#metaServiceTypes, []),
+        returnValue: _i5.Future<List<String>>.value(<String>[]),
+      ) as _i5.Future<List<String>>);
 
   @override
-  _i5.Future<List<_i2.Line>> get(List<String>? ids) =>
-      (super.noSuchMethod(
-            Invocation.method(#get, [ids]),
-            returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
-          )
-          as _i5.Future<List<_i2.Line>>);
+  _i5.Future<List<_i2.Line>> get(List<String>? ids) => (super.noSuchMethod(
+        Invocation.method(#get, [ids]),
+        returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
+      ) as _i5.Future<List<_i2.Line>>);
 
   @override
   _i5.Future<List<_i2.Line>> getByMode(List<String>? modes) =>
       (super.noSuchMethod(
-            Invocation.method(#getByMode, [modes]),
-            returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
-          )
-          as _i5.Future<List<_i2.Line>>);
+        Invocation.method(#getByMode, [modes]),
+        returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
+      ) as _i5.Future<List<_i2.Line>>);
 
   @override
   _i5.Future<List<_i2.Line>> route({List<String>? serviceTypes}) =>
       (super.noSuchMethod(
-            Invocation.method(#route, [], {#serviceTypes: serviceTypes}),
-            returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
-          )
-          as _i5.Future<List<_i2.Line>>);
+        Invocation.method(#route, [], {#serviceTypes: serviceTypes}),
+        returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
+      ) as _i5.Future<List<_i2.Line>>);
 
   @override
   _i5.Future<List<_i2.Line>> lineRoutesByIds(
@@ -320,14 +302,13 @@ class MockLineService extends _i1.Mock implements _i2.LineService {
     List<String>? serviceTypes,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #lineRoutesByIds,
-              [ids],
-              {#serviceTypes: serviceTypes},
-            ),
-            returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
-          )
-          as _i5.Future<List<_i2.Line>>);
+        Invocation.method(
+          #lineRoutesByIds,
+          [ids],
+          {#serviceTypes: serviceTypes},
+        ),
+        returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
+      ) as _i5.Future<List<_i2.Line>>);
 
   @override
   _i5.Future<List<_i2.Line>> routeByMode(
@@ -335,14 +316,13 @@ class MockLineService extends _i1.Mock implements _i2.LineService {
     List<String>? serviceTypes,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #routeByMode,
-              [modes],
-              {#serviceTypes: serviceTypes},
-            ),
-            returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
-          )
-          as _i5.Future<List<_i2.Line>>);
+        Invocation.method(
+          #routeByMode,
+          [modes],
+          {#serviceTypes: serviceTypes},
+        ),
+        returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
+      ) as _i5.Future<List<_i2.Line>>);
 
   @override
   _i5.Future<_i2.RouteSequence> routeSequence(
@@ -352,26 +332,25 @@ class MockLineService extends _i1.Mock implements _i2.LineService {
     bool? excludeCrowding,
   }) =>
       (super.noSuchMethod(
+        Invocation.method(
+          #routeSequence,
+          [id, direction],
+          {#serviceTypes: serviceTypes, #excludeCrowding: excludeCrowding},
+        ),
+        returnValue: _i5.Future<_i2.RouteSequence>.value(
+          _FakeRouteSequence_1(
+            this,
             Invocation.method(
               #routeSequence,
               [id, direction],
-              {#serviceTypes: serviceTypes, #excludeCrowding: excludeCrowding},
+              {
+                #serviceTypes: serviceTypes,
+                #excludeCrowding: excludeCrowding,
+              },
             ),
-            returnValue: _i5.Future<_i2.RouteSequence>.value(
-              _FakeRouteSequence_1(
-                this,
-                Invocation.method(
-                  #routeSequence,
-                  [id, direction],
-                  {
-                    #serviceTypes: serviceTypes,
-                    #excludeCrowding: excludeCrowding,
-                  },
-                ),
-              ),
-            ),
-          )
-          as _i5.Future<_i2.RouteSequence>);
+          ),
+        ),
+      ) as _i5.Future<_i2.RouteSequence>);
 
   @override
   _i5.Future<List<_i2.Line>> status(
@@ -381,22 +360,20 @@ class MockLineService extends _i1.Mock implements _i2.LineService {
     bool? detail,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #status,
-              [ids, startDate, endDate],
-              {#detail: detail},
-            ),
-            returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
-          )
-          as _i5.Future<List<_i2.Line>>);
+        Invocation.method(
+          #status,
+          [ids, startDate, endDate],
+          {#detail: detail},
+        ),
+        returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
+      ) as _i5.Future<List<_i2.Line>>);
 
   @override
   _i5.Future<List<_i2.Line>> statusByIds(List<String>? ids, {bool? detail}) =>
       (super.noSuchMethod(
-            Invocation.method(#statusByIds, [ids], {#detail: detail}),
-            returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
-          )
-          as _i5.Future<List<_i2.Line>>);
+        Invocation.method(#statusByIds, [ids], {#detail: detail}),
+        returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
+      ) as _i5.Future<List<_i2.Line>>);
 
   @override
   _i5.Future<_i2.RouteSearchResponse> search(
@@ -405,31 +382,29 @@ class MockLineService extends _i1.Mock implements _i2.LineService {
     List<String>? serviceTypes,
   }) =>
       (super.noSuchMethod(
+        Invocation.method(
+          #search,
+          [query],
+          {#modes: modes, #serviceTypes: serviceTypes},
+        ),
+        returnValue: _i5.Future<_i2.RouteSearchResponse>.value(
+          _FakeRouteSearchResponse_2(
+            this,
             Invocation.method(
               #search,
               [query],
               {#modes: modes, #serviceTypes: serviceTypes},
             ),
-            returnValue: _i5.Future<_i2.RouteSearchResponse>.value(
-              _FakeRouteSearchResponse_2(
-                this,
-                Invocation.method(
-                  #search,
-                  [query],
-                  {#modes: modes, #serviceTypes: serviceTypes},
-                ),
-              ),
-            ),
-          )
-          as _i5.Future<_i2.RouteSearchResponse>);
+          ),
+        ),
+      ) as _i5.Future<_i2.RouteSearchResponse>);
 
   @override
   _i5.Future<List<_i2.Line>> statusBySeverity(int? severity) =>
       (super.noSuchMethod(
-            Invocation.method(#statusBySeverity, [severity]),
-            returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
-          )
-          as _i5.Future<List<_i2.Line>>);
+        Invocation.method(#statusBySeverity, [severity]),
+        returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
+      ) as _i5.Future<List<_i2.Line>>);
 
   @override
   _i5.Future<List<_i2.Line>> statusByMode(
@@ -438,14 +413,13 @@ class MockLineService extends _i1.Mock implements _i2.LineService {
     String? severityLevel,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #statusByMode,
-              [modes],
-              {#detail: detail, #severityLevel: severityLevel},
-            ),
-            returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
-          )
-          as _i5.Future<List<_i2.Line>>);
+        Invocation.method(
+          #statusByMode,
+          [modes],
+          {#detail: detail, #severityLevel: severityLevel},
+        ),
+        returnValue: _i5.Future<List<_i2.Line>>.value(<_i2.Line>[]),
+      ) as _i5.Future<List<_i2.Line>>);
 
   @override
   _i5.Future<List<_i2.StopPoint>> stopPoints(
@@ -453,19 +427,18 @@ class MockLineService extends _i1.Mock implements _i2.LineService {
     bool? tflOperatedNationalRailStationsOnly,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #stopPoints,
-              [id],
-              {
-                #tflOperatedNationalRailStationsOnly:
-                    tflOperatedNationalRailStationsOnly,
-              },
-            ),
-            returnValue: _i5.Future<List<_i2.StopPoint>>.value(
-              <_i2.StopPoint>[],
-            ),
-          )
-          as _i5.Future<List<_i2.StopPoint>>);
+        Invocation.method(
+          #stopPoints,
+          [id],
+          {
+            #tflOperatedNationalRailStationsOnly:
+                tflOperatedNationalRailStationsOnly,
+          },
+        ),
+        returnValue: _i5.Future<List<_i2.StopPoint>>.value(
+          <_i2.StopPoint>[],
+        ),
+      ) as _i5.Future<List<_i2.StopPoint>>);
 
   @override
   _i5.Future<_i2.TimetableResponse> timetable(
@@ -474,23 +447,22 @@ class MockLineService extends _i1.Mock implements _i2.LineService {
     String? direction,
   }) =>
       (super.noSuchMethod(
+        Invocation.method(
+          #timetable,
+          [fromStopPointId, id],
+          {#direction: direction},
+        ),
+        returnValue: _i5.Future<_i2.TimetableResponse>.value(
+          _FakeTimetableResponse_3(
+            this,
             Invocation.method(
               #timetable,
               [fromStopPointId, id],
               {#direction: direction},
             ),
-            returnValue: _i5.Future<_i2.TimetableResponse>.value(
-              _FakeTimetableResponse_3(
-                this,
-                Invocation.method(
-                  #timetable,
-                  [fromStopPointId, id],
-                  {#direction: direction},
-                ),
-              ),
-            ),
-          )
-          as _i5.Future<_i2.TimetableResponse>);
+          ),
+        ),
+      ) as _i5.Future<_i2.TimetableResponse>);
 
   @override
   _i5.Future<_i2.TimetableResponse> timetableTo(
@@ -500,43 +472,40 @@ class MockLineService extends _i1.Mock implements _i2.LineService {
     String? direction,
   }) =>
       (super.noSuchMethod(
+        Invocation.method(
+          #timetableTo,
+          [fromStopPointId, id, toStopPointId],
+          {#direction: direction},
+        ),
+        returnValue: _i5.Future<_i2.TimetableResponse>.value(
+          _FakeTimetableResponse_3(
+            this,
             Invocation.method(
               #timetableTo,
               [fromStopPointId, id, toStopPointId],
               {#direction: direction},
             ),
-            returnValue: _i5.Future<_i2.TimetableResponse>.value(
-              _FakeTimetableResponse_3(
-                this,
-                Invocation.method(
-                  #timetableTo,
-                  [fromStopPointId, id, toStopPointId],
-                  {#direction: direction},
-                ),
-              ),
-            ),
-          )
-          as _i5.Future<_i2.TimetableResponse>);
+          ),
+        ),
+      ) as _i5.Future<_i2.TimetableResponse>);
 
   @override
   _i5.Future<List<_i2.Disruption>> disruption(List<String>? ids) =>
       (super.noSuchMethod(
-            Invocation.method(#disruption, [ids]),
-            returnValue: _i5.Future<List<_i2.Disruption>>.value(
-              <_i2.Disruption>[],
-            ),
-          )
-          as _i5.Future<List<_i2.Disruption>>);
+        Invocation.method(#disruption, [ids]),
+        returnValue: _i5.Future<List<_i2.Disruption>>.value(
+          <_i2.Disruption>[],
+        ),
+      ) as _i5.Future<List<_i2.Disruption>>);
 
   @override
   _i5.Future<List<_i2.Disruption>> disruptionByMode(List<String>? modes) =>
       (super.noSuchMethod(
-            Invocation.method(#disruptionByMode, [modes]),
-            returnValue: _i5.Future<List<_i2.Disruption>>.value(
-              <_i2.Disruption>[],
-            ),
-          )
-          as _i5.Future<List<_i2.Disruption>>);
+        Invocation.method(#disruptionByMode, [modes]),
+        returnValue: _i5.Future<List<_i2.Disruption>>.value(
+          <_i2.Disruption>[],
+        ),
+      ) as _i5.Future<List<_i2.Disruption>>);
 
   @override
   _i5.Future<List<_i2.Prediction>> arrivalsWithStopPoint(
@@ -546,29 +515,27 @@ class MockLineService extends _i1.Mock implements _i2.LineService {
     String? destinationStationId,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #arrivalsWithStopPoint,
-              [ids, stopPointId],
-              {
-                #direction: direction,
-                #destinationStationId: destinationStationId,
-              },
-            ),
-            returnValue: _i5.Future<List<_i2.Prediction>>.value(
-              <_i2.Prediction>[],
-            ),
-          )
-          as _i5.Future<List<_i2.Prediction>>);
+        Invocation.method(
+          #arrivalsWithStopPoint,
+          [ids, stopPointId],
+          {
+            #direction: direction,
+            #destinationStationId: destinationStationId,
+          },
+        ),
+        returnValue: _i5.Future<List<_i2.Prediction>>.value(
+          <_i2.Prediction>[],
+        ),
+      ) as _i5.Future<List<_i2.Prediction>>);
 
   @override
   _i5.Future<List<_i2.Prediction>> arrivals(List<String>? ids) =>
       (super.noSuchMethod(
-            Invocation.method(#arrivals, [ids]),
-            returnValue: _i5.Future<List<_i2.Prediction>>.value(
-              <_i2.Prediction>[],
-            ),
-          )
-          as _i5.Future<List<_i2.Prediction>>);
+        Invocation.method(#arrivals, [ids]),
+        returnValue: _i5.Future<List<_i2.Prediction>>.value(
+          <_i2.Prediction>[],
+        ),
+      ) as _i5.Future<List<_i2.Prediction>>);
 }
 
 /// A class which mocks [OccupancyService].
@@ -580,59 +547,51 @@ class MockOccupancyService extends _i1.Mock implements _i2.OccupancyService {
   }
 
   @override
-  _i5.Future<List<_i2.CarParkOccupancy>> getAll() =>
-      (super.noSuchMethod(
-            Invocation.method(#getAll, []),
-            returnValue: _i5.Future<List<_i2.CarParkOccupancy>>.value(
-              <_i2.CarParkOccupancy>[],
-            ),
-          )
-          as _i5.Future<List<_i2.CarParkOccupancy>>);
+  _i5.Future<List<_i2.CarParkOccupancy>> getAll() => (super.noSuchMethod(
+        Invocation.method(#getAll, []),
+        returnValue: _i5.Future<List<_i2.CarParkOccupancy>>.value(
+          <_i2.CarParkOccupancy>[],
+        ),
+      ) as _i5.Future<List<_i2.CarParkOccupancy>>);
 
   @override
   _i5.Future<List<_i2.ChargeConnectorOccupancy>>
-  getAllChargeConnectorStatus() =>
-      (super.noSuchMethod(
+      getAllChargeConnectorStatus() => (super.noSuchMethod(
             Invocation.method(#getAllChargeConnectorStatus, []),
             returnValue: _i5.Future<List<_i2.ChargeConnectorOccupancy>>.value(
               <_i2.ChargeConnectorOccupancy>[],
             ),
-          )
-          as _i5.Future<List<_i2.ChargeConnectorOccupancy>>);
+          ) as _i5.Future<List<_i2.ChargeConnectorOccupancy>>);
 
   @override
-  _i5.Future<_i2.CarParkOccupancy> get(String? id) =>
-      (super.noSuchMethod(
-            Invocation.method(#get, [id]),
-            returnValue: _i5.Future<_i2.CarParkOccupancy>.value(
-              _FakeCarParkOccupancy_4(this, Invocation.method(#get, [id])),
-            ),
-          )
-          as _i5.Future<_i2.CarParkOccupancy>);
+  _i5.Future<_i2.CarParkOccupancy> get(String? id) => (super.noSuchMethod(
+        Invocation.method(#get, [id]),
+        returnValue: _i5.Future<_i2.CarParkOccupancy>.value(
+          _FakeCarParkOccupancy_4(this, Invocation.method(#get, [id])),
+        ),
+      ) as _i5.Future<_i2.CarParkOccupancy>);
 
   @override
   _i5.Future<List<_i2.ChargeConnectorOccupancy>> getChargeConnectorStatus(
     List<String>? ids,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#getChargeConnectorStatus, [ids]),
-            returnValue: _i5.Future<List<_i2.ChargeConnectorOccupancy>>.value(
-              <_i2.ChargeConnectorOccupancy>[],
-            ),
-          )
-          as _i5.Future<List<_i2.ChargeConnectorOccupancy>>);
+        Invocation.method(#getChargeConnectorStatus, [ids]),
+        returnValue: _i5.Future<List<_i2.ChargeConnectorOccupancy>>.value(
+          <_i2.ChargeConnectorOccupancy>[],
+        ),
+      ) as _i5.Future<List<_i2.ChargeConnectorOccupancy>>);
 
   @override
   _i5.Future<List<_i2.BikePointOccupancy>> getBikePointsOccupancies(
     List<String>? ids,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#getBikePointsOccupancies, [ids]),
-            returnValue: _i5.Future<List<_i2.BikePointOccupancy>>.value(
-              <_i2.BikePointOccupancy>[],
-            ),
-          )
-          as _i5.Future<List<_i2.BikePointOccupancy>>);
+        Invocation.method(#getBikePointsOccupancies, [ids]),
+        returnValue: _i5.Future<List<_i2.BikePointOccupancy>>.value(
+          <_i2.BikePointOccupancy>[],
+        ),
+      ) as _i5.Future<List<_i2.BikePointOccupancy>>);
 }
 
 /// A class which mocks [PlaceService].
@@ -644,22 +603,18 @@ class MockPlaceService extends _i1.Mock implements _i2.PlaceService {
   }
 
   @override
-  _i5.Future<List<_i2.PlaceCategory>> metaCategories() =>
-      (super.noSuchMethod(
-            Invocation.method(#metaCategories, []),
-            returnValue: _i5.Future<List<_i2.PlaceCategory>>.value(
-              <_i2.PlaceCategory>[],
-            ),
-          )
-          as _i5.Future<List<_i2.PlaceCategory>>);
+  _i5.Future<List<_i2.PlaceCategory>> metaCategories() => (super.noSuchMethod(
+        Invocation.method(#metaCategories, []),
+        returnValue: _i5.Future<List<_i2.PlaceCategory>>.value(
+          <_i2.PlaceCategory>[],
+        ),
+      ) as _i5.Future<List<_i2.PlaceCategory>>);
 
   @override
-  _i5.Future<List<String>> metaPlaceTypes() =>
-      (super.noSuchMethod(
-            Invocation.method(#metaPlaceTypes, []),
-            returnValue: _i5.Future<List<String>>.value(<String>[]),
-          )
-          as _i5.Future<List<String>>);
+  _i5.Future<List<String>> metaPlaceTypes() => (super.noSuchMethod(
+        Invocation.method(#metaPlaceTypes, []),
+        returnValue: _i5.Future<List<String>>.value(<String>[]),
+      ) as _i5.Future<List<String>>);
 
   @override
   _i5.Future<List<_i2.Place>> getByType(
@@ -667,27 +622,25 @@ class MockPlaceService extends _i1.Mock implements _i2.PlaceService {
     bool? activeOnly,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(#getByType, [types], {#activeOnly: activeOnly}),
-            returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
-          )
-          as _i5.Future<List<_i2.Place>>);
+        Invocation.method(#getByType, [types], {#activeOnly: activeOnly}),
+        returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
+      ) as _i5.Future<List<_i2.Place>>);
 
   @override
   _i5.Future<_i2.Place> get(String? id, {bool? includeChildren}) =>
       (super.noSuchMethod(
-            Invocation.method(#get, [id], {#includeChildren: includeChildren}),
-            returnValue: _i5.Future<_i2.Place>.value(
-              _FakePlace_0(
-                this,
-                Invocation.method(
-                  #get,
-                  [id],
-                  {#includeChildren: includeChildren},
-                ),
-              ),
+        Invocation.method(#get, [id], {#includeChildren: includeChildren}),
+        returnValue: _i5.Future<_i2.Place>.value(
+          _FakePlace_0(
+            this,
+            Invocation.method(
+              #get,
+              [id],
+              {#includeChildren: includeChildren},
             ),
-          )
-          as _i5.Future<_i2.Place>);
+          ),
+        ),
+      ) as _i5.Future<_i2.Place>);
 
   @override
   _i5.Future<_i2.PlacesResponse> getByGeoPoint(
@@ -701,6 +654,21 @@ class MockPlaceService extends _i1.Mock implements _i2.PlaceService {
     int? numberOfPlacesToReturn,
   }) =>
       (super.noSuchMethod(
+        Invocation.method(
+          #getByGeoPoint,
+          [lat, lon],
+          {
+            #radius: radius,
+            #categories: categories,
+            #includeChildren: includeChildren,
+            #type: type,
+            #activeOnly: activeOnly,
+            #numberOfPlacesToReturn: numberOfPlacesToReturn,
+          },
+        ),
+        returnValue: _i5.Future<_i2.PlacesResponse>.value(
+          _FakePlacesResponse_5(
+            this,
             Invocation.method(
               #getByGeoPoint,
               [lat, lon],
@@ -713,41 +681,23 @@ class MockPlaceService extends _i1.Mock implements _i2.PlaceService {
                 #numberOfPlacesToReturn: numberOfPlacesToReturn,
               },
             ),
-            returnValue: _i5.Future<_i2.PlacesResponse>.value(
-              _FakePlacesResponse_5(
-                this,
-                Invocation.method(
-                  #getByGeoPoint,
-                  [lat, lon],
-                  {
-                    #radius: radius,
-                    #categories: categories,
-                    #includeChildren: includeChildren,
-                    #type: type,
-                    #activeOnly: activeOnly,
-                    #numberOfPlacesToReturn: numberOfPlacesToReturn,
-                  },
-                ),
-              ),
-            ),
-          )
-          as _i5.Future<_i2.PlacesResponse>);
+          ),
+        ),
+      ) as _i5.Future<_i2.PlacesResponse>);
 
   @override
   _i5.Future<List<_i2.Place>> getAt(String? type, double? lat, double? lon) =>
       (super.noSuchMethod(
-            Invocation.method(#getAt, [type, lat, lon]),
-            returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
-          )
-          as _i5.Future<List<_i2.Place>>);
+        Invocation.method(#getAt, [type, lat, lon]),
+        returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
+      ) as _i5.Future<List<_i2.Place>>);
 
   @override
   _i5.Future<List<_i2.Place>> search(String? name, {List<String>? types}) =>
       (super.noSuchMethod(
-            Invocation.method(#search, [name], {#types: types}),
-            returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
-          )
-          as _i5.Future<List<_i2.Place>>);
+        Invocation.method(#search, [name], {#types: types}),
+        returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
+      ) as _i5.Future<List<_i2.Place>>);
 }
 
 /// A class which mocks [RoadService].
@@ -759,24 +709,21 @@ class MockRoadService extends _i1.Mock implements _i2.RoadService {
   }
 
   @override
-  _i5.Future<List<_i2.RoadCorridor>> getAll() =>
-      (super.noSuchMethod(
-            Invocation.method(#getAll, []),
-            returnValue: _i5.Future<List<_i2.RoadCorridor>>.value(
-              <_i2.RoadCorridor>[],
-            ),
-          )
-          as _i5.Future<List<_i2.RoadCorridor>>);
+  _i5.Future<List<_i2.RoadCorridor>> getAll() => (super.noSuchMethod(
+        Invocation.method(#getAll, []),
+        returnValue: _i5.Future<List<_i2.RoadCorridor>>.value(
+          <_i2.RoadCorridor>[],
+        ),
+      ) as _i5.Future<List<_i2.RoadCorridor>>);
 
   @override
   _i5.Future<List<_i2.RoadCorridor>> get(List<String>? ids) =>
       (super.noSuchMethod(
-            Invocation.method(#get, [ids]),
-            returnValue: _i5.Future<List<_i2.RoadCorridor>>.value(
-              <_i2.RoadCorridor>[],
-            ),
-          )
-          as _i5.Future<List<_i2.RoadCorridor>>);
+        Invocation.method(#get, [ids]),
+        returnValue: _i5.Future<List<_i2.RoadCorridor>>.value(
+          <_i2.RoadCorridor>[],
+        ),
+      ) as _i5.Future<List<_i2.RoadCorridor>>);
 
   @override
   _i5.Future<List<_i2.RoadCorridor>> status(
@@ -785,16 +732,15 @@ class MockRoadService extends _i1.Mock implements _i2.RoadService {
     DateTime? endDate,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #status,
-              [ids],
-              {#startDate: startDate, #endDate: endDate},
-            ),
-            returnValue: _i5.Future<List<_i2.RoadCorridor>>.value(
-              <_i2.RoadCorridor>[],
-            ),
-          )
-          as _i5.Future<List<_i2.RoadCorridor>>);
+        Invocation.method(
+          #status,
+          [ids],
+          {#startDate: startDate, #endDate: endDate},
+        ),
+        returnValue: _i5.Future<List<_i2.RoadCorridor>>.value(
+          <_i2.RoadCorridor>[],
+        ),
+      ) as _i5.Future<List<_i2.RoadCorridor>>);
 
   @override
   _i5.Future<List<_i2.RoadDisruption>> disruption(
@@ -805,21 +751,20 @@ class MockRoadService extends _i1.Mock implements _i2.RoadService {
     bool? closures,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #disruption,
-              [ids],
-              {
-                #stripContent: stripContent,
-                #severities: severities,
-                #categories: categories,
-                #closures: closures,
-              },
-            ),
-            returnValue: _i5.Future<List<_i2.RoadDisruption>>.value(
-              <_i2.RoadDisruption>[],
-            ),
-          )
-          as _i5.Future<List<_i2.RoadDisruption>>);
+        Invocation.method(
+          #disruption,
+          [ids],
+          {
+            #stripContent: stripContent,
+            #severities: severities,
+            #categories: categories,
+            #closures: closures,
+          },
+        ),
+        returnValue: _i5.Future<List<_i2.RoadDisruption>>.value(
+          <_i2.RoadDisruption>[],
+        ),
+      ) as _i5.Future<List<_i2.RoadDisruption>>);
 
   @override
   _i5.Future<List<_i2.DisruptedStreetSegment>> disruptedStreets({
@@ -827,15 +772,14 @@ class MockRoadService extends _i1.Mock implements _i2.RoadService {
     DateTime? endDate,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(#disruptedStreets, [], {
-              #startDate: startDate,
-              #endDate: endDate,
-            }),
-            returnValue: _i5.Future<List<_i2.DisruptedStreetSegment>>.value(
-              <_i2.DisruptedStreetSegment>[],
-            ),
-          )
-          as _i5.Future<List<_i2.DisruptedStreetSegment>>);
+        Invocation.method(#disruptedStreets, [], {
+          #startDate: startDate,
+          #endDate: endDate,
+        }),
+        returnValue: _i5.Future<List<_i2.DisruptedStreetSegment>>.value(
+          <_i2.DisruptedStreetSegment>[],
+        ),
+      ) as _i5.Future<List<_i2.DisruptedStreetSegment>>);
 
   @override
   _i5.Future<List<_i2.RoadDisruption>> disruptionById(
@@ -843,34 +787,29 @@ class MockRoadService extends _i1.Mock implements _i2.RoadService {
     bool? stripContent,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #disruptionById,
-              [disruptionIds],
-              {#stripContent: stripContent},
-            ),
-            returnValue: _i5.Future<List<_i2.RoadDisruption>>.value(
-              <_i2.RoadDisruption>[],
-            ),
-          )
-          as _i5.Future<List<_i2.RoadDisruption>>);
+        Invocation.method(
+          #disruptionById,
+          [disruptionIds],
+          {#stripContent: stripContent},
+        ),
+        returnValue: _i5.Future<List<_i2.RoadDisruption>>.value(
+          <_i2.RoadDisruption>[],
+        ),
+      ) as _i5.Future<List<_i2.RoadDisruption>>);
 
   @override
-  _i5.Future<List<String>> metaCategories() =>
-      (super.noSuchMethod(
-            Invocation.method(#metaCategories, []),
-            returnValue: _i5.Future<List<String>>.value(<String>[]),
-          )
-          as _i5.Future<List<String>>);
+  _i5.Future<List<String>> metaCategories() => (super.noSuchMethod(
+        Invocation.method(#metaCategories, []),
+        returnValue: _i5.Future<List<String>>.value(<String>[]),
+      ) as _i5.Future<List<String>>);
 
   @override
-  _i5.Future<List<_i2.StatusSeverity>> metaSeverities() =>
-      (super.noSuchMethod(
-            Invocation.method(#metaSeverities, []),
-            returnValue: _i5.Future<List<_i2.StatusSeverity>>.value(
-              <_i2.StatusSeverity>[],
-            ),
-          )
-          as _i5.Future<List<_i2.StatusSeverity>>);
+  _i5.Future<List<_i2.StatusSeverity>> metaSeverities() => (super.noSuchMethod(
+        Invocation.method(#metaSeverities, []),
+        returnValue: _i5.Future<List<_i2.StatusSeverity>>.value(
+          <_i2.StatusSeverity>[],
+        ),
+      ) as _i5.Future<List<_i2.StatusSeverity>>);
 }
 
 /// A class which mocks [StopPointService].
@@ -884,28 +823,23 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
   @override
   _i5.Future<List<_i2.StopPointCategory>> metaCategories() =>
       (super.noSuchMethod(
-            Invocation.method(#metaCategories, []),
-            returnValue: _i5.Future<List<_i2.StopPointCategory>>.value(
-              <_i2.StopPointCategory>[],
-            ),
-          )
-          as _i5.Future<List<_i2.StopPointCategory>>);
+        Invocation.method(#metaCategories, []),
+        returnValue: _i5.Future<List<_i2.StopPointCategory>>.value(
+          <_i2.StopPointCategory>[],
+        ),
+      ) as _i5.Future<List<_i2.StopPointCategory>>);
 
   @override
-  _i5.Future<List<String>> metaStopTypes() =>
-      (super.noSuchMethod(
-            Invocation.method(#metaStopTypes, []),
-            returnValue: _i5.Future<List<String>>.value(<String>[]),
-          )
-          as _i5.Future<List<String>>);
+  _i5.Future<List<String>> metaStopTypes() => (super.noSuchMethod(
+        Invocation.method(#metaStopTypes, []),
+        returnValue: _i5.Future<List<String>>.value(<String>[]),
+      ) as _i5.Future<List<String>>);
 
   @override
-  _i5.Future<List<_i2.Mode>> metaModes() =>
-      (super.noSuchMethod(
-            Invocation.method(#metaModes, []),
-            returnValue: _i5.Future<List<_i2.Mode>>.value(<_i2.Mode>[]),
-          )
-          as _i5.Future<List<_i2.Mode>>);
+  _i5.Future<List<_i2.Mode>> metaModes() => (super.noSuchMethod(
+        Invocation.method(#metaModes, []),
+        returnValue: _i5.Future<List<_i2.Mode>>.value(<_i2.Mode>[]),
+      ) as _i5.Future<List<_i2.Mode>>);
 
   @override
   _i5.Future<List<_i2.StopPoint>> get(
@@ -913,16 +847,15 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
     bool? includeCrowdingData,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #get,
-              [ids],
-              {#includeCrowdingData: includeCrowdingData},
-            ),
-            returnValue: _i5.Future<List<_i2.StopPoint>>.value(
-              <_i2.StopPoint>[],
-            ),
-          )
-          as _i5.Future<List<_i2.StopPoint>>);
+        Invocation.method(
+          #get,
+          [ids],
+          {#includeCrowdingData: includeCrowdingData},
+        ),
+        returnValue: _i5.Future<List<_i2.StopPoint>>.value(
+          <_i2.StopPoint>[],
+        ),
+      ) as _i5.Future<List<_i2.StopPoint>>);
 
   @override
   _i5.Future<List<_i2.Place>> getPlaceTypes(
@@ -930,10 +863,9 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
     List<String>? placeTypes,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#getPlaceTypes, [id, placeTypes]),
-            returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
-          )
-          as _i5.Future<List<_i2.Place>>);
+        Invocation.method(#getPlaceTypes, [id, placeTypes]),
+        returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
+      ) as _i5.Future<List<_i2.Place>>);
 
   @override
   _i5.Future<_i2.StopPoint> crowding(
@@ -942,25 +874,23 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
     String? direction,
   ) =>
       (super.noSuchMethod(
+        Invocation.method(#crowding, [id, line, direction]),
+        returnValue: _i5.Future<_i2.StopPoint>.value(
+          _FakeStopPoint_6(
+            this,
             Invocation.method(#crowding, [id, line, direction]),
-            returnValue: _i5.Future<_i2.StopPoint>.value(
-              _FakeStopPoint_6(
-                this,
-                Invocation.method(#crowding, [id, line, direction]),
-              ),
-            ),
-          )
-          as _i5.Future<_i2.StopPoint>);
+          ),
+        ),
+      ) as _i5.Future<_i2.StopPoint>);
 
   @override
   _i5.Future<List<_i2.StopPoint>> getByType(List<String>? types) =>
       (super.noSuchMethod(
-            Invocation.method(#getByType, [types]),
-            returnValue: _i5.Future<List<_i2.StopPoint>>.value(
-              <_i2.StopPoint>[],
-            ),
-          )
-          as _i5.Future<List<_i2.StopPoint>>);
+        Invocation.method(#getByType, [types]),
+        returnValue: _i5.Future<List<_i2.StopPoint>>.value(
+          <_i2.StopPoint>[],
+        ),
+      ) as _i5.Future<List<_i2.StopPoint>>);
 
   @override
   _i5.Future<List<_i2.StopPoint>> getByTypeWithPagination(
@@ -968,12 +898,11 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
     int? page,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#getByTypeWithPagination, [types, page]),
-            returnValue: _i5.Future<List<_i2.StopPoint>>.value(
-              <_i2.StopPoint>[],
-            ),
-          )
-          as _i5.Future<List<_i2.StopPoint>>);
+        Invocation.method(#getByTypeWithPagination, [types, page]),
+        returnValue: _i5.Future<List<_i2.StopPoint>>.value(
+          <_i2.StopPoint>[],
+        ),
+      ) as _i5.Future<List<_i2.StopPoint>>);
 
   @override
   _i5.Future<List<_i2.LineServiceType>> getServiceTypes(
@@ -982,26 +911,23 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
     List<String>? modes,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #getServiceTypes,
-              [id],
-              {#lineIds: lineIds, #modes: modes},
-            ),
-            returnValue: _i5.Future<List<_i2.LineServiceType>>.value(
-              <_i2.LineServiceType>[],
-            ),
-          )
-          as _i5.Future<List<_i2.LineServiceType>>);
+        Invocation.method(
+          #getServiceTypes,
+          [id],
+          {#lineIds: lineIds, #modes: modes},
+        ),
+        returnValue: _i5.Future<List<_i2.LineServiceType>>.value(
+          <_i2.LineServiceType>[],
+        ),
+      ) as _i5.Future<List<_i2.LineServiceType>>);
 
   @override
-  _i5.Future<List<_i2.Prediction>> arrivals(String? id) =>
-      (super.noSuchMethod(
-            Invocation.method(#arrivals, [id]),
-            returnValue: _i5.Future<List<_i2.Prediction>>.value(
-              <_i2.Prediction>[],
-            ),
-          )
-          as _i5.Future<List<_i2.Prediction>>);
+  _i5.Future<List<_i2.Prediction>> arrivals(String? id) => (super.noSuchMethod(
+        Invocation.method(#arrivals, [id]),
+        returnValue: _i5.Future<List<_i2.Prediction>>.value(
+          <_i2.Prediction>[],
+        ),
+      ) as _i5.Future<List<_i2.Prediction>>);
 
   @override
   _i5.Future<List<_i2.ArrivalDeparture>> arrivalDepartures(
@@ -1009,12 +935,11 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
     List<String>? lineIds,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#arrivalDepartures, [id, lineIds]),
-            returnValue: _i5.Future<List<_i2.ArrivalDeparture>>.value(
-              <_i2.ArrivalDeparture>[],
-            ),
-          )
-          as _i5.Future<List<_i2.ArrivalDeparture>>);
+        Invocation.method(#arrivalDepartures, [id, lineIds]),
+        returnValue: _i5.Future<List<_i2.ArrivalDeparture>>.value(
+          <_i2.ArrivalDeparture>[],
+        ),
+      ) as _i5.Future<List<_i2.ArrivalDeparture>>);
 
   @override
   _i5.Future<List<_i2.Identifier>> reachableFrom(
@@ -1023,16 +948,15 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
     List<String>? serviceTypes,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #reachableFrom,
-              [id, lineId],
-              {#serviceTypes: serviceTypes},
-            ),
-            returnValue: _i5.Future<List<_i2.Identifier>>.value(
-              <_i2.Identifier>[],
-            ),
-          )
-          as _i5.Future<List<_i2.Identifier>>);
+        Invocation.method(
+          #reachableFrom,
+          [id, lineId],
+          {#serviceTypes: serviceTypes},
+        ),
+        returnValue: _i5.Future<List<_i2.Identifier>>.value(
+          <_i2.Identifier>[],
+        ),
+      ) as _i5.Future<List<_i2.Identifier>>);
 
   @override
   _i5.Future<List<_i2.StopPointRouteSection>> route(
@@ -1040,12 +964,11 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
     List<String>? serviceTypes,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(#route, [id], {#serviceTypes: serviceTypes}),
-            returnValue: _i5.Future<List<_i2.StopPointRouteSection>>.value(
-              <_i2.StopPointRouteSection>[],
-            ),
-          )
-          as _i5.Future<List<_i2.StopPointRouteSection>>);
+        Invocation.method(#route, [id], {#serviceTypes: serviceTypes}),
+        returnValue: _i5.Future<List<_i2.StopPointRouteSection>>.value(
+          <_i2.StopPointRouteSection>[],
+        ),
+      ) as _i5.Future<List<_i2.StopPointRouteSection>>);
 
   @override
   _i5.Future<List<_i2.DisruptedPoint>> disruptionByMode(
@@ -1053,16 +976,15 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
     bool? includeRouteBlockedStops,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #disruptionByMode,
-              [modes],
-              {#includeRouteBlockedStops: includeRouteBlockedStops},
-            ),
-            returnValue: _i5.Future<List<_i2.DisruptedPoint>>.value(
-              <_i2.DisruptedPoint>[],
-            ),
-          )
-          as _i5.Future<List<_i2.DisruptedPoint>>);
+        Invocation.method(
+          #disruptionByMode,
+          [modes],
+          {#includeRouteBlockedStops: includeRouteBlockedStops},
+        ),
+        returnValue: _i5.Future<List<_i2.DisruptedPoint>>.value(
+          <_i2.DisruptedPoint>[],
+        ),
+      ) as _i5.Future<List<_i2.DisruptedPoint>>);
 
   @override
   _i5.Future<List<_i2.DisruptedPoint>> disruption(
@@ -1072,20 +994,19 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
     bool? flattenResponse,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #disruption,
-              [ids],
-              {
-                #getFamily: getFamily,
-                #includeRouteBlockedStops: includeRouteBlockedStops,
-                #flattenResponse: flattenResponse,
-              },
-            ),
-            returnValue: _i5.Future<List<_i2.DisruptedPoint>>.value(
-              <_i2.DisruptedPoint>[],
-            ),
-          )
-          as _i5.Future<List<_i2.DisruptedPoint>>);
+        Invocation.method(
+          #disruption,
+          [ids],
+          {
+            #getFamily: getFamily,
+            #includeRouteBlockedStops: includeRouteBlockedStops,
+            #flattenResponse: flattenResponse,
+          },
+        ),
+        returnValue: _i5.Future<List<_i2.DisruptedPoint>>.value(
+          <_i2.DisruptedPoint>[],
+        ),
+      ) as _i5.Future<List<_i2.DisruptedPoint>>);
 
   @override
   _i5.Future<String> direction(
@@ -1094,33 +1015,31 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
     String? lineId,
   }) =>
       (super.noSuchMethod(
+        Invocation.method(
+          #direction,
+          [id, toStopPointId],
+          {#lineId: lineId},
+        ),
+        returnValue: _i5.Future<String>.value(
+          _i6.dummyValue<String>(
+            this,
             Invocation.method(
               #direction,
               [id, toStopPointId],
               {#lineId: lineId},
             ),
-            returnValue: _i5.Future<String>.value(
-              _i6.dummyValue<String>(
-                this,
-                Invocation.method(
-                  #direction,
-                  [id, toStopPointId],
-                  {#lineId: lineId},
-                ),
-              ),
-            ),
-          )
-          as _i5.Future<String>);
+          ),
+        ),
+      ) as _i5.Future<String>);
 
   @override
   _i5.Future<List<_i2.FaresSection>> fare(String? id, String? toStopPointId) =>
       (super.noSuchMethod(
-            Invocation.method(#fare, [id, toStopPointId]),
-            returnValue: _i5.Future<List<_i2.FaresSection>>.value(
-              <_i2.FaresSection>[],
-            ),
-          )
-          as _i5.Future<List<_i2.FaresSection>>);
+        Invocation.method(#fare, [id, toStopPointId]),
+        returnValue: _i5.Future<List<_i2.FaresSection>>.value(
+          <_i2.FaresSection>[],
+        ),
+      ) as _i5.Future<List<_i2.FaresSection>>);
 
   @override
   _i5.Future<_i2.StopPointsResponse> getByGeoPoint(
@@ -1134,6 +1053,20 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
     bool? returnLines,
   }) =>
       (super.noSuchMethod(
+        Invocation.method(
+          #getByGeoPoint,
+          [stopTypes, lat, lon],
+          {
+            #radius: radius,
+            #useStopPointHierarchy: useStopPointHierarchy,
+            #modes: modes,
+            #categories: categories,
+            #returnLines: returnLines,
+          },
+        ),
+        returnValue: _i5.Future<_i2.StopPointsResponse>.value(
+          _FakeStopPointsResponse_7(
+            this,
             Invocation.method(
               #getByGeoPoint,
               [stopTypes, lat, lon],
@@ -1145,24 +1078,9 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
                 #returnLines: returnLines,
               },
             ),
-            returnValue: _i5.Future<_i2.StopPointsResponse>.value(
-              _FakeStopPointsResponse_7(
-                this,
-                Invocation.method(
-                  #getByGeoPoint,
-                  [stopTypes, lat, lon],
-                  {
-                    #radius: radius,
-                    #useStopPointHierarchy: useStopPointHierarchy,
-                    #modes: modes,
-                    #categories: categories,
-                    #returnLines: returnLines,
-                  },
-                ),
-              ),
-            ),
-          )
-          as _i5.Future<_i2.StopPointsResponse>);
+          ),
+        ),
+      ) as _i5.Future<_i2.StopPointsResponse>);
 
   @override
   _i5.Future<_i2.StopPointsResponse> getByMode(
@@ -1170,15 +1088,14 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
     int? page,
   }) =>
       (super.noSuchMethod(
+        Invocation.method(#getByMode, [modes], {#page: page}),
+        returnValue: _i5.Future<_i2.StopPointsResponse>.value(
+          _FakeStopPointsResponse_7(
+            this,
             Invocation.method(#getByMode, [modes], {#page: page}),
-            returnValue: _i5.Future<_i2.StopPointsResponse>.value(
-              _FakeStopPointsResponse_7(
-                this,
-                Invocation.method(#getByMode, [modes], {#page: page}),
-              ),
-            ),
-          )
-          as _i5.Future<_i2.StopPointsResponse>);
+          ),
+        ),
+      ) as _i5.Future<_i2.StopPointsResponse>);
 
   @override
   _i5.Future<_i2.SearchResponse> search(
@@ -1191,6 +1108,22 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
     bool? tflOperatedNationalRailStationsOnly,
   }) =>
       (super.noSuchMethod(
+        Invocation.method(
+          #search,
+          [query],
+          {
+            #modes: modes,
+            #faresOnly: faresOnly,
+            #maxResults: maxResults,
+            #lines: lines,
+            #includeHubs: includeHubs,
+            #tflOperatedNationalRailStationsOnly:
+                tflOperatedNationalRailStationsOnly,
+          },
+        ),
+        returnValue: _i5.Future<_i2.SearchResponse>.value(
+          _FakeSearchResponse_8(
+            this,
             Invocation.method(
               #search,
               [query],
@@ -1204,55 +1137,35 @@ class MockStopPointService extends _i1.Mock implements _i2.StopPointService {
                     tflOperatedNationalRailStationsOnly,
               },
             ),
-            returnValue: _i5.Future<_i2.SearchResponse>.value(
-              _FakeSearchResponse_8(
-                this,
-                Invocation.method(
-                  #search,
-                  [query],
-                  {
-                    #modes: modes,
-                    #faresOnly: faresOnly,
-                    #maxResults: maxResults,
-                    #lines: lines,
-                    #includeHubs: includeHubs,
-                    #tflOperatedNationalRailStationsOnly:
-                        tflOperatedNationalRailStationsOnly,
-                  },
-                ),
-              ),
-            ),
-          )
-          as _i5.Future<_i2.SearchResponse>);
+          ),
+        ),
+      ) as _i5.Future<_i2.SearchResponse>);
 
   @override
   _i5.Future<_i2.StopPoint> getBySms(String? id, {String? output}) =>
       (super.noSuchMethod(
+        Invocation.method(#getBySms, [id], {#output: output}),
+        returnValue: _i5.Future<_i2.StopPoint>.value(
+          _FakeStopPoint_6(
+            this,
             Invocation.method(#getBySms, [id], {#output: output}),
-            returnValue: _i5.Future<_i2.StopPoint>.value(
-              _FakeStopPoint_6(
-                this,
-                Invocation.method(#getBySms, [id], {#output: output}),
-              ),
-            ),
-          )
-          as _i5.Future<_i2.StopPoint>);
+          ),
+        ),
+      ) as _i5.Future<_i2.StopPoint>);
 
   @override
   _i5.Future<List<_i2.Place>> getTaxiRanksById(String? stopPointId) =>
       (super.noSuchMethod(
-            Invocation.method(#getTaxiRanksById, [stopPointId]),
-            returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
-          )
-          as _i5.Future<List<_i2.Place>>);
+        Invocation.method(#getTaxiRanksById, [stopPointId]),
+        returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
+      ) as _i5.Future<List<_i2.Place>>);
 
   @override
   _i5.Future<List<_i2.Place>> getCarParksById(String? stopPointId) =>
       (super.noSuchMethod(
-            Invocation.method(#getCarParksById, [stopPointId]),
-            returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
-          )
-          as _i5.Future<List<_i2.Place>>);
+        Invocation.method(#getCarParksById, [stopPointId]),
+        returnValue: _i5.Future<List<_i2.Place>>.value(<_i2.Place>[]),
+      ) as _i5.Future<List<_i2.Place>>);
 }
 
 /// A class which mocks [TflApiClient].
@@ -1264,155 +1177,125 @@ class MockTflApiClient extends _i1.Mock implements _i2.TflApiClient {
   }
 
   @override
-  _i2.AccidentStatsService get accidentStats =>
-      (super.noSuchMethod(
-            Invocation.getter(#accidentStats),
-            returnValue: _FakeAccidentStatsService_9(
-              this,
-              Invocation.getter(#accidentStats),
-            ),
-          )
-          as _i2.AccidentStatsService);
+  _i2.AccidentStatsService get accidentStats => (super.noSuchMethod(
+        Invocation.getter(#accidentStats),
+        returnValue: _FakeAccidentStatsService_9(
+          this,
+          Invocation.getter(#accidentStats),
+        ),
+      ) as _i2.AccidentStatsService);
 
   @override
-  _i2.AirQualityService get airQuality =>
-      (super.noSuchMethod(
-            Invocation.getter(#airQuality),
-            returnValue: _FakeAirQualityService_10(
-              this,
-              Invocation.getter(#airQuality),
-            ),
-          )
-          as _i2.AirQualityService);
+  _i2.AirQualityService get airQuality => (super.noSuchMethod(
+        Invocation.getter(#airQuality),
+        returnValue: _FakeAirQualityService_10(
+          this,
+          Invocation.getter(#airQuality),
+        ),
+      ) as _i2.AirQualityService);
 
   @override
-  _i2.BikePointService get bikePoint =>
-      (super.noSuchMethod(
-            Invocation.getter(#bikePoint),
-            returnValue: _FakeBikePointService_11(
-              this,
-              Invocation.getter(#bikePoint),
-            ),
-          )
-          as _i2.BikePointService);
+  _i2.BikePointService get bikePoint => (super.noSuchMethod(
+        Invocation.getter(#bikePoint),
+        returnValue: _FakeBikePointService_11(
+          this,
+          Invocation.getter(#bikePoint),
+        ),
+      ) as _i2.BikePointService);
 
   @override
-  _i2.CabwiseService get cabwise =>
-      (super.noSuchMethod(
-            Invocation.getter(#cabwise),
-            returnValue: _FakeCabwiseService_12(
-              this,
-              Invocation.getter(#cabwise),
-            ),
-          )
-          as _i2.CabwiseService);
+  _i2.CabwiseService get cabwise => (super.noSuchMethod(
+        Invocation.getter(#cabwise),
+        returnValue: _FakeCabwiseService_12(
+          this,
+          Invocation.getter(#cabwise),
+        ),
+      ) as _i2.CabwiseService);
 
   @override
-  _i2.CycleSuperhighwayService get cycleSuperhighway =>
-      (super.noSuchMethod(
-            Invocation.getter(#cycleSuperhighway),
-            returnValue: _FakeCycleSuperhighwayService_13(
-              this,
-              Invocation.getter(#cycleSuperhighway),
-            ),
-          )
-          as _i2.CycleSuperhighwayService);
+  _i2.CycleSuperhighwayService get cycleSuperhighway => (super.noSuchMethod(
+        Invocation.getter(#cycleSuperhighway),
+        returnValue: _FakeCycleSuperhighwayService_13(
+          this,
+          Invocation.getter(#cycleSuperhighway),
+        ),
+      ) as _i2.CycleSuperhighwayService);
 
   @override
-  _i2.JourneyService get journey =>
-      (super.noSuchMethod(
-            Invocation.getter(#journey),
-            returnValue: _FakeJourneyService_14(
-              this,
-              Invocation.getter(#journey),
-            ),
-          )
-          as _i2.JourneyService);
+  _i2.JourneyService get journey => (super.noSuchMethod(
+        Invocation.getter(#journey),
+        returnValue: _FakeJourneyService_14(
+          this,
+          Invocation.getter(#journey),
+        ),
+      ) as _i2.JourneyService);
 
   @override
-  _i2.LineService get line =>
-      (super.noSuchMethod(
-            Invocation.getter(#line),
-            returnValue: _FakeLineService_15(this, Invocation.getter(#line)),
-          )
-          as _i2.LineService);
+  _i2.LineService get line => (super.noSuchMethod(
+        Invocation.getter(#line),
+        returnValue: _FakeLineService_15(this, Invocation.getter(#line)),
+      ) as _i2.LineService);
 
   @override
-  _i2.ModeService get mode =>
-      (super.noSuchMethod(
-            Invocation.getter(#mode),
-            returnValue: _FakeModeService_16(this, Invocation.getter(#mode)),
-          )
-          as _i2.ModeService);
+  _i2.ModeService get mode => (super.noSuchMethod(
+        Invocation.getter(#mode),
+        returnValue: _FakeModeService_16(this, Invocation.getter(#mode)),
+      ) as _i2.ModeService);
 
   @override
-  _i2.NetworkStatusService get networkStatus =>
-      (super.noSuchMethod(
-            Invocation.getter(#networkStatus),
-            returnValue: _FakeNetworkStatusService_17(
-              this,
-              Invocation.getter(#networkStatus),
-            ),
-          )
-          as _i2.NetworkStatusService);
+  _i2.NetworkStatusService get networkStatus => (super.noSuchMethod(
+        Invocation.getter(#networkStatus),
+        returnValue: _FakeNetworkStatusService_17(
+          this,
+          Invocation.getter(#networkStatus),
+        ),
+      ) as _i2.NetworkStatusService);
 
   @override
-  _i2.OccupancyService get occupancy =>
-      (super.noSuchMethod(
-            Invocation.getter(#occupancy),
-            returnValue: _FakeOccupancyService_18(
-              this,
-              Invocation.getter(#occupancy),
-            ),
-          )
-          as _i2.OccupancyService);
+  _i2.OccupancyService get occupancy => (super.noSuchMethod(
+        Invocation.getter(#occupancy),
+        returnValue: _FakeOccupancyService_18(
+          this,
+          Invocation.getter(#occupancy),
+        ),
+      ) as _i2.OccupancyService);
 
   @override
-  _i2.PlaceService get place =>
-      (super.noSuchMethod(
-            Invocation.getter(#place),
-            returnValue: _FakePlaceService_19(this, Invocation.getter(#place)),
-          )
-          as _i2.PlaceService);
+  _i2.PlaceService get place => (super.noSuchMethod(
+        Invocation.getter(#place),
+        returnValue: _FakePlaceService_19(this, Invocation.getter(#place)),
+      ) as _i2.PlaceService);
 
   @override
-  _i2.RoadService get road =>
-      (super.noSuchMethod(
-            Invocation.getter(#road),
-            returnValue: _FakeRoadService_20(this, Invocation.getter(#road)),
-          )
-          as _i2.RoadService);
+  _i2.RoadService get road => (super.noSuchMethod(
+        Invocation.getter(#road),
+        returnValue: _FakeRoadService_20(this, Invocation.getter(#road)),
+      ) as _i2.RoadService);
 
   @override
-  _i2.SearchService get search =>
-      (super.noSuchMethod(
-            Invocation.getter(#search),
-            returnValue: _FakeSearchService_21(
-              this,
-              Invocation.getter(#search),
-            ),
-          )
-          as _i2.SearchService);
+  _i2.SearchService get search => (super.noSuchMethod(
+        Invocation.getter(#search),
+        returnValue: _FakeSearchService_21(
+          this,
+          Invocation.getter(#search),
+        ),
+      ) as _i2.SearchService);
 
   @override
-  _i2.StopPointService get stopPoint =>
-      (super.noSuchMethod(
-            Invocation.getter(#stopPoint),
-            returnValue: _FakeStopPointService_22(
-              this,
-              Invocation.getter(#stopPoint),
-            ),
-          )
-          as _i2.StopPointService);
+  _i2.StopPointService get stopPoint => (super.noSuchMethod(
+        Invocation.getter(#stopPoint),
+        returnValue: _FakeStopPointService_22(
+          this,
+          Invocation.getter(#stopPoint),
+        ),
+      ) as _i2.StopPointService);
 
   @override
-  _i2.VehicleService get vehicle =>
-      (super.noSuchMethod(
-            Invocation.getter(#vehicle),
-            returnValue: _FakeVehicleService_23(
-              this,
-              Invocation.getter(#vehicle),
-            ),
-          )
-          as _i2.VehicleService);
+  _i2.VehicleService get vehicle => (super.noSuchMethod(
+        Invocation.getter(#vehicle),
+        returnValue: _FakeVehicleService_23(
+          this,
+          Invocation.getter(#vehicle),
+        ),
+      ) as _i2.VehicleService);
 }
