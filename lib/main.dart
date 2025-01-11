@@ -11,9 +11,6 @@ import 'src/notifiers/line_filters_change_notifier.dart';
 import 'src/notifiers/line_line_route_filters_change_notifier.dart';
 import 'src/notifiers/line_prediction_filters_change_notifier.dart';
 import 'src/notifiers/stop_point_filters_change_notifier.dart';
-import 'src/pages/car_parks/car_park_bays_page.dart';
-import 'src/pages/car_parks/car_park_page.dart';
-import 'src/pages/car_parks/car_parks_page.dart';
 import 'src/pages/lines/line_line_disruptions_page.dart';
 import 'src/pages/lines/line_line_routes_page.dart';
 import 'src/pages/lines/line_line_statuses_page.dart';
@@ -32,6 +29,7 @@ import 'src/pages/stop_points/stop_point_modes_page.dart';
 import 'src/pages/stop_points/stop_point_page.dart';
 import 'src/pages/stop_points/stop_points_page.dart';
 import 'src/routes/bike_points/bike_points_route.dart';
+import 'src/routes/car_parks/car_parks_route.dart';
 import 'src/routes/home_route.dart';
 import 'src/routes/sign_in_route.dart';
 
@@ -86,32 +84,7 @@ class MyApp extends StatelessWidget {
           routes: [
             $homeRoute,
             $bikePointsRoute,
-            GoRoute(
-              path: '/car-parks',
-              builder: (context, state) {
-                return CarParksPage();
-              },
-              routes: [
-                GoRoute(
-                  path: ':id',
-                  builder: (context, state) {
-                    return CarParkPage(
-                      id: state.pathParameters['id']!,
-                    );
-                  },
-                  routes: [
-                    GoRoute(
-                      path: 'bays',
-                      builder: (context, state) {
-                        return CarParkBaysPage(
-                          id: state.pathParameters['id']!,
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            $carParksRoute,
             GoRoute(
               path: '/lines',
               builder: (context, state) {

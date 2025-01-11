@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../../delegates/place_search_delegate.dart';
+import '../../routes/car_parks/car_park_route.dart';
+import '../../routes/car_parks/car_parks_route.dart';
 import '../../widgets/circular_progress_indicator_future_builder.dart';
 import '../../widgets/place_list_tile.dart';
 import '../../widgets/tfl_api_explorer_drawer.dart';
@@ -41,7 +43,11 @@ class _CarParksPageState extends State<CarParksPage> {
               );
 
               if (carPark != null) {
-                router.go('/car-parks/${carPark.id}');
+                router.go(
+                  CarParkRoute(
+                    id: carPark.id!,
+                  ).location,
+                );
               }
             },
           ),
@@ -56,7 +62,9 @@ class _CarParksPageState extends State<CarParksPage> {
                 return PlaceListTile(
                   place: data[index],
                   onTap: () {
-                    context.go('/car-parks/${data[index].id}');
+                    CarParkRoute(
+                      id: data[index].id!,
+                    ).go(context);
                   },
                 );
               },

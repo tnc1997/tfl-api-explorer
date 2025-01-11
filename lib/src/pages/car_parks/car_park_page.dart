@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../../routes/car_parks/car_park_bays_route.dart';
+import '../../routes/car_parks/car_parks_route.dart';
 import '../../widgets/circular_progress_indicator_future_builder.dart';
 
 class CarParkPage extends StatefulWidget {
@@ -45,7 +46,9 @@ class _CarParkPageState extends State<CarParkPage> {
                 ListTile(
                   title: Text('Bays'),
                   onTap: () {
-                    context.go('/car-parks/${widget.id}/bays');
+                    CarParkBaysRoute(
+                      id: widget.id,
+                    ).go(context);
                   },
                 ),
               ],

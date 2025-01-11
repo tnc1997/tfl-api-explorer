@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../routes/bike_points/bike_points_route.dart';
+import '../routes/car_parks/car_parks_route.dart';
 import '../routes/home_route.dart';
 
 class TflApiExplorerDrawer extends StatelessWidget {
@@ -44,7 +45,7 @@ class TflApiExplorerDrawer extends StatelessWidget {
             leading: Icon(Icons.api),
             title: Text('Car parks'),
             onTap: () {
-              context.go('/car-parks');
+              const CarParksRoute().go(context);
             },
           ),
           ListTile(
