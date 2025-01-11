@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../../common/circular_progress_indicator_future_builder.dart';
-import '../specifications/road_display_name_specification.dart';
-import '../widgets/road_list_tile.dart';
+import '../common/circular_progress_indicator_future_builder.dart';
+import 'road_display_name_specification.dart';
+import 'road_list_tile.dart';
 
 class RoadSearchDelegate extends SearchDelegate<RoadCorridor?> {
   RoadSearchDelegate({

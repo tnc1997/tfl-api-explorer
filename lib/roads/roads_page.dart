@@ -3,12 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../../../common/circular_progress_indicator_future_builder.dart';
-import '../../../common/drawer.dart';
-import '../../delegates/road_search_delegate.dart';
-import '../../routes/roads/road_route.dart';
-import '../../routes/roads/roads_route.dart';
-import '../../widgets/road_list_tile.dart';
+import '../common/circular_progress_indicator_future_builder.dart';
+import '../common/drawer.dart';
+import 'road_list_tile.dart';
+import 'road_route.dart';
+import 'road_search_delegate.dart';
+import 'roads_route.dart';
 
 class RoadsPage extends StatefulWidget {
   const RoadsPage({

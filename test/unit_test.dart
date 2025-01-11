@@ -6,7 +6,7 @@ import 'package:tfl_api_explorer/lines/line_route_service_type_specification.dar
 import 'package:tfl_api_explorer/places/place_common_name_specification.dart';
 import 'package:tfl_api_explorer/predictions/prediction_destination_name_specification.dart';
 import 'package:tfl_api_explorer/predictions/prediction_station_name_specification.dart';
-import 'package:tfl_api_explorer/src/specifications/road_display_name_specification.dart';
+import 'package:tfl_api_explorer/roads/road_display_name_specification.dart';
 import 'package:tfl_api_explorer/src/specifications/stop_point_modes_specification.dart';
 
 void main() {

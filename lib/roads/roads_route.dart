@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../pages/roads/roads_page.dart';
 import 'road_road_disruptions_route.dart';
 import 'road_route.dart';
+import 'roads_page.dart';
 
 part 'roads_route.g.dart';
 

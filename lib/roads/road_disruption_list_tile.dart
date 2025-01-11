@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../pages/road_disruptions/road_disruption_page.dart';
+import 'road_disruption_page.dart';
 
 class RoadDisruptionListTile extends StatelessWidget {
   const RoadDisruptionListTile({

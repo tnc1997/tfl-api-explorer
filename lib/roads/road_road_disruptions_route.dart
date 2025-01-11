@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../pages/roads/road_page.dart';
+import 'road_road_disruptions_page.dart';
 
-class RoadRoute extends GoRouteData {
-  const RoadRoute({
+class RoadRoadDisruptionsRoute extends GoRouteData {
+  const RoadRoadDisruptionsRoute({
     required this.id,
   });
 
@@ -15,7 +15,7 @@ class RoadRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return RoadPage(
+    return RoadRoadDisruptionsPage(
       id: id,
     );
   }

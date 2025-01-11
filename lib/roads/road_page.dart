@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../common/circular_progress_indicator_future_builder.dart';
-import '../../routes/roads/road_road_disruptions_route.dart';
-import '../../routes/roads/roads_route.dart';
+import '../common/circular_progress_indicator_future_builder.dart';
+import 'road_road_disruptions_route.dart';
+import 'roads_route.dart';
 
 class RoadPage extends StatefulWidget {
   const RoadPage({
