@@ -10,12 +10,12 @@ import 'authentication/sign_in_route.dart';
 import 'bike_points/bike_points_route.dart';
 import 'car_parks/car_parks_route.dart';
 import 'common/colors.dart';
-import 'src/notifiers/line_filters_change_notifier.dart';
-import 'src/notifiers/line_line_route_filters_change_notifier.dart';
-import 'src/notifiers/line_prediction_filters_change_notifier.dart';
+import 'lines/line_filters_notifier.dart';
+import 'lines/line_line_route_filters_notifier.dart';
+import 'lines/line_prediction_filters_notifier.dart';
+import 'lines/lines_route.dart';
 import 'src/notifiers/stop_point_filters_change_notifier.dart';
 import 'src/routes/home_route.dart';
-import 'src/routes/lines/lines_route.dart';
 import 'src/routes/roads/roads_route.dart';
 import 'src/routes/settings/settings_route.dart';
 import 'src/routes/stop_points/stop_points_route.dart';
@@ -40,19 +40,19 @@ class MyApp extends StatelessWidget {
             return AuthenticationNotifier();
           },
         ),
-        ChangeNotifierProvider<LineFiltersChangeNotifier>(
+        ChangeNotifierProvider<LineFiltersNotifier>(
           create: (context) {
-            return LineFiltersChangeNotifier();
+            return LineFiltersNotifier();
           },
         ),
-        ChangeNotifierProvider<LineLineRouteFiltersChangeNotifier>(
+        ChangeNotifierProvider<LineLineRouteFiltersNotifier>(
           create: (context) {
-            return LineLineRouteFiltersChangeNotifier();
+            return LineLineRouteFiltersNotifier();
           },
         ),
-        ChangeNotifierProvider<LinePredictionFiltersChangeNotifier>(
+        ChangeNotifierProvider<LinePredictionFiltersNotifier>(
           create: (context) {
-            return LinePredictionFiltersChangeNotifier();
+            return LinePredictionFiltersNotifier();
           },
         ),
         ChangeNotifierProvider<StopPointFiltersChangeNotifier>(

@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../../../common/circular_progress_indicator_future_builder.dart';
-import '../../../common/circular_progress_indicator_stream_builder.dart';
-import '../../notifiers/line_prediction_filters_change_notifier.dart';
-import '../../widgets/prediction_list_tile.dart';
+import '../common/circular_progress_indicator_future_builder.dart';
+import '../common/circular_progress_indicator_stream_builder.dart';
+import '../src/widgets/prediction_list_tile.dart';
+import 'line_prediction_filters_notifier.dart';
 
 class LinePredictionsPage extends StatefulWidget {
   const LinePredictionsPage({
@@ -28,8 +28,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final linePredictionFiltersChangeNotifier =
-        context.watch<LinePredictionFiltersChangeNotifier>();
+    final notifier = context.watch<LinePredictionFiltersNotifier>();
 
     return Scaffold(
       appBar: AppBar(
@@ -54,9 +53,7 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
       body: CircularProgressIndicatorStreamBuilder<List<Prediction>>(
         stream: _predictionsStreamController.stream,
         builder: (context, data) {
-          final predictions = data
-              ?.where(linePredictionFiltersChangeNotifier.areSatisfiedBy)
-              .toList();
+          final predictions = data?.where(notifier.areSatisfiedBy).toList();
 
           if (predictions != null) {
             return RefreshIndicator(
@@ -94,15 +91,12 @@ class _LinePredictionsPageState extends State<LinePredictionsPage> {
 
   Future<void> _refreshPredictions() async {
     try {
-      final linePredictionFiltersChangeNotifier =
-          context.read<LinePredictionFiltersChangeNotifier>();
+      final notifier = context.read<LinePredictionFiltersNotifier>();
 
       var predictions =
           await context.read<TflApiClient>().line.arrivals([widget.id]);
 
-      predictions = predictions
-          .where(linePredictionFiltersChangeNotifier.areSatisfiedBy)
-          .toList();
+      predictions = predictions.where(notifier.areSatisfiedBy).toList();
 
       _predictionsStreamController.add(predictions);
     } catch (error) {
@@ -130,8 +124,7 @@ class _LinePredictionFiltersPageState
 
   @override
   Widget build(BuildContext context) {
-    final linePredictionFiltersChangeNotifier =
-        context.watch<LinePredictionFiltersChangeNotifier>();
+    final notifier = context.watch<LinePredictionFiltersNotifier>();
 
     return Scaffold(
       appBar: AppBar(
@@ -140,7 +133,7 @@ class _LinePredictionFiltersPageState
           IconButton(
             icon: Icon(Icons.restore),
             onPressed: () {
-              linePredictionFiltersChangeNotifier.reset();
+              notifier.reset();
             },
           ),
         ],
@@ -156,10 +149,9 @@ class _LinePredictionFiltersPageState
                   children: (data[0] as List<StopPoint>).map((stopPoint) {
                     return RadioListTile<String>(
                       value: stopPoint.commonName!,
-                      groupValue:
-                          linePredictionFiltersChangeNotifier.stationName,
+                      groupValue: notifier.stationName,
                       onChanged: (value) {
-                        linePredictionFiltersChangeNotifier.stationName = value;
+                        notifier.stationName = value;
                       },
                       title: Text(
                         stopPoint.commonName ?? 'Unknown',
@@ -173,11 +165,9 @@ class _LinePredictionFiltersPageState
                   children: (data[0] as List<StopPoint>).map((stopPoint) {
                     return RadioListTile<String>(
                       value: stopPoint.commonName!,
-                      groupValue:
-                          linePredictionFiltersChangeNotifier.destinationName,
+                      groupValue: notifier.destinationName,
                       onChanged: (value) {
-                        linePredictionFiltersChangeNotifier.destinationName =
-                            value;
+                        notifier.destinationName = value;
                       },
                       title: Text(
                         stopPoint.commonName ?? 'Unknown',

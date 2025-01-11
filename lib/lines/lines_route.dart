@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../pages/lines/lines_page.dart';
 import 'line_line_disruptions_route.dart';
 import 'line_line_routes_route.dart';
 import 'line_line_statuses_route.dart';
@@ -9,6 +8,7 @@ import 'line_predictions_route.dart';
 import 'line_route.dart';
 import 'line_route_sequences_route.dart';
 import 'line_stop_points_route.dart';
+import 'lines_page.dart';
 
 part 'lines_route.g.dart';
 

@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../pages/line_routes/line_route_page.dart';
+import 'line_status_page.dart';
 
-class LineRouteListTile extends StatelessWidget {
-  const LineRouteListTile({
+class LineStatusListTile extends StatelessWidget {
+  const LineStatusListTile({
     super.key,
-    required this.lineRoute,
+    required this.lineStatus,
   });
 
-  final MatchedRoute lineRoute;
+  final LineStatus lineStatus;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        lineRoute.name ?? 'Unknown',
+        lineStatus.statusSeverityDescription ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
       subtitle: Text(
-        lineRoute.serviceType ?? 'Unknown',
+        lineStatus.disruption?.categoryDescription ?? 'Unknown',
         overflow: TextOverflow.ellipsis,
       ),
       onTap: () async {
         await Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return LineRoutePage(
-                lineRoute: lineRoute,
+              return LineStatusPage(
+                lineStatus: lineStatus,
               );
             },
           ),

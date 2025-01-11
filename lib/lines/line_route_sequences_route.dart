@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../pages/lines/line_page.dart';
+import 'line_route_sequences_page.dart';
 
-class LineRoute extends GoRouteData {
-  const LineRoute({
+class LineRouteSequencesRoute extends GoRouteData {
+  const LineRouteSequencesRoute({
     required this.id,
   });
 
@@ -15,7 +15,7 @@ class LineRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return LinePage(
+    return LineRouteSequencesPage(
       id: id,
     );
   }

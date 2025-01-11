@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../../../common/circular_progress_indicator_future_builder.dart';
-import '../../notifiers/line_line_route_filters_change_notifier.dart';
-import '../../widgets/line_route_list_tile.dart';
+import '../common/circular_progress_indicator_future_builder.dart';
+import 'line_line_route_filters_notifier.dart';
+import 'line_route_list_tile.dart';
 
 class LineLineRoutesPage extends StatefulWidget {
   const LineLineRoutesPage({
@@ -25,8 +25,7 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
 
   @override
   Widget build(BuildContext context) {
-    final lineLineRouteFiltersChangeNotifier =
-        context.watch<LineLineRouteFiltersChangeNotifier>();
+    final notifier = context.watch<LineLineRouteFiltersNotifier>();
 
     return Scaffold(
       appBar: AppBar(
@@ -56,7 +55,7 @@ class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
                   return previousValue..addAll(element.routeSections ?? []);
                 },
               )
-              .where(lineLineRouteFiltersChangeNotifier.areSatisfiedBy)
+              .where(notifier.areSatisfiedBy)
               .toList();
 
           if (lineRoutes != null) {
@@ -96,8 +95,7 @@ class _LineLineRouteFiltersPageState extends State<_LineLineRouteFiltersPage> {
 
   @override
   Widget build(BuildContext context) {
-    final lineLineRouteFiltersChangeNotifier =
-        context.watch<LineLineRouteFiltersChangeNotifier>();
+    final notifier = context.watch<LineLineRouteFiltersNotifier>();
 
     return Scaffold(
       appBar: AppBar(
@@ -106,7 +104,7 @@ class _LineLineRouteFiltersPageState extends State<_LineLineRouteFiltersPage> {
           IconButton(
             icon: Icon(Icons.restore),
             onPressed: () {
-              lineLineRouteFiltersChangeNotifier.reset();
+              notifier.reset();
             },
           ),
         ],
@@ -122,10 +120,9 @@ class _LineLineRouteFiltersPageState extends State<_LineLineRouteFiltersPage> {
                   children: (data[0] as List<String>).map((serviceType) {
                     return RadioListTile<String>(
                       value: serviceType,
-                      groupValue:
-                          lineLineRouteFiltersChangeNotifier.serviceType,
+                      groupValue: notifier.serviceType,
                       onChanged: (value) {
-                        lineLineRouteFiltersChangeNotifier.serviceType = value;
+                        notifier.serviceType = value;
                       },
                       title: Text(
                         serviceType,

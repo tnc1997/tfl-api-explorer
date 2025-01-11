@@ -11,19 +11,19 @@ import 'package:tfl_api_explorer/bike_points/bike_point_page.dart';
 import 'package:tfl_api_explorer/bike_points/bike_points_page.dart';
 import 'package:tfl_api_explorer/car_parks/car_park_page.dart';
 import 'package:tfl_api_explorer/car_parks/car_parks_page.dart';
-import 'package:tfl_api_explorer/src/notifiers/line_filters_change_notifier.dart';
-import 'package:tfl_api_explorer/src/notifiers/line_line_route_filters_change_notifier.dart';
-import 'package:tfl_api_explorer/src/notifiers/line_prediction_filters_change_notifier.dart';
+import 'package:tfl_api_explorer/lines/line_filters_notifier.dart';
+import 'package:tfl_api_explorer/lines/line_line_disruptions_page.dart';
+import 'package:tfl_api_explorer/lines/line_line_route_filters_notifier.dart';
+import 'package:tfl_api_explorer/lines/line_line_routes_page.dart';
+import 'package:tfl_api_explorer/lines/line_line_statuses_page.dart';
+import 'package:tfl_api_explorer/lines/line_page.dart';
+import 'package:tfl_api_explorer/lines/line_prediction_filters_notifier.dart';
+import 'package:tfl_api_explorer/lines/line_predictions_page.dart';
+import 'package:tfl_api_explorer/lines/line_route_sequences_page.dart';
+import 'package:tfl_api_explorer/lines/line_stop_points_page.dart';
+import 'package:tfl_api_explorer/lines/lines_page.dart';
 import 'package:tfl_api_explorer/src/notifiers/stop_point_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/pages/home_page.dart';
-import 'package:tfl_api_explorer/src/pages/lines/line_line_disruptions_page.dart';
-import 'package:tfl_api_explorer/src/pages/lines/line_line_routes_page.dart';
-import 'package:tfl_api_explorer/src/pages/lines/line_line_statuses_page.dart';
-import 'package:tfl_api_explorer/src/pages/lines/line_page.dart';
-import 'package:tfl_api_explorer/src/pages/lines/line_predictions_page.dart';
-import 'package:tfl_api_explorer/src/pages/lines/line_route_sequences_page.dart';
-import 'package:tfl_api_explorer/src/pages/lines/line_stop_points_page.dart';
-import 'package:tfl_api_explorer/src/pages/lines/lines_page.dart';
 import 'package:tfl_api_explorer/src/pages/roads/road_page.dart';
 import 'package:tfl_api_explorer/src/pages/roads/roads_page.dart';
 import 'package:tfl_api_explorer/src/pages/settings/about_page.dart';
@@ -471,9 +471,9 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                ChangeNotifierProvider<LineLineRouteFiltersChangeNotifier>(
+                ChangeNotifierProvider<LineLineRouteFiltersNotifier>(
                   create: (context) {
-                    return LineLineRouteFiltersChangeNotifier();
+                    return LineLineRouteFiltersNotifier();
                   },
                 ),
                 Provider<TflApiClient>.value(
@@ -588,9 +588,9 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                ChangeNotifierProvider<LinePredictionFiltersChangeNotifier>(
+                ChangeNotifierProvider<LinePredictionFiltersNotifier>(
                   create: (context) {
-                    return LinePredictionFiltersChangeNotifier();
+                    return LinePredictionFiltersNotifier();
                   },
                 ),
                 Provider<TflApiClient>.value(
@@ -684,9 +684,9 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                ChangeNotifierProvider<LineFiltersChangeNotifier>(
+                ChangeNotifierProvider<LineFiltersNotifier>(
                   create: (context) {
-                    return LineFiltersChangeNotifier();
+                    return LineFiltersNotifier();
                   },
                 ),
                 Provider<TflApiClient>.value(

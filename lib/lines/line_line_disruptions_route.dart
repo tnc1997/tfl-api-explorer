@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../pages/lines/line_predictions_page.dart';
+import 'line_line_disruptions_page.dart';
 
-class LinePredictionsRoute extends GoRouteData {
-  const LinePredictionsRoute({
+class LineLineDisruptionsRoute extends GoRouteData {
+  const LineLineDisruptionsRoute({
     required this.id,
   });
 
@@ -15,7 +15,7 @@ class LinePredictionsRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return LinePredictionsPage(
+    return LineLineDisruptionsPage(
       id: id,
     );
   }

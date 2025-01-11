@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../bike_points/bike_points_route.dart';
 import '../car_parks/car_parks_route.dart';
+import '../lines/lines_route.dart';
 import '../src/routes/home_route.dart';
-import '../src/routes/lines/lines_route.dart';
 import '../src/routes/roads/roads_route.dart';
 import '../src/routes/settings/settings_route.dart';
 import '../src/routes/stop_points/stop_points_route.dart';

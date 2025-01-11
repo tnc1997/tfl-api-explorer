@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../../../common/circular_progress_indicator_future_builder.dart';
-import '../../../common/drawer.dart';
-import '../../notifiers/line_filters_change_notifier.dart';
-import '../../widgets/line_list_tile.dart';
+import '../common/circular_progress_indicator_future_builder.dart';
+import '../common/drawer.dart';
+import 'line_filters_notifier.dart';
+import 'line_list_tile.dart';
 
 class LinesPage extends StatefulWidget {
   const LinesPage({
@@ -23,8 +23,7 @@ class _LinesPageState extends State<LinesPage> {
 
   @override
   Widget build(BuildContext context) {
-    final lineFiltersChangeNotifier =
-        context.watch<LineFiltersChangeNotifier>();
+    final notifier = context.watch<LineFiltersNotifier>();
 
     return Scaffold(
       appBar: AppBar(
@@ -47,8 +46,7 @@ class _LinesPageState extends State<LinesPage> {
       body: CircularProgressIndicatorFutureBuilder<List<Line>>(
         future: _linesFuture,
         builder: (context, data) {
-          final lines =
-              data?.where(lineFiltersChangeNotifier.areSatisfiedBy).toList();
+          final lines = data?.where(notifier.areSatisfiedBy).toList();
 
           if (lines != null) {
             return ListView.builder(
@@ -88,8 +86,7 @@ class _LineFiltersPageState extends State<_LineFiltersPage> {
 
   @override
   Widget build(BuildContext context) {
-    final lineFiltersChangeNotifier =
-        context.watch<LineFiltersChangeNotifier>();
+    final notifier = context.watch<LineFiltersNotifier>();
 
     return Scaffold(
       appBar: AppBar(
@@ -98,7 +95,7 @@ class _LineFiltersPageState extends State<_LineFiltersPage> {
           IconButton(
             icon: Icon(Icons.restore),
             onPressed: () {
-              lineFiltersChangeNotifier.reset();
+              notifier.reset();
             },
           ),
         ],
@@ -114,9 +111,9 @@ class _LineFiltersPageState extends State<_LineFiltersPage> {
                   children: (data[0] as List<Mode>).map((mode) {
                     return RadioListTile<String>(
                       value: mode.modeName!,
-                      groupValue: lineFiltersChangeNotifier.modeName,
+                      groupValue: notifier.modeName,
                       onChanged: (value) {
-                        lineFiltersChangeNotifier.modeName = value;
+                        notifier.modeName = value;
                       },
                       title: Text(
                         mode.modeName ?? 'Unknown',
