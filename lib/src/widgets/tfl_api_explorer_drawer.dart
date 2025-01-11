@@ -5,6 +5,7 @@ import '../routes/bike_points/bike_points_route.dart';
 import '../routes/car_parks/car_parks_route.dart';
 import '../routes/home_route.dart';
 import '../routes/lines/lines_route.dart';
+import '../routes/roads/roads_route.dart';
 
 class TflApiExplorerDrawer extends StatelessWidget {
   const TflApiExplorerDrawer({
@@ -60,7 +61,7 @@ class TflApiExplorerDrawer extends StatelessWidget {
             leading: Icon(Icons.api),
             title: Text('Roads'),
             onTap: () {
-              context.go('/roads');
+              const RoadsRoute().go(context);
             },
           ),
           ListTile(

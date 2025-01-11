@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../routes/roads/road_road_disruptions_route.dart';
+import '../../routes/roads/roads_route.dart';
 import '../../widgets/circular_progress_indicator_future_builder.dart';
 
 class RoadPage extends StatefulWidget {
@@ -80,7 +81,9 @@ class _RoadPageState extends State<RoadPage> {
                 ListTile(
                   title: Text('Road disruptions'),
                   onTap: () {
-                    context.go('/roads/${widget.id}/road-disruptions');
+                    RoadRoadDisruptionsRoute(
+                      id: widget.id,
+                    ).go(context);
                   },
                 ),
               ],
