@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../common/circular_progress_indicator_future_builder.dart';
-import '../src/routes/home_route.dart';
+import '../home/home_route.dart';
 import 'authentication_notifier.dart';
 import 'sign_in_form.dart';
 

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../bike_points/bike_points_route.dart';
 import '../car_parks/car_parks_route.dart';
+import '../home/home_route.dart';
 import '../lines/lines_route.dart';
 import '../roads/roads_route.dart';
 import '../settings/settings_route.dart';
-import '../src/routes/home_route.dart';
 import '../stop_points/stop_points_route.dart';
 
 class TflApiExplorerDrawer extends StatelessWidget {
