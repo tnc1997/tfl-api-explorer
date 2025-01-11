@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../pages/stop_points/stop_point_lines_page.dart';
+import 'stop_point_modes_page.dart';
 
-class StopPointLinesRoute extends GoRouteData {
-  const StopPointLinesRoute({
+class StopPointModesRoute extends GoRouteData {
+  const StopPointModesRoute({
     required this.id,
   });
 
@@ -15,7 +15,7 @@ class StopPointLinesRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return StopPointLinesPage(
+    return StopPointModesPage(
       id: id,
     );
   }

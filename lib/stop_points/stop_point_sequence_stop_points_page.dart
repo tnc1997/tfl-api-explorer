@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../../widgets/stop_point_list_tile.dart';
+import 'stop_point_list_tile.dart';
 
 class StopPointSequenceStopPointsPage extends StatelessWidget {
   const StopPointSequenceStopPointsPage({

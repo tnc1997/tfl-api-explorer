@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../../../common/circular_progress_indicator_future_builder.dart';
-import '../../../common/identifier_list_tile.dart';
+import '../common/circular_progress_indicator_future_builder.dart';
 
-class StopPointLinesPage extends StatefulWidget {
-  const StopPointLinesPage({
+class StopPointModesPage extends StatefulWidget {
+  const StopPointModesPage({
     super.key,
     required this.id,
   });
@@ -14,31 +13,34 @@ class StopPointLinesPage extends StatefulWidget {
   final String id;
 
   @override
-  State<StopPointLinesPage> createState() {
-    return _StopPointLinesPageState();
+  State<StopPointModesPage> createState() {
+    return _StopPointModesPageState();
   }
 }
 
-class _StopPointLinesPageState extends State<StopPointLinesPage> {
+class _StopPointModesPageState extends State<StopPointModesPage> {
   late final Future<List<StopPoint>> _future;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lines'),
+        title: Text('Modes'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
         future: _future,
         builder: (context, data) {
-          if (data?[0].lines case final lines?) {
+          if (data?[0].modes case final modes?) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                return IdentifierListTile(
-                  identifier: lines[index],
+                return ListTile(
+                  title: Text(
+                    modes[index],
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 );
               },
-              itemCount: lines.length,
+              itemCount: modes.length,
             );
           } else {
             return Container();

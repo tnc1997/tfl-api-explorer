@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../pages/route_sequences/route_sequence_page.dart';
+import 'route_sequence_page.dart';
 
 class RouteSequenceListTile extends StatelessWidget {
   const RouteSequenceListTile({

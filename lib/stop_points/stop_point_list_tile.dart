@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../routes/stop_points/stop_point_route.dart';
-import '../routes/stop_points/stop_points_route.dart';
+import 'stop_point_route.dart';
+import 'stop_points_route.dart';
 
 class StopPointListTile extends StatelessWidget {
   const StopPointListTile({

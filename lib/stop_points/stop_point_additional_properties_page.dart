@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../../../common/circular_progress_indicator_future_builder.dart';
+import '../common/circular_progress_indicator_future_builder.dart';
+import '../places/additional_properties_list_tile.dart';
 
-class StopPointModesPage extends StatefulWidget {
-  const StopPointModesPage({
+class StopPointAdditionalPropertiesPage extends StatefulWidget {
+  const StopPointAdditionalPropertiesPage({
     super.key,
     required this.id,
   });
@@ -13,34 +14,32 @@ class StopPointModesPage extends StatefulWidget {
   final String id;
 
   @override
-  State<StopPointModesPage> createState() {
-    return _StopPointModesPageState();
+  State<StopPointAdditionalPropertiesPage> createState() {
+    return _StopPointAdditionalPropertiesPageState();
   }
 }
 
-class _StopPointModesPageState extends State<StopPointModesPage> {
+class _StopPointAdditionalPropertiesPageState
+    extends State<StopPointAdditionalPropertiesPage> {
   late final Future<List<StopPoint>> _future;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Modes'),
+        title: Text('Additional properties'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
         future: _future,
         builder: (context, data) {
-          if (data?[0].modes case final modes?) {
+          if (data?[0].additionalProperties case final additionalProperties?) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(
-                    modes[index],
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                return AdditionalPropertiesListTile(
+                  additionalProperties: additionalProperties[index],
                 );
               },
-              itemCount: modes.length,
+              itemCount: additionalProperties.length,
             );
           } else {
             return Container();

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../common/circular_progress_indicator_future_builder.dart';
-import '../src/widgets/stop_point_list_tile.dart';
+import '../stop_points/stop_point_list_tile.dart';
 
 class LineStopPointsPage extends StatefulWidget {
   const LineStopPointsPage({

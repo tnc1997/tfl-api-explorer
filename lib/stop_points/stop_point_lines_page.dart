@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../../../common/circular_progress_indicator_future_builder.dart';
-import '../../../places/additional_properties_list_tile.dart';
+import '../common/circular_progress_indicator_future_builder.dart';
+import '../common/identifier_list_tile.dart';
 
-class StopPointAdditionalPropertiesPage extends StatefulWidget {
-  const StopPointAdditionalPropertiesPage({
+class StopPointLinesPage extends StatefulWidget {
+  const StopPointLinesPage({
     super.key,
     required this.id,
   });
@@ -14,32 +14,31 @@ class StopPointAdditionalPropertiesPage extends StatefulWidget {
   final String id;
 
   @override
-  State<StopPointAdditionalPropertiesPage> createState() {
-    return _StopPointAdditionalPropertiesPageState();
+  State<StopPointLinesPage> createState() {
+    return _StopPointLinesPageState();
   }
 }
 
-class _StopPointAdditionalPropertiesPageState
-    extends State<StopPointAdditionalPropertiesPage> {
+class _StopPointLinesPageState extends State<StopPointLinesPage> {
   late final Future<List<StopPoint>> _future;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Additional properties'),
+        title: Text('Lines'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
         future: _future,
         builder: (context, data) {
-          if (data?[0].additionalProperties case final additionalProperties?) {
+          if (data?[0].lines case final lines?) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                return AdditionalPropertiesListTile(
-                  additionalProperties: additionalProperties[index],
+                return IdentifierListTile(
+                  identifier: lines[index],
                 );
               },
-              itemCount: additionalProperties.length,
+              itemCount: lines.length,
             );
           } else {
             return Container();

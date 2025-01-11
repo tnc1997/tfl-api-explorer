@@ -16,9 +16,9 @@ import 'lines/line_prediction_filters_notifier.dart';
 import 'lines/lines_route.dart';
 import 'roads/roads_route.dart';
 import 'settings/settings_route.dart';
-import 'src/notifiers/stop_point_filters_change_notifier.dart';
 import 'src/routes/home_route.dart';
-import 'src/routes/stop_points/stop_points_route.dart';
+import 'stop_points/stop_point_filters_change_notifier.dart';
+import 'stop_points/stop_points_route.dart';
 
 Future<void> main() async {
   Intl.defaultLocale = 'en_GB';

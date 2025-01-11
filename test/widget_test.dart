@@ -26,10 +26,10 @@ import 'package:tfl_api_explorer/roads/road_page.dart';
 import 'package:tfl_api_explorer/roads/roads_page.dart';
 import 'package:tfl_api_explorer/settings/about_page.dart';
 import 'package:tfl_api_explorer/settings/settings_page.dart';
-import 'package:tfl_api_explorer/src/notifiers/stop_point_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/src/pages/home_page.dart';
-import 'package:tfl_api_explorer/src/pages/stop_points/stop_point_page.dart';
-import 'package:tfl_api_explorer/src/pages/stop_points/stop_points_page.dart';
+import 'package:tfl_api_explorer/stop_points/stop_point_filters_change_notifier.dart';
+import 'package:tfl_api_explorer/stop_points/stop_point_page.dart';
+import 'package:tfl_api_explorer/stop_points/stop_points_page.dart';
 
 import 'widget_test.mocks.dart';
 

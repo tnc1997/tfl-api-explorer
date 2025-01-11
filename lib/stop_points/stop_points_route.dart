@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../pages/stop_points/stop_points_page.dart';
 import 'stop_point_additional_properties_route.dart';
 import 'stop_point_lines_route.dart';
 import 'stop_point_modes_route.dart';
 import 'stop_point_route.dart';
+import 'stop_points_page.dart';
 
 part 'stop_points_route.g.dart';
 
