@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../pages/predictions/prediction_page.dart';
+import 'prediction_page.dart';
 
 class PredictionListTile extends StatelessWidget {
   const PredictionListTile({

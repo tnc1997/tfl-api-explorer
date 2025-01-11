@@ -6,7 +6,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../common/circular_progress_indicator_future_builder.dart';
 import '../common/circular_progress_indicator_stream_builder.dart';
-import '../src/widgets/prediction_list_tile.dart';
+import '../predictions/prediction_list_tile.dart';
 import 'line_prediction_filters_notifier.dart';
 
 class LinePredictionsPage extends StatefulWidget {
