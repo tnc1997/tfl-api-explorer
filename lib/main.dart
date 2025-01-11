@@ -11,11 +11,6 @@ import 'src/notifiers/line_filters_change_notifier.dart';
 import 'src/notifiers/line_line_route_filters_change_notifier.dart';
 import 'src/notifiers/line_prediction_filters_change_notifier.dart';
 import 'src/notifiers/stop_point_filters_change_notifier.dart';
-import 'src/pages/stop_points/stop_point_additional_properties_page.dart';
-import 'src/pages/stop_points/stop_point_lines_page.dart';
-import 'src/pages/stop_points/stop_point_modes_page.dart';
-import 'src/pages/stop_points/stop_point_page.dart';
-import 'src/pages/stop_points/stop_points_page.dart';
 import 'src/routes/bike_points/bike_points_route.dart';
 import 'src/routes/car_parks/car_parks_route.dart';
 import 'src/routes/home_route.dart';
@@ -23,6 +18,7 @@ import 'src/routes/lines/lines_route.dart';
 import 'src/routes/roads/roads_route.dart';
 import 'src/routes/settings/settings_route.dart';
 import 'src/routes/sign_in_route.dart';
+import 'src/routes/stop_points/stop_points_route.dart';
 
 Future<void> main() async {
   Intl.defaultLocale = 'en_GB';
@@ -80,48 +76,7 @@ class MyApp extends StatelessWidget {
             $roadsRoute,
             $settingsRoute,
             $signInRoute,
-            GoRoute(
-              path: '/stop-points',
-              builder: (context, state) {
-                return StopPointsPage();
-              },
-              routes: [
-                GoRoute(
-                  path: ':id',
-                  builder: (context, state) {
-                    return StopPointPage(
-                      id: state.pathParameters['id']!,
-                    );
-                  },
-                  routes: [
-                    GoRoute(
-                      path: 'additional-properties',
-                      builder: (context, state) {
-                        return StopPointAdditionalPropertiesPage(
-                          id: state.pathParameters['id']!,
-                        );
-                      },
-                    ),
-                    GoRoute(
-                      path: 'lines',
-                      builder: (context, state) {
-                        return StopPointLinesPage(
-                          id: state.pathParameters['id']!,
-                        );
-                      },
-                    ),
-                    GoRoute(
-                      path: 'modes',
-                      builder: (context, state) {
-                        return StopPointModesPage(
-                          id: state.pathParameters['id']!,
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            $stopPointsRoute,
           ],
           redirect: (context, state) {
             if (context.read<AuthenticationChangeNotifier>().client == null) {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
+
+import '../routes/stop_points/stop_point_route.dart';
+import '../routes/stop_points/stop_points_route.dart';
 
 class StopPointListTile extends StatelessWidget {
   const StopPointListTile({
@@ -22,7 +24,9 @@ class StopPointListTile extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
       ),
       onTap: () {
-        context.go('/stop-points/${stopPoint.id}');
+        StopPointRoute(
+          id: stopPoint.id!,
+        ).go(context);
       },
     );
   }
