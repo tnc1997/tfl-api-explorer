@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../../widgets/circular_progress_indicator_future_builder.dart';
+import '../../../common/circular_progress_indicator_future_builder.dart';
 
 class AboutPage extends StatefulWidget {
   const AboutPage({

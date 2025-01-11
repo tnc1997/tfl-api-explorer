@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../../../common/circular_progress_indicator_future_builder.dart';
+import '../../../common/drawer.dart';
 import '../../notifiers/line_filters_change_notifier.dart';
-import '../../widgets/circular_progress_indicator_future_builder.dart';
 import '../../widgets/line_list_tile.dart';
-import '../../widgets/tfl_api_explorer_drawer.dart';
 
 class LinesPage extends StatefulWidget {
   const LinesPage({

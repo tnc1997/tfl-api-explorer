@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../../widgets/circular_progress_indicator_future_builder.dart';
-import '../../widgets/identifier_list_tile.dart';
+import '../../../common/circular_progress_indicator_future_builder.dart';
+import '../../../common/identifier_list_tile.dart';
 
 class StopPointLinesPage extends StatefulWidget {
   const StopPointLinesPage({

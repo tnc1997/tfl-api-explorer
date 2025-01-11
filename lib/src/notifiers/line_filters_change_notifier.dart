@@ -1,10 +1,10 @@
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../../common/filters_notifier.dart';
+import '../../common/specification.dart';
 import '../specifications/line_mode_name_specification.dart';
-import '../specifications/specification.dart';
-import 'filters_change_notifier.dart';
 
-class LineFiltersChangeNotifier extends FiltersChangeNotifier<Line> {
+class LineFiltersChangeNotifier extends FiltersNotifier<Line> {
   String? _modeName;
 
   String? get modeName => _modeName;

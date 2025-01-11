@@ -9,7 +9,7 @@ import 'authentication/authentication_notifier.dart';
 import 'authentication/sign_in_route.dart';
 import 'bike_points/bike_points_route.dart';
 import 'car_parks/car_parks_route.dart';
-import 'src/colors/tfl_colors.dart';
+import 'common/colors.dart';
 import 'src/notifiers/line_filters_change_notifier.dart';
 import 'src/notifiers/line_line_route_filters_change_notifier.dart';
 import 'src/notifiers/line_prediction_filters_change_notifier.dart';
@@ -89,14 +89,14 @@ class MyApp extends StatelessWidget {
         title: 'Explorer for TfL API',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            seedColor: TflColors.corporateBlue,
+            seedColor: TflApiExplorerColors.corporateBlue,
             brightness: Brightness.light,
             dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
           ),
         ),
         darkTheme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            seedColor: TflColors.corporateBlue,
+            seedColor: TflApiExplorerColors.corporateBlue,
             brightness: Brightness.dark,
             dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
           ),

@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
+import 'package:tfl_api_explorer/common/specification.dart';
 import 'package:tfl_api_explorer/src/specifications/line_mode_name_specification.dart';
 import 'package:tfl_api_explorer/src/specifications/line_route_service_type_specification.dart';
 import 'package:tfl_api_explorer/src/specifications/place_common_name_specification.dart';
 import 'package:tfl_api_explorer/src/specifications/prediction_destination_name_specification.dart';
 import 'package:tfl_api_explorer/src/specifications/prediction_station_name_specification.dart';
 import 'package:tfl_api_explorer/src/specifications/road_display_name_specification.dart';
-import 'package:tfl_api_explorer/src/specifications/specification.dart';
 import 'package:tfl_api_explorer/src/specifications/stop_point_modes_specification.dart';
 
 void main() {

@@ -3,11 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../common/circular_progress_indicator_future_builder.dart';
 import '../../routes/stop_points/stop_point_additional_properties_route.dart';
 import '../../routes/stop_points/stop_point_lines_route.dart';
 import '../../routes/stop_points/stop_point_modes_route.dart';
 import '../../routes/stop_points/stop_points_route.dart';
-import '../../widgets/circular_progress_indicator_future_builder.dart';
 
 class StopPointPage extends StatefulWidget {
   const StopPointPage({

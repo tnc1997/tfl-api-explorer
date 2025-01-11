@@ -1,11 +1,10 @@
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../../common/filters_notifier.dart';
+import '../../common/specification.dart';
 import '../specifications/line_route_service_type_specification.dart';
-import '../specifications/specification.dart';
-import 'filters_change_notifier.dart';
 
-class LineLineRouteFiltersChangeNotifier
-    extends FiltersChangeNotifier<MatchedRoute> {
+class LineLineRouteFiltersChangeNotifier extends FiltersNotifier<MatchedRoute> {
   String? _serviceType;
 
   String? get serviceType => _serviceType;

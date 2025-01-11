@@ -1,12 +1,11 @@
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../../common/filters_notifier.dart';
+import '../../common/specification.dart';
 import '../specifications/prediction_destination_name_specification.dart';
 import '../specifications/prediction_station_name_specification.dart';
-import '../specifications/specification.dart';
-import 'filters_change_notifier.dart';
 
-class LinePredictionFiltersChangeNotifier
-    extends FiltersChangeNotifier<Prediction> {
+class LinePredictionFiltersChangeNotifier extends FiltersNotifier<Prediction> {
   String? _destinationName;
 
   String? _stationName;

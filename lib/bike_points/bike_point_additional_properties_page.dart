@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../common/circular_progress_indicator_future_builder.dart';
 import '../src/widgets/additional_properties_list_tile.dart';
-import '../src/widgets/circular_progress_indicator_future_builder.dart';
 
 class BikePointAdditionalPropertiesPage extends StatefulWidget {
   const BikePointAdditionalPropertiesPage({

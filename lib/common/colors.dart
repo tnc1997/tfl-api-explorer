@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TflColors {
+class TflApiExplorerColors {
   static const corporateBlack = Color(0xff000000);
   static const corporateBlue = Color(0xff0019a8);
   static const corporateDarkGrey = Color(0xff323e48);

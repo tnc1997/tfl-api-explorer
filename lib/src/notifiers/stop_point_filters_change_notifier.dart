@@ -1,10 +1,10 @@
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../specifications/specification.dart';
+import '../../common/filters_notifier.dart';
+import '../../common/specification.dart';
 import '../specifications/stop_point_modes_specification.dart';
-import 'filters_change_notifier.dart';
 
-class StopPointFiltersChangeNotifier extends FiltersChangeNotifier<StopPoint> {
+class StopPointFiltersChangeNotifier extends FiltersNotifier<StopPoint> {
   final _modes = <String>{};
 
   Set<String> get modes => _modes;

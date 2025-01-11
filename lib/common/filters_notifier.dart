@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-abstract class FiltersChangeNotifier<T> extends ChangeNotifier {
+abstract class FiltersNotifier<T> extends ChangeNotifier {
   bool areSatisfiedBy(T value);
 
   void reset();

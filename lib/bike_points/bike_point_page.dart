@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../src/widgets/circular_progress_indicator_future_builder.dart';
+import '../common/circular_progress_indicator_future_builder.dart';
 import 'bike_point_additional_properties_route.dart';
 import 'bike_points_route.dart';
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
+import '../../../common/circular_progress_indicator_future_builder.dart';
 import '../../routes/lines/line_line_disruptions_route.dart';
 import '../../routes/lines/line_line_routes_route.dart';
 import '../../routes/lines/line_line_statuses_route.dart';
@@ -9,7 +10,6 @@ import '../../routes/lines/line_predictions_route.dart';
 import '../../routes/lines/line_route_sequences_route.dart';
 import '../../routes/lines/line_stop_points_route.dart';
 import '../../routes/lines/lines_route.dart';
-import '../../widgets/circular_progress_indicator_future_builder.dart';
 
 class LinePage extends StatefulWidget {
   const LinePage({
