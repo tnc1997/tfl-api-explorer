@@ -1,6 +1,6 @@
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import '../../common/specification.dart';
+import '../common/specification.dart';
 
 class PlaceCommonNameSpecification extends Specification<Place> {
   PlaceCommonNameSpecification({

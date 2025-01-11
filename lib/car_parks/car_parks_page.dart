@@ -5,8 +5,8 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../common/circular_progress_indicator_future_builder.dart';
 import '../common/drawer.dart';
-import '../src/delegates/place_search_delegate.dart';
-import '../src/widgets/place_list_tile.dart';
+import '../places/place_list_tile.dart';
+import '../places/place_search_delegate.dart';
 import 'car_park_route.dart';
 import 'car_parks_route.dart';
 
