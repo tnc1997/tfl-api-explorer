@@ -6,6 +6,7 @@ import '../routes/car_parks/car_parks_route.dart';
 import '../routes/home_route.dart';
 import '../routes/lines/lines_route.dart';
 import '../routes/roads/roads_route.dart';
+import '../routes/settings/settings_route.dart';
 
 class TflApiExplorerDrawer extends StatelessWidget {
   const TflApiExplorerDrawer({
@@ -75,7 +76,7 @@ class TflApiExplorerDrawer extends StatelessWidget {
             leading: Icon(Icons.settings),
             title: Text('Settings'),
             onTap: () {
-              context.go('/settings');
+              const SettingsRoute().go(context);
             },
           ),
         ],

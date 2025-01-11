@@ -11,7 +11,6 @@ import 'src/notifiers/line_filters_change_notifier.dart';
 import 'src/notifiers/line_line_route_filters_change_notifier.dart';
 import 'src/notifiers/line_prediction_filters_change_notifier.dart';
 import 'src/notifiers/stop_point_filters_change_notifier.dart';
-import 'src/pages/settings/settings_page.dart';
 import 'src/pages/stop_points/stop_point_additional_properties_page.dart';
 import 'src/pages/stop_points/stop_point_lines_page.dart';
 import 'src/pages/stop_points/stop_point_modes_page.dart';
@@ -22,6 +21,7 @@ import 'src/routes/car_parks/car_parks_route.dart';
 import 'src/routes/home_route.dart';
 import 'src/routes/lines/lines_route.dart';
 import 'src/routes/roads/roads_route.dart';
+import 'src/routes/settings/settings_route.dart';
 import 'src/routes/sign_in_route.dart';
 
 Future<void> main() async {
@@ -78,12 +78,7 @@ class MyApp extends StatelessWidget {
             $carParksRoute,
             $linesRoute,
             $roadsRoute,
-            GoRoute(
-              path: '/settings',
-              builder: (context, state) {
-                return SettingsPage();
-              },
-            ),
+            $settingsRoute,
             $signInRoute,
             GoRoute(
               path: '/stop-points',
