@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'settings_page.dart';
+import 'settings_screen.dart';
 
 part 'settings_route.g.dart';
 
@@ -16,6 +16,6 @@ class SettingsRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return const SettingsPage();
+    return const SettingsScreen();
   }
 }

@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../authentication/authentication_notifier.dart';
 
-class AccountPage extends StatelessWidget {
-  const AccountPage({
+class AccountScreen extends StatelessWidget {
+  const AccountScreen({
     super.key,
   });
 

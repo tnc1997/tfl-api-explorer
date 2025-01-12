@@ -25,8 +25,8 @@ import 'package:tfl_api_explorer/lines/line_stop_points_screen.dart';
 import 'package:tfl_api_explorer/lines/lines_screen.dart';
 import 'package:tfl_api_explorer/roads/road_screen.dart';
 import 'package:tfl_api_explorer/roads/roads_screen.dart';
-import 'package:tfl_api_explorer/settings/about_page.dart';
-import 'package:tfl_api_explorer/settings/settings_page.dart';
+import 'package:tfl_api_explorer/settings/about_screen.dart';
+import 'package:tfl_api_explorer/settings/settings_screen.dart';
 import 'package:tfl_api_explorer/stop_points/stop_point_filters_change_notifier.dart';
 import 'package:tfl_api_explorer/stop_points/stop_point_page.dart';
 import 'package:tfl_api_explorer/stop_points/stop_points_page.dart';
@@ -729,7 +729,7 @@ void main() {
         testWidgets('Package name', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: AboutPage(),
+              home: AboutScreen(),
             ),
           );
           await tester.pumpAndSettle();
@@ -747,7 +747,7 @@ void main() {
         testWidgets('Version', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: AboutPage(),
+              home: AboutScreen(),
             ),
           );
           await tester.pumpAndSettle();
@@ -767,7 +767,7 @@ void main() {
         testWidgets('', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
-              home: SettingsPage(),
+              home: SettingsScreen(),
             ),
           );
 

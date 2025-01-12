@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../common/drawer.dart';
-import 'about_page.dart';
-import 'account_page.dart';
+import 'about_screen.dart';
+import 'account_screen.dart';
 
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({
     super.key,
   });
 
@@ -24,7 +24,7 @@ class SettingsPage extends StatelessWidget {
               await Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return AccountPage();
+                    return AccountScreen();
                   },
                 ),
               );
@@ -37,7 +37,7 @@ class SettingsPage extends StatelessWidget {
               await Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return AboutPage();
+                    return AboutScreen();
                   },
                 ),
               );

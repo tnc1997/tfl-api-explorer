@@ -3,18 +3,18 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../common/circular_progress_indicator_future_builder.dart';
 
-class AboutPage extends StatefulWidget {
-  const AboutPage({
+class AboutScreen extends StatefulWidget {
+  const AboutScreen({
     super.key,
   });
 
   @override
-  State<AboutPage> createState() {
-    return _AboutPageState();
+  State<AboutScreen> createState() {
+    return _AboutScreenState();
   }
 }
 
-class _AboutPageState extends State<AboutPage> {
+class _AboutScreenState extends State<AboutScreen> {
   late final Future<PackageInfo> _future;
 
   @override
