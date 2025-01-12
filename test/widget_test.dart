@@ -11,7 +11,7 @@ import 'package:tfl_api_explorer/bike_points/bike_point_screen.dart';
 import 'package:tfl_api_explorer/bike_points/bike_points_screen.dart';
 import 'package:tfl_api_explorer/car_parks/car_park_screen.dart';
 import 'package:tfl_api_explorer/car_parks/car_parks_screen.dart';
-import 'package:tfl_api_explorer/home/home_page.dart';
+import 'package:tfl_api_explorer/home/home_screen.dart';
 import 'package:tfl_api_explorer/lines/line_filters_notifier.dart';
 import 'package:tfl_api_explorer/lines/line_line_disruptions_page.dart';
 import 'package:tfl_api_explorer/lines/line_line_route_filters_notifier.dart';
@@ -1087,7 +1087,7 @@ void main() {
       testWidgets('Welcome to Explorer for TfL API', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
-            home: HomePage(),
+            home: HomeScreen(),
           ),
         );
 

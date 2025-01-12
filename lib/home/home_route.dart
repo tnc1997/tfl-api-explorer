@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'home_page.dart';
+import 'home_screen.dart';
 
 part 'home_route.g.dart';
 
@@ -16,6 +16,6 @@ class HomeRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return const HomePage();
+    return const HomeScreen();
   }
 }
