@@ -3,8 +3,6 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/common/specification.dart';
 import 'package:tfl_api_explorer/lines/line_route_service_type_specification.dart';
 import 'package:tfl_api_explorer/places/place_common_name_specification.dart';
-import 'package:tfl_api_explorer/predictions/prediction_destination_name_specification.dart';
-import 'package:tfl_api_explorer/predictions/prediction_station_name_specification.dart';
 import 'package:tfl_api_explorer/roads/road_display_name_specification.dart';
 
 void main() {
@@ -38,25 +36,6 @@ void main() {
     ),
     MatchedRoute(
       serviceType: 'Regular',
-    ),
-  ];
-
-  final predictions = <Prediction>[
-    Prediction(
-      stationName: 'Elephant & Castle',
-      destinationName: 'Canada Water',
-    ),
-    Prediction(
-      stationName: 'Elephant & Castle',
-      destinationName: 'Tottenham Court Road',
-    ),
-    Prediction(
-      stationName: 'Holborn',
-      destinationName: 'Canada Water',
-    ),
-    Prediction(
-      stationName: 'Holborn',
-      destinationName: 'Tottenham Court Road',
     ),
   ];
 
@@ -167,162 +146,6 @@ void main() {
         );
         expect(
           bikePoints.where(specification.isSatisfiedBy).toList(),
-          isEmpty,
-        );
-      });
-    });
-
-    group('PredictionDestinationNameSpecification', () {
-      test('isSatisfiedBy', () {
-        Specification<Prediction> specification;
-
-        specification = PredictionDestinationNameSpecification(
-          destinationName: 'Canada Water',
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[0]),
-          isTrue,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[1]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[2]),
-          isTrue,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[3]),
-          isFalse,
-        );
-        expect(
-          predictions.where(specification.isSatisfiedBy).toList(),
-          hasLength(2),
-        );
-
-        specification = PredictionDestinationNameSpecification(
-          destinationName: 'Surrey Quays',
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[0]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[1]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[2]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[3]),
-          isFalse,
-        );
-        expect(
-          predictions.where(specification.isSatisfiedBy).toList(),
-          isEmpty,
-        );
-
-        specification = PredictionDestinationNameSpecification(
-          destinationName: 'Tottenham Court Road',
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[0]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[1]),
-          isTrue,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[2]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[3]),
-          isTrue,
-        );
-        expect(
-          predictions.where(specification.isSatisfiedBy).toList(),
-          hasLength(2),
-        );
-      });
-    });
-
-    group('PredictionStationNameSpecification', () {
-      test('isSatisfiedBy', () {
-        Specification<Prediction> specification;
-
-        specification = PredictionStationNameSpecification(
-          stationName: 'Elephant & Castle',
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[0]),
-          isTrue,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[1]),
-          isTrue,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[2]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[3]),
-          isFalse,
-        );
-        expect(
-          predictions.where(specification.isSatisfiedBy).toList(),
-          hasLength(2),
-        );
-
-        specification = PredictionStationNameSpecification(
-          stationName: 'Holborn',
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[0]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[1]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[2]),
-          isTrue,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[3]),
-          isTrue,
-        );
-        expect(
-          predictions.where(specification.isSatisfiedBy).toList(),
-          hasLength(2),
-        );
-
-        specification = PredictionStationNameSpecification(
-          stationName: 'Waterloo',
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[0]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[1]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[2]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(predictions[3]),
-          isFalse,
-        );
-        expect(
-          predictions.where(specification.isSatisfiedBy).toList(),
           isEmpty,
         );
       });
