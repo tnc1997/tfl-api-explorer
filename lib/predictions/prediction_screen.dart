@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-class PredictionPage extends StatelessWidget {
-  const PredictionPage({
+class PredictionScreen extends StatelessWidget {
+  const PredictionScreen({
     super.key,
     required this.prediction,
   });

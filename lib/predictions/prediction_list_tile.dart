@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import 'prediction_page.dart';
+import 'prediction_screen.dart';
 
 class PredictionListTile extends StatelessWidget {
   const PredictionListTile({
@@ -32,7 +32,7 @@ class PredictionListTile extends StatelessWidget {
         await Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return PredictionPage(
+              return PredictionScreen(
                 prediction: prediction,
               );
             },
