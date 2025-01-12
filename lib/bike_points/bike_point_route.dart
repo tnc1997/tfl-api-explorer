@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'bike_point_page.dart';
+import 'bike_point_screen.dart';
 
 class BikePointRoute extends GoRouteData {
   const BikePointRoute({
@@ -15,7 +15,7 @@ class BikePointRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return BikePointPage(
+    return BikePointScreen(
       id: id,
     );
   }

@@ -4,7 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
-import 'package:tfl_api_explorer/bike_points/bike_points_page.dart';
+import 'package:tfl_api_explorer/bike_points/bike_points_screen.dart';
 
 import 'integration_test.mocks.dart';
 
@@ -61,7 +61,7 @@ void main() {
           ),
         ],
         child: MaterialApp(
-          home: BikePointsPage(),
+          home: BikePointsScreen(),
         ),
       ),
     );

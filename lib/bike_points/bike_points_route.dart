@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import 'bike_point_additional_properties_route.dart';
 import 'bike_point_route.dart';
-import 'bike_points_page.dart';
+import 'bike_points_screen.dart';
 
 part 'bike_points_route.g.dart';
 
@@ -28,6 +28,6 @@ class BikePointsRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return const BikePointsPage();
+    return const BikePointsScreen();
   }
 }

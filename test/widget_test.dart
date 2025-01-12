@@ -7,8 +7,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/authentication/authentication_notifier.dart';
-import 'package:tfl_api_explorer/bike_points/bike_point_page.dart';
-import 'package:tfl_api_explorer/bike_points/bike_points_page.dart';
+import 'package:tfl_api_explorer/bike_points/bike_point_screen.dart';
+import 'package:tfl_api_explorer/bike_points/bike_points_screen.dart';
 import 'package:tfl_api_explorer/car_parks/car_park_page.dart';
 import 'package:tfl_api_explorer/car_parks/car_parks_page.dart';
 import 'package:tfl_api_explorer/home/home_page.dart';
@@ -250,7 +250,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: BikePointPage(id: bikePoint.id!),
+                home: BikePointScreen(id: bikePoint.id!),
               ),
             ),
           );
@@ -275,7 +275,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: BikePointPage(id: bikePoint.id!),
+                home: BikePointScreen(id: bikePoint.id!),
               ),
             ),
           );
@@ -300,7 +300,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: BikePointPage(id: bikePoint.id!),
+                home: BikePointScreen(id: bikePoint.id!),
               ),
             ),
           );
@@ -325,7 +325,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: BikePointPage(id: bikePoint.id!),
+                home: BikePointScreen(id: bikePoint.id!),
               ),
             ),
           );
@@ -352,7 +352,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: BikePointsPage(),
+                home: BikePointsScreen(),
               ),
             ),
           );

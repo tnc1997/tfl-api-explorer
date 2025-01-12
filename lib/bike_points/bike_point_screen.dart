@@ -6,8 +6,8 @@ import '../common/circular_progress_indicator_future_builder.dart';
 import 'bike_point_additional_properties_route.dart';
 import 'bike_points_route.dart';
 
-class BikePointPage extends StatefulWidget {
-  const BikePointPage({
+class BikePointScreen extends StatefulWidget {
+  const BikePointScreen({
     super.key,
     required this.id,
   });
@@ -15,12 +15,12 @@ class BikePointPage extends StatefulWidget {
   final String id;
 
   @override
-  State<BikePointPage> createState() {
-    return _BikePointPageState();
+  State<BikePointScreen> createState() {
+    return _BikePointScreenState();
   }
 }
 
-class _BikePointPageState extends State<BikePointPage> {
+class _BikePointScreenState extends State<BikePointScreen> {
   late final Future<Place> _future;
 
   @override

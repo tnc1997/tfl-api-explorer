@@ -10,18 +10,18 @@ import '../places/place_search_delegate.dart';
 import 'bike_point_route.dart';
 import 'bike_points_route.dart';
 
-class BikePointsPage extends StatefulWidget {
-  const BikePointsPage({
+class BikePointsScreen extends StatefulWidget {
+  const BikePointsScreen({
     super.key,
   });
 
   @override
-  State<BikePointsPage> createState() {
-    return _BikePointsPageState();
+  State<BikePointsScreen> createState() {
+    return _BikePointsScreenState();
   }
 }
 
-class _BikePointsPageState extends State<BikePointsPage> {
+class _BikePointsScreenState extends State<BikePointsScreen> {
   late final Future<List<Place>> _future;
 
   @override
