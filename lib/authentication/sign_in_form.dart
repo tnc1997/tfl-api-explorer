@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'sign_in_button.dart';
+
 class SignInForm extends StatefulWidget {
   const SignInForm({
     super.key,
@@ -69,9 +71,8 @@ class _SignInFormState extends State<SignInForm> {
                   },
                   child: Text('Sign up'),
                 ),
-                FilledButton(
+                SignInButton(
                   onPressed: widget.onSubmitted,
-                  child: Text('Sign in'),
                 ),
               ],
             ),
