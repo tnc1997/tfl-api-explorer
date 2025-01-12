@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'sign_in_button.dart';
+import 'sign_up_button.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({
@@ -60,17 +60,7 @@ class _SignInFormState extends State<SignInForm> {
               spacing: 8.0,
               alignment: MainAxisAlignment.end,
               children: <Widget>[
-                FilledButton(
-                  onPressed: () async {
-                    await launchUrl(
-                      Uri.https(
-                        'api-portal.tfl.gov.uk',
-                        '/signup',
-                      ),
-                    );
-                  },
-                  child: Text('Sign up'),
-                ),
+                const SignUpButton(),
                 SignInButton(
                   onPressed: widget.onSubmitted,
                 ),
