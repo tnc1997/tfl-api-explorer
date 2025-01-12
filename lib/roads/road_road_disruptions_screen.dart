@@ -5,8 +5,8 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import '../common/circular_progress_indicator_future_builder.dart';
 import 'road_disruption_list_tile.dart';
 
-class RoadRoadDisruptionsPage extends StatefulWidget {
-  const RoadRoadDisruptionsPage({
+class RoadRoadDisruptionsScreen extends StatefulWidget {
+  const RoadRoadDisruptionsScreen({
     super.key,
     required this.id,
   });
@@ -14,12 +14,12 @@ class RoadRoadDisruptionsPage extends StatefulWidget {
   final String id;
 
   @override
-  State<RoadRoadDisruptionsPage> createState() {
-    return _RoadRoadDisruptionsPageState();
+  State<RoadRoadDisruptionsScreen> createState() {
+    return _RoadRoadDisruptionsScreenState();
   }
 }
 
-class _RoadRoadDisruptionsPageState extends State<RoadRoadDisruptionsPage> {
+class _RoadRoadDisruptionsScreenState extends State<RoadRoadDisruptionsScreen> {
   late final Future<List<RoadDisruption>> _future;
 
   @override

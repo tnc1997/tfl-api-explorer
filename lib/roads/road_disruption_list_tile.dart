@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import 'road_disruption_page.dart';
+import 'road_disruption_screen.dart';
 
 class RoadDisruptionListTile extends StatelessWidget {
   const RoadDisruptionListTile({
@@ -30,7 +30,7 @@ class RoadDisruptionListTile extends StatelessWidget {
         await Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return RoadDisruptionPage(
+              return RoadDisruptionScreen(
                 roadDisruption: roadDisruption,
               );
             },

@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import 'road_road_disruptions_route.dart';
 import 'road_route.dart';
-import 'roads_page.dart';
+import 'roads_screen.dart';
 
 part 'roads_route.g.dart';
 
@@ -28,6 +28,6 @@ class RoadsRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return const RoadsPage();
+    return const RoadsScreen();
   }
 }

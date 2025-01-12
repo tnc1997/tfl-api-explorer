@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'road_page.dart';
+import 'road_screen.dart';
 
 class RoadRoute extends GoRouteData {
   const RoadRoute({
@@ -15,7 +15,7 @@ class RoadRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return RoadPage(
+    return RoadScreen(
       id: id,
     );
   }

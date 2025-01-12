@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-class RoadDisruptionPage extends StatelessWidget {
-  const RoadDisruptionPage({
+class RoadDisruptionScreen extends StatelessWidget {
+  const RoadDisruptionScreen({
     super.key,
     required this.roadDisruption,
   });

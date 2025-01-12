@@ -7,8 +7,8 @@ import '../common/circular_progress_indicator_future_builder.dart';
 import 'road_road_disruptions_route.dart';
 import 'roads_route.dart';
 
-class RoadPage extends StatefulWidget {
-  const RoadPage({
+class RoadScreen extends StatefulWidget {
+  const RoadScreen({
     super.key,
     required this.id,
   });
@@ -16,12 +16,12 @@ class RoadPage extends StatefulWidget {
   final String id;
 
   @override
-  State<RoadPage> createState() {
-    return _RoadPageState();
+  State<RoadScreen> createState() {
+    return _RoadScreenState();
   }
 }
 
-class _RoadPageState extends State<RoadPage> {
+class _RoadScreenState extends State<RoadScreen> {
   late final Future<List<RoadCorridor>> _future;
 
   @override

@@ -23,8 +23,8 @@ import 'package:tfl_api_explorer/lines/line_route_sequences_screen.dart';
 import 'package:tfl_api_explorer/lines/line_screen.dart';
 import 'package:tfl_api_explorer/lines/line_stop_points_screen.dart';
 import 'package:tfl_api_explorer/lines/lines_screen.dart';
-import 'package:tfl_api_explorer/roads/road_page.dart';
-import 'package:tfl_api_explorer/roads/roads_page.dart';
+import 'package:tfl_api_explorer/roads/road_screen.dart';
+import 'package:tfl_api_explorer/roads/roads_screen.dart';
 import 'package:tfl_api_explorer/settings/about_page.dart';
 import 'package:tfl_api_explorer/settings/settings_page.dart';
 import 'package:tfl_api_explorer/stop_points/stop_point_filters_change_notifier.dart';
@@ -796,7 +796,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: RoadPage(id: road.id!),
+                home: RoadScreen(id: road.id!),
               ),
             ),
           );
@@ -823,7 +823,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: RoadsPage(),
+                home: RoadsScreen(),
               ),
             ),
           );

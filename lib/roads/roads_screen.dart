@@ -10,18 +10,18 @@ import 'road_route.dart';
 import 'road_search_delegate.dart';
 import 'roads_route.dart';
 
-class RoadsPage extends StatefulWidget {
-  const RoadsPage({
+class RoadsScreen extends StatefulWidget {
+  const RoadsScreen({
     super.key,
   });
 
   @override
-  State<RoadsPage> createState() {
-    return _RoadsPageState();
+  State<RoadsScreen> createState() {
+    return _RoadsScreenState();
   }
 }
 
-class _RoadsPageState extends State<RoadsPage> {
+class _RoadsScreenState extends State<RoadsScreen> {
   late final Future<List<RoadCorridor>> _future;
 
   @override
