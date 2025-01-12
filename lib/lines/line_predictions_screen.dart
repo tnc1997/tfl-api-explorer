@@ -24,7 +24,7 @@ class LinePredictionsScreen extends StatefulWidget {
 }
 
 class _LinePredictionsScreenState extends State<LinePredictionsScreen> {
-  final _predictionsStreamController = StreamController<List<Prediction>>();
+  final _controller = StreamController<List<Prediction>>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +51,29 @@ class _LinePredictionsScreenState extends State<LinePredictionsScreen> {
         ],
       ),
       body: CircularProgressIndicatorStreamBuilder<List<Prediction>>(
-        stream: _predictionsStreamController.stream,
+        stream: _controller.stream,
         builder: (context, data) {
-          final predictions = data?.where(notifier.areSatisfiedBy).toList();
+          final predictions = data?.where(
+            (prediction) {
+              if (notifier.destinationName case final destinationName?) {
+                if (prediction.destinationName != destinationName) {
+                  return false;
+                }
+              }
+
+              if (notifier.stationName case final stationName?) {
+                if (prediction.stationName != stationName) {
+                  return false;
+                }
+              }
+
+              return true;
+            },
+          ).toList();
 
           if (predictions != null) {
             return RefreshIndicator(
-              onRefresh: _refreshPredictions,
+              onRefresh: _refresh,
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   return PredictionListTile(
@@ -79,28 +95,25 @@ class _LinePredictionsScreenState extends State<LinePredictionsScreen> {
   void dispose() {
     super.dispose();
 
-    _predictionsStreamController.close();
+    _controller.close();
   }
 
   @override
   void initState() {
     super.initState();
 
-    _refreshPredictions();
+    _refresh();
   }
 
-  Future<void> _refreshPredictions() async {
+  Future<void> _refresh() async {
     try {
-      final notifier = context.read<LinePredictionFiltersNotifier>();
-
-      var predictions =
-          await context.read<TflApiClient>().line.arrivals([widget.id]);
-
-      predictions = predictions.where(notifier.areSatisfiedBy).toList();
-
-      _predictionsStreamController.add(predictions);
+      _controller.add(
+        await context.read<TflApiClient>().line.arrivals([widget.id]),
+      );
     } catch (error) {
-      _predictionsStreamController.addError(error);
+      _controller.addError(
+        error,
+      );
     }
   }
 }
