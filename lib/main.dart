@@ -17,7 +17,7 @@ import 'lines/line_prediction_filters_notifier.dart';
 import 'lines/lines_route.dart';
 import 'roads/roads_route.dart';
 import 'settings/settings_route.dart';
-import 'stop_points/stop_point_filters_change_notifier.dart';
+import 'stop_points/stop_point_filters_notifier.dart';
 import 'stop_points/stop_points_route.dart';
 
 Future<void> main() async {
@@ -55,9 +55,9 @@ class MyApp extends StatelessWidget {
             return LinePredictionFiltersNotifier();
           },
         ),
-        ChangeNotifierProvider<StopPointFiltersChangeNotifier>(
+        ChangeNotifierProvider<StopPointFiltersNotifier>(
           create: (context) {
-            return StopPointFiltersChangeNotifier();
+            return StopPointFiltersNotifier();
           },
         ),
         ProxyProvider<AuthenticationNotifier, TflApiClient>(

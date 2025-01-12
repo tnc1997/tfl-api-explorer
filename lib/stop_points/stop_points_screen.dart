@@ -4,7 +4,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../common/circular_progress_indicator_future_builder.dart';
 import '../common/drawer.dart';
-import 'stop_point_filters_change_notifier.dart';
+import 'stop_point_filters_notifier.dart';
 import 'stop_point_list_tile.dart';
 
 class StopPointsScreen extends StatefulWidget {
@@ -19,13 +19,10 @@ class StopPointsScreen extends StatefulWidget {
 }
 
 class _StopPointsScreenState extends State<StopPointsScreen> {
-  late final Future<List<StopPoint>> _future;
+  late Future<StopPointsResponse> _future;
 
   @override
   Widget build(BuildContext context) {
-    final stopPointFiltersChangeNotifier =
-        context.watch<StopPointFiltersChangeNotifier>();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Stop Points'),
@@ -44,14 +41,10 @@ class _StopPointsScreenState extends State<StopPointsScreen> {
           ),
         ],
       ),
-      body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
+      body: CircularProgressIndicatorFutureBuilder<StopPointsResponse>(
         future: _future,
         builder: (context, data) {
-          final stopPoints = data
-              ?.where(stopPointFiltersChangeNotifier.areSatisfiedBy)
-              .toList();
-
-          if (stopPoints != null) {
+          if (data?.stopPoints case final stopPoints?) {
             return ListView.builder(
               itemBuilder: (context, index) {
                 return StopPointListTile(
@@ -70,13 +63,16 @@ class _StopPointsScreenState extends State<StopPointsScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
 
-    _future = context
-        .read<TflApiClient>()
-        .stopPoint
-        .getByType(['NaptanMetroStation']);
+    final modes = context.watch<StopPointFiltersNotifier>().modes;
+
+    if (modes.isEmpty) {
+      modes.add('bus');
+    }
+
+    _future = context.read<TflApiClient>().stopPoint.getByMode(modes, page: 1);
   }
 }
 
@@ -92,8 +88,7 @@ class _StopPointFiltersPageState extends State<_StopPointFiltersPage> {
 
   @override
   Widget build(BuildContext context) {
-    final stopPointFiltersChangeNotifier =
-        context.watch<StopPointFiltersChangeNotifier>();
+    final notifier = context.watch<StopPointFiltersNotifier>();
 
     return Scaffold(
       appBar: AppBar(
@@ -102,40 +97,37 @@ class _StopPointFiltersPageState extends State<_StopPointFiltersPage> {
           IconButton(
             icon: Icon(Icons.restore),
             onPressed: () {
-              stopPointFiltersChangeNotifier.reset();
+              notifier.reset();
             },
           ),
         ],
       ),
-      body: CircularProgressIndicatorFutureBuilder<List>(
-        future: Future.wait([_future]),
+      body: CircularProgressIndicatorFutureBuilder<List<Mode>>(
+        future: _future,
         builder: (context, data) {
           if (data != null) {
             return ListView(
               children: <Widget>[
                 ExpansionTile(
                   title: Text('Modes'),
-                  children: (data[0] as List<Mode>).map((mode) {
-                    return CheckboxListTile(
-                      value: stopPointFiltersChangeNotifier.modes
-                          .contains(mode.modeName),
-                      onChanged: (value) {
-                        if (value != null) {
-                          if (value) {
-                            stopPointFiltersChangeNotifier
-                                .addMode(mode.modeName!);
-                          } else {
-                            stopPointFiltersChangeNotifier
-                                .removeMode(mode.modeName!);
-                          }
-                        }
-                      },
-                      title: Text(
-                        mode.modeName ?? 'Unknown',
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    );
-                  }).toList(),
+                  children: [
+                    for (final mode in data)
+                      if (mode.modeName case final modeName?)
+                        CheckboxListTile(
+                          value: notifier.modes.contains(modeName),
+                          onChanged: (value) {
+                            if (value == true) {
+                              notifier.addMode(modeName);
+                            } else {
+                              notifier.removeMode(modeName);
+                            }
+                          },
+                          title: Text(
+                            modeName,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                  ],
                 ),
               ],
             );

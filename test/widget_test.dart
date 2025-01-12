@@ -27,7 +27,7 @@ import 'package:tfl_api_explorer/roads/road_screen.dart';
 import 'package:tfl_api_explorer/roads/roads_screen.dart';
 import 'package:tfl_api_explorer/settings/about_screen.dart';
 import 'package:tfl_api_explorer/settings/settings_screen.dart';
-import 'package:tfl_api_explorer/stop_points/stop_point_filters_change_notifier.dart';
+import 'package:tfl_api_explorer/stop_points/stop_point_filters_notifier.dart';
 import 'package:tfl_api_explorer/stop_points/stop_point_screen.dart';
 import 'package:tfl_api_explorer/stop_points/stop_points_screen.dart';
 
@@ -1053,9 +1053,9 @@ void main() {
           await tester.pumpWidget(
             MultiProvider(
               providers: [
-                ChangeNotifierProvider<StopPointFiltersChangeNotifier>(
+                ChangeNotifierProvider<StopPointFiltersNotifier>(
                   create: (context) {
-                    return StopPointFiltersChangeNotifier();
+                    return StopPointFiltersNotifier();
                   },
                 ),
                 Provider<TflApiClient>.value(
