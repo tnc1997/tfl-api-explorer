@@ -48,15 +48,22 @@ class _LineLineRoutesScreenState extends State<LineLineRoutesScreen> {
       body: CircularProgressIndicatorFutureBuilder<List<Line>>(
         future: _future,
         builder: (context, data) {
-          final lineRoutes = data
-              ?.fold(
-                <MatchedRoute>[],
-                (previousValue, element) {
-                  return previousValue..addAll(element.routeSections ?? []);
-                },
-              )
-              .where(notifier.areSatisfiedBy)
-              .toList();
+          final lineRoutes = data?.fold(
+            <MatchedRoute>[],
+            (lineRoutes, line) {
+              if (line.routeSections case final routeSections?) {
+                for (final routeSection in routeSections) {
+                  lineRoutes.add(routeSection);
+                }
+              }
+
+              return lineRoutes;
+            },
+          ).where(
+            (lineRoute) {
+              return lineRoute.serviceType == notifier.serviceType;
+            },
+          ).toList();
 
           if (lineRoutes != null) {
             return ListView.builder(
@@ -109,27 +116,28 @@ class _LineLineRouteFiltersPageState extends State<_LineLineRouteFiltersPage> {
           ),
         ],
       ),
-      body: CircularProgressIndicatorFutureBuilder<List>(
-        future: Future.wait([_future]),
+      body: CircularProgressIndicatorFutureBuilder<List<String>>(
+        future: _future,
         builder: (context, data) {
           if (data != null) {
             return ListView(
               children: <Widget>[
                 ExpansionTile(
                   title: Text('Service type'),
-                  children: (data[0] as List<String>).map((serviceType) {
-                    return RadioListTile<String>(
-                      value: serviceType,
-                      groupValue: notifier.serviceType,
-                      onChanged: (value) {
-                        notifier.serviceType = value;
-                      },
-                      title: Text(
-                        serviceType,
-                        overflow: TextOverflow.ellipsis,
+                  children: [
+                    for (final serviceType in data)
+                      RadioListTile<String>(
+                        value: serviceType,
+                        groupValue: notifier.serviceType,
+                        onChanged: (value) {
+                          notifier.serviceType = value;
+                        },
+                        title: Text(
+                          serviceType,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    );
-                  }).toList(),
+                  ],
                 ),
               ],
             );
