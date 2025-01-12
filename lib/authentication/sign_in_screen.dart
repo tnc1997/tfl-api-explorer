@@ -8,18 +8,18 @@ import '../home/home_route.dart';
 import 'authentication_notifier.dart';
 import 'sign_in_form.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({
     super.key,
   });
 
   @override
-  State<SignInPage> createState() {
-    return _SignInPageState();
+  State<SignInScreen> createState() {
+    return _SignInScreenState();
   }
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignInScreenState extends State<SignInScreen> {
   late TextEditingController _appKeyController;
   late Future<void> _future;
 

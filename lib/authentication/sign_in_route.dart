@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'sign_in_page.dart';
+import 'sign_in_screen.dart';
 
 part 'sign_in_route.g.dart';
 
@@ -16,6 +16,6 @@ class SignInRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return const SignInPage();
+    return const SignInScreen();
   }
 }
