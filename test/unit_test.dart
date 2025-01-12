@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/common/specification.dart';
-import 'package:tfl_api_explorer/lines/line_mode_name_specification.dart';
 import 'package:tfl_api_explorer/lines/line_route_service_type_specification.dart';
 import 'package:tfl_api_explorer/places/place_common_name_specification.dart';
 import 'package:tfl_api_explorer/predictions/prediction_destination_name_specification.dart';
@@ -31,19 +30,6 @@ void main() {
       placeType: 'BikePoint',
       lat: 51.521283,
       lon: -0.084605,
-    ),
-  ];
-
-  final lines = <Line>[
-    Line(
-      id: '1',
-      name: '1',
-      modeName: 'bus',
-    ),
-    Line(
-      id: 'bakerloo',
-      name: 'Bakerloo',
-      modeName: 'tube',
     ),
   ];
 
@@ -120,60 +106,6 @@ void main() {
   ];
 
   group('specifications', () {
-    group('LineModeNameSpecification', () {
-      test('isSatisfiedBy', () {
-        Specification<Line> specification;
-
-        specification = LineModeNameSpecification(
-          modeName: 'bus',
-        );
-        expect(
-          specification.isSatisfiedBy(lines[0]),
-          isTrue,
-        );
-        expect(
-          specification.isSatisfiedBy(lines[1]),
-          isFalse,
-        );
-        expect(
-          lines.where(specification.isSatisfiedBy).toList(),
-          hasLength(1),
-        );
-
-        specification = LineModeNameSpecification(
-          modeName: 'overground',
-        );
-        expect(
-          specification.isSatisfiedBy(lines[0]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(lines[1]),
-          isFalse,
-        );
-        expect(
-          lines.where(specification.isSatisfiedBy).toList(),
-          isEmpty,
-        );
-
-        specification = LineModeNameSpecification(
-          modeName: 'tube',
-        );
-        expect(
-          specification.isSatisfiedBy(lines[0]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(lines[1]),
-          isTrue,
-        );
-        expect(
-          lines.where(specification.isSatisfiedBy).toList(),
-          hasLength(1),
-        );
-      });
-    });
-
     group('LineRouteServiceTypeSpecification', () {
       test('isSatisfiedBy', () {
         Specification<MatchedRoute> specification;
