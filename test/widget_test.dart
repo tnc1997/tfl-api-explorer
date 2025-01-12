@@ -28,8 +28,8 @@ import 'package:tfl_api_explorer/roads/roads_screen.dart';
 import 'package:tfl_api_explorer/settings/about_screen.dart';
 import 'package:tfl_api_explorer/settings/settings_screen.dart';
 import 'package:tfl_api_explorer/stop_points/stop_point_filters_change_notifier.dart';
-import 'package:tfl_api_explorer/stop_points/stop_point_page.dart';
-import 'package:tfl_api_explorer/stop_points/stop_points_page.dart';
+import 'package:tfl_api_explorer/stop_points/stop_point_screen.dart';
+import 'package:tfl_api_explorer/stop_points/stop_points_screen.dart';
 
 import 'widget_test.mocks.dart';
 
@@ -856,7 +856,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: StopPointPage(id: stopPoint.id!),
+                home: StopPointScreen(id: stopPoint.id!),
               ),
             ),
           );
@@ -881,7 +881,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: StopPointPage(id: stopPoint.id!),
+                home: StopPointScreen(id: stopPoint.id!),
               ),
             ),
           );
@@ -906,7 +906,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: StopPointPage(id: stopPoint.id!),
+                home: StopPointScreen(id: stopPoint.id!),
               ),
             ),
           );
@@ -931,7 +931,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: StopPointPage(id: stopPoint.id!),
+                home: StopPointScreen(id: stopPoint.id!),
               ),
             ),
           );
@@ -956,7 +956,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: StopPointPage(id: stopPoint.id!),
+                home: StopPointScreen(id: stopPoint.id!),
               ),
             ),
           );
@@ -981,7 +981,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: StopPointPage(id: stopPoint.id!),
+                home: StopPointScreen(id: stopPoint.id!),
               ),
             ),
           );
@@ -1006,7 +1006,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: StopPointPage(id: stopPoint.id!),
+                home: StopPointScreen(id: stopPoint.id!),
               ),
             ),
           );
@@ -1031,7 +1031,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: StopPointPage(id: stopPoint.id!),
+                home: StopPointScreen(id: stopPoint.id!),
               ),
             ),
           );
@@ -1063,7 +1063,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: StopPointsPage(),
+                home: StopPointsScreen(),
               ),
             ),
           );

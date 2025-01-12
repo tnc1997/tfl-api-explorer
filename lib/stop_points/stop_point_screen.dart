@@ -9,8 +9,8 @@ import 'stop_point_lines_route.dart';
 import 'stop_point_modes_route.dart';
 import 'stop_points_route.dart';
 
-class StopPointPage extends StatefulWidget {
-  const StopPointPage({
+class StopPointScreen extends StatefulWidget {
+  const StopPointScreen({
     super.key,
     required this.id,
   });
@@ -18,12 +18,12 @@ class StopPointPage extends StatefulWidget {
   final String id;
 
   @override
-  State<StopPointPage> createState() {
-    return _StopPointPageState();
+  State<StopPointScreen> createState() {
+    return _StopPointScreenState();
   }
 }
 
-class _StopPointPageState extends State<StopPointPage> {
+class _StopPointScreenState extends State<StopPointScreen> {
   late final Future<List<StopPoint>> _future;
 
   @override

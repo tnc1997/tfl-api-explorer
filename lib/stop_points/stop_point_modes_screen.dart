@@ -3,10 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../common/circular_progress_indicator_future_builder.dart';
-import '../places/additional_properties_list_tile.dart';
 
-class StopPointAdditionalPropertiesPage extends StatefulWidget {
-  const StopPointAdditionalPropertiesPage({
+class StopPointModesScreen extends StatefulWidget {
+  const StopPointModesScreen({
     super.key,
     required this.id,
   });
@@ -14,32 +13,34 @@ class StopPointAdditionalPropertiesPage extends StatefulWidget {
   final String id;
 
   @override
-  State<StopPointAdditionalPropertiesPage> createState() {
-    return _StopPointAdditionalPropertiesPageState();
+  State<StopPointModesScreen> createState() {
+    return _StopPointModesScreenState();
   }
 }
 
-class _StopPointAdditionalPropertiesPageState
-    extends State<StopPointAdditionalPropertiesPage> {
+class _StopPointModesScreenState extends State<StopPointModesScreen> {
   late final Future<List<StopPoint>> _future;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Additional properties'),
+        title: Text('Modes'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
         future: _future,
         builder: (context, data) {
-          if (data?[0].additionalProperties case final additionalProperties?) {
+          if (data?[0].modes case final modes?) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                return AdditionalPropertiesListTile(
-                  additionalProperties: additionalProperties[index],
+                return ListTile(
+                  title: Text(
+                    modes[index],
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 );
               },
-              itemCount: additionalProperties.length,
+              itemCount: modes.length,
             );
           } else {
             return Container();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'stop_point_page.dart';
+import 'stop_point_screen.dart';
 
 class StopPointRoute extends GoRouteData {
   const StopPointRoute({
@@ -15,7 +15,7 @@ class StopPointRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return StopPointPage(
+    return StopPointScreen(
       id: id,
     );
   }

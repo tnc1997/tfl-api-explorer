@@ -3,10 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../common/circular_progress_indicator_future_builder.dart';
-import '../common/identifier_list_tile.dart';
+import '../places/additional_properties_list_tile.dart';
 
-class StopPointLinesPage extends StatefulWidget {
-  const StopPointLinesPage({
+class StopPointAdditionalPropertiesScreen extends StatefulWidget {
+  const StopPointAdditionalPropertiesScreen({
     super.key,
     required this.id,
   });
@@ -14,31 +14,32 @@ class StopPointLinesPage extends StatefulWidget {
   final String id;
 
   @override
-  State<StopPointLinesPage> createState() {
-    return _StopPointLinesPageState();
+  State<StopPointAdditionalPropertiesScreen> createState() {
+    return _StopPointAdditionalPropertiesScreenState();
   }
 }
 
-class _StopPointLinesPageState extends State<StopPointLinesPage> {
+class _StopPointAdditionalPropertiesScreenState
+    extends State<StopPointAdditionalPropertiesScreen> {
   late final Future<List<StopPoint>> _future;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lines'),
+        title: Text('Additional properties'),
       ),
       body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
         future: _future,
         builder: (context, data) {
-          if (data?[0].lines case final lines?) {
+          if (data?[0].additionalProperties case final additionalProperties?) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                return IdentifierListTile(
-                  identifier: lines[index],
+                return AdditionalPropertiesListTile(
+                  additionalProperties: additionalProperties[index],
                 );
               },
-              itemCount: lines.length,
+              itemCount: additionalProperties.length,
             );
           } else {
             return Container();

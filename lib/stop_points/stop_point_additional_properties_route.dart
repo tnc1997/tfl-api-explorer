@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'stop_point_additional_properties_page.dart';
+import 'stop_point_additional_properties_screen.dart';
 
 class StopPointAdditionalPropertiesRoute extends GoRouteData {
   const StopPointAdditionalPropertiesRoute({
@@ -15,7 +15,7 @@ class StopPointAdditionalPropertiesRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return StopPointAdditionalPropertiesPage(
+    return StopPointAdditionalPropertiesScreen(
       id: id,
     );
   }

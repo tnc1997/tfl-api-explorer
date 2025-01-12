@@ -7,18 +7,18 @@ import '../common/drawer.dart';
 import 'stop_point_filters_change_notifier.dart';
 import 'stop_point_list_tile.dart';
 
-class StopPointsPage extends StatefulWidget {
-  const StopPointsPage({
+class StopPointsScreen extends StatefulWidget {
+  const StopPointsScreen({
     super.key,
   });
 
   @override
-  State<StopPointsPage> createState() {
-    return _StopPointsPageState();
+  State<StopPointsScreen> createState() {
+    return _StopPointsScreenState();
   }
 }
 
-class _StopPointsPageState extends State<StopPointsPage> {
+class _StopPointsScreenState extends State<StopPointsScreen> {
   late final Future<List<StopPoint>> _future;
 
   @override

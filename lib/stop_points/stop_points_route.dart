@@ -5,7 +5,7 @@ import 'stop_point_additional_properties_route.dart';
 import 'stop_point_lines_route.dart';
 import 'stop_point_modes_route.dart';
 import 'stop_point_route.dart';
-import 'stop_points_page.dart';
+import 'stop_points_screen.dart';
 
 part 'stop_points_route.g.dart';
 
@@ -36,6 +36,6 @@ class StopPointsRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return const StopPointsPage();
+    return const StopPointsScreen();
   }
 }

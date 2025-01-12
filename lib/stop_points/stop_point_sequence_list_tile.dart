@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import 'stop_point_sequence_page.dart';
+import 'stop_point_sequence_screen.dart';
 
 class StopPointSequenceListTile extends StatelessWidget {
   const StopPointSequenceListTile({
@@ -26,7 +26,7 @@ class StopPointSequenceListTile extends StatelessWidget {
         await Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return StopPointSequencePage(
+              return StopPointSequenceScreen(
                 stopPointSequence: stopPointSequence,
               );
             },
