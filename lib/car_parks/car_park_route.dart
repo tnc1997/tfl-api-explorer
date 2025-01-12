@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'car_park_page.dart';
+import 'car_park_screen.dart';
 
 class CarParkRoute extends GoRouteData {
   const CarParkRoute({
@@ -15,7 +15,7 @@ class CarParkRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return CarParkPage(
+    return CarParkScreen(
       id: id,
     );
   }

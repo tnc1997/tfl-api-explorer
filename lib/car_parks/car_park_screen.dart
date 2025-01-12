@@ -6,8 +6,8 @@ import '../common/circular_progress_indicator_future_builder.dart';
 import 'car_park_bays_route.dart';
 import 'car_parks_route.dart';
 
-class CarParkPage extends StatefulWidget {
-  const CarParkPage({
+class CarParkScreen extends StatefulWidget {
+  const CarParkScreen({
     super.key,
     required this.id,
   });
@@ -15,12 +15,12 @@ class CarParkPage extends StatefulWidget {
   final String id;
 
   @override
-  State<CarParkPage> createState() {
-    return _CarParkPageState();
+  State<CarParkScreen> createState() {
+    return _CarParkScreenState();
   }
 }
 
-class _CarParkPageState extends State<CarParkPage> {
+class _CarParkScreenState extends State<CarParkScreen> {
   late final Future<Place> _future;
 
   @override

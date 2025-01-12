@@ -10,18 +10,18 @@ import '../places/place_search_delegate.dart';
 import 'car_park_route.dart';
 import 'car_parks_route.dart';
 
-class CarParksPage extends StatefulWidget {
-  const CarParksPage({
+class CarParksScreen extends StatefulWidget {
+  const CarParksScreen({
     super.key,
   });
 
   @override
-  State<CarParksPage> createState() {
-    return _CarParksPageState();
+  State<CarParksScreen> createState() {
+    return _CarParksScreenState();
   }
 }
 
-class _CarParksPageState extends State<CarParksPage> {
+class _CarParksScreenState extends State<CarParksScreen> {
   late final Future<List<Place>> _future;
 
   @override

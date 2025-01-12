@@ -5,8 +5,8 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import '../common/circular_progress_indicator_future_builder.dart';
 import 'bay_list_tile.dart';
 
-class CarParkBaysPage extends StatefulWidget {
-  const CarParkBaysPage({
+class CarParkBaysScreen extends StatefulWidget {
+  const CarParkBaysScreen({
     super.key,
     required this.id,
   });
@@ -14,12 +14,12 @@ class CarParkBaysPage extends StatefulWidget {
   final String id;
 
   @override
-  State<CarParkBaysPage> createState() {
-    return _CarParkBaysPageState();
+  State<CarParkBaysScreen> createState() {
+    return _CarParkBaysScreenState();
   }
 }
 
-class _CarParkBaysPageState extends State<CarParkBaysPage> {
+class _CarParkBaysScreenState extends State<CarParkBaysScreen> {
   late final Future<CarParkOccupancy> _future;
 
   @override

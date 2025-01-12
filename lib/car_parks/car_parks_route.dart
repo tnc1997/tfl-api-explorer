@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import 'car_park_bays_route.dart';
 import 'car_park_route.dart';
-import 'car_parks_page.dart';
+import 'car_parks_screen.dart';
 
 part 'car_parks_route.g.dart';
 
@@ -28,6 +28,6 @@ class CarParksRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return const CarParksPage();
+    return const CarParksScreen();
   }
 }

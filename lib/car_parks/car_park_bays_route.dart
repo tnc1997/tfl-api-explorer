@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'car_park_bays_page.dart';
+import 'car_park_bays_screen.dart';
 
 class CarParkBaysRoute extends GoRouteData {
   const CarParkBaysRoute({
@@ -15,7 +15,7 @@ class CarParkBaysRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return CarParkBaysPage(
+    return CarParkBaysScreen(
       id: id,
     );
   }
