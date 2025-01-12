@@ -20,10 +20,9 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  late TextEditingController _appKeyController;
-  late Future<void> _future;
-
+  late final TextEditingController _appKeyController;
   final _formKey = GlobalKey<FormState>();
+  late final Future<void> _future;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,21 @@ class _SignInScreenState extends State<SignInScreen> {
           SignInForm(
             formKey: _formKey,
             appKeyController: _appKeyController,
-            onSubmitted: _signIn,
+            onSubmitted: () async {
+              if (_formKey.currentState?.validate() == true) {
+                final notifier = context.read<AuthenticationNotifier>();
+
+                final router = GoRouter.of(context);
+
+                final appKey = _appKeyController.text;
+
+                await SharedPreferencesAsync().setString('appKey', appKey);
+
+                notifier.signIn(appKey);
+
+                router.go(const HomeRoute().location);
+              }
+            },
           ),
         ],
       ),
@@ -102,21 +115,5 @@ class _SignInScreenState extends State<SignInScreen> {
         }
       },
     );
-  }
-
-  Future<void> _signIn() async {
-    if (_formKey.currentState?.validate() ?? false) {
-      final notifier = context.read<AuthenticationNotifier>();
-
-      final router = GoRouter.of(context);
-
-      final appKey = _appKeyController.text;
-
-      await SharedPreferencesAsync().setString('appKey', appKey);
-
-      notifier.signIn(appKey);
-
-      router.go(const HomeRoute().location);
-    }
   }
 }

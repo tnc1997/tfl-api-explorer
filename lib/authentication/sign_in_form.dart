@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'app_key_form_field.dart';
 import 'sign_in_button.dart';
 import 'sign_up_button.dart';
 
@@ -24,8 +25,6 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
-  late FocusNode _appKeyFocusNode;
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -36,22 +35,11 @@ class _SignInFormState extends State<SignInForm> {
             padding: const EdgeInsets.only(
               bottom: 8.0,
             ),
-            child: TextFormField(
+            child: AppKeyFormField(
               controller: widget.appKeyController,
-              focusNode: _appKeyFocusNode,
-              decoration: InputDecoration(
-                labelText: 'App key',
-                border: const OutlineInputBorder(),
-              ),
               onFieldSubmitted: (value) {
-                _appKeyFocusNode.unfocus();
-
-                final onSubmitted = widget.onSubmitted;
-                if (onSubmitted != null) {
-                  onSubmitted();
-                }
+                widget.onSubmitted?.call();
               },
-              validator: _validator,
             ),
           ),
           Padding(
@@ -70,27 +58,5 @@ class _SignInFormState extends State<SignInForm> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _appKeyFocusNode.dispose();
-
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    _appKeyFocusNode = FocusNode();
-  }
-
-  String? _validator(String? value) {
-    if (value?.isEmpty ?? true) {
-      return 'Please enter a value.';
-    }
-
-    return null;
   }
 }
