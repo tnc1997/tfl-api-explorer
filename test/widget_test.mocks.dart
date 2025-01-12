@@ -177,13 +177,13 @@ class MockAuthenticationChangeNotifier extends _i1.Mock
           as bool);
 
   @override
-  void login(String? appKey) => super.noSuchMethod(
+  void signIn(String? appKey) => super.noSuchMethod(
         Invocation.method(#login, [appKey]),
         returnValueForMissingStub: null,
       );
 
   @override
-  void logout() => super.noSuchMethod(
+  void signOut() => super.noSuchMethod(
         Invocation.method(#logout, []),
         returnValueForMissingStub: null,
       );

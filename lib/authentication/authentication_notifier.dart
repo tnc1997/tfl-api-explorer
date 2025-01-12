@@ -11,7 +11,7 @@ class AuthenticationNotifier extends ChangeNotifier {
 
   http.Client? get client => _client;
 
-  void login(String appKey) {
+  void signIn(String appKey) {
     _appKey = appKey;
 
     _client?.close();
@@ -21,7 +21,7 @@ class AuthenticationNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  void logout() {
+  void signOut() {
     _appKey = null;
 
     _client?.close();

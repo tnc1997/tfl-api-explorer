@@ -49,7 +49,7 @@ class _SignInScreenState extends State<SignInScreen> {
           SignInForm(
             formKey: _formKey,
             appKeyController: _appKeyController,
-            onSubmitted: _login,
+            onSubmitted: _signIn,
           ),
         ],
       ),
@@ -104,7 +104,7 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  Future<void> _login() async {
+  Future<void> _signIn() async {
     if (_formKey.currentState?.validate() ?? false) {
       final notifier = context.read<AuthenticationNotifier>();
 
@@ -114,7 +114,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
       await SharedPreferencesAsync().setString('appKey', appKey);
 
-      notifier.login(appKey);
+      notifier.signIn(appKey);
 
       router.go(const HomeRoute().location);
     }
