@@ -19,12 +19,10 @@ class LinesScreen extends StatefulWidget {
 }
 
 class _LinesScreenState extends State<LinesScreen> {
-  late final Future<List<Line>> _future;
+  late Future<List<Line>>? _future;
 
   @override
   Widget build(BuildContext context) {
-    final notifier = context.watch<LineFiltersNotifier>();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Lines'),
@@ -46,16 +44,14 @@ class _LinesScreenState extends State<LinesScreen> {
       body: CircularProgressIndicatorFutureBuilder<List<Line>>(
         future: _future,
         builder: (context, data) {
-          final lines = data?.where(notifier.areSatisfiedBy).toList();
-
-          if (lines != null) {
+          if (data != null) {
             return ListView.builder(
               itemBuilder: (context, index) {
                 return LineListTile(
-                  line: lines[index],
+                  line: data[index],
                 );
               },
-              itemCount: lines.length,
+              itemCount: data.length,
             );
           } else {
             return Container();
@@ -67,10 +63,16 @@ class _LinesScreenState extends State<LinesScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
 
-    _future = context.read<TflApiClient>().line.getByMode(['bus', 'tube']);
+    final modes = context.watch<LineFiltersNotifier>().modes;
+
+    if (modes.isEmpty) {
+      modes.add('bus');
+    }
+
+    _future = context.read<TflApiClient>().line.getByMode(modes);
   }
 }
 
@@ -100,27 +102,32 @@ class _LineFiltersPageState extends State<_LineFiltersPage> {
           ),
         ],
       ),
-      body: CircularProgressIndicatorFutureBuilder<List>(
-        future: Future.wait([_future]),
+      body: CircularProgressIndicatorFutureBuilder<List<Mode>>(
+        future: _future,
         builder: (context, data) {
           if (data != null) {
             return ListView(
               children: <Widget>[
                 ExpansionTile(
-                  title: Text('Mode name'),
-                  children: (data[0] as List<Mode>).map((mode) {
-                    return RadioListTile<String>(
-                      value: mode.modeName!,
-                      groupValue: notifier.modeName,
-                      onChanged: (value) {
-                        notifier.modeName = value;
-                      },
-                      title: Text(
-                        mode.modeName ?? 'Unknown',
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    );
-                  }).toList(),
+                  title: Text('Mode'),
+                  children: [
+                    for (final mode in data)
+                      if (mode.modeName case final modeName?)
+                        CheckboxListTile(
+                          value: notifier.modes.contains(modeName),
+                          onChanged: (value) {
+                            if (value == true) {
+                              notifier.addMode(modeName);
+                            } else {
+                              notifier.removeMode(modeName);
+                            }
+                          },
+                          title: Text(
+                            modeName,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                  ],
                 ),
               ],
             );
