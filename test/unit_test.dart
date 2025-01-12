@@ -6,7 +6,6 @@ import 'package:tfl_api_explorer/places/place_common_name_specification.dart';
 import 'package:tfl_api_explorer/predictions/prediction_destination_name_specification.dart';
 import 'package:tfl_api_explorer/predictions/prediction_station_name_specification.dart';
 import 'package:tfl_api_explorer/roads/road_display_name_specification.dart';
-import 'package:tfl_api_explorer/stop_points/stop_point_modes_specification.dart';
 
 void main() {
   final bikePoints = <Place>[
@@ -69,39 +68,6 @@ void main() {
     RoadCorridor(
       id: 'a2',
       displayName: 'A2',
-    ),
-  ];
-
-  final stopPoints = <StopPoint>[
-    StopPoint(
-      naptanId: 'HUBZCW',
-      modes: ['bus', 'overground', 'tube'],
-      icsCode: '1000037',
-      smsCode: '48366',
-      stopType: 'TransportInterchange',
-      accessibilitySummary: 'Unknown',
-      hubNaptanCode: 'HUBZCW',
-      id: '490004733C',
-      url: 'Unknown',
-      commonName: 'Canada Water',
-      placeType: 'StopPoint',
-      lat: 51.498053,
-      lon: -0.049667,
-    ),
-    StopPoint(
-      naptanId: '940GZZLUTCR',
-      modes: ['bus', 'tube'],
-      icsCode: '1000235',
-      smsCode: '47657',
-      stopType: 'NaptanMetroStation',
-      accessibilitySummary: 'Unknown',
-      hubNaptanCode: 'Unknown',
-      id: '490000235N',
-      url: 'Unknown',
-      commonName: 'Tottenham Court Road',
-      placeType: 'StopPoint',
-      lat: 51.516426,
-      lon: -0.13041,
     ),
   ];
 
@@ -395,44 +361,6 @@ void main() {
         );
         expect(
           roadCorridors.where(specification.isSatisfiedBy).toList(),
-          isEmpty,
-        );
-      });
-    });
-
-    group('StopPointModesSpecification', () {
-      test('isSatisfiedBy', () {
-        Specification<StopPoint> specification;
-
-        specification = StopPointModesSpecification(
-          modes: {'bus', 'overground', 'tube'},
-        );
-        expect(
-          specification.isSatisfiedBy(stopPoints[0]),
-          isTrue,
-        );
-        expect(
-          specification.isSatisfiedBy(stopPoints[1]),
-          isFalse,
-        );
-        expect(
-          stopPoints.where(specification.isSatisfiedBy).toList(),
-          hasLength(1),
-        );
-
-        specification = StopPointModesSpecification(
-          modes: {'dlr'},
-        );
-        expect(
-          specification.isSatisfiedBy(stopPoints[0]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(stopPoints[1]),
-          isFalse,
-        );
-        expect(
-          stopPoints.where(specification.isSatisfiedBy).toList(),
           isEmpty,
         );
       });
