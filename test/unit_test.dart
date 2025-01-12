@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 import 'package:tfl_api_explorer/common/specification.dart';
-import 'package:tfl_api_explorer/lines/line_route_service_type_specification.dart';
 import 'package:tfl_api_explorer/places/place_common_name_specification.dart';
 import 'package:tfl_api_explorer/roads/road_display_name_specification.dart';
 
@@ -30,15 +29,6 @@ void main() {
     ),
   ];
 
-  final matchedRoutes = <MatchedRoute>[
-    MatchedRoute(
-      serviceType: 'Night',
-    ),
-    MatchedRoute(
-      serviceType: 'Regular',
-    ),
-  ];
-
   final roadCorridors = <RoadCorridor>[
     RoadCorridor(
       id: 'a1',
@@ -51,60 +41,6 @@ void main() {
   ];
 
   group('specifications', () {
-    group('LineRouteServiceTypeSpecification', () {
-      test('isSatisfiedBy', () {
-        Specification<MatchedRoute> specification;
-
-        specification = LineRouteServiceTypeSpecification(
-          serviceType: 'Day',
-        );
-        expect(
-          specification.isSatisfiedBy(matchedRoutes[0]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(matchedRoutes[1]),
-          isFalse,
-        );
-        expect(
-          matchedRoutes.where(specification.isSatisfiedBy).toList(),
-          isEmpty,
-        );
-
-        specification = LineRouteServiceTypeSpecification(
-          serviceType: 'Night',
-        );
-        expect(
-          specification.isSatisfiedBy(matchedRoutes[0]),
-          isTrue,
-        );
-        expect(
-          specification.isSatisfiedBy(matchedRoutes[1]),
-          isFalse,
-        );
-        expect(
-          matchedRoutes.where(specification.isSatisfiedBy).toList(),
-          hasLength(1),
-        );
-
-        specification = LineRouteServiceTypeSpecification(
-          serviceType: 'Regular',
-        );
-        expect(
-          specification.isSatisfiedBy(matchedRoutes[0]),
-          isFalse,
-        );
-        expect(
-          specification.isSatisfiedBy(matchedRoutes[1]),
-          isTrue,
-        );
-        expect(
-          matchedRoutes.where(specification.isSatisfiedBy).toList(),
-          hasLength(1),
-        );
-      });
-    });
-
     group('PlaceCommonNameSpecification', () {
       test('isSatisfiedBy', () {
         Specification<Place> specification;
