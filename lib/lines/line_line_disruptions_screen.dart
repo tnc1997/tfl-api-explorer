@@ -3,10 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../common/circular_progress_indicator_future_builder.dart';
-import 'route_sequence_list_tile.dart';
+import 'line_disruption_list_tile.dart';
 
-class LineRouteSequencesPage extends StatefulWidget {
-  const LineRouteSequencesPage({
+class LineLineDisruptionsScreen extends StatefulWidget {
+  const LineLineDisruptionsScreen({
     super.key,
     required this.id,
   });
@@ -14,31 +14,31 @@ class LineRouteSequencesPage extends StatefulWidget {
   final String id;
 
   @override
-  State<LineRouteSequencesPage> createState() {
-    return _LineRouteSequencesPageState();
+  State<LineLineDisruptionsScreen> createState() {
+    return _LineLineDisruptionsScreenState();
   }
 }
 
-class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
-  late final Future<RouteSequence> _future;
+class _LineLineDisruptionsScreenState extends State<LineLineDisruptionsScreen> {
+  late final Future<List<Disruption>> _future;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Route sequences'),
+        title: Text('Line disruptions'),
       ),
-      body: CircularProgressIndicatorFutureBuilder<RouteSequence>(
+      body: CircularProgressIndicatorFutureBuilder<List<Disruption>>(
         future: _future,
         builder: (context, data) {
           if (data != null) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                return RouteSequenceListTile(
-                  routeSequence: data,
+                return LineDisruptionListTile(
+                  lineDisruption: data[index],
                 );
               },
-              itemCount: 1,
+              itemCount: data.length,
             );
           } else {
             return Container();
@@ -52,7 +52,6 @@ class _LineRouteSequencesPageState extends State<LineRouteSequencesPage> {
   void initState() {
     super.initState();
 
-    _future =
-        context.read<TflApiClient>().line.routeSequence(widget.id, 'inbound');
+    _future = context.read<TflApiClient>().line.disruption([widget.id]);
   }
 }

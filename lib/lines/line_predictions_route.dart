@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'line_predictions_page.dart';
+import 'line_predictions_screen.dart';
 
 class LinePredictionsRoute extends GoRouteData {
   const LinePredictionsRoute({
@@ -15,7 +15,7 @@ class LinePredictionsRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return LinePredictionsPage(
+    return LinePredictionsScreen(
       id: id,
     );
   }

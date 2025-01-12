@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'line_line_statuses_page.dart';
+import 'line_line_statuses_screen.dart';
 
 class LineLineStatusesRoute extends GoRouteData {
   const LineLineStatusesRoute({
@@ -15,7 +15,7 @@ class LineLineStatusesRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return LineLineStatusesPage(
+    return LineLineStatusesScreen(
       id: id,
     );
   }

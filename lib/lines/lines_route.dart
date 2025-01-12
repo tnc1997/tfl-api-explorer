@@ -8,7 +8,7 @@ import 'line_predictions_route.dart';
 import 'line_route.dart';
 import 'line_route_sequences_route.dart';
 import 'line_stop_points_route.dart';
-import 'lines_page.dart';
+import 'lines_screen.dart';
 
 part 'lines_route.g.dart';
 
@@ -48,6 +48,6 @@ class LinesRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return const LinesPage();
+    return const LinesScreen();
   }
 }

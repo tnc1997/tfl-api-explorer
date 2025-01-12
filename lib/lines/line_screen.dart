@@ -11,8 +11,8 @@ import 'line_route_sequences_route.dart';
 import 'line_stop_points_route.dart';
 import 'lines_route.dart';
 
-class LinePage extends StatefulWidget {
-  const LinePage({
+class LineScreen extends StatefulWidget {
+  const LineScreen({
     super.key,
     required this.id,
   });
@@ -20,12 +20,12 @@ class LinePage extends StatefulWidget {
   final String id;
 
   @override
-  State<LinePage> createState() {
-    return _LinePageState();
+  State<LineScreen> createState() {
+    return _LineScreenState();
   }
 }
 
-class _LinePageState extends State<LinePage> {
+class _LineScreenState extends State<LineScreen> {
   late final Future<List<Line>> _future;
 
   @override

@@ -7,18 +7,18 @@ import '../common/drawer.dart';
 import 'line_filters_notifier.dart';
 import 'line_list_tile.dart';
 
-class LinesPage extends StatefulWidget {
-  const LinesPage({
+class LinesScreen extends StatefulWidget {
+  const LinesScreen({
     super.key,
   });
 
   @override
-  State<LinesPage> createState() {
-    return _LinesPageState();
+  State<LinesScreen> createState() {
+    return _LinesScreenState();
   }
 }
 
-class _LinesPageState extends State<LinesPage> {
+class _LinesScreenState extends State<LinesScreen> {
   late final Future<List<Line>> _future;
 
   @override

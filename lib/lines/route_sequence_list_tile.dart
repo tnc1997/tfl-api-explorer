@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import 'route_sequence_page.dart';
+import 'route_sequence_screen.dart';
 
 class RouteSequenceListTile extends StatelessWidget {
   const RouteSequenceListTile({
@@ -26,7 +26,7 @@ class RouteSequenceListTile extends StatelessWidget {
         await Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return RouteSequencePage(
+              return RouteSequenceScreen(
                 routeSequence: routeSequence,
               );
             },

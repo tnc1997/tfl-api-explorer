@@ -13,16 +13,16 @@ import 'package:tfl_api_explorer/car_parks/car_park_screen.dart';
 import 'package:tfl_api_explorer/car_parks/car_parks_screen.dart';
 import 'package:tfl_api_explorer/home/home_screen.dart';
 import 'package:tfl_api_explorer/lines/line_filters_notifier.dart';
-import 'package:tfl_api_explorer/lines/line_line_disruptions_page.dart';
+import 'package:tfl_api_explorer/lines/line_line_disruptions_screen.dart';
 import 'package:tfl_api_explorer/lines/line_line_route_filters_notifier.dart';
-import 'package:tfl_api_explorer/lines/line_line_routes_page.dart';
-import 'package:tfl_api_explorer/lines/line_line_statuses_page.dart';
-import 'package:tfl_api_explorer/lines/line_page.dart';
+import 'package:tfl_api_explorer/lines/line_line_routes_screen.dart';
+import 'package:tfl_api_explorer/lines/line_line_statuses_screen.dart';
 import 'package:tfl_api_explorer/lines/line_prediction_filters_notifier.dart';
-import 'package:tfl_api_explorer/lines/line_predictions_page.dart';
-import 'package:tfl_api_explorer/lines/line_route_sequences_page.dart';
-import 'package:tfl_api_explorer/lines/line_stop_points_page.dart';
-import 'package:tfl_api_explorer/lines/lines_page.dart';
+import 'package:tfl_api_explorer/lines/line_predictions_screen.dart';
+import 'package:tfl_api_explorer/lines/line_route_sequences_screen.dart';
+import 'package:tfl_api_explorer/lines/line_screen.dart';
+import 'package:tfl_api_explorer/lines/line_stop_points_screen.dart';
+import 'package:tfl_api_explorer/lines/lines_screen.dart';
 import 'package:tfl_api_explorer/roads/road_page.dart';
 import 'package:tfl_api_explorer/roads/roads_page.dart';
 import 'package:tfl_api_explorer/settings/about_page.dart';
@@ -445,7 +445,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LineLineDisruptionsPage(id: line.id!),
+                home: LineLineDisruptionsScreen(id: line.id!),
               ),
             ),
           );
@@ -481,7 +481,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LineLineRoutesPage(id: line.id!),
+                home: LineLineRoutesScreen(id: line.id!),
               ),
             ),
           );
@@ -512,7 +512,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LineLineStatusesPage(id: line.id!),
+                home: LineLineStatusesScreen(id: line.id!),
               ),
             ),
           );
@@ -539,7 +539,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LinePage(id: line.id!),
+                home: LineScreen(id: line.id!),
               ),
             ),
           );
@@ -564,7 +564,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LinePage(id: line.id!),
+                home: LineScreen(id: line.id!),
               ),
             ),
           );
@@ -598,7 +598,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LinePredictionsPage(id: line.id!),
+                home: LinePredictionsScreen(id: line.id!),
               ),
             ),
           );
@@ -631,7 +631,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LineRouteSequencesPage(id: line.id!),
+                home: LineRouteSequencesScreen(id: line.id!),
               ),
             ),
           );
@@ -660,7 +660,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LineStopPointsPage(id: line.id!),
+                home: LineStopPointsScreen(id: line.id!),
               ),
             ),
           );
@@ -694,7 +694,7 @@ void main() {
                 ),
               ],
               child: MaterialApp(
-                home: LinesPage(),
+                home: LinesScreen(),
               ),
             ),
           );

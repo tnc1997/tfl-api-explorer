@@ -9,8 +9,8 @@ import '../common/circular_progress_indicator_stream_builder.dart';
 import '../predictions/prediction_list_tile.dart';
 import 'line_prediction_filters_notifier.dart';
 
-class LinePredictionsPage extends StatefulWidget {
-  const LinePredictionsPage({
+class LinePredictionsScreen extends StatefulWidget {
+  const LinePredictionsScreen({
     super.key,
     required this.id,
   });
@@ -18,12 +18,12 @@ class LinePredictionsPage extends StatefulWidget {
   final String id;
 
   @override
-  State<LinePredictionsPage> createState() {
-    return _LinePredictionsPageState();
+  State<LinePredictionsScreen> createState() {
+    return _LinePredictionsScreenState();
   }
 }
 
-class _LinePredictionsPageState extends State<LinePredictionsPage> {
+class _LinePredictionsScreenState extends State<LinePredictionsScreen> {
   final _predictionsStreamController = StreamController<List<Prediction>>();
 
   @override

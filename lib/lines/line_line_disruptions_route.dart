@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'line_line_disruptions_page.dart';
+import 'line_line_disruptions_screen.dart';
 
 class LineLineDisruptionsRoute extends GoRouteData {
   const LineLineDisruptionsRoute({
@@ -15,7 +15,7 @@ class LineLineDisruptionsRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return LineLineDisruptionsPage(
+    return LineLineDisruptionsScreen(
       id: id,
     );
   }

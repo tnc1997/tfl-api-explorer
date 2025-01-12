@@ -3,10 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../common/circular_progress_indicator_future_builder.dart';
-import 'line_status_list_tile.dart';
+import '../stop_points/stop_point_list_tile.dart';
 
-class LineLineStatusesPage extends StatefulWidget {
-  const LineLineStatusesPage({
+class LineStopPointsScreen extends StatefulWidget {
+  const LineStopPointsScreen({
     super.key,
     required this.id,
   });
@@ -14,31 +14,31 @@ class LineLineStatusesPage extends StatefulWidget {
   final String id;
 
   @override
-  State<LineLineStatusesPage> createState() {
-    return _LineLineStatusesPageState();
+  State<LineStopPointsScreen> createState() {
+    return _LineStopPointsScreenState();
   }
 }
 
-class _LineLineStatusesPageState extends State<LineLineStatusesPage> {
-  late final Future<List<Line>> _future;
+class _LineStopPointsScreenState extends State<LineStopPointsScreen> {
+  late final Future<List<StopPoint>> _future;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Line statuses'),
+        title: Text('Stop points'),
       ),
-      body: CircularProgressIndicatorFutureBuilder<List<Line>>(
+      body: CircularProgressIndicatorFutureBuilder<List<StopPoint>>(
         future: _future,
         builder: (context, data) {
-          if (data?[0].lineStatuses case final lineStatuses?) {
+          if (data != null) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                return LineStatusListTile(
-                  lineStatus: lineStatuses[index],
+                return StopPointListTile(
+                  stopPoint: data[index],
                 );
               },
-              itemCount: lineStatuses.length,
+              itemCount: data.length,
             );
           } else {
             return Container();
@@ -52,6 +52,6 @@ class _LineLineStatusesPageState extends State<LineLineStatusesPage> {
   void initState() {
     super.initState();
 
-    _future = context.read<TflApiClient>().line.statusByIds([widget.id]);
+    _future = context.read<TflApiClient>().line.stopPoints(widget.id);
   }
 }

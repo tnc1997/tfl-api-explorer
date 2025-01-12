@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'line_line_routes_page.dart';
+import 'line_line_routes_screen.dart';
 
 class LineLineRoutesRoute extends GoRouteData {
   const LineLineRoutesRoute({
@@ -15,7 +15,7 @@ class LineLineRoutesRoute extends GoRouteData {
     BuildContext context,
     GoRouterState state,
   ) {
-    return LineLineRoutesPage(
+    return LineLineRoutesScreen(
       id: id,
     );
   }

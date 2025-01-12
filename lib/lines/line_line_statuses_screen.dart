@@ -3,10 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../common/circular_progress_indicator_future_builder.dart';
-import 'line_disruption_list_tile.dart';
+import 'line_status_list_tile.dart';
 
-class LineLineDisruptionsPage extends StatefulWidget {
-  const LineLineDisruptionsPage({
+class LineLineStatusesScreen extends StatefulWidget {
+  const LineLineStatusesScreen({
     super.key,
     required this.id,
   });
@@ -14,31 +14,31 @@ class LineLineDisruptionsPage extends StatefulWidget {
   final String id;
 
   @override
-  State<LineLineDisruptionsPage> createState() {
-    return _LineLineDisruptionsPageState();
+  State<LineLineStatusesScreen> createState() {
+    return _LineLineStatusesScreenState();
   }
 }
 
-class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
-  late final Future<List<Disruption>> _future;
+class _LineLineStatusesScreenState extends State<LineLineStatusesScreen> {
+  late final Future<List<Line>> _future;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Line disruptions'),
+        title: Text('Line statuses'),
       ),
-      body: CircularProgressIndicatorFutureBuilder<List<Disruption>>(
+      body: CircularProgressIndicatorFutureBuilder<List<Line>>(
         future: _future,
         builder: (context, data) {
-          if (data != null) {
+          if (data?[0].lineStatuses case final lineStatuses?) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                return LineDisruptionListTile(
-                  lineDisruption: data[index],
+                return LineStatusListTile(
+                  lineStatus: lineStatuses[index],
                 );
               },
-              itemCount: data.length,
+              itemCount: lineStatuses.length,
             );
           } else {
             return Container();
@@ -52,6 +52,6 @@ class _LineLineDisruptionsPageState extends State<LineLineDisruptionsPage> {
   void initState() {
     super.initState();
 
-    _future = context.read<TflApiClient>().line.disruption([widget.id]);
+    _future = context.read<TflApiClient>().line.statusByIds([widget.id]);
   }
 }

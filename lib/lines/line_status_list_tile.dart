@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import 'line_status_page.dart';
+import 'line_status_screen.dart';
 
 class LineStatusListTile extends StatelessWidget {
   const LineStatusListTile({
@@ -26,7 +26,7 @@ class LineStatusListTile extends StatelessWidget {
         await Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return LineStatusPage(
+              return LineStatusScreen(
                 lineStatus: lineStatus,
               );
             },

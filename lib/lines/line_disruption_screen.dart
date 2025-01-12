@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-class LineDisruptionPage extends StatelessWidget {
-  const LineDisruptionPage({
+class LineDisruptionScreen extends StatelessWidget {
+  const LineDisruptionScreen({
     super.key,
     required this.lineDisruption,
   });

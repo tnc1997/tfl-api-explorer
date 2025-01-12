@@ -6,8 +6,8 @@ import '../common/circular_progress_indicator_future_builder.dart';
 import 'line_line_route_filters_notifier.dart';
 import 'line_route_list_tile.dart';
 
-class LineLineRoutesPage extends StatefulWidget {
-  const LineLineRoutesPage({
+class LineLineRoutesScreen extends StatefulWidget {
+  const LineLineRoutesScreen({
     super.key,
     required this.id,
   });
@@ -15,12 +15,12 @@ class LineLineRoutesPage extends StatefulWidget {
   final String id;
 
   @override
-  State<LineLineRoutesPage> createState() {
-    return _LineLineRoutesPageState();
+  State<LineLineRoutesScreen> createState() {
+    return _LineLineRoutesScreenState();
   }
 }
 
-class _LineLineRoutesPageState extends State<LineLineRoutesPage> {
+class _LineLineRoutesScreenState extends State<LineLineRoutesScreen> {
   late final Future<List<Line>> _future;
 
   @override

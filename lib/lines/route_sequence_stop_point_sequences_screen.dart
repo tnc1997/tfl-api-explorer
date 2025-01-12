@@ -3,8 +3,8 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../stop_points/stop_point_sequence_list_tile.dart';
 
-class RouteSequenceStopPointSequencesPage extends StatelessWidget {
-  const RouteSequenceStopPointSequencesPage({
+class RouteSequenceStopPointSequencesScreen extends StatelessWidget {
+  const RouteSequenceStopPointSequencesScreen({
     super.key,
     required this.routeSequence,
   });

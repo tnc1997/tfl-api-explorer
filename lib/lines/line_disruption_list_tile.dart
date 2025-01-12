@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import 'line_disruption_page.dart';
+import 'line_disruption_screen.dart';
 
 class LineDisruptionListTile extends StatelessWidget {
   const LineDisruptionListTile({
@@ -28,7 +28,7 @@ class LineDisruptionListTile extends StatelessWidget {
         await Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return LineDisruptionPage(
+              return LineDisruptionScreen(
                 lineDisruption: lineDisruption,
               );
             },

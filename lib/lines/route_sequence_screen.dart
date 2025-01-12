@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-import 'route_sequence_stop_point_sequences_page.dart';
+import 'route_sequence_stop_point_sequences_screen.dart';
 
-class RouteSequencePage extends StatelessWidget {
-  const RouteSequencePage({
+class RouteSequenceScreen extends StatelessWidget {
+  const RouteSequenceScreen({
     super.key,
     required this.routeSequence,
   });
@@ -40,7 +40,7 @@ class RouteSequencePage extends StatelessWidget {
               await Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return RouteSequenceStopPointSequencesPage(
+                    return RouteSequenceStopPointSequencesScreen(
                       routeSequence: routeSequence,
                     );
                   },

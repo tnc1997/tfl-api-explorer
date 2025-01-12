@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-class LineStatusPage extends StatelessWidget {
-  const LineStatusPage({
+class LineStatusScreen extends StatelessWidget {
+  const LineStatusScreen({
     super.key,
     required this.lineStatus,
   });

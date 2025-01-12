@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
-class LineRoutePage extends StatelessWidget {
-  const LineRoutePage({
+class LineRouteScreen extends StatelessWidget {
+  const LineRouteScreen({
     super.key,
     required this.lineRoute,
   });
