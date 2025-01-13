@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../common/circular_progress_indicator_future_builder.dart';
+import '../common/reset_filters_button.dart';
 import 'line_filters_notifier.dart';
 
 class LineFiltersScreen extends StatefulWidget {
@@ -27,12 +28,7 @@ class _LineFiltersScreenState extends State<LineFiltersScreen> {
       appBar: AppBar(
         title: Text('Filters'),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.restore),
-            onPressed: () {
-              notifier.reset();
-            },
-          ),
+          const ResetFiltersButton<LineFiltersNotifier>(),
         ],
       ),
       body: CircularProgressIndicatorFutureBuilder<List<Mode>>(
