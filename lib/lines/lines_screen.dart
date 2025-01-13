@@ -4,6 +4,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../common/circular_progress_indicator_future_builder.dart';
 import '../common/drawer.dart';
+import 'line_filters_button.dart';
 import 'line_filters_notifier.dart';
 import 'line_list_tile.dart';
 
@@ -27,18 +28,7 @@ class _LinesScreenState extends State<LinesScreen> {
       appBar: AppBar(
         title: Text('Lines'),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.filter_alt),
-            onPressed: () async {
-              await Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return _LineFiltersPage();
-                  },
-                ),
-              );
-            },
-          ),
+          const LineFiltersButton(),
         ],
       ),
       body: CircularProgressIndicatorFutureBuilder<List<Line>>(
