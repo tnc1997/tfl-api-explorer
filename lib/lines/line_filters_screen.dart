@@ -4,6 +4,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 
 import '../common/circular_progress_indicator_future_builder.dart';
 import '../common/reset_filters_button.dart';
+import 'line_filters_list_view.dart';
 import 'line_filters_notifier.dart';
 
 class LineFiltersScreen extends StatefulWidget {
@@ -22,8 +23,6 @@ class _LineFiltersScreenState extends State<LineFiltersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final notifier = context.watch<LineFiltersNotifier>();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Filters'),
@@ -35,30 +34,8 @@ class _LineFiltersScreenState extends State<LineFiltersScreen> {
         future: _future,
         builder: (context, data) {
           if (data != null) {
-            return ListView(
-              children: <Widget>[
-                ExpansionTile(
-                  title: Text('Mode'),
-                  children: [
-                    for (final mode in data)
-                      if (mode.modeName case final modeName?)
-                        CheckboxListTile(
-                          value: notifier.modes.contains(modeName),
-                          onChanged: (value) {
-                            if (value == true) {
-                              notifier.addMode(modeName);
-                            } else {
-                              notifier.removeMode(modeName);
-                            }
-                          },
-                          title: Text(
-                            modeName,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                  ],
-                ),
-              ],
+            return LineFiltersListView(
+              modes: data,
             );
           } else {
             return Container();
