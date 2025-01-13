@@ -6,7 +6,7 @@ import '../common/circular_progress_indicator_future_builder.dart';
 import '../common/drawer.dart';
 import 'line_filters_button.dart';
 import 'line_filters_notifier.dart';
-import 'line_list_tile.dart';
+import 'line_list_view.dart';
 
 class LinesScreen extends StatefulWidget {
   const LinesScreen({
@@ -35,13 +35,8 @@ class _LinesScreenState extends State<LinesScreen> {
         future: _future,
         builder: (context, data) {
           if (data != null) {
-            return ListView.builder(
-              itemBuilder: (context, index) {
-                return LineListTile(
-                  line: data[index],
-                );
-              },
-              itemCount: data.length,
+            return LineListView(
+              lines: data,
             );
           } else {
             return Container();
