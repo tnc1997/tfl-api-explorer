@@ -5,18 +5,18 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import '../common/circular_progress_indicator_future_builder.dart';
 import 'line_filters_notifier.dart';
 
-class LineFiltersPage extends StatefulWidget {
-  const LineFiltersPage({
+class LineFiltersScreen extends StatefulWidget {
+  const LineFiltersScreen({
     super.key,
   });
 
   @override
-  State<LineFiltersPage> createState() {
-    return _LineFiltersPageState();
+  State<LineFiltersScreen> createState() {
+    return _LineFiltersScreenState();
   }
 }
 
-class _LineFiltersPageState extends State<LineFiltersPage> {
+class _LineFiltersScreenState extends State<LineFiltersScreen> {
   late final Future<List<Mode>> _future;
 
   @override

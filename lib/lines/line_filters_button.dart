@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'line_filters_page.dart';
+import 'line_filters_screen.dart';
 
 class LineFiltersButton extends StatelessWidget {
   const LineFiltersButton({
@@ -15,7 +15,7 @@ class LineFiltersButton extends StatelessWidget {
         await Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return LineFiltersPage();
+              return LineFiltersScreen();
             },
           ),
         );
