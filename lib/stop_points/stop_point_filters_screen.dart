@@ -5,18 +5,18 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import '../common/circular_progress_indicator_future_builder.dart';
 import 'stop_point_filters_notifier.dart';
 
-class StopPointFiltersPage extends StatefulWidget {
-  const StopPointFiltersPage({
+class StopPointFiltersScreen extends StatefulWidget {
+  const StopPointFiltersScreen({
     super.key,
   });
 
   @override
-  State<StopPointFiltersPage> createState() {
-    return _StopPointFiltersPageState();
+  State<StopPointFiltersScreen> createState() {
+    return _StopPointFiltersScreenState();
   }
 }
 
-class _StopPointFiltersPageState extends State<StopPointFiltersPage> {
+class _StopPointFiltersScreenState extends State<StopPointFiltersScreen> {
   late final Future<List<Mode>> _future;
 
   @override

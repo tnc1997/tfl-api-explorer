@@ -5,7 +5,7 @@ import 'package:tfl_api_client/tfl_api_client.dart';
 import '../common/circular_progress_indicator_future_builder.dart';
 import '../common/drawer.dart';
 import 'stop_point_filters_notifier.dart';
-import 'stop_point_filters_page.dart';
+import 'stop_point_filters_screen.dart';
 import 'stop_point_list_tile.dart';
 
 class StopPointsScreen extends StatefulWidget {
@@ -34,7 +34,7 @@ class _StopPointsScreenState extends State<StopPointsScreen> {
               await Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return const StopPointFiltersPage();
+                    return const StopPointFiltersScreen();
                   },
                 ),
               );
