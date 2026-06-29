@@ -93,7 +93,7 @@ BEGIN
             VALUE "FileDescription", "Explorer for TfL API" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "Explorer for TfL API" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2025 Thomas Clark. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 Thomas Clark. All rights reserved." "\0"
             VALUE "OriginalFilename", "tfl_api_explorer.exe" "\0"
             VALUE "ProductName", "Explorer for TfL API" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
